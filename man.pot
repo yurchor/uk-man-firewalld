@@ -1,0 +1,5052 @@
+# SOME DESCRIPTIVE TITLE
+# Copyright (C) YEAR FSF
+# This file is distributed under the same license as the Firewalld documentation package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Firewalld documentation 1.0\n"
+"Report-Msgid-Bugs-To: trans-uk@lists.fedoraproject.org\n"
+"POT-Creation-Date: 2022-05-22 09:27+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. type: TH
+#: ./firewall-cmd.1:10
+#, no-wrap
+msgid "FIREWALL-CMD"
+msgstr ""
+
+#. type: TH
+#: ./firewall-cmd.1:10 ./firewalld.1:10
+#, no-wrap
+msgid "firewalld 1.1.999"
+msgstr ""
+
+#. type: TH
+#: ./firewall-cmd.1:10
+#, no-wrap
+msgid "firewall-cmd"
+msgstr ""
+
+#.  -----------------------------------------------------------------
+#.  * MAIN CONTENT STARTS HERE *
+#.  -----------------------------------------------------------------
+#. type: SH
+#: ./firewall-cmd.1:28 ./firewalld.1:28
+#, no-wrap
+msgid "NAME"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:30
+msgid "firewall-cmd - firewalld command line client"
+msgstr ""
+
+#. type: SH
+#: ./firewall-cmd.1:30 ./firewalld.1:30
+#, no-wrap
+msgid "SYNOPSIS"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:33
+msgid "B<firewall-cmd> [OPTIONS...]"
+msgstr ""
+
+#. type: SH
+#: ./firewall-cmd.1:33 ./firewalld.1:33
+#, no-wrap
+msgid "DESCRIPTION"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:36
+msgid ""
+"firewall-cmd is the command line client of the firewalld daemon\\&. It "
+"provides an interface to manage the runtime and permanent configurations\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:38
+msgid ""
+"The runtime configuration in firewalld is separated from the permanent "
+"configuration\\&. This means that things can get changed in the runtime or "
+"permanent configuration\\&."
+msgstr ""
+
+#. type: SH
+#: ./firewall-cmd.1:38 ./firewalld.1:36
+#, no-wrap
+msgid "OPTIONS"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:49
+msgid ""
+"Sequence options are the options that can be specified multiple times, the "
+"exit code is 0 if there is at least one item that succeeded\\&. The "
+"I<ALREADY_ENABLED> (11), I<NOT_ENABLED> (12) and also I<ZONE_ALREADY_SET> "
+"(16) errors are treated as succeeded\\&. If there are issues while parsing "
+"the items, then these are treated as warnings and will not change the result "
+"as long as there is a succeeded one\\&. Without any succeeded item, the exit "
+"code will depend on the error codes\\&. If there is exactly one error code, "
+"then this is used\\&. If there are more than one then I<UNKNOWN_ERROR> (254) "
+"will be used\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:51
+msgid "The following options are supported:"
+msgstr ""
+
+#. type: SS
+#: ./firewall-cmd.1:51
+#, no-wrap
+msgid "General Options"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:54 ./firewalld.1:41
+msgid "B<-h>, B<--help>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:56 ./firewalld.1:43
+msgid "Prints a short help text and exits\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:59
+msgid "B<-V>, B<--version>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:61
+msgid ""
+"Print the version string of firewalld\\&. This option is not combinable with "
+"other options\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:64
+msgid "B<-q>, B<--quiet>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:66
+msgid "Do not print status messages\\&."
+msgstr ""
+
+#. type: SS
+#: ./firewall-cmd.1:67
+#, no-wrap
+msgid "Status Options"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:70
+msgid "B<--state>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:78
+msgid ""
+"Check whether the firewalld daemon is active "
+"(i\\&.e\\&. running)\\&. Returns an exit code 0 if it is active, "
+"I<RUNNING_BUT_FAILED> if failure occurred on startup, I<NOT_RUNNING> "
+"otherwise\\&. See the section called \\(lqEXIT CODES\\(rq\\&. This will also "
+"print the state to I<STDOUT>\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:81
+msgid "B<--reload>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:83
+msgid ""
+"Reload firewall rules and keep state information\\&. Current permanent "
+"configuration will become new runtime configuration, i\\&.e\\&. all runtime "
+"only changes done until reload are lost with reload if they have not been "
+"also in permanent configuration\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:86 ./firewall-cmd.1:94
+msgid ""
+"Note: If FlushAllOnReload=no, runtime changes applied via the direct "
+"interface are not affected and will therefore stay in place until firewalld "
+"daemon is restarted completely\\&. For FlushAllOnReload, see "
+"B<firewalld.conf>(5)\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:89
+msgid "B<--complete-reload>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:91
+msgid ""
+"Reload firewall completely, even netfilter kernel modules\\&. This will most "
+"likely terminate active connections, because state information is "
+"lost\\&. This option should only be used in case of severe firewall "
+"problems\\&. For example if there are state information problems that no "
+"connection can be established with correct firewall rules\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:97
+msgid "B<--runtime-to-permanent>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:99
+msgid ""
+"Save active runtime configuration and overwrite permanent configuration with "
+"it\\&. The way this is supposed to work is that when configuring firewalld "
+"you do runtime changes only and once you\\*(Aqre happy with the "
+"configuration and you tested that it works the way you want, you save the "
+"configuration to disk\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:102
+msgid "B<--check-config>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:104
+msgid ""
+"Run checks on the permanent configuration\\&. This includes XML validity and "
+"semantics\\&."
+msgstr ""
+
+#. type: SS
+#: ./firewall-cmd.1:105
+#, no-wrap
+msgid "Log Denied Options"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:108
+msgid "B<--get-log-denied>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:110
+msgid "Print the log denied setting\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:113
+msgid "B<--set-log-denied>=I<value>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:122
+msgid ""
+"Add logging rules right before reject and drop rules in the INPUT, FORWARD "
+"and OUTPUT chains for the default rules and also final reject and drop rules "
+"in zones for the configured link-layer packet type\\&. The possible values "
+"are: I<all>, I<unicast>, I<broadcast>, I<multicast> and I<off>\\&. The "
+"default setting is I<off>, which disables the logging\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:124
+msgid ""
+"This is a runtime and permanent change and will also reload the firewall to "
+"be able to add the logging rules\\&."
+msgstr ""
+
+#. type: SS
+#: ./firewall-cmd.1:125
+#, no-wrap
+msgid "Permanent Options"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:128
+msgid "B<--permanent>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:134
+msgid ""
+"The permanent option B<--permanent> can be used to set options "
+"permanently\\&. These changes are not effective immediately, only after "
+"service restart/reload or system reboot\\&. Without the B<--permanent> "
+"option, a change will only be part of the runtime configuration\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:138
+msgid ""
+"If you want to make a change in runtime and permanent configuration, use the "
+"same call with and without the B<--permanent> option\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:142
+msgid ""
+"The B<--permanent> option can be optionally added to all options further "
+"down where it is supported\\&."
+msgstr ""
+
+#. type: SS
+#: ./firewall-cmd.1:143
+#, no-wrap
+msgid "Zone Options"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:146
+msgid "B<--get-default-zone>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:148
+msgid "Print default zone for connections and interfaces\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:151
+msgid "B<--set-default-zone>=I<zone>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:153
+msgid ""
+"Set default zone for connections and interfaces where no zone has been "
+"selected\\&. Setting the default zone changes the zone for the connections "
+"or interfaces, that are using the default zone\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:155 ./firewall-cmd.1:1754 ./firewall-cmd.1:1761
+msgid "This is a runtime and permanent change\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:158
+msgid "B<--get-active-zones>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:160
+msgid ""
+"Print currently active zones altogether with interfaces and sources used in "
+"these zones\\&. Active zones are zones, that have a binding to an interface "
+"or source\\&. The output format is:"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:170
+#, no-wrap
+msgid ""
+"I<zone1>\n"
+"  interfaces: I<interface1> I<interface2> \\&.\\&.\n"
+"  sources: I<source1> \\&.\\&.\n"
+"I<zone2>\n"
+"  interfaces: I<interface3> \\&.\\&.\n"
+"I<zone3>\n"
+"  sources: I<source2> \\&.\\&.\n"
+"\t      \n"
+"If there are no interfaces or sources bound to the zone, the corresponding "
+"line will be omitted\\&.\n"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:173
+msgid "[B<--permanent>] B<--get-zones>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:175
+msgid "Print predefined zones as a space separated list\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:178
+msgid "[B<--permanent>] B<--get-services>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:180
+msgid "Print predefined services as a space separated list\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:183
+msgid "[B<--permanent>] B<--get-icmptypes>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:185
+msgid "Print predefined icmptypes as a space separated list\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:188
+msgid "[B<--permanent>] B<--get-zone-of-interface>=I<interface>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:193
+msgid "Print the name of the zone the I<interface> is bound to or I<no zone>\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:196
+msgid ""
+"[B<--permanent>] "
+"B<--get-zone-of-source>=I<source>[/I<mask>]|I<MAC>|ipset:I<ipset>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:199
+msgid "Print the name of the zone the source is bound to or I<no zone>\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:202
+msgid "[B<--permanent>] B<--info-zone=>I<zone>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:205
+msgid "Print information about the zone I<zone>\\&. The output format is:"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:220
+#, no-wrap
+msgid ""
+"I<zone>\n"
+"  interfaces: I<interface1> \\&.\\&.\n"
+"  sources: I<source1> \\&.\\&.\n"
+"  services: I<service1> \\&.\\&.\n"
+"  ports: I<port1> \\&.\\&.\n"
+"  protocols: I<protocol1> \\&.\\&.\n"
+"  forward-ports:\n"
+"        I<forward-port1>\n"
+"        \\&.\\&.\n"
+"  source-ports: I<source-port1> \\&.\\&.\n"
+"  icmp-blocks: I<icmp-type1> \\&.\\&.\n"
+"  rich rules:\n"
+"        I<rich-rule1>\n"
+"        \\&.\\&.\n"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:224
+msgid "[B<--permanent>] B<--list-all-zones>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:226
+msgid "List everything added for or enabled in all zones\\&. The output format is:"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:241
+#, no-wrap
+msgid ""
+"I<zone1>\n"
+"  interfaces: I<interface1> \\&.\\&.\n"
+"  sources: I<source1> \\&.\\&.\n"
+"  services: I<service1> \\&.\\&.\n"
+"  ports: I<port1> \\&.\\&.\n"
+"  protocols: I<protocol1> \\&.\\&.\n"
+"  forward-ports:\n"
+"        I<forward-port1>\n"
+"        \\&.\\&.\n"
+"  icmp-blocks: I<icmp-type1> \\&.\\&.\n"
+"  rich rules:\n"
+"        I<rich-rule1>\n"
+"        \\&.\\&.\n"
+"\\&.\\&.\n"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:245
+msgid "B<--permanent> B<--new-zone>=I<zone>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:247
+msgid "Add a new permanent and empty zone\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:249
+msgid ""
+"Zone names must be alphanumeric and may additionally include characters: "
+"\\*(Aq_\\*(Aq and \\*(Aq-\\*(Aq\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:252
+msgid "B<--permanent> B<--new-zone-from-file>=I<filename> [B<--name>=I<zone>]"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:254
+msgid ""
+"Add a new permanent zone from a prepared zone file with an optional name "
+"override\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:257
+msgid "B<--permanent> B<--delete-zone>=I<zone>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:259
+msgid "Delete an existing permanent zone\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:262
+msgid "B<--permanent> B<--load-zone-defaults>=I<zone>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:264
+msgid "Load zone default settings or report NO_DEFAULTS error\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:267
+msgid "B<--permanent> B<--path-zone=>I<zone>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:269
+msgid "Print path of the zone configuration file\\&."
+msgstr ""
+
+#. type: SS
+#: ./firewall-cmd.1:270
+#, no-wrap
+msgid "Policy Options"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:273
+msgid "[B<--permanent>] B<--get-policies>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:275
+msgid "Print predefined policies as a space separated list\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:278
+msgid "[B<--permanent>] B<--info-policy>=I<policy>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:281
+msgid "Print information about the policy I<policy>\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:284
+msgid "[B<--permanent>] B<--list-all-policies>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:286
+msgid "List everything added for or enabled in all policies\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:289
+msgid "B<--permanent> B<--new-policy>=I<policy>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:291
+msgid "Add a new permanent policy\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:293
+msgid ""
+"Policy names must be alphanumeric and may additionally include characters: "
+"\\*(Aq_\\*(Aq and \\*(Aq-\\*(Aq\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:296
+msgid "B<--permanent> B<--new-policy-from-file>=I<filename> [B<--name>=I<policy>]"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:298
+msgid ""
+"Add a new permanent policy from a prepared policy file with an optional name "
+"override\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:301
+msgid "B<--permanent> B<--path-policy>=I<policy>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:303
+msgid "Print path of the policy configuration file\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:306
+msgid "B<--permanent> B<--delete-policy>=I<policy>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:308
+msgid "Delete an existing permanent policy\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:311
+msgid "B<--permanent> B<--load-policy-defaults>=I<policy>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:313
+msgid ""
+"Load the shipped defaults for a policy\\&. Only applies to policies shipped "
+"with firewalld\\&. Does not apply to user defined policies\\&."
+msgstr ""
+
+#. type: SS
+#: ./firewall-cmd.1:314
+#, no-wrap
+msgid "Options to Adapt and Query Zones and Policies"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:322
+msgid ""
+"Options in this section affect only one particular zone or policy\\&. If "
+"used with B<--zone>=I<zone> or B<--policy>=I<policy> option, they affect the "
+"specified zone or policy\\&. If both options are omitted, they affect the "
+"default zone (see B<--get-default-zone>)\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:324
+msgid "[B<--permanent>] [B<--zone>=I<zone>] [B<--policy>=I<policy>] B<--list-all>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:326
+msgid "List everything added or enabled\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:329
+msgid "B<--permanent> [B<--zone>=I<zone>] [B<--policy>=I<policy>] B<--get-target>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:331
+msgid "Get the target\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:334
+msgid ""
+"B<--permanent> [B<--zone>=I<zone>] [B<--policy>=I<policy>] "
+"B<--set-target>=I<target>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:336
+msgid "Set the target\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:344
+msgid "For zones I<target> is one of: I<default>, I<ACCEPT>, I<DROP>, I<REJECT>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:352
+msgid "For policies I<target> is one of: I<CONTINUE>, I<ACCEPT>, I<DROP>, I<REJECT>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:356
+msgid ""
+"I<default> is similar to I<REJECT>, but it implicitly allows ICMP "
+"packets\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:359
+msgid ""
+"B<--permanent> [B<--zone>=I<zone>] [B<--policy>=I<policy>] "
+"B<--set-description>=I<description>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:361
+msgid "Set description\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:364
+msgid ""
+"B<--permanent> [B<--zone>=I<zone>] [B<--policy>=I<policy>] "
+"B<--get-description>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:366
+msgid "Print description\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:369
+msgid ""
+"B<--permanent> [B<--zone>=I<zone>] [B<--policy>=I<policy>] "
+"B<--set-short>=I<description>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:371
+msgid "Set short description\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:374
+msgid "B<--permanent> [B<--zone>=I<zone>] [B<--policy>=I<policy>] B<--get-short>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:376
+msgid "Print short description\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:379
+msgid ""
+"[B<--permanent>] [B<--zone>=I<zone>] [B<--permanent>] "
+"[B<--policy>=I<policy>] B<--list-services>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:381
+msgid "List services added as a space separated list\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:384
+msgid ""
+"[B<--permanent>] [B<--zone>=I<zone>] [B<--permanent>] "
+"[B<--policy>=I<policy>] B<--add-service>=I<service> "
+"[B<--timeout>=I<timeval>]"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:397
+msgid ""
+"Add a service\\&. This option can be specified multiple times\\&. If a "
+"timeout is supplied, the rule will be active for the specified amount of "
+"time and will be removed automatically afterwards\\&.  I<timeval> is either "
+"a number (of seconds) or number followed by one of characters I<s> "
+"(seconds), I<m> (minutes), I<h> (hours), for example I<20m> or I<1h>\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:400
+msgid ""
+"The service is one of the firewalld provided services\\&. To get a list of "
+"the supported services, use B<firewall-cmd --get-services>\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:406 ./firewall-cmd.1:465 ./firewall-cmd.1:506
+#: ./firewall-cmd.1:552 ./firewall-cmd.1:595 ./firewall-cmd.1:653
+#: ./firewall-cmd.1:708 ./firewall-cmd.1:769
+msgid "The B<--timeout> option is not combinable with the B<--permanent> option\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:408
+msgid ""
+"B<Note>: Some services define connection tracking helpers\\&. Helpers that "
+"may operate in client mode (e\\&.g\\&. tftp) must be added to an outbound "
+"policy instead of a zone to take effect for clients\\&. Otherwise the helper "
+"will not be applied to the outbound traffic\\&. The related traffic, as "
+"defined by the connection tracking helper, on the return path (ingress) will "
+"be allowed by the stateful firewall rules\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:410
+msgid "An example of an outbound policy for connection tracking helpers:"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:415
+msgid ""
+"# firewall-cmd --permanent --new-policy clientConntrack # firewall-cmd "
+"--permanent --policy clientConntrack --add-ingress-zone HOST # firewall-cmd "
+"--permanent --policy clientConntrack --add-egress-zone ANY # firewall-cmd "
+"--permanent --policy clientConntrack --add-service tftp"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:420
+msgid ""
+"[B<--permanent>] [B<--zone>=I<zone>] [B<--permanent>] "
+"[B<--policy>=I<policy>] B<--remove-service>=I<service>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:422
+msgid "Remove a service\\&. This option can be specified multiple times\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:425
+msgid ""
+"[B<--permanent>] [B<--zone>=I<zone>] [B<--permanent>] "
+"[B<--policy>=I<policy>] B<--query-service>=I<service>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:429
+msgid ""
+"Return whether I<service> has been added\\&. Returns 0 if true, 1 "
+"otherwise\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:432
+msgid ""
+"[B<--permanent>] [B<--zone>=I<zone>] [B<--permanent>] "
+"[B<--policy>=I<policy>] B<--list-ports>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:435
+msgid ""
+"List ports added as a space separated list\\&. A port is of the form "
+"I<portid>[-I<portid>]/I<protocol>, it can be either a port and protocol pair "
+"or a port range with a protocol\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:438
+msgid ""
+"[B<--permanent>] [B<--zone>=I<zone>] [B<--permanent>] "
+"[B<--policy>=I<policy>] B<--add-port>=I<portid>[-I<portid>]/I<protocol> "
+"[B<--timeout>=I<timeval>]"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:451
+msgid ""
+"Add the port\\&. This option can be specified multiple times\\&. If a "
+"timeout is supplied, the rule will be active for the specified amount of "
+"time and will be removed automatically afterwards\\&.  I<timeval> is either "
+"a number (of seconds) or number followed by one of characters I<s> "
+"(seconds), I<m> (minutes), I<h> (hours), for example I<20m> or I<1h>\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:459 ./firewall-cmd.1:546
+msgid ""
+"The port can either be a single port number or a port range "
+"I<portid>-I<portid>\\&. The protocol can either be I<tcp>, I<udp>, I<sctp> "
+"or I<dccp>\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:468
+msgid ""
+"[B<--permanent>] [B<--zone>=I<zone>] [B<--permanent>] "
+"[B<--policy>=I<policy>] B<--remove-port>=I<portid>[-I<portid>]/I<protocol>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:470
+msgid "Remove the port\\&. This option can be specified multiple times\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:473
+msgid ""
+"[B<--permanent>] [B<--zone>=I<zone>] [B<--permanent>] "
+"[B<--policy>=I<policy>] B<--query-port>=I<portid>[-I<portid>]/I<protocol>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:475
+msgid ""
+"Return whether the port has been added\\&. Returns 0 if true, 1 "
+"otherwise\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:478
+msgid ""
+"[B<--permanent>] [B<--zone>=I<zone>] [B<--permanent>] "
+"[B<--policy>=I<policy>] B<--list-protocols>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:480
+msgid "List protocols added as a space separated list\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:483
+msgid ""
+"[B<--permanent>] [B<--zone>=I<zone>] [B<--permanent>] "
+"[B<--policy>=I<policy>] B<--add-protocol>=I<protocol> "
+"[B<--timeout>=I<timeval>]"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:496
+msgid ""
+"Add the protocol\\&. This option can be specified multiple times\\&. If a "
+"timeout is supplied, the rule will be active for the specified amount of "
+"time and will be removed automatically afterwards\\&.  I<timeval> is either "
+"a number (of seconds) or number followed by one of characters I<s> "
+"(seconds), I<m> (minutes), I<h> (hours), for example I<20m> or I<1h>\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:500
+msgid ""
+"The protocol can be any protocol supported by the system\\&. Please have a "
+"look at I</etc/protocols> for supported protocols\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:509
+msgid ""
+"[B<--permanent>] [B<--zone>=I<zone>] [B<--permanent>] "
+"[B<--policy>=I<policy>] B<--remove-protocol>=I<protocol>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:511
+msgid "Remove the protocol\\&. This option can be specified multiple times\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:514
+msgid ""
+"[B<--permanent>] [B<--zone>=I<zone>] [B<--permanent>] "
+"[B<--policy>=I<policy>] B<--query-protocol>=I<protocol>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:516
+msgid ""
+"Return whether the protocol has been added\\&. Returns 0 if true, 1 "
+"otherwise\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:519
+msgid ""
+"[B<--permanent>] [B<--zone>=I<zone>] [B<--permanent>] "
+"[B<--policy>=I<policy>] B<--list-source-ports>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:522
+msgid ""
+"List source ports added as a space separated list\\&. A port is of the form "
+"I<portid>[-I<portid>]/I<protocol>\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:525
+msgid ""
+"[B<--permanent>] [B<--zone>=I<zone>] [B<--permanent>] "
+"[B<--policy>=I<policy>] "
+"B<--add-source-port>=I<portid>[-I<portid>]/I<protocol> "
+"[B<--timeout>=I<timeval>]"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:538
+msgid ""
+"Add the source port\\&. This option can be specified multiple times\\&. If a "
+"timeout is supplied, the rule will be active for the specified amount of "
+"time and will be removed automatically afterwards\\&.  I<timeval> is either "
+"a number (of seconds) or number followed by one of characters I<s> "
+"(seconds), I<m> (minutes), I<h> (hours), for example I<20m> or I<1h>\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:555
+msgid ""
+"[B<--permanent>] [B<--zone>=I<zone>] [B<--permanent>] "
+"[B<--policy>=I<policy>] "
+"B<--remove-source-port>=I<portid>[-I<portid>]/I<protocol>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:557
+msgid "Remove the source port\\&. This option can be specified multiple times\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:560
+msgid ""
+"[B<--permanent>] [B<--zone>=I<zone>] [B<--permanent>] "
+"[B<--policy>=I<policy>] "
+"B<--query-source-port>=I<portid>[-I<portid>]/I<protocol>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:562
+msgid ""
+"Return whether the source port has been added\\&. Returns 0 if true, 1 "
+"otherwise\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:565
+msgid ""
+"[B<--permanent>] [B<--zone>=I<zone>] [B<--permanent>] "
+"[B<--policy>=I<policy>] B<--list-icmp-blocks>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:567
+msgid ""
+"List Internet Control Message Protocol (ICMP) type blocks added as a space "
+"separated list\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:570
+msgid ""
+"[B<--permanent>] [B<--zone>=I<zone>] [B<--permanent>] "
+"[B<--policy>=I<policy>] B<--add-icmp-block>=I<icmptype> "
+"[B<--timeout>=I<timeval>]"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:584
+msgid ""
+"Add an ICMP block for I<icmptype>\\&. This option can be specified multiple "
+"times\\&. If a timeout is supplied, the rule will be active for the "
+"specified amount of time and will be removed automatically afterwards\\&.  "
+"I<timeval> is either a number (of seconds) or number followed by one of "
+"characters I<s> (seconds), I<m> (minutes), I<h> (hours), for example I<20m> "
+"or I<1h>\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:589
+msgid ""
+"The I<icmptype> is the one of the icmp types firewalld supports\\&. To get a "
+"listing of supported icmp types: B<firewall-cmd --get-icmptypes>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:598
+msgid ""
+"[B<--permanent>] [B<--zone>=I<zone>] [B<--permanent>] "
+"[B<--policy>=I<policy>] B<--remove-icmp-block>=I<icmptype>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:601
+msgid ""
+"Remove the ICMP block for I<icmptype>\\&. This option can be specified "
+"multiple times\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:604
+msgid ""
+"[B<--permanent>] [B<--zone>=I<zone>] [B<--permanent>] "
+"[B<--policy>=I<policy>] B<--query-icmp-block>=I<icmptype>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:608
+msgid ""
+"Return whether an ICMP block for I<icmptype> has been added\\&. Returns 0 if "
+"true, 1 otherwise\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:611
+msgid ""
+"[B<--permanent>] [B<--zone>=I<zone>] [B<--permanent>] "
+"[B<--policy>=I<policy>] B<--list-forward-ports>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:615
+msgid "List I<IPv4> forward ports added as a space separated list\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:619 ./firewall-cmd.1:657 ./firewall-cmd.1:673
+#: ./firewall-cmd.1:684
+msgid "For I<IPv6> forward ports, please use the rich language\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:622
+msgid ""
+"[B<--permanent>] [B<--zone>=I<zone>] [B<--permanent>] "
+"[B<--policy>=I<policy>] "
+"B<--add-forward-port>=port=I<portid>[-I<portid>]:proto=I<protocol>[:toport=I<portid>[-I<portid>]][:toaddr=I<address>[/I<mask>]] "
+"[B<--timeout>=I<timeval>]"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:637
+msgid ""
+"Add the I<IPv4> forward port\\&. This option can be specified multiple "
+"times\\&. If a timeout is supplied, the rule will be active for the "
+"specified amount of time and will be removed automatically afterwards\\&.  "
+"I<timeval> is either a number (of seconds) or number followed by one of "
+"characters I<s> (seconds), I<m> (minutes), I<h> (hours), for example I<20m> "
+"or I<1h>\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:647
+msgid ""
+"The port can either be a single port number I<portid> or a port range "
+"I<portid>-I<portid>\\&. The protocol can either be I<tcp>, I<udp>, I<sctp> "
+"or I<dccp>\\&. The destination address is a simple IP address\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:662
+msgid ""
+"I<Note:> IP forwarding will be implicitly enabled if B<toaddr> is "
+"specified\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:665
+msgid ""
+"[B<--permanent>] [B<--zone>=I<zone>] [B<--permanent>] "
+"[B<--policy>=I<policy>] "
+"B<--remove-forward-port>=port=I<portid>[-I<portid>]:proto=I<protocol>[:toport=I<portid>[-I<portid>]][:toaddr=I<address>[/I<mask>]]"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:669
+msgid ""
+"Remove the I<IPv4> forward port\\&. This option can be specified multiple "
+"times\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:676
+msgid ""
+"[B<--permanent>] [B<--zone>=I<zone>] [B<--permanent>] "
+"[B<--policy>=I<policy>] "
+"B<--query-forward-port>=port=I<portid>[-I<portid>]:proto=I<protocol>[:toport=I<portid>[-I<portid>]][:toaddr=I<address>[/I<mask>]]"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:680
+msgid ""
+"Return whether the I<IPv4> forward port has been added\\&. Returns 0 if "
+"true, 1 otherwise\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:687
+msgid ""
+"[B<--permanent>] [B<--zone>=I<zone>] [B<--permanent>] "
+"[B<--policy>=I<policy>] B<--add-masquerade> [B<--timeout>=I<timeval>]"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:702
+msgid ""
+"Enable I<IPv4> masquerade\\&. If a timeout is supplied, masquerading will be "
+"active for the specified amount of time\\&.  I<timeval> is either a number "
+"(of seconds) or number followed by one of characters I<s> (seconds), I<m> "
+"(minutes), I<h> (hours), for example I<20m> or I<1h>\\&. Masquerading is "
+"useful if the machine is a router and machines connected over an interface "
+"in another zone should be able to use the first connection\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:712 ./firewall-cmd.1:726 ./firewall-cmd.1:737
+msgid "For I<IPv6> masquerading, please use the rich language\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:715
+msgid "I<Note:> IP forwarding will be implicitly enabled\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:718
+msgid ""
+"[B<--permanent>] [B<--zone>=I<zone>] [B<--permanent>] "
+"[B<--policy>=I<policy>] B<--remove-masquerade>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:722
+msgid ""
+"Disable I<IPv4> masquerade\\&. If the masquerading was enabled with a "
+"timeout, it will be disabled also\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:729
+msgid ""
+"[B<--permanent>] [B<--zone>=I<zone>] [B<--permanent>] "
+"[B<--policy>=I<policy>] B<--query-masquerade>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:733
+msgid ""
+"Return whether I<IPv4> masquerading has been enabled\\&. Returns 0 if true, "
+"1 otherwise\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:740
+msgid ""
+"[B<--permanent>] [B<--zone>=I<zone>] [B<--permanent>] "
+"[B<--policy>=I<policy>] B<--list-rich-rules>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:742
+msgid "List rich language rules added as a newline separated list\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:745
+msgid ""
+"[B<--permanent>] [B<--zone>=I<zone>] [B<--permanent>] "
+"[B<--policy>=I<policy>] B<--add-rich-rule>=\\*(AqI<rule>\\*(Aq "
+"[B<--timeout>=I<timeval>]"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:760
+msgid ""
+"Add rich language rule \\*(AqI<rule>\\*(Aq\\&. This option can be specified "
+"multiple times\\&. If a timeout is supplied, the I<rule> will be active for "
+"the specified amount of time and will be removed automatically "
+"afterwards\\&.  I<timeval> is either a number (of seconds) or number "
+"followed by one of characters I<s> (seconds), I<m> (minutes), I<h> (hours), "
+"for example I<20m> or I<1h>\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:763 ./firewall-cmd.1:777 ./firewall-cmd.1:785
+msgid ""
+"For the rich language rule syntax, please have a look at "
+"B<firewalld.richlanguage>(5)\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:772
+msgid ""
+"[B<--permanent>] [B<--zone>=I<zone>] [B<--permanent>] "
+"[B<--policy>=I<policy>] B<--remove-rich-rule>=\\*(AqI<rule>\\*(Aq"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:774
+msgid ""
+"Remove rich language rule \\*(AqI<rule>\\*(Aq\\&. This option can be "
+"specified multiple times\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:780
+msgid ""
+"[B<--permanent>] [B<--zone>=I<zone>] [B<--permanent>] "
+"[B<--policy>=I<policy>] B<--query-rich-rule>=\\*(AqI<rule>\\*(Aq"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:782
+msgid ""
+"Return whether a rich language rule \\*(AqI<rule>\\*(Aq has been "
+"added\\&. Returns 0 if true, 1 otherwise\\&."
+msgstr ""
+
+#. type: SS
+#: ./firewall-cmd.1:786
+#, no-wrap
+msgid "Options to Adapt and Query Zones"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:792
+msgid ""
+"Options in this section affect only one particular zone\\&. If used with "
+"B<--zone>=I<zone> option, they affect the specified zone\\&. If the option "
+"is omitted, they affect default zone (see B<--get-default-zone>)\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:794
+msgid "[B<--permanent>] [B<--zone>=I<zone>] B<--add-icmp-block-inversion>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:796
+msgid "Enable ICMP block inversion\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:799
+msgid "[B<--permanent>] [B<--zone>=I<zone>] B<--remove-icmp-block-inversion>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:801
+msgid "Disable ICMP block inversion\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:804
+msgid "[B<--permanent>] [B<--zone>=I<zone>] B<--query-icmp-block-inversion>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:806
+msgid ""
+"Return whether ICMP block inversion is enabled\\&. Returns 0 if true, 1 "
+"otherwise\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:809
+msgid "[B<--permanent>] [B<--zone>=I<zone>] B<--add-forward>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:811
+msgid "Enable intra zone forwarding\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:814
+msgid "[B<--permanent>] [B<--zone>=I<zone>] B<--remove-forward>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:816
+msgid "Disable intra zone forwarding\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:819
+msgid "[B<--permanent>] [B<--zone>=I<zone>] B<--query-forward>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:821
+msgid ""
+"Return whether intra zone forwarding is enabled\\&. Returns 0 if true, 1 "
+"otherwise\\&."
+msgstr ""
+
+#. type: SS
+#: ./firewall-cmd.1:822
+#, no-wrap
+msgid "Options to Adapt and Query Policies"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:827
+msgid ""
+"Options in this section affect only one particular policy\\&. It\\*(Aqs "
+"required to specify B<--policy>=I<policy> with these options\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:829
+msgid "B<--permanent> B<--policy>=I<policy> B<--get-priority>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:831
+msgid "Get the priority\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:834
+msgid "B<--permanent> B<--policy>=I<policy> B<--set-priority>I<priority>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:836
+msgid ""
+"Set the priority\\&. The priority determines the relative ordering of "
+"policies\\&. This is an integer value between -32768 and 32767 where -1 is "
+"the default value for new policies and 0 is reserved for internal use\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:838
+msgid ""
+"If a priority is E<lt> 0, then the policy\\*(Aqs rules will execute before "
+"all rules in all zones\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:840
+msgid ""
+"If a priority is E<gt> 0, then the policy\\*(Aqs rules will execute after "
+"all rules in all zones\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:843
+msgid "[B<--permanent>] B<--policy>=I<policy> B<--list-ingress-zones>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:845
+msgid "List ingress zones added as a space separated list\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:848
+msgid "[B<--permanent>] B<--policy>=I<policy> B<--add-ingress-zone>=I<zone>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:850
+msgid "Add an ingress zone\\&. This option can be specified multiple times\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:852
+msgid ""
+"The ingress zone is one of the firewalld provided zones or one of the "
+"pseudo-zones: HOST, ANY\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:854
+msgid ""
+"HOST is used for traffic originating from the host machine, i\\&.e\\&. the "
+"host running firewalld\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:856
+msgid ""
+"ANY is used for traffic originating from any zone\\&. This can be thought of "
+"as a wild card for zones\\&. However it does not include traffic originating "
+"from the host machine - use HOST for that\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:859
+msgid "[B<--permanent>] B<--policy>=I<policy> B<--remove-ingress-zone>=I<zone>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:861
+msgid "Remove an ingress zone\\&. This option can be specified multiple times\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:864
+msgid "[B<--permanent>] B<--policy>=I<policy> B<--query-ingress-zone>=I<zone>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:868 ./firewall-cmd.1:895
+msgid "Return whether I<zone> has been added\\&. Returns 0 if true, 1 otherwise\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:871
+msgid "[B<--permanent>] B<--policy>=I<policy> B<--list-egress-zones>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:873
+msgid "List egress zones added as a space separated list\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:876
+msgid "[B<--permanent>] B<--policy>=I<policy> B<--add-egress-zone>=I<zone>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:878
+msgid "Add an egress zone\\&. This option can be specified multiple times\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:880
+msgid ""
+"The egress zone is one of the firewalld provided zones or one of the "
+"pseudo-zones: HOST, ANY\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:883
+msgid "For clarification on HOST and ANY see option B<--add-ingress-zone>\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:886
+msgid "[B<--permanent>] B<--policy>=I<policy> B<--remove-egress-zone>=I<zone>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:888
+msgid "Remove an egress zone\\&. This option can be specified multiple times\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:891
+msgid "[B<--permanent>] B<--policy>=I<policy> B<--query-egress-zone>=I<zone>"
+msgstr ""
+
+#. type: SS
+#: ./firewall-cmd.1:896
+#, no-wrap
+msgid "Options to Handle Bindings of Interfaces"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:899
+msgid ""
+"Binding an interface to a zone means that this zone settings are used to "
+"restrict traffic via the interface\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:905 ./firewall-cmd.1:993
+msgid ""
+"Options in this section affect only one particular zone\\&. If used with "
+"B<--zone>=I<zone> option, they affect the zone I<zone>\\&. If the option is "
+"omitted, they affect default zone (see B<--get-default-zone>)\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:908
+msgid "For a list of predefined zones use B<firewall-cmd --get-zones>\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:915
+msgid ""
+"An interface name is a string up to 16 characters long, that may not contain "
+"B<\\*(Aq \\*(Aq>, B<\\*(Aq/\\*(Aq>, B<\\*(Aq!\\*(Aq> and "
+"B<\\*(Aq*\\*(Aq>\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:917
+msgid "[B<--permanent>] [B<--zone>=I<zone>] B<--list-interfaces>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:921
+msgid ""
+"List interfaces that are bound to zone I<zone> as a space separated "
+"list\\&. If zone is omitted, default zone will be used\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:924
+msgid "[B<--permanent>] [B<--zone>=I<zone>] B<--add-interface>=I<interface>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:929
+msgid ""
+"Bind interface I<interface> to zone I<zone>\\&. If zone is omitted, default "
+"zone will be used\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:931 ./firewall-cmd.1:951
+msgid ""
+"If the interface is under control of NetworkManager, it is at first "
+"connected to change the zone for the connection that is using the "
+"interface\\&. If this fails, the zone binding is created in firewalld and "
+"the limitations below apply\\&. For interfaces that are not under control of "
+"NetworkManager, firewalld tries to change the ZONE setting in the ifcfg "
+"file, if the file exists\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:946
+msgid ""
+"As a end user you don\\*(Aqt need this in most cases, because NetworkManager "
+"(or legacy network service) adds interfaces into zones automatically "
+"(according to B<ZONE=> option from ifcfg-I<interface> file) if "
+"I<NM_CONTROLLED=no> is not set\\&. You should do it only if there\\*(Aqs no "
+"/etc/sysconfig/network-scripts/ifcfg-I<interface> file\\&. If there is such "
+"file and you add interface to zone with this B<--add-interface> option, make "
+"sure the zone is the same in both cases, otherwise the behaviour would be "
+"undefined\\&. Please also have a look at the B<firewalld>(1)  man page in "
+"the I<Concepts> section\\&. For permanent association of interface with a "
+"zone, see also \\*(AqHow to set or change a zone for a connection?\\*(Aq in "
+"B<firewalld.zones>(5)\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:949
+msgid "[B<--permanent>] [B<--zone>=I<zone>] B<--change-interface>=I<interface>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:960
+msgid ""
+"Change zone the interface I<interface> is bound to to zone "
+"I<zone>\\&. It\\*(Aqs basically B<--remove-interface> followed by "
+"B<--add-interface>\\&. If the interface has not been bound to a zone before, "
+"it behaves like B<--add-interface>\\&. If zone is omitted, default zone will "
+"be used\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:963
+msgid "[B<--permanent>] [B<--zone>=I<zone>] B<--query-interface>=I<interface>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:968
+msgid ""
+"Query whether interface I<interface> is bound to zone I<zone>\\&. Returns 0 "
+"if true, 1 otherwise\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:971
+msgid "[B<--permanent>] B<--remove-interface>=I<interface>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:973
+msgid ""
+"If the interface is under control of NetworkManager, it is at first "
+"connected to change the zone for the connection that is using the "
+"interface\\&. If this fails, the zone binding is created in firewalld and "
+"the limitations below apply\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:975
+msgid ""
+"For the addion or change of interfaces that are not under control of "
+"NetworkManager: firewalld tries to change the ZONE setting in the ifcfg "
+"file, if an ifcfg file exists that is using the interface\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:977
+msgid ""
+"Only for the removal of interfaces that are not under control of "
+"NetworkManager: firewalld is not trying to change the ZONE setting in the "
+"ifcfg file\\&. This is needed to make sure that an ifdown of the interface "
+"will not result in a reset of the zone setting to the default zone\\&. Only "
+"the zone binding is then removed in firewalld then\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:981
+msgid ""
+"Remove binding of interface I<interface> from zone it was previously added "
+"to\\&."
+msgstr ""
+
+#. type: SS
+#: ./firewall-cmd.1:982
+#, no-wrap
+msgid "Options to Handle Bindings of Sources"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:985
+msgid ""
+"Binding a source to a zone means that this zone settings will be used to "
+"restrict traffic from this source\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:987
+msgid ""
+"A source address or address range is either an IP address or a network IP "
+"address with a mask for IPv4 or IPv6 or a MAC address or an ipset with the "
+"ipset: prefix\\&. For IPv4, the mask can be a network mask or a plain "
+"number\\&. For IPv6 the mask is a plain number\\&. The use of host names is "
+"not supported\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:996
+msgid ""
+"For a list of predefined zones use B<firewall-cmd >B<[--permanent>]B< "
+"--get-zones>\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:998
+msgid "[B<--permanent>] [B<--zone>=I<zone>] B<--list-sources>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1002
+msgid ""
+"List sources that are bound to zone I<zone> as a space separated list\\&. If "
+"zone is omitted, default zone will be used\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1005
+msgid ""
+"[B<--permanent>] [B<--zone>=I<zone>] "
+"B<--add-source>=I<source>[/I<mask>]|I<MAC>|ipset:I<ipset>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1008
+msgid ""
+"Bind the source to zone I<zone>\\&. If zone is omitted, default zone will be "
+"used\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1011
+msgid ""
+"[B<--zone>=I<zone>] "
+"B<--change-source>=I<source>[/I<mask>]|I<MAC>|ipset:I<ipset>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1018
+msgid ""
+"Change zone the source is bound to to zone I<zone>\\&. It\\*(Aqs basically "
+"B<--remove-source> followed by B<--add-source>\\&. If the source has not "
+"been bound to a zone before, it behaves like B<--add-source>\\&. If zone is "
+"omitted, default zone will be used\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1021
+msgid ""
+"[B<--permanent>] [B<--zone>=I<zone>] "
+"B<--query-source>=I<source>[/I<mask>]|I<MAC>|ipset:I<ipset>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1024
+msgid ""
+"Query whether the source is bound to the zone I<zone>\\&. Returns 0 if true, "
+"1 otherwise\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1027
+msgid ""
+"[B<--permanent>] "
+"B<--remove-source>=I<source>[/I<mask>]|I<MAC>|ipset:I<ipset>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1029
+msgid "Remove binding of the source from zone it was previously added to\\&."
+msgstr ""
+
+#. type: SS
+#: ./firewall-cmd.1:1030
+#, no-wrap
+msgid "IPSet Options"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1033
+msgid "B<--get-ipset-types>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1035
+msgid "Print the supported ipset types\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1038
+msgid ""
+"B<--permanent> B<--new-ipset>=I<ipset> B<--type>=I<type> "
+"[B<--family>=I<inet>|I<inet6>] [B<--option>=I<key>[=I<value>]]"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1046
+msgid ""
+"Add a new permanent and empty ipset with specifying the type and optional "
+"the family and options like I<timeout>, I<hashsize> and I<maxelem>\\&. For "
+"more information please have a look at B<ipset>(8)  man page\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1048
+msgid ""
+"ipset names must be alphanumeric and may additionally include characters: "
+"\\*(Aq_\\*(Aq and \\*(Aq-\\*(Aq\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1051
+msgid "B<--permanent> B<--new-ipset-from-file>=I<filename> [B<--name>=I<ipset>]"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1053
+msgid ""
+"Add a new permanent ipset from a prepared ipset file with an optional name "
+"override\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1056
+msgid "B<--permanent> B<--delete-ipset>=I<ipset>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1058
+msgid "Delete an existing permanent ipset\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1061
+msgid "B<--permanent> B<--load-ipset-defaults>=I<ipset>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1063
+msgid "Load ipset default settings or report NO_DEFAULTS error\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1066
+msgid "[B<--permanent>] B<--info-ipset=>I<ipset>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1069
+msgid "Print information about the ipset I<ipset>\\&. The output format is:"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1074
+#, no-wrap
+msgid ""
+"I<ipset>\n"
+"  type: I<type>\n"
+"  options: I<option1[=value1]> \\&.\\&.\n"
+"  entries: I<entry1> \\&.\\&.\n"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1079
+msgid "[B<--permanent>] B<--get-ipsets>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1081
+msgid "Print predefined ipsets as a space separated list\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1084
+msgid "B<--permanent> B<--ipset>=I<ipset> B<--set-description>=I<description>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1086
+msgid "Set new description to ipset"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1089
+msgid "B<--permanent> B<--ipset>=I<ipset> B<--get-description>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1091
+msgid "Print description for ipset"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1094
+msgid "B<--permanent> B<--ipset>=I<ipset> B<--set-short>=I<description>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1096
+msgid "Set short description to ipset"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1099
+msgid "B<--permanent> B<--ipset>=I<ipset> B<--get-short>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1101
+msgid "Print short description for ipset"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1104
+msgid "[B<--permanent>] B<--ipset>=I<ipset> B<--add-entry>=I<entry>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1106
+msgid "Add a new entry to the ipset\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1110
+msgid ""
+"Adding an entry to an ipset with option I<timeout> is permitted, but these "
+"entries are not tracked by firewalld\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1113
+msgid "[B<--permanent>] B<--ipset>=I<ipset> B<--remove-entry>=I<entry>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1115
+msgid "Remove an entry from the ipset\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1118
+msgid "[B<--permanent>] B<--ipset>=I<ipset> B<--query-entry>=I<entry>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1120
+msgid ""
+"Return whether the entry has been added to an ipset\\&. Returns 0 if true, 1 "
+"otherwise\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1122
+msgid ""
+"Querying an ipset with a timeout will yield an error\\&. Entries are not "
+"tracked for ipsets with a timeout\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1125
+msgid "[B<--permanent>] B<--ipset>=I<ipset> B<--get-entries>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1127
+msgid "List all entries of the ipset\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1130
+msgid "[B<--permanent>] B<--ipset>=I<ipset> B<--add-entries-from-file>=I<filename>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1132
+msgid ""
+"Add a new entries to the ipset from the file\\&. For all entries that are "
+"listed in the file but already in the ipset, a warning will be printed\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1134 ./firewall-cmd.1:1141
+msgid ""
+"The file should contain an entry per line\\&. Lines starting with an hash or "
+"semicolon are ignored\\&. Also empty lines\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1137
+msgid ""
+"[B<--permanent>] B<--ipset>=I<ipset> "
+"B<--remove-entries-from-file>=I<filename>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1139
+msgid ""
+"Remove existing entries from the ipset from the file\\&. For all entries "
+"that are listed in the file but not in the ipset, a warning will be "
+"printed\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1144
+msgid "B<--permanent> B<--path-ipset=>I<ipset>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1146
+msgid "Print path of the ipset configuration file\\&."
+msgstr ""
+
+#. type: SS
+#: ./firewall-cmd.1:1147
+#, no-wrap
+msgid "Service Options"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1150
+msgid "Options in this section affect only one particular service\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1152
+msgid "[B<--permanent>] B<--info-service=>I<service>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1155
+msgid "Print information about the service I<service>\\&. The output format is:"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1162
+#, no-wrap
+msgid ""
+"I<service>\n"
+"  ports: I<port1> \\&.\\&.\n"
+"  protocols: I<protocol1> \\&.\\&.\n"
+"  source-ports: I<source-port1> \\&.\\&.\n"
+"  helpers: I<helper1> \\&.\\&.\n"
+"  destination: I<ipv1>:I<address1> \\&.\\&.\n"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1167 ./firewall-cmd.1:1352 ./firewall-cmd.1:1460
+msgid "The following options are only usable in the permanent configuration\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1169
+msgid "B<--permanent> B<--new-service>=I<service>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1171
+msgid "Add a new permanent and empty service\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1173
+msgid ""
+"Service names must be alphanumeric and may additionally include characters: "
+"\\*(Aq_\\*(Aq and \\*(Aq-\\*(Aq\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1176
+msgid "B<--permanent> B<--new-service-from-file>=I<filename> [B<--name>=I<service>]"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1178
+msgid ""
+"Add a new permanent service from a prepared service file with an optional "
+"name override\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1181
+msgid "B<--permanent> B<--delete-service>=I<service>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1183
+msgid "Delete an existing permanent service\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1186
+msgid "B<--permanent> B<--load-service-defaults>=I<service>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1188
+msgid "Load service default settings or report NO_DEFAULTS error\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1191
+msgid "B<--permanent> B<--path-service=>I<service>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1193
+msgid "Print path of the service configuration file\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1196
+msgid "B<--permanent> B<--service>=I<service> B<--set-description>=I<description>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1198
+msgid "Set new description to service"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1201
+msgid "B<--permanent> B<--service>=I<service> B<--get-description>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1203
+msgid "Print description for service"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1206
+msgid "B<--permanent> B<--service>=I<service> B<--set-short>=I<description>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1208
+msgid "Set short description to service"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1211
+msgid "B<--permanent> B<--service>=I<service> B<--get-short>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1213
+msgid "Print short description for service"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1216
+msgid ""
+"B<--permanent> B<--service>=I<service> "
+"B<--add-port>=I<portid>[-I<portid>]/I<protocol>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1218
+msgid "Add a new port to the permanent service\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1221
+msgid ""
+"B<--permanent> B<--service>=I<service> "
+"B<--remove-port>=I<portid>[-I<portid>]/I<protocol>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1223
+msgid "Remove a port from the permanent service\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1226
+msgid ""
+"B<--permanent> B<--service>=I<service> "
+"B<--query-port>=I<portid>[-I<portid>]/I<protocol>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1228
+msgid "Return whether the port has been added to the permanent service\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1231
+msgid "B<--permanent> B<--service>=I<service> B<--get-ports>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1233
+msgid "List ports added to the permanent service\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1236
+msgid "B<--permanent> B<--service>=I<service> B<--add-protocol>=I<protocol>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1238
+msgid "Add a new protocol to the permanent service\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1241
+msgid "B<--permanent> B<--service>=I<service> B<--remove-protocol>=I<protocol>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1243
+msgid "Remove a protocol from the permanent service\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1246
+msgid "B<--permanent> B<--service>=I<service> B<--query-protocol>=I<protocol>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1248
+msgid "Return whether the protocol has been added to the permanent service\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1251
+msgid "B<--permanent> B<--service>=I<service> B<--get-protocols>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1253
+msgid "List protocols added to the permanent service\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1256
+msgid ""
+"B<--permanent> B<--service>=I<service> "
+"B<--add-source-port>=I<portid>[-I<portid>]/I<protocol>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1258
+msgid "Add a new source port to the permanent service\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1261
+msgid ""
+"B<--permanent> B<--service>=I<service> "
+"B<--remove-source-port>=I<portid>[-I<portid>]/I<protocol>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1263
+msgid "Remove a source port from the permanent service\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1266
+msgid ""
+"B<--permanent> B<--service>=I<service> "
+"B<--query-source-port>=I<portid>[-I<portid>]/I<protocol>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1268
+msgid "Return whether the source port has been added to the permanent service\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1271
+msgid "B<--permanent> B<--service>=I<service> B<--get-source-ports>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1273
+msgid "List source ports added to the permanent service\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1276
+msgid "B<--permanent> B<--service>=I<service> B<--add-helper>=I<helper>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1278
+msgid "Add a new helper to the permanent service\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1281
+msgid "B<--permanent> B<--service>=I<service> B<--remove-helper>=I<helper>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1283
+msgid "Remove a helper from the permanent service\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1286
+msgid "B<--permanent> B<--service>=I<service> B<--query-helper>=I<helper>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1288
+msgid "Return whether the helper has been added to the permanent service\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1291
+msgid "B<--permanent> B<--service>=I<service> B<--get-service-helpers>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1293
+msgid "List helpers added to the permanent service\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1296
+msgid ""
+"B<--permanent> B<--service>=I<service> "
+"B<--set-destination>=I<ipv>:I<address>[/I<mask>]"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1298
+msgid "Set destination for ipv to address[/mask] in the permanent service\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1301
+msgid "B<--permanent> B<--service>=I<service> B<--remove-destination>=I<ipv>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1303
+msgid "Remove the destination for ipv from the permanent service\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1306
+msgid ""
+"B<--permanent> B<--service>=I<service> "
+"B<--query-destination>=I<ipv>:I<address>[/I<mask>]"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1308
+msgid ""
+"Return whether the destination ipv to address[/mask] has been set in the "
+"permanent service\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1311
+msgid "B<--permanent> B<--service>=I<service> B<--get-destinations>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1313
+msgid "List destinations added to the permanent service\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1316
+msgid "B<--permanent> B<--service>=I<service> B<--add-include>=I<service>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1318
+msgid "Add a new include to the permanent service\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1321
+msgid "B<--permanent> B<--service>=I<service> B<--remove-include>=I<service>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1323
+msgid "Remove a include from the permanent service\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1326
+msgid "B<--permanent> B<--service>=I<service> B<--query-include>=I<service>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1328
+msgid "Return whether the include has been added to the permanent service\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1331
+msgid "B<--permanent> B<--service>=I<service> B<--get-includes>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1333
+msgid "List includes added to the permanent service\\&."
+msgstr ""
+
+#. type: SS
+#: ./firewall-cmd.1:1334
+#, no-wrap
+msgid "Helper Options"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1337
+msgid "Options in this section affect only one particular helper\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1339
+msgid "[B<--permanent>] B<--info-helper=>I<helper>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1342
+msgid "Print information about the helper I<helper>\\&. The output format is:"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1347
+#, no-wrap
+msgid ""
+"I<helper>\n"
+"  family: I<family>\n"
+"  module: I<module>\n"
+"  ports: I<port1> \\&.\\&.\n"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1354
+msgid ""
+"B<--permanent> B<--new-helper>=I<helper> B<--module>=I<nf_conntrack_module> "
+"[B<--family>=I<ipv4>|I<ipv6>]"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1356
+msgid "Add a new permanent helper with module and optionally family defined\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1358
+msgid ""
+"Helper names must be alphanumeric and may additionally include characters: "
+"\\*(Aq-\\*(Aq\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1361
+msgid "B<--permanent> B<--new-helper-from-file>=I<filename> [B<--name>=I<helper>]"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1363
+msgid ""
+"Add a new permanent helper from a prepared helper file with an optional name "
+"override\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1366
+msgid "B<--permanent> B<--delete-helper>=I<helper>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1368
+msgid "Delete an existing permanent helper\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1371
+msgid "B<--permanent> B<--load-helper-defaults>=I<helper>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1373
+msgid "Load helper default settings or report NO_DEFAULTS error\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1376
+msgid "B<--permanent> B<--path-helper=>I<helper>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1378
+msgid "Print path of the helper configuration file\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1381
+msgid "[B<--permanent>] B<--get-helpers>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1383
+msgid "Print predefined helpers as a space separated list\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1386
+msgid "B<--permanent> B<--helper>=I<helper> B<--set-description>=I<description>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1388
+msgid "Set new description to helper"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1391
+msgid "B<--permanent> B<--helper>=I<helper> B<--get-description>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1393
+msgid "Print description for helper"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1396
+msgid "B<--permanent> B<--helper>=I<helper> B<--set-short>=I<description>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1398
+msgid "Set short description to helper"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1401
+msgid "B<--permanent> B<--helper>=I<helper> B<--get-short>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1403
+msgid "Print short description for helper"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1406
+msgid ""
+"B<--permanent> B<--helper>=I<helper> "
+"B<--add-port>=I<portid>[-I<portid>]/I<protocol>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1408
+msgid "Add a new port to the permanent helper\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1411
+msgid ""
+"B<--permanent> B<--helper>=I<helper> "
+"B<--remove-port>=I<portid>[-I<portid>]/I<protocol>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1413
+msgid "Remove a port from the permanent helper\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1416
+msgid ""
+"B<--permanent> B<--helper>=I<helper> "
+"B<--query-port>=I<portid>[-I<portid>]/I<protocol>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1418
+msgid "Return whether the port has been added to the permanent helper\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1421
+msgid "B<--permanent> B<--helper>=I<helper> B<--get-ports>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1423
+msgid "List ports added to the permanent helper\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1426
+msgid "B<--permanent> B<--helper>=I<helper> B<--set-module>=I<description>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1428
+msgid "Set module description for helper"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1431
+msgid "B<--permanent> B<--helper>=I<helper> B<--get-module>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1433
+msgid "Print module description for helper"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1436
+msgid "B<--permanent> B<--helper>=I<helper> B<--set-family>=I<description>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1438
+msgid "Set family description for helper"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1441
+msgid "B<--permanent> B<--helper>=I<helper> B<--get-family>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1443
+msgid "Print family description of helper"
+msgstr ""
+
+#. type: SS
+#: ./firewall-cmd.1:1444
+#, no-wrap
+msgid "Internet Control Message Protocol (ICMP) type Options"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1447
+msgid "Options in this section affect only one particular icmptype\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1449
+msgid "[B<--permanent>] B<--info-icmptype=>I<icmptype>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1452
+msgid "Print information about the icmptype I<icmptype>\\&. The output format is:"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1455
+#, no-wrap
+msgid ""
+"I<icmptype>\n"
+"  destination: I<ipv1> \\&.\\&.\n"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1462
+msgid "B<--permanent> B<--new-icmptype>=I<icmptype>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1464
+msgid "Add a new permanent and empty icmptype\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1466
+msgid ""
+"ICMP type names must be alphanumeric and may additionally include "
+"characters: \\*(Aq_\\*(Aq and \\*(Aq-\\*(Aq\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1469
+msgid ""
+"B<--permanent> B<--new-icmptype-from-file>=I<filename> "
+"[B<--name>=I<icmptype>]"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1471
+msgid ""
+"Add a new permanent icmptype from a prepared icmptype file with an optional "
+"name override\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1474
+msgid "B<--permanent> B<--delete-icmptype>=I<icmptype>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1476
+msgid "Delete an existing permanent icmptype\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1479
+msgid "B<--permanent> B<--load-icmptype-defaults>=I<icmptype>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1481
+msgid "Load icmptype default settings or report NO_DEFAULTS error\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1484
+msgid "B<--permanent> B<--icmptype>=I<icmptype> B<--set-description>=I<description>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1486
+msgid "Set new description to icmptype"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1489
+msgid "B<--permanent> B<--icmptype>=I<icmptype> B<--get-description>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1491
+msgid "Print description for icmptype"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1494
+msgid "B<--permanent> B<--icmptype>=I<icmptype> B<--set-short>=I<description>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1496
+msgid "Set short description to icmptype"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1499
+msgid "B<--permanent> B<--icmptype>=I<icmptype> B<--get-short>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1501
+msgid "Print short description for icmptype"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1504
+msgid "B<--permanent> B<--icmptype>=I<icmptype> B<--add-destination>=I<ipv>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1509
+msgid ""
+"Enable destination for ipv in permanent icmptype\\&. ipv is one of I<ipv4> "
+"or I<ipv6>\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1512
+msgid "B<--permanent> B<--icmptype>=I<icmptype> B<--remove-destination>=I<ipv>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1517
+msgid ""
+"Disable destination for ipv in permanent icmptype\\&. ipv is one of I<ipv4> "
+"or I<ipv6>\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1520
+msgid "B<--permanent> B<--icmptype>=I<icmptype> B<--query-destination>=I<ipv>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1525
+msgid ""
+"Return whether destination for ipv is enabled in permanent icmptype\\&. ipv "
+"is one of I<ipv4> or I<ipv6>\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1528
+msgid "B<--permanent> B<--icmptype>=I<icmptype> B<--get-destinations>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1530
+msgid "List destinations in permanent icmptype\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1533
+msgid "B<--permanent> B<--path-icmptype=>I<icmptype>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1535
+msgid "Print path of the icmptype configuration file\\&."
+msgstr ""
+
+#. type: SS
+#: ./firewall-cmd.1:1536
+#, no-wrap
+msgid "Direct Options"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1539 ./firewalld.1:122
+msgid "B<DEPRECATED>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1543 ./firewalld.1:126
+msgid ""
+"The direct interface has been deprecated\\&. It will be removed in a future "
+"release\\&. It is superseded by policies, see B<firewalld.policies>(5)\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1556
+msgid ""
+"The direct options give a more direct access to the firewall\\&. These "
+"options require user to know basic iptables concepts, i\\&.e\\&.  I<table> "
+"(filter/mangle/nat/\\&.\\&.\\&.), I<chain> "
+"(INPUT/OUTPUT/FORWARD/\\&.\\&.\\&.), I<commands> (-A/-D/-I/\\&.\\&.\\&.), "
+"I<parameters> (-p/-s/-d/-j/\\&.\\&.\\&.) and I<targets> "
+"(ACCEPT/DROP/REJECT/\\&.\\&.\\&.)\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1561
+msgid ""
+"Direct options should be used only as a last resort when it\\*(Aqs not "
+"possible to use for example B<--add-service>=I<service> or "
+"B<--add-rich-rule>=\\*(AqI<rule>\\*(Aq\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1567
+msgid ""
+"B<Warning>: Direct rules behavior is different depending on the value of "
+"I<FirewallBackend>\\&. See I<CAVEATS> in B<firewalld.direct>(5)\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1580
+msgid ""
+"The first argument of each option has to be I<ipv4> or I<ipv6> or "
+"I<eb>\\&. With I<ipv4> it will be for IPv4 (B<iptables>(8)), with I<ipv6> "
+"for IPv6 (B<ip6tables>(8)) and with I<eb> for ethernet bridges "
+"(B<ebtables>(8))\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1582
+msgid "[B<--permanent>] B<--direct> B<--get-all-chains>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1585
+msgid ""
+"Get all chains added to all tables\\&. This option concerns only chains "
+"previously added with B<--direct --add-chain>\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1588
+msgid ""
+"[B<--permanent>] B<--direct> B<--get-chains> { I<ipv4> | I<ipv6> | I<eb> } "
+"I<table>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1593
+msgid ""
+"Get all chains added to table I<table> as a space separated list\\&. This "
+"option concerns only chains previously added with B<--direct "
+"--add-chain>\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1596
+msgid ""
+"[B<--permanent>] B<--direct> B<--add-chain> { I<ipv4> | I<ipv6> | I<eb> } "
+"I<table> I<chain>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1601
+msgid ""
+"Add a new chain with name I<chain> to table I<table>\\&. Make sure "
+"there\\*(Aqs no other chain with this name already\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1609
+msgid ""
+"There already exist basic chains to use with direct options, for example "
+"I<INPUT_direct> chain (see I<iptables-save | grep direct> output for all of "
+"them)\\&. These chains are jumped into before chains for zones, "
+"i\\&.e\\&. every rule put into I<INPUT_direct> will be checked before rules "
+"in zones\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1612
+msgid ""
+"[B<--permanent>] B<--direct> B<--remove-chain> { I<ipv4> | I<ipv6> | I<eb> } "
+"I<table> I<chain>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1619
+msgid ""
+"Remove chain with name I<chain> from table I<table>\\&. Only chains "
+"previously added with B<--direct --add-chain> can be removed this way\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1622
+msgid ""
+"[B<--permanent>] B<--direct> B<--query-chain> { I<ipv4> | I<ipv6> | I<eb> } "
+"I<table> I<chain>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1628
+msgid ""
+"Return whether a chain with name I<chain> exists in table "
+"I<table>\\&. Returns 0 if true, 1 otherwise\\&. This option concerns only "
+"chains previously added with B<--direct --add-chain>\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1631
+msgid "[B<--permanent>] B<--direct> B<--get-all-rules>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1634
+msgid ""
+"Get all rules added to all chains in all tables as a newline separated list "
+"of the priority and arguments\\&. This option concerns only rules previously "
+"added with B<--direct --add-rule>\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1637
+msgid ""
+"[B<--permanent>] B<--direct> B<--get-rules> { I<ipv4> | I<ipv6> | I<eb> } "
+"I<table> I<chain>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1644
+msgid ""
+"Get all rules added to chain I<chain> in table I<table> as a newline "
+"separated list of the priority and arguments\\&. This option concerns only "
+"rules previously added with B<--direct --add-rule>\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1647
+msgid ""
+"[B<--permanent>] B<--direct> B<--add-rule> { I<ipv4> | I<ipv6> | I<eb> } "
+"I<table> I<chain> I<priority> I<args>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1656
+msgid ""
+"Add a rule with the arguments I<args> to chain I<chain> in table I<table> "
+"with priority I<priority>\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1660
+msgid ""
+"The I<priority> is used to order rules\\&. Priority 0 means add rule on top "
+"of the chain, with a higher priority the rule will be added further "
+"down\\&. Rules with the same priority are on the same level and the order of "
+"these rules is not fixed and may change\\&. If you want to make sure that a "
+"rule will be added after another one, use a low priority for the first and a "
+"higher for the following\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1663
+msgid ""
+"[B<--permanent>] B<--direct> B<--remove-rule> { I<ipv4> | I<ipv6> | I<eb> } "
+"I<table> I<chain> I<priority> I<args>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1674
+msgid ""
+"Remove a rule with I<priority> and the arguments I<args> from chain I<chain> "
+"in table I<table>\\&. Only rules previously added with B<--direct "
+"--add-rule> can be removed this way\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1677
+msgid ""
+"[B<--permanent>] B<--direct> B<--remove-rules> { I<ipv4> | I<ipv6> | I<eb> } "
+"I<table> I<chain>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1684
+msgid ""
+"Remove all rules in the chain with name I<chain> exists in table "
+"I<table>\\&. This option concerns only rules previously added with "
+"B<--direct --add-rule> in this chain\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1687
+msgid ""
+"[B<--permanent>] B<--direct> B<--query-rule> { I<ipv4> | I<ipv6> | I<eb> } "
+"I<table> I<chain> I<priority> I<args>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1697
+msgid ""
+"Return whether a rule with I<priority> and the arguments I<args> exists in "
+"chain I<chain> in table I<table>\\&. Returns 0 if true, 1 otherwise\\&. This "
+"option concerns only rules previously added with B<--direct --add-rule>\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1700
+msgid "B<--direct> B<--passthrough> { I<ipv4> | I<ipv6> | I<eb> } I<args>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1709
+msgid ""
+"Pass a command through to the firewall\\&.  I<args> can be all B<iptables>, "
+"B<ip6tables> and B<ebtables> command line arguments\\&. This command is "
+"untracked, which means that firewalld is not able to provide information "
+"about this command later on, also not a listing of the untracked "
+"passthoughs\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1712
+msgid "[B<--permanent>] B<--direct> B<--get-all-passthroughs>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1714
+msgid ""
+"Get all passthrough rules as a newline separated list of the ipv value and "
+"arguments\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1717
+msgid ""
+"[B<--permanent>] B<--direct> B<--get-passthroughs> { I<ipv4> | I<ipv6> | "
+"I<eb> }"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1719
+msgid ""
+"Get all passthrough rules for the ipv value as a newline separated list of "
+"the priority and arguments\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1722
+msgid ""
+"[B<--permanent>] B<--direct> B<--add-passthrough> { I<ipv4> | I<ipv6> | "
+"I<eb> } I<args>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1726
+msgid "Add a passthrough rule with the arguments I<args> for the ipv value\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1729
+msgid ""
+"[B<--permanent>] B<--direct> B<--remove-passthrough> { I<ipv4> | I<ipv6> | "
+"I<eb> } I<args>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1733
+msgid "Remove a passthrough rule with the arguments I<args> for the ipv value\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1736
+msgid ""
+"[B<--permanent>] B<--direct> B<--query-passthrough> { I<ipv4> | I<ipv6> | "
+"I<eb> } I<args>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1740
+msgid ""
+"Return whether a passthrough rule with the arguments I<args> exists for the "
+"ipv value\\&. Returns 0 if true, 1 otherwise\\&."
+msgstr ""
+
+#. type: SS
+#: ./firewall-cmd.1:1741
+#, no-wrap
+msgid "Lockdown Options"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1744
+msgid ""
+"Local applications or services are able to change the firewall configuration "
+"if they are running as root (example: libvirt) or are authenticated using "
+"PolicyKit\\&. With this feature administrators can lock the firewall "
+"configuration so that only applications on lockdown whitelist are able to "
+"request firewall changes\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1746
+msgid ""
+"The lockdown access check limits D-Bus methods that are changing firewall "
+"rules\\&. Query, list and get methods are not limited\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1748
+msgid ""
+"The lockdown feature is a very light version of user and application "
+"policies for firewalld and is turned off by default\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1750
+msgid "B<--lockdown-on>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1752
+msgid ""
+"Enable lockdown\\&. Be careful - if firewall-cmd is not on lockdown "
+"whitelist when you enable lockdown you won\\*(Aqt be able to disable it "
+"again with firewall-cmd, you would need to edit firewalld\\&.conf\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1757
+msgid "B<--lockdown-off>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1759
+msgid "Disable lockdown\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1764
+msgid "B<--query-lockdown>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1766
+msgid ""
+"Query whether lockdown is enabled\\&. Returns 0 if lockdown is enabled, 1 "
+"otherwise\\&."
+msgstr ""
+
+#. type: SS
+#: ./firewall-cmd.1:1767
+#, no-wrap
+msgid "Lockdown Whitelist Options"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1775
+msgid ""
+"The lockdown whitelist can contain I<commands>, I<contexts>, I<users> and "
+"I<user ids>\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1777
+msgid ""
+"If a command entry on the whitelist ends with an asterisk \\*(Aq*\\*(Aq, "
+"then all command lines starting with the command will match\\&. If the "
+"\\*(Aq*\\*(Aq is not there the absolute command inclusive arguments must "
+"match\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1783
+msgid ""
+"Command paths for users are not always the same and depends on the users "
+"PATH\\&. Some distributions symlink B</bin> to B</usr/bin> in which case it "
+"depends on the order they appear in the PATH environment variable\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1786
+msgid ""
+"The context is the security (SELinux) context of a running application or "
+"service\\&. To get the context of a running application use B<ps -e "
+"--context>\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1789
+msgid ""
+"B<Warning:> If the context is unconfined, then this will open access for "
+"more than the desired application\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1791
+msgid "The lockdown whitelist entries are checked in the following order:"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1793
+msgid "1\\&. I<context>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1796
+msgid "2\\&. I<uid>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1799
+msgid "3\\&. I<user>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1802
+msgid "4\\&. I<command>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1805
+msgid "[B<--permanent>] B<--list-lockdown-whitelist-commands>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1807
+msgid "List all command lines that are on the whitelist\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1810
+msgid "[B<--permanent>] B<--add-lockdown-whitelist-command>=I<command>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1814
+msgid "Add the I<command> to the whitelist\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1817
+msgid "[B<--permanent>] B<--remove-lockdown-whitelist-command>=I<command>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1821
+msgid "Remove the I<command> from the whitelist\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1824
+msgid "[B<--permanent>] B<--query-lockdown-whitelist-command>=I<command>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1828
+msgid ""
+"Query whether the I<command> is on the whitelist\\&. Returns 0 if true, 1 "
+"otherwise\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1831
+msgid "[B<--permanent>] B<--list-lockdown-whitelist-contexts>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1833
+msgid "List all contexts that are on the whitelist\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1836
+msgid "[B<--permanent>] B<--add-lockdown-whitelist-context>=I<context>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1840
+msgid "Add the context I<context> to the whitelist\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1843
+msgid "[B<--permanent>] B<--remove-lockdown-whitelist-context>=I<context>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1847
+msgid "Remove the I<context> from the whitelist\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1850
+msgid "[B<--permanent>] B<--query-lockdown-whitelist-context>=I<context>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1854
+msgid ""
+"Query whether the I<context> is on the whitelist\\&. Returns 0 if true, 1 "
+"otherwise\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1857
+msgid "[B<--permanent>] B<--list-lockdown-whitelist-uids>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1859
+msgid "List all user ids that are on the whitelist\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1862
+msgid "[B<--permanent>] B<--add-lockdown-whitelist-uid>=I<uid>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1866
+msgid "Add the user id I<uid> to the whitelist\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1869
+msgid "[B<--permanent>] B<--remove-lockdown-whitelist-uid>=I<uid>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1873
+msgid "Remove the user id I<uid> from the whitelist\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1876
+msgid "[B<--permanent>] B<--query-lockdown-whitelist-uid>=I<uid>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1880
+msgid ""
+"Query whether the user id I<uid> is on the whitelist\\&. Returns 0 if true, "
+"1 otherwise\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1883
+msgid "[B<--permanent>] B<--list-lockdown-whitelist-users>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1885
+msgid "List all user names that are on the whitelist\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1888
+msgid "[B<--permanent>] B<--add-lockdown-whitelist-user>=I<user>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1892
+msgid "Add the user name I<user> to the whitelist\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1895
+msgid "[B<--permanent>] B<--remove-lockdown-whitelist-user>=I<user>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1899
+msgid "Remove the user name I<user> from the whitelist\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1902
+msgid "[B<--permanent>] B<--query-lockdown-whitelist-user>=I<user>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1906
+msgid ""
+"Query whether the user name I<user> is on the whitelist\\&. Returns 0 if "
+"true, 1 otherwise\\&."
+msgstr ""
+
+#. type: SS
+#: ./firewall-cmd.1:1907
+#, no-wrap
+msgid "Panic Options"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1910
+msgid "B<--panic-on>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1912
+msgid ""
+"Enable panic mode\\&. All incoming and outgoing packets are dropped, active "
+"connections will expire\\&. Enable this only if there are serious problems "
+"with your network environment\\&. For example if the machine is getting "
+"hacked in\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1914 ./firewall-cmd.1:1921
+msgid "This is a runtime only change\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1917
+msgid "B<--panic-off>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1919
+msgid ""
+"Disable panic mode\\&. After disabling panic mode established connections "
+"might work again, if panic mode was enabled for a short period of time\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1924
+msgid "B<--query-panic>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1926
+msgid "Returns 0 if panic mode is enabled, 1 otherwise\\&."
+msgstr ""
+
+#. type: SH
+#: ./firewall-cmd.1:1927
+#, no-wrap
+msgid "EXAMPLES"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1931
+msgid ""
+"For more examples see "
+"\\m[blue]B<\\%http://fedoraproject.org/wiki/FirewallD>\\m[]"
+msgstr ""
+
+#. type: SS
+#: ./firewall-cmd.1:1931
+#, no-wrap
+msgid "Example 1"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1934
+msgid ""
+"Enable http service in default zone\\&. This is runtime only change, "
+"i\\&.e\\&. effective until restart\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1937
+msgid "firewall-cmd --add-service=http"
+msgstr ""
+
+#. type: SS
+#: ./firewall-cmd.1:1938
+#, no-wrap
+msgid "Example 2"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1941
+msgid ""
+"Enable port 443/tcp immediately and permanently in default zone\\&. To make "
+"the change effective immediately and also after restart we need two "
+"commands\\&. The first command makes the change in runtime configuration, "
+"i\\&.e\\&. makes it effective immediately, until restart\\&. The second "
+"command makes the change in permanent configuration, i\\&.e\\&. makes it "
+"effective after restart\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1945
+msgid "firewall-cmd --add-port=443/tcp firewall-cmd --permanent --add-port=443/tcp"
+msgstr ""
+
+#. type: SH
+#: ./firewall-cmd.1:1946
+#, no-wrap
+msgid "EXIT CODES"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:1949
+msgid ""
+"On success 0 is returned\\&. On failure the output is red colored and exit "
+"code is either 2 in case of wrong command-line option usage or one of the "
+"following error codes in other cases:"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:1954
+#, no-wrap
+msgid "String"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:1956
+#, no-wrap
+msgid "Code"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:1957
+#, no-wrap
+msgid ".T&"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:1958 ./firewall-cmd.1:1959 ./firewall-cmd.1:1960
+#: ./firewall-cmd.1:1961 ./firewall-cmd.1:1962 ./firewall-cmd.1:1963
+#: ./firewall-cmd.1:1964 ./firewall-cmd.1:1965 ./firewall-cmd.1:1966
+#: ./firewall-cmd.1:1967 ./firewall-cmd.1:1968 ./firewall-cmd.1:1969
+#: ./firewall-cmd.1:1970 ./firewall-cmd.1:1971 ./firewall-cmd.1:1972
+#: ./firewall-cmd.1:1973 ./firewall-cmd.1:1974 ./firewall-cmd.1:1975
+#: ./firewall-cmd.1:1976 ./firewall-cmd.1:1977 ./firewall-cmd.1:1978
+#: ./firewall-cmd.1:1979 ./firewall-cmd.1:1980 ./firewall-cmd.1:1981
+#: ./firewall-cmd.1:1982 ./firewall-cmd.1:1983 ./firewall-cmd.1:1984
+#: ./firewall-cmd.1:1985 ./firewall-cmd.1:1986 ./firewall-cmd.1:1987
+#: ./firewall-cmd.1:1988 ./firewall-cmd.1:1989 ./firewall-cmd.1:1990
+#: ./firewall-cmd.1:1991 ./firewall-cmd.1:1992 ./firewall-cmd.1:1993
+#: ./firewall-cmd.1:1994 ./firewall-cmd.1:1995 ./firewall-cmd.1:1996
+#: ./firewall-cmd.1:1997 ./firewall-cmd.1:1998 ./firewall-cmd.1:1999
+#: ./firewall-cmd.1:2000 ./firewall-cmd.1:2001 ./firewall-cmd.1:2002
+#: ./firewall-cmd.1:2003 ./firewall-cmd.1:2004 ./firewall-cmd.1:2005
+#: ./firewall-cmd.1:2006 ./firewall-cmd.1:2007 ./firewall-cmd.1:2008
+#: ./firewall-cmd.1:2009 ./firewall-cmd.1:2010 ./firewall-cmd.1:2011
+#: ./firewall-cmd.1:2012 ./firewall-cmd.1:2013 ./firewall-cmd.1:2014
+#: ./firewall-cmd.1:2015 ./firewall-cmd.1:2016 ./firewall-cmd.1:2017
+#: ./firewall-cmd.1:2018 ./firewall-cmd.1:2019 ./firewall-cmd.1:2020
+#: ./firewall-cmd.1:2021 ./firewall-cmd.1:2022 ./firewall-cmd.1:2023
+#: ./firewall-cmd.1:2024 ./firewall-cmd.1:2025 ./firewall-cmd.1:2026
+#: ./firewall-cmd.1:2027 ./firewall-cmd.1:2028 ./firewall-cmd.1:2029
+#: ./firewall-cmd.1:2030 ./firewall-cmd.1:2031 ./firewall-cmd.1:2032
+#: ./firewall-cmd.1:2033 ./firewall-cmd.1:2034 ./firewall-cmd.1:2035
+#: ./firewall-cmd.1:2036 ./firewall-cmd.1:2037 ./firewall-cmd.1:2038
+#: ./firewall-cmd.1:2039 ./firewall-cmd.1:2040
+#, no-wrap
+msgid "l r"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2041
+#, no-wrap
+msgid "l r."
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2044
+#, no-wrap
+msgid "ALREADY_ENABLED"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2046
+#, no-wrap
+msgid "11"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2049
+#, no-wrap
+msgid "NOT_ENABLED"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2051
+#, no-wrap
+msgid "12"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2054
+#, no-wrap
+msgid "COMMAND_FAILED"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2056
+#, no-wrap
+msgid "13"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2059
+#, no-wrap
+msgid "NO_IPV6_NAT"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2061
+#, no-wrap
+msgid "14"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2064
+#, no-wrap
+msgid "PANIC_MODE"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2066
+#, no-wrap
+msgid "15"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2069
+#, no-wrap
+msgid "ZONE_ALREADY_SET"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2071
+#, no-wrap
+msgid "16"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2074
+#, no-wrap
+msgid "UNKNOWN_INTERFACE"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2076
+#, no-wrap
+msgid "17"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2079
+#, no-wrap
+msgid "ZONE_CONFLICT"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2081
+#, no-wrap
+msgid "18"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2084
+#, no-wrap
+msgid "BUILTIN_CHAIN"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2086
+#, no-wrap
+msgid "19"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2089
+#, no-wrap
+msgid "EBTABLES_NO_REJECT"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2091
+#, no-wrap
+msgid "20"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2094
+#, no-wrap
+msgid "NOT_OVERLOADABLE"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2096
+#, no-wrap
+msgid "21"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2099
+#, no-wrap
+msgid "NO_DEFAULTS"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2101
+#, no-wrap
+msgid "22"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2104
+#, no-wrap
+msgid "BUILTIN_ZONE"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2106
+#, no-wrap
+msgid "23"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2109
+#, no-wrap
+msgid "BUILTIN_SERVICE"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2111
+#, no-wrap
+msgid "24"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2114
+#, no-wrap
+msgid "BUILTIN_ICMPTYPE"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2116
+#, no-wrap
+msgid "25"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2119
+#, no-wrap
+msgid "NAME_CONFLICT"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2121
+#, no-wrap
+msgid "26"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2124
+#, no-wrap
+msgid "NAME_MISMATCH"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2126
+#, no-wrap
+msgid "27"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2129
+#, no-wrap
+msgid "PARSE_ERROR"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2131
+#, no-wrap
+msgid "28"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2134
+#, no-wrap
+msgid "ACCESS_DENIED"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2136
+#, no-wrap
+msgid "29"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2139
+#, no-wrap
+msgid "UNKNOWN_SOURCE"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2141
+#, no-wrap
+msgid "30"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2144
+#, no-wrap
+msgid "RT_TO_PERM_FAILED"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2146
+#, no-wrap
+msgid "31"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2149
+#, no-wrap
+msgid "IPSET_WITH_TIMEOUT"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2151
+#, no-wrap
+msgid "32"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2154
+#, no-wrap
+msgid "BUILTIN_IPSET"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2156
+#, no-wrap
+msgid "33"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2159
+#, no-wrap
+msgid "ALREADY_SET"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2161
+#, no-wrap
+msgid "34"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2164
+#, no-wrap
+msgid "MISSING_IMPORT"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2166
+#, no-wrap
+msgid "35"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2169
+#, no-wrap
+msgid "DBUS_ERROR"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2171
+#, no-wrap
+msgid "36"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2174
+#, no-wrap
+msgid "BUILTIN_HELPER"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2176
+#, no-wrap
+msgid "37"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2179
+#, no-wrap
+msgid "NOT_APPLIED"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2181
+#, no-wrap
+msgid "38"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2184
+#, no-wrap
+msgid "INVALID_ACTION"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2186
+#, no-wrap
+msgid "100"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2189
+#, no-wrap
+msgid "INVALID_SERVICE"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2191
+#, no-wrap
+msgid "101"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2194
+#, no-wrap
+msgid "INVALID_PORT"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2196
+#, no-wrap
+msgid "102"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2199
+#, no-wrap
+msgid "INVALID_PROTOCOL"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2201
+#, no-wrap
+msgid "103"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2204
+#, no-wrap
+msgid "INVALID_INTERFACE"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2206
+#, no-wrap
+msgid "104"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2209
+#, no-wrap
+msgid "INVALID_ADDR"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2211
+#, no-wrap
+msgid "105"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2214
+#, no-wrap
+msgid "INVALID_FORWARD"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2216
+#, no-wrap
+msgid "106"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2219
+#, no-wrap
+msgid "INVALID_ICMPTYPE"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2221
+#, no-wrap
+msgid "107"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2224
+#, no-wrap
+msgid "INVALID_TABLE"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2226
+#, no-wrap
+msgid "108"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2229
+#, no-wrap
+msgid "INVALID_CHAIN"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2231
+#, no-wrap
+msgid "109"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2234
+#, no-wrap
+msgid "INVALID_TARGET"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2236
+#, no-wrap
+msgid "110"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2239
+#, no-wrap
+msgid "INVALID_IPV"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2241
+#, no-wrap
+msgid "111"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2244
+#, no-wrap
+msgid "INVALID_ZONE"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2246
+#, no-wrap
+msgid "112"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2249
+#, no-wrap
+msgid "INVALID_PROPERTY"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2251
+#, no-wrap
+msgid "113"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2254
+#, no-wrap
+msgid "INVALID_VALUE"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2256
+#, no-wrap
+msgid "114"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2259
+#, no-wrap
+msgid "INVALID_OBJECT"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2261
+#, no-wrap
+msgid "115"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2264
+#, no-wrap
+msgid "INVALID_NAME"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2266
+#, no-wrap
+msgid "116"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2269
+#, no-wrap
+msgid "INVALID_FILENAME"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2271
+#, no-wrap
+msgid "117"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2274
+#, no-wrap
+msgid "INVALID_DIRECTORY"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2276
+#, no-wrap
+msgid "118"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2279
+#, no-wrap
+msgid "INVALID_TYPE"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2281
+#, no-wrap
+msgid "119"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2284
+#, no-wrap
+msgid "INVALID_SETTING"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2286
+#, no-wrap
+msgid "120"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2289
+#, no-wrap
+msgid "INVALID_DESTINATION"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2291
+#, no-wrap
+msgid "121"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2294
+#, no-wrap
+msgid "INVALID_RULE"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2296
+#, no-wrap
+msgid "122"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2299
+#, no-wrap
+msgid "INVALID_LIMIT"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2301
+#, no-wrap
+msgid "123"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2304
+#, no-wrap
+msgid "INVALID_FAMILY"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2306
+#, no-wrap
+msgid "124"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2309
+#, no-wrap
+msgid "INVALID_LOG_LEVEL"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2311
+#, no-wrap
+msgid "125"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2314
+#, no-wrap
+msgid "INVALID_AUDIT_TYPE"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2316
+#, no-wrap
+msgid "126"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2319
+#, no-wrap
+msgid "INVALID_MARK"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2321
+#, no-wrap
+msgid "127"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2324
+#, no-wrap
+msgid "INVALID_CONTEXT"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2326
+#, no-wrap
+msgid "128"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2329
+#, no-wrap
+msgid "INVALID_COMMAND"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2331
+#, no-wrap
+msgid "129"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2334
+#, no-wrap
+msgid "INVALID_USER"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2336
+#, no-wrap
+msgid "130"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2339
+#, no-wrap
+msgid "INVALID_UID"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2341
+#, no-wrap
+msgid "131"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2344
+#, no-wrap
+msgid "INVALID_MODULE"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2346
+#, no-wrap
+msgid "132"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2349
+#, no-wrap
+msgid "INVALID_PASSTHROUGH"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2351
+#, no-wrap
+msgid "133"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2354
+#, no-wrap
+msgid "INVALID_MAC"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2356
+#, no-wrap
+msgid "134"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2359
+#, no-wrap
+msgid "INVALID_IPSET"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2361
+#, no-wrap
+msgid "135"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2364
+#, no-wrap
+msgid "INVALID_ENTRY"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2366
+#, no-wrap
+msgid "136"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2369
+#, no-wrap
+msgid "INVALID_OPTION"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2371
+#, no-wrap
+msgid "137"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2374
+#, no-wrap
+msgid "INVALID_HELPER"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2376
+#, no-wrap
+msgid "138"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2379
+#, no-wrap
+msgid "INVALID_PRIORITY"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2381
+#, no-wrap
+msgid "139"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2384
+#, no-wrap
+msgid "INVALID_POLICY"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2386
+#, no-wrap
+msgid "140"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2389
+#, no-wrap
+msgid "INVALID_LOG_PREFIX"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2391
+#, no-wrap
+msgid "141"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2394
+#, no-wrap
+msgid "INVALID_NFLOG_GROUP"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2396
+#, no-wrap
+msgid "142"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2399
+#, no-wrap
+msgid "INVALID_NFLOG_QUEUE"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2401
+#, no-wrap
+msgid "143"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2404
+#, no-wrap
+msgid "MISSING_TABLE"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2406
+#, no-wrap
+msgid "200"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2409
+#, no-wrap
+msgid "MISSING_CHAIN"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2411
+#, no-wrap
+msgid "201"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2414
+#, no-wrap
+msgid "MISSING_PORT"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2416
+#, no-wrap
+msgid "202"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2419
+#, no-wrap
+msgid "MISSING_PROTOCOL"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2421
+#, no-wrap
+msgid "203"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2424
+#, no-wrap
+msgid "MISSING_ADDR"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2426
+#, no-wrap
+msgid "204"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2429
+#, no-wrap
+msgid "MISSING_NAME"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2431
+#, no-wrap
+msgid "205"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2434
+#, no-wrap
+msgid "MISSING_SETTING"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2436
+#, no-wrap
+msgid "206"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2439
+#, no-wrap
+msgid "MISSING_FAMILY"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2441
+#, no-wrap
+msgid "207"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2444
+#, no-wrap
+msgid "RUNNING_BUT_FAILED"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2446
+#, no-wrap
+msgid "251"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2449
+#, no-wrap
+msgid "NOT_RUNNING"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2451
+#, no-wrap
+msgid "252"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2454
+#, no-wrap
+msgid "NOT_AUTHORIZED"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2456
+#, no-wrap
+msgid "253"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2459
+#, no-wrap
+msgid "UNKNOWN_ERROR"
+msgstr ""
+
+#. type: tbl table
+#: ./firewall-cmd.1:2461
+#, no-wrap
+msgid "254"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:2468
+msgid ""
+"Note that return codes of B<--query-*> options are special: Successful "
+"queries return 0, unsuccessful ones return 1 unless an error occurred in "
+"which case the table above applies\\&."
+msgstr ""
+
+#. type: SH
+#: ./firewall-cmd.1:2468 ./firewalld.1:159
+#, no-wrap
+msgid "SEE ALSO"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:2470 ./firewalld.1:161
+msgid ""
+"B<firewall-applet>(1), B<firewalld>(1), B<firewall-cmd>(1), "
+"B<firewall-config>(1), B<firewalld.conf>(5), B<firewalld.direct>(5), "
+"B<firewalld.dbus>(5), B<firewalld.icmptype>(5), "
+"B<firewalld.lockdown-whitelist>(5), B<firewall-offline-cmd>(1), "
+"B<firewalld.richlanguage>(5), B<firewalld.service>(5), B<firewalld.zone>(5), "
+"B<firewalld.zones>(5), B<firewalld.policy>(5), B<firewalld.policies>(5), "
+"B<firewalld.ipset>(5), B<firewalld.helper>(5)"
+msgstr ""
+
+#. type: SH
+#: ./firewall-cmd.1:2470 ./firewalld.1:161
+#, no-wrap
+msgid "NOTES"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:2473 ./firewalld.1:164
+msgid "firewalld home page:"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:2475 ./firewalld.1:166
+msgid "\\m[blue]B<\\%http://firewalld.org>\\m[]"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:2478 ./firewalld.1:169
+msgid "More documentation with examples:"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:2480 ./firewalld.1:171
+msgid "\\m[blue]B<\\%http://fedoraproject.org/wiki/FirewallD>\\m[]"
+msgstr ""
+
+#. type: SH
+#: ./firewall-cmd.1:2481 ./firewalld.1:172
+#, no-wrap
+msgid "AUTHORS"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:2484 ./firewalld.1:175
+msgid "B<Thomas Woerner> E<lt>\\&twoerner@redhat\\&.com\\&E<gt>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:2486 ./firewall-cmd.1:2491 ./firewall-cmd.1:2496
+#: ./firewalld.1:177 ./firewalld.1:182 ./firewalld.1:187
+msgid "Developer"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:2489 ./firewalld.1:180
+msgid "B<Jiri Popelka> E<lt>\\&jpopelka@redhat\\&.com\\&E<gt>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewall-cmd.1:2494 ./firewalld.1:185
+msgid "B<Eric Garver> E<lt>\\&eric@garver\\&.life\\&E<gt>"
+msgstr ""
+
+#. type: TH
+#: ./firewalld.1:10
+#, no-wrap
+msgid "FIREWALLD"
+msgstr ""
+
+#. type: TH
+#: ./firewalld.1:10
+#, no-wrap
+msgid "firewalld"
+msgstr ""
+
+#. type: Plain text
+#: ./firewalld.1:30
+msgid "firewalld - Dynamic Firewall Manager"
+msgstr ""
+
+#. type: Plain text
+#: ./firewalld.1:33
+msgid "B<firewalld >B<[OPTIONS...]>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewalld.1:36
+msgid ""
+"firewalld provides a dynamically managed firewall with support for "
+"network/firewall zones to define the trust level of network connections or "
+"interfaces\\&. It has support for IPv4, IPv6 firewall settings and for "
+"ethernet bridges and has a separation of runtime and permanent configuration "
+"options\\&. It also supports an interface for services or applications to "
+"add firewall rules directly\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewalld.1:39
+msgid "These are the command line options of firewalld:"
+msgstr ""
+
+#. type: Plain text
+#: ./firewalld.1:46
+msgid "B<--default-config>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewalld.1:49
+msgid ""
+"Path to firewalld default configuration\\&. This usually defaults to "
+"I</usr/lib/firewalld>\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewalld.1:52
+msgid "B<--debug>[=I<level>]"
+msgstr ""
+
+#. type: Plain text
+#: ./firewalld.1:56
+msgid ""
+"Set the debug level for firewalld to I<level>\\&. The range of the debug "
+"level is 1 (lowest level) to 10 (highest level)\\&. The debug output will be "
+"written to the firewalld log file I</var/log/firewalld>\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewalld.1:59
+msgid "B<--debug-gc>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewalld.1:61
+msgid ""
+"Print garbage collector leak information\\&. The collector runs every 10 "
+"seconds and if there are leaks, it prints information about the leaks\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewalld.1:64
+msgid "B<--nofork>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewalld.1:66
+msgid ""
+"Turn off daemon forking\\&. Force firewalld to run as a foreground process "
+"instead of as a daemon in the background\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewalld.1:69
+msgid "B<--nopid>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewalld.1:71
+msgid ""
+"Disable writing pid file\\&. By default the program will write a pid "
+"file\\&. If the program is invoked with this option it will not check for an "
+"existing server process\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewalld.1:74
+msgid "B<--system-config>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewalld.1:77
+msgid ""
+"Path to firewalld system (user) configuration\\&. This usually defaults to "
+"I</etc/firewalld>\\&."
+msgstr ""
+
+#. type: SH
+#: ./firewalld.1:78
+#, no-wrap
+msgid "CONCEPTS"
+msgstr ""
+
+#. type: Plain text
+#: ./firewalld.1:82
+msgid ""
+"firewalld has a D-Bus interface for firewall configuration of services and "
+"applications\\&. It also has a command line client for the user\\&. Services "
+"or applications already using D-Bus can request changes to the firewall with "
+"the D-Bus interface directly\\&. For more information on the firewalld D-Bus "
+"interface, please have a look at B<firewalld.dbus>(5)\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewalld.1:89
+msgid ""
+"firewalld provides support for zones, predefined services and ICMP types and "
+"has a separation of runtime and permanent configuration "
+"options\\&. Permanent configuration is loaded from XML files in "
+"I</usr/lib/firewalld> (B<--default-config>) or I</etc/firewalld> "
+"(B<--system-config>) (see the section called \\(lqDIRECTORIES\\(rq)\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewalld.1:93
+msgid ""
+"If NetworkManager is not in use and firewalld gets started after the network "
+"is already up, the connections and manually created interfaces are not bound "
+"to the zone specified in the ifcfg file\\&. The interfaces will "
+"automatically be handled by the default zone\\&. firewalld will also not get "
+"notified about network device renames\\&. All this also applies to "
+"interfaces that are not controlled by NetworkManager if I<NM_CONTROLLED=no> "
+"is set\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewalld.1:98
+msgid ""
+"You can add these interfaces to a zone with B<firewall-cmd [--permanent] "
+"--zone=>I<zone>B< --add-interface=>I<interface>\\&. If there is a "
+"/etc/sysconfig/network-scripts/ifcfg-I<interface> file, firewalld tries to "
+"change the ZONE=I<zone> setting in this file\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewalld.1:100
+msgid ""
+"If firewalld gets reloaded, it will restore the interface bindings that were "
+"in place before reloading to keep interface bindings stable in the case of "
+"NetworkManager uncontrolled interfaces\\&. This mechanism is not possible in "
+"the case of a firewalld service restart\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewalld.1:102
+msgid ""
+"It is essential to keep the ZONE= setting in the ifcfg file consistent to "
+"the binding in firewalld in the case of NetworkManager uncontrolled "
+"interfaces\\&."
+msgstr ""
+
+#. type: SS
+#: ./firewalld.1:102
+#, no-wrap
+msgid "Zones"
+msgstr ""
+
+#. type: Plain text
+#: ./firewalld.1:106
+msgid ""
+"A network or firewall zone defines the trust level of the interface used for "
+"a connection\\&. There are several pre-defined zones provided by "
+"firewalld\\&. Zone configuration options and generic information about zones "
+"are described in B<firewalld.zone>(5)"
+msgstr ""
+
+#. type: SS
+#: ./firewalld.1:106
+#, no-wrap
+msgid "Services"
+msgstr ""
+
+#. type: Plain text
+#: ./firewalld.1:110
+msgid ""
+"A service can be a list of local ports, protocols and destinations and "
+"additionally also a list of firewall helper modules automatically loaded if "
+"a service is enabled\\&. Service configuration options and generic "
+"information about services are described in B<firewalld.service>(5)\\&. The "
+"use of predefined services makes it easier for the user to enable and "
+"disable access to a service\\&."
+msgstr ""
+
+#. type: SS
+#: ./firewalld.1:110
+#, no-wrap
+msgid "ICMP types"
+msgstr ""
+
+#. type: Plain text
+#: ./firewalld.1:114
+msgid ""
+"The Internet Control Message Protocol (ICMP) is used to exchange information "
+"and also error messages in the Internet Protocol (IP)\\&. ICMP types can be "
+"used in firewalld to limit the exchange of these messages\\&. For more "
+"information, please have a look at B<firewalld.icmptype>(5)\\&."
+msgstr ""
+
+#. type: SS
+#: ./firewalld.1:114
+#, no-wrap
+msgid "Runtime configuration"
+msgstr ""
+
+#. type: Plain text
+#: ./firewalld.1:117
+msgid ""
+"Runtime configuration is the actual active configuration and is not "
+"permanent\\&. After reload/restart of the service or a system reboot, "
+"runtime settings will be gone if they haven\\*(Aqt been also in permanent "
+"configuration\\&."
+msgstr ""
+
+#. type: SS
+#: ./firewalld.1:117
+#, no-wrap
+msgid "Permanent configuration"
+msgstr ""
+
+#. type: Plain text
+#: ./firewalld.1:120
+msgid ""
+"The permanent configuration is stored in config files and will be loaded and "
+"become new runtime configuration with every machine boot or service "
+"reload/restart\\&."
+msgstr ""
+
+#. type: SS
+#: ./firewalld.1:120
+#, no-wrap
+msgid "Direct interface"
+msgstr ""
+
+#. type: Plain text
+#: ./firewalld.1:129
+msgid ""
+"The direct interface is mainly used by services or applications to add "
+"specific firewall rules\\&. It requires basic knowledge of ip(6)tables "
+"concepts (tables, chains, commands, parameters, targets)\\&."
+msgstr ""
+
+#. type: SH
+#: ./firewalld.1:129
+#, no-wrap
+msgid "DIRECTORIES"
+msgstr ""
+
+#. type: Plain text
+#: ./firewalld.1:132
+msgid "firewalld supports two configuration directories:"
+msgstr ""
+
+#. type: SS
+#: ./firewalld.1:132
+#, no-wrap
+msgid ""
+"Default/Fallback configuration in I</usr/lib/firewalld>R< "
+"(--default-config)>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewalld.1:140
+msgid ""
+"This directory contains the default and fallback configuration provided by "
+"firewalld for icmptypes, services and zones\\&. The files provided with the "
+"firewalld package should not get changed and the changes are gone with an "
+"update of the firewalld package\\&. Additional B<icmptypes>, B<services> and "
+"B<zones> can be provided with packages or by creating files\\&."
+msgstr ""
+
+#. type: SS
+#: ./firewalld.1:140
+#, no-wrap
+msgid "System configuration settings in I</etc/firewalld>R< (--system-config)>"
+msgstr ""
+
+#. type: Plain text
+#: ./firewalld.1:143
+msgid ""
+"The system or user configuration stored here is either created by the system "
+"administrator or by customization with the configuration interface of "
+"firewalld or by hand\\&. The files will overload the default configuration "
+"files\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewalld.1:145
+msgid ""
+"To manually change settings of pre-defined icmptypes, zones or services, "
+"copy the file from the default configuration directory to the corresponding "
+"directory in the system configuration directory and change it "
+"accordingly\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./firewalld.1:152
+msgid ""
+"For more information on icmptypes, please have a look at the "
+"B<firewalld.icmptype>(5)  man page, for services at B<firewalld.service>(5)  "
+"and for zones at B<firewalld.zone>(5)\\&."
+msgstr ""
+
+#. type: SH
+#: ./firewalld.1:152
+#, no-wrap
+msgid "SIGNALS"
+msgstr ""
+
+#. type: Plain text
+#: ./firewalld.1:155
+msgid "Currently only SIGHUP is supported\\&."
+msgstr ""
+
+#. type: SS
+#: ./firewalld.1:155
+#, no-wrap
+msgid "SIGHUP"
+msgstr ""
+
+#. type: Plain text
+#: ./firewalld.1:159
+msgid ""
+"Reloads the complete firewall configuration\\&. You can also use "
+"B<firewall-cmd --reload>\\&. All runtime configuration settings will be "
+"restored\\&. Permanent configuration will change according to options "
+"defined in the configuration files\\&."
+msgstr ""

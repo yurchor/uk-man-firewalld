@@ -1,0 +1,2406 @@
+'\" t
+.\"     Title: firewall-cmd
+.\"    Author: Thomas Woerner <twoerner@redhat.com>
+.\" Generator: DocBook XSL Stylesheets vsnapshot <http://docbook.sf.net/>
+.\"      Date: 
+.\"    Manual: firewall-cmd
+.\"    Source: firewalld 1.1.999
+.\"  Language: Ukrainian
+.\"
+.\"*******************************************************************
+.\"
+.\" This file was generated with po4a. Translate the source file.
+.\"
+.\"*******************************************************************
+.TH FIREWALL\-CMD 1 "" "firewalld 1.1.999" firewall\-cmd
+.\" -----------------------------------------------------------------
+.\" * Define some portability stuff
+.\" -----------------------------------------------------------------
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.\" http://bugs.debian.org/507673
+.\" http://lists.gnu.org/archive/html/groff/2009-02/msg00013.html
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.\" -----------------------------------------------------------------
+.\" * set default formatting
+.\" -----------------------------------------------------------------
+.\" disable hyphenation
+.nh
+.\" disable justification (adjust text to left margin only)
+.ad l
+.\" -----------------------------------------------------------------
+.\" * MAIN CONTENT STARTS HERE *
+.\" -----------------------------------------------------------------
+.SH НАЗВА
+firewall\-cmd — клієнт командного рядка firewalld
+.SH "КОРОТКИЙ ОПИС"
+.HP \w'\fBfirewall\-cmd\fR\ 'u
+\fBfirewall\-cmd\fP [ПАРАМЕТРИ...]
+.SH ОПИС
+.PP
+firewall\-cmd is the command line client of the firewalld daemon\&. It
+provides an interface to manage the runtime and permanent configurations\&.
+.PP
+The runtime configuration in firewalld is separated from the permanent
+configuration\&. This means that things can get changed in the runtime or
+permanent configuration\&.
+.SH ПАРАМЕТРИ
+.PP
+Sequence options are the options that can be specified multiple times, the
+exit code is 0 if there is at least one item that succeeded\&. The
+\fIALREADY_ENABLED\fP (11), \fINOT_ENABLED\fP (12) and also \fIZONE_ALREADY_SET\fP
+(16) errors are treated as succeeded\&. If there are issues while parsing
+the items, then these are treated as warnings and will not change the result
+as long as there is a succeeded one\&. Without any succeeded item, the exit
+code will depend on the error codes\&. If there is exactly one error code,
+then this is used\&. If there are more than one then \fIUNKNOWN_ERROR\fP (254)
+will be used\&.
+.PP
+Передбачено підтримку таких загальних параметрів:
+.SS "Загальні параметри"
+.PP
+\fB\-h\fP, \fB\-\-help\fP
+.RS 4
+Prints a short help text and exits\&.
+.RE
+.PP
+\fB\-V\fP, \fB\-\-version\fP
+.RS 4
+Print the version string of firewalld\&. This option is not combinable with
+other options\&.
+.RE
+.PP
+\fB\-q\fP, \fB\-\-quiet\fP
+.RS 4
+Do not print status messages\&.
+.RE
+.SS "Status Options"
+.PP
+\fB\-\-state\fP
+.RS 4
+Check whether the firewalld daemon is active (i\&.e\&. running)\&. Returns
+an exit code 0 if it is active, \fIRUNNING_BUT_FAILED\fP if failure occurred on
+startup, \fINOT_RUNNING\fP otherwise\&. See the section called \(lqEXIT
+CODES\(rq\&. This will also print the state to \fISTDOUT\fP\&.
+.RE
+.PP
+\fB\-\-reload\fP
+.RS 4
+Reload firewall rules and keep state information\&. Current permanent
+configuration will become new runtime configuration, i\&.e\&. all runtime
+only changes done until reload are lost with reload if they have not been
+also in permanent configuration\&.
+.sp
+Note: If FlushAllOnReload=no, runtime changes applied via the direct
+interface are not affected and will therefore stay in place until firewalld
+daemon is restarted completely\&. For FlushAllOnReload, see
+\fBfirewalld.conf\fP(5)\&.
+.RE
+.PP
+\fB\-\-complete\-reload\fP
+.RS 4
+Reload firewall completely, even netfilter kernel modules\&. This will most
+likely terminate active connections, because state information is
+lost\&. This option should only be used in case of severe firewall
+problems\&. For example if there are state information problems that no
+connection can be established with correct firewall rules\&.
+.sp
+Note: If FlushAllOnReload=no, runtime changes applied via the direct
+interface are not affected and will therefore stay in place until firewalld
+daemon is restarted completely\&. For FlushAllOnReload, see
+\fBfirewalld.conf\fP(5)\&.
+.RE
+.PP
+\fB\-\-runtime\-to\-permanent\fP
+.RS 4
+Save active runtime configuration and overwrite permanent configuration with
+it\&. The way this is supposed to work is that when configuring firewalld
+you do runtime changes only and once you\*(Aqre happy with the configuration
+and you tested that it works the way you want, you save the configuration to
+disk\&.
+.RE
+.PP
+\fB\-\-check\-config\fP
+.RS 4
+Run checks on the permanent configuration\&. This includes XML validity and
+semantics\&.
+.RE
+.SS "Log Denied Options"
+.PP
+\fB\-\-get\-log\-denied\fP
+.RS 4
+Print the log denied setting\&.
+.RE
+.PP
+\fB\-\-set\-log\-denied\fP=\fIзначення\fP
+.RS 4
+Add logging rules right before reject and drop rules in the INPUT, FORWARD
+and OUTPUT chains for the default rules and also final reject and drop rules
+in zones for the configured link\-layer packet type\&. The possible values
+are: \fIall\fP, \fIunicast\fP, \fIbroadcast\fP, \fImulticast\fP and \fIoff\fP\&. The
+default setting is \fIoff\fP, which disables the logging\&.
+.sp
+This is a runtime and permanent change and will also reload the firewall to
+be able to add the logging rules\&.
+.RE
+.SS "Permanent Options"
+.PP
+\fB\-\-permanent\fP
+.RS 4
+The permanent option \fB\-\-permanent\fP can be used to set options
+permanently\&. These changes are not effective immediately, only after
+service restart/reload or system reboot\&. Without the \fB\-\-permanent\fP
+option, a change will only be part of the runtime configuration\&.
+.sp
+If you want to make a change in runtime and permanent configuration, use the
+same call with and without the \fB\-\-permanent\fP option\&.
+.sp
+The \fB\-\-permanent\fP option can be optionally added to all options further
+down where it is supported\&.
+.RE
+.SS "Параметри зони"
+.PP
+\fB\-\-get\-default\-zone\fP
+.RS 4
+Print default zone for connections and interfaces\&.
+.RE
+.PP
+\fB\-\-set\-default\-zone\fP=\fIзона\fP
+.RS 4
+Set default zone for connections and interfaces where no zone has been
+selected\&. Setting the default zone changes the zone for the connections or
+interfaces, that are using the default zone\&.
+.sp
+This is a runtime and permanent change\&.
+.RE
+.PP
+\fB\-\-get\-active\-zones\fP
+.RS 4
+Print currently active zones altogether with interfaces and sources used in
+these zones\&. Active zones are zones, that have a binding to an interface
+or source\&. The output format is:
+.RS 4
+\fIzone1\fP
+  interfaces: \fIinterface1\fP \fIinterface2\fP \&.\&.
+  sources: \fIsource1\fP \&.\&.
+\fIzone2\fP
+  interfaces: \fIinterface3\fP \&.\&.
+\fIzone3\fP
+  sources: \fIsource2\fP \&.\&.
+	     
+If there are no interfaces or sources bound to the zone, the corresponding line will be omitted\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] \fB\-\-get\-zones\fP
+.RS 4
+Print predefined zones as a space separated list\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] \fB\-\-get\-services\fP
+.RS 4
+Print predefined services as a space separated list\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] \fB\-\-get\-icmptypes\fP
+.RS 4
+Print predefined icmptypes as a space separated list\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] \fB\-\-get\-zone\-of\-interface\fP=\fIінтерфейс\fP
+.RS 4
+Print the name of the zone the \fIinterface\fP is bound to or \fIno zone\fP\&.
+.RE
+.PP
+[\fB\-\-permanent\fP]
+\fB\-\-get\-zone\-of\-source\fP=\fIsource\fP[/\fImask\fP]|\fIMAC\fP|ipset:\fIipset\fP
+.RS 4
+Print the name of the zone the source is bound to or \fIno zone\fP\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] \fB\-\-info\-zone=\fP\fIzone\fP
+.RS 4
+Print information about the zone \fIzone\fP\&. The output format is:
+.RS 4
+\fIzone\fP
+  interfaces: \fIinterface1\fP \&.\&.
+  sources: \fIsource1\fP \&.\&.
+  services: \fIservice1\fP \&.\&.
+  ports: \fIport1\fP \&.\&.
+  protocols: \fIprotocol1\fP \&.\&.
+  forward\-ports:
+        \fIforward\-port1\fP
+        \&.\&.
+  source\-ports: \fIsource\-port1\fP \&.\&.
+  icmp\-blocks: \fIicmp\-type1\fP \&.\&.
+  rich rules:
+        \fIrich\-rule1\fP
+        \&.\&.
+              
+.RE
+.PP
+[\fB\-\-permanent\fP] \fB\-\-list\-all\-zones\fP
+.RS 4
+List everything added for or enabled in all zones\&. The output format is:
+.RS 4
+\fIzone1\fP
+  interfaces: \fIinterface1\fP \&.\&.
+  sources: \fIsource1\fP \&.\&.
+  services: \fIservice1\fP \&.\&.
+  ports: \fIport1\fP \&.\&.
+  protocols: \fIprotocol1\fP \&.\&.
+  forward\-ports:
+        \fIforward\-port1\fP
+        \&.\&.
+  icmp\-blocks: \fIicmp\-type1\fP \&.\&.
+  rich rules:
+        \fIrich\-rule1\fP
+        \&.\&.
+\&.\&.
+              
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-new\-zone\fP=\fIzone\fP
+.RS 4
+Add a new permanent and empty zone\&.
+.sp
+Zone names must be alphanumeric and may additionally include characters:
+\*(Aq_\*(Aq and \*(Aq\-\*(Aq\&.
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-new\-zone\-from\-file\fP=\fIfilename\fP [\fB\-\-name\fP=\fIzone\fP]
+.RS 4
+Add a new permanent zone from a prepared zone file with an optional name
+override\&.
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-delete\-zone\fP=\fIzone\fP
+.RS 4
+Delete an existing permanent zone\&.
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-load\-zone\-defaults\fP=\fIzone\fP
+.RS 4
+Load zone default settings or report NO_DEFAULTS error\&.
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-path\-zone=\fP\fIzone\fP
+.RS 4
+Print path of the zone configuration file\&.
+.RE
+.SS "Policy Options"
+.PP
+[\fB\-\-permanent\fP] \fB\-\-get\-policies\fP
+.RS 4
+Print predefined policies as a space separated list\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] \fB\-\-info\-policy\fP=\fIpolicy\fP
+.RS 4
+Print information about the policy \fIpolicy\fP\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] \fB\-\-list\-all\-policies\fP
+.RS 4
+List everything added for or enabled in all policies\&.
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-new\-policy\fP=\fIpolicy\fP
+.RS 4
+Add a new permanent policy\&.
+.sp
+Policy names must be alphanumeric and may additionally include characters:
+\*(Aq_\*(Aq and \*(Aq\-\*(Aq\&.
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-new\-policy\-from\-file\fP=\fIfilename\fP [\fB\-\-name\fP=\fIpolicy\fP]
+.RS 4
+Add a new permanent policy from a prepared policy file with an optional name
+override\&.
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-path\-policy\fP=\fIpolicy\fP
+.RS 4
+Print path of the policy configuration file\&.
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-delete\-policy\fP=\fIpolicy\fP
+.RS 4
+Delete an existing permanent policy\&.
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-load\-policy\-defaults\fP=\fIpolicy\fP
+.RS 4
+Load the shipped defaults for a policy\&. Only applies to policies shipped
+with firewalld\&. Does not apply to user defined policies\&.
+.RE
+.SS "Options to Adapt and Query Zones and Policies"
+.PP
+Options in this section affect only one particular zone or policy\&. If used
+with \fB\-\-zone\fP=\fIzone\fP or \fB\-\-policy\fP=\fIpolicy\fP option, they affect the
+specified zone or policy\&. If both options are omitted, they affect the
+default zone (see \fB\-\-get\-default\-zone\fP)\&.
+.PP
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-policy\fP=\fIpolicy\fP] \fB\-\-list\-all\fP
+.RS 4
+List everything added or enabled\&.
+.RE
+.PP
+\fB\-\-permanent\fP [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-policy\fP=\fIpolicy\fP] \fB\-\-get\-target\fP
+.RS 4
+Get the target\&.
+.RE
+.PP
+\fB\-\-permanent\fP [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-policy\fP=\fIpolicy\fP]
+\fB\-\-set\-target\fP=\fItarget\fP
+.RS 4
+Set the target\&.
+.sp
+For zones \fItarget\fP is one of: \fIdefault\fP, \fIACCEPT\fP, \fIDROP\fP, \fIREJECT\fP
+.sp
+For policies \fItarget\fP is one of: \fICONTINUE\fP, \fIACCEPT\fP, \fIDROP\fP, \fIREJECT\fP
+.sp
+\fIdefault\fP is similar to \fIREJECT\fP, but it implicitly allows ICMP packets\&.
+.RE
+.PP
+\fB\-\-permanent\fP [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-policy\fP=\fIpolicy\fP]
+\fB\-\-set\-description\fP=\fIdescription\fP
+.RS 4
+Set description\&.
+.RE
+.PP
+\fB\-\-permanent\fP [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-policy\fP=\fIpolicy\fP]
+\fB\-\-get\-description\fP
+.RS 4
+Print description\&.
+.RE
+.PP
+\fB\-\-permanent\fP [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-policy\fP=\fIpolicy\fP]
+\fB\-\-set\-short\fP=\fIdescription\fP
+.RS 4
+Set short description\&.
+.RE
+.PP
+\fB\-\-permanent\fP [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-policy\fP=\fIpolicy\fP] \fB\-\-get\-short\fP
+.RS 4
+Print short description\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-permanent\fP]
+[\fB\-\-policy\fP=\fIpolicy\fP] \fB\-\-list\-services\fP
+.RS 4
+List services added as a space separated list\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-permanent\fP]
+[\fB\-\-policy\fP=\fIpolicy\fP] \fB\-\-add\-service\fP=\fIservice\fP
+[\fB\-\-timeout\fP=\fItimeval\fP]
+.RS 4
+Add a service\&. This option can be specified multiple times\&. If a timeout
+is supplied, the rule will be active for the specified amount of time and
+will be removed automatically afterwards\&.  \fItimeval\fP is either a number
+(of seconds) or number followed by one of characters \fIs\fP (seconds), \fIm\fP
+(minutes), \fIh\fP (hours), for example \fI20m\fP or \fI1h\fP\&.
+.sp
+The service is one of the firewalld provided services\&. To get a list of
+the supported services, use \fBfirewall\-cmd \-\-get\-services\fP\&.
+.sp
+The \fB\-\-timeout\fP option is not combinable with the \fB\-\-permanent\fP option\&.
+.sp
+\fBNote\fP: Some services define connection tracking helpers\&. Helpers that
+may operate in client mode (e\&.g\&. tftp) must be added to an outbound
+policy instead of a zone to take effect for clients\&. Otherwise the helper
+will not be applied to the outbound traffic\&. The related traffic, as
+defined by the connection tracking helper, on the return path (ingress) will
+be allowed by the stateful firewall rules\&.
+.sp
+An example of an outbound policy for connection tracking helpers:
+.sp
+# firewall\-cmd \-\-permanent \-\-new\-policy clientConntrack # firewall\-cmd
+\-\-permanent \-\-policy clientConntrack \-\-add\-ingress\-zone HOST # firewall\-cmd
+\-\-permanent \-\-policy clientConntrack \-\-add\-egress\-zone ANY # firewall\-cmd
+\-\-permanent \-\-policy clientConntrack \-\-add\-service tftp
+              
+.sp
+.RE
+.PP
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-permanent\fP]
+[\fB\-\-policy\fP=\fIpolicy\fP] \fB\-\-remove\-service\fP=\fIservice\fP
+.RS 4
+Remove a service\&. This option can be specified multiple times\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-permanent\fP]
+[\fB\-\-policy\fP=\fIpolicy\fP] \fB\-\-query\-service\fP=\fIservice\fP
+.RS 4
+Return whether \fIservice\fP has been added\&. Returns 0 if true, 1
+otherwise\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-permanent\fP]
+[\fB\-\-policy\fP=\fIpolicy\fP] \fB\-\-list\-ports\fP
+.RS 4
+List ports added as a space separated list\&. A port is of the form
+\fIportid\fP[\-\fIportid\fP]/\fIprotocol\fP, it can be either a port and protocol pair
+or a port range with a protocol\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-permanent\fP]
+[\fB\-\-policy\fP=\fIpolicy\fP] \fB\-\-add\-port\fP=\fIportid\fP[\-\fIportid\fP]/\fIprotocol\fP
+[\fB\-\-timeout\fP=\fItimeval\fP]
+.RS 4
+Add the port\&. This option can be specified multiple times\&. If a timeout
+is supplied, the rule will be active for the specified amount of time and
+will be removed automatically afterwards\&.  \fItimeval\fP is either a number
+(of seconds) or number followed by one of characters \fIs\fP (seconds), \fIm\fP
+(minutes), \fIh\fP (hours), for example \fI20m\fP or \fI1h\fP\&.
+.sp
+The port can either be a single port number or a port range
+\fIportid\fP\-\fIportid\fP\&. The protocol can either be \fItcp\fP, \fIudp\fP, \fIsctp\fP or
+\fIdccp\fP\&.
+.sp
+The \fB\-\-timeout\fP option is not combinable with the \fB\-\-permanent\fP option\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-permanent\fP]
+[\fB\-\-policy\fP=\fIpolicy\fP] \fB\-\-remove\-port\fP=\fIportid\fP[\-\fIportid\fP]/\fIprotocol\fP
+.RS 4
+Remove the port\&. This option can be specified multiple times\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-permanent\fP]
+[\fB\-\-policy\fP=\fIpolicy\fP] \fB\-\-query\-port\fP=\fIportid\fP[\-\fIportid\fP]/\fIprotocol\fP
+.RS 4
+Return whether the port has been added\&. Returns 0 if true, 1 otherwise\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-permanent\fP]
+[\fB\-\-policy\fP=\fIpolicy\fP] \fB\-\-list\-protocols\fP
+.RS 4
+List protocols added as a space separated list\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-permanent\fP]
+[\fB\-\-policy\fP=\fIpolicy\fP] \fB\-\-add\-protocol\fP=\fIprotocol\fP
+[\fB\-\-timeout\fP=\fItimeval\fP]
+.RS 4
+Add the protocol\&. This option can be specified multiple times\&. If a
+timeout is supplied, the rule will be active for the specified amount of
+time and will be removed automatically afterwards\&.  \fItimeval\fP is either a
+number (of seconds) or number followed by one of characters \fIs\fP (seconds),
+\fIm\fP (minutes), \fIh\fP (hours), for example \fI20m\fP or \fI1h\fP\&.
+.sp
+The protocol can be any protocol supported by the system\&. Please have a
+look at \fI/etc/protocols\fP for supported protocols\&.
+.sp
+The \fB\-\-timeout\fP option is not combinable with the \fB\-\-permanent\fP option\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-permanent\fP]
+[\fB\-\-policy\fP=\fIpolicy\fP] \fB\-\-remove\-protocol\fP=\fIprotocol\fP
+.RS 4
+Remove the protocol\&. This option can be specified multiple times\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-permanent\fP]
+[\fB\-\-policy\fP=\fIpolicy\fP] \fB\-\-query\-protocol\fP=\fIprotocol\fP
+.RS 4
+Return whether the protocol has been added\&. Returns 0 if true, 1
+otherwise\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-permanent\fP]
+[\fB\-\-policy\fP=\fIpolicy\fP] \fB\-\-list\-source\-ports\fP
+.RS 4
+List source ports added as a space separated list\&. A port is of the form
+\fIportid\fP[\-\fIportid\fP]/\fIprotocol\fP\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-permanent\fP]
+[\fB\-\-policy\fP=\fIpolicy\fP]
+\fB\-\-add\-source\-port\fP=\fIportid\fP[\-\fIportid\fP]/\fIprotocol\fP
+[\fB\-\-timeout\fP=\fItimeval\fP]
+.RS 4
+Add the source port\&. This option can be specified multiple times\&. If a
+timeout is supplied, the rule will be active for the specified amount of
+time and will be removed automatically afterwards\&.  \fItimeval\fP is either a
+number (of seconds) or number followed by one of characters \fIs\fP (seconds),
+\fIm\fP (minutes), \fIh\fP (hours), for example \fI20m\fP or \fI1h\fP\&.
+.sp
+The port can either be a single port number or a port range
+\fIportid\fP\-\fIportid\fP\&. The protocol can either be \fItcp\fP, \fIudp\fP, \fIsctp\fP or
+\fIdccp\fP\&.
+.sp
+The \fB\-\-timeout\fP option is not combinable with the \fB\-\-permanent\fP option\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-permanent\fP]
+[\fB\-\-policy\fP=\fIpolicy\fP]
+\fB\-\-remove\-source\-port\fP=\fIportid\fP[\-\fIportid\fP]/\fIprotocol\fP
+.RS 4
+Remove the source port\&. This option can be specified multiple times\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-permanent\fP]
+[\fB\-\-policy\fP=\fIpolicy\fP]
+\fB\-\-query\-source\-port\fP=\fIportid\fP[\-\fIportid\fP]/\fIprotocol\fP
+.RS 4
+Return whether the source port has been added\&. Returns 0 if true, 1
+otherwise\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-permanent\fP]
+[\fB\-\-policy\fP=\fIpolicy\fP] \fB\-\-list\-icmp\-blocks\fP
+.RS 4
+List Internet Control Message Protocol (ICMP) type blocks added as a space
+separated list\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-permanent\fP]
+[\fB\-\-policy\fP=\fIpolicy\fP] \fB\-\-add\-icmp\-block\fP=\fIicmptype\fP
+[\fB\-\-timeout\fP=\fItimeval\fP]
+.RS 4
+Add an ICMP block for \fIicmptype\fP\&. This option can be specified multiple
+times\&. If a timeout is supplied, the rule will be active for the specified
+amount of time and will be removed automatically afterwards\&.  \fItimeval\fP
+is either a number (of seconds) or number followed by one of characters \fIs\fP
+(seconds), \fIm\fP (minutes), \fIh\fP (hours), for example \fI20m\fP or \fI1h\fP\&.
+.sp
+The \fIicmptype\fP is the one of the icmp types firewalld supports\&. To get a
+listing of supported icmp types: \fBfirewall\-cmd \-\-get\-icmptypes\fP
+.sp
+The \fB\-\-timeout\fP option is not combinable with the \fB\-\-permanent\fP option\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-permanent\fP]
+[\fB\-\-policy\fP=\fIpolicy\fP] \fB\-\-remove\-icmp\-block\fP=\fIicmptype\fP
+.RS 4
+Remove the ICMP block for \fIicmptype\fP\&. This option can be specified
+multiple times\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-permanent\fP]
+[\fB\-\-policy\fP=\fIpolicy\fP] \fB\-\-query\-icmp\-block\fP=\fIicmptype\fP
+.RS 4
+Return whether an ICMP block for \fIicmptype\fP has been added\&. Returns 0 if
+true, 1 otherwise\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-permanent\fP]
+[\fB\-\-policy\fP=\fIpolicy\fP] \fB\-\-list\-forward\-ports\fP
+.RS 4
+List \fIIPv4\fP forward ports added as a space separated list\&.
+.sp
+For \fIIPv6\fP forward ports, please use the rich language\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-permanent\fP]
+[\fB\-\-policy\fP=\fIpolicy\fP]
+\fB\-\-add\-forward\-port\fP=port=\fIportid\fP[\-\fIportid\fP]:proto=\fIprotocol\fP[:toport=\fIportid\fP[\-\fIportid\fP]][:toaddr=\fIaddress\fP[/\fImask\fP]]
+[\fB\-\-timeout\fP=\fItimeval\fP]
+.RS 4
+Add the \fIIPv4\fP forward port\&. This option can be specified multiple
+times\&. If a timeout is supplied, the rule will be active for the specified
+amount of time and will be removed automatically afterwards\&.  \fItimeval\fP
+is either a number (of seconds) or number followed by one of characters \fIs\fP
+(seconds), \fIm\fP (minutes), \fIh\fP (hours), for example \fI20m\fP or \fI1h\fP\&.
+.sp
+The port can either be a single port number \fIportid\fP or a port range
+\fIportid\fP\-\fIportid\fP\&. The protocol can either be \fItcp\fP, \fIudp\fP, \fIsctp\fP or
+\fIdccp\fP\&. The destination address is a simple IP address\&.
+.sp
+The \fB\-\-timeout\fP option is not combinable with the \fB\-\-permanent\fP option\&.
+.sp
+For \fIIPv6\fP forward ports, please use the rich language\&.
+.sp
+\fINote:\fP IP forwarding will be implicitly enabled if \fBtoaddr\fP is
+specified\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-permanent\fP]
+[\fB\-\-policy\fP=\fIpolicy\fP]
+\fB\-\-remove\-forward\-port\fP=port=\fIportid\fP[\-\fIportid\fP]:proto=\fIprotocol\fP[:toport=\fIportid\fP[\-\fIportid\fP]][:toaddr=\fIaddress\fP[/\fImask\fP]]
+.RS 4
+Remove the \fIIPv4\fP forward port\&. This option can be specified multiple
+times\&.
+.sp
+For \fIIPv6\fP forward ports, please use the rich language\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-permanent\fP]
+[\fB\-\-policy\fP=\fIpolicy\fP]
+\fB\-\-query\-forward\-port\fP=port=\fIportid\fP[\-\fIportid\fP]:proto=\fIprotocol\fP[:toport=\fIportid\fP[\-\fIportid\fP]][:toaddr=\fIaddress\fP[/\fImask\fP]]
+.RS 4
+Return whether the \fIIPv4\fP forward port has been added\&. Returns 0 if true,
+1 otherwise\&.
+.sp
+For \fIIPv6\fP forward ports, please use the rich language\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-permanent\fP]
+[\fB\-\-policy\fP=\fIpolicy\fP] \fB\-\-add\-masquerade\fP [\fB\-\-timeout\fP=\fItimeval\fP]
+.RS 4
+Enable \fIIPv4\fP masquerade\&. If a timeout is supplied, masquerading will be
+active for the specified amount of time\&.  \fItimeval\fP is either a number
+(of seconds) or number followed by one of characters \fIs\fP (seconds), \fIm\fP
+(minutes), \fIh\fP (hours), for example \fI20m\fP or \fI1h\fP\&. Masquerading is
+useful if the machine is a router and machines connected over an interface
+in another zone should be able to use the first connection\&.
+.sp
+The \fB\-\-timeout\fP option is not combinable with the \fB\-\-permanent\fP option\&.
+.sp
+For \fIIPv6\fP masquerading, please use the rich language\&.
+.sp
+\fINote:\fP IP forwarding will be implicitly enabled\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-permanent\fP]
+[\fB\-\-policy\fP=\fIpolicy\fP] \fB\-\-remove\-masquerade\fP
+.RS 4
+Disable \fIIPv4\fP masquerade\&. If the masquerading was enabled with a
+timeout, it will be disabled also\&.
+.sp
+For \fIIPv6\fP masquerading, please use the rich language\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-permanent\fP]
+[\fB\-\-policy\fP=\fIpolicy\fP] \fB\-\-query\-masquerade\fP
+.RS 4
+Return whether \fIIPv4\fP masquerading has been enabled\&. Returns 0 if true, 1
+otherwise\&.
+.sp
+For \fIIPv6\fP masquerading, please use the rich language\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-permanent\fP]
+[\fB\-\-policy\fP=\fIpolicy\fP] \fB\-\-list\-rich\-rules\fP
+.RS 4
+List rich language rules added as a newline separated list\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-permanent\fP]
+[\fB\-\-policy\fP=\fIpolicy\fP] \fB\-\-add\-rich\-rule\fP=\*(Aq\fIrule\fP\*(Aq
+[\fB\-\-timeout\fP=\fItimeval\fP]
+.RS 4
+Add rich language rule \*(Aq\fIrule\fP\*(Aq\&. This option can be specified
+multiple times\&. If a timeout is supplied, the \fIrule\fP will be active for
+the specified amount of time and will be removed automatically
+afterwards\&.  \fItimeval\fP is either a number (of seconds) or number followed
+by one of characters \fIs\fP (seconds), \fIm\fP (minutes), \fIh\fP (hours), for
+example \fI20m\fP or \fI1h\fP\&.
+.sp
+For the rich language rule syntax, please have a look at
+\fBfirewalld.richlanguage\fP(5)\&.
+.sp
+The \fB\-\-timeout\fP option is not combinable with the \fB\-\-permanent\fP option\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-permanent\fP]
+[\fB\-\-policy\fP=\fIpolicy\fP] \fB\-\-remove\-rich\-rule\fP=\*(Aq\fIrule\fP\*(Aq
+.RS 4
+Remove rich language rule \*(Aq\fIrule\fP\*(Aq\&. This option can be specified
+multiple times\&.
+.sp
+For the rich language rule syntax, please have a look at
+\fBfirewalld.richlanguage\fP(5)\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-permanent\fP]
+[\fB\-\-policy\fP=\fIpolicy\fP] \fB\-\-query\-rich\-rule\fP=\*(Aq\fIrule\fP\*(Aq
+.RS 4
+Return whether a rich language rule \*(Aq\fIrule\fP\*(Aq has been
+added\&. Returns 0 if true, 1 otherwise\&.
+.sp
+For the rich language rule syntax, please have a look at
+\fBfirewalld.richlanguage\fP(5)\&.
+.RE
+.SS "Options to Adapt and Query Zones"
+.PP
+Options in this section affect only one particular zone\&. If used with
+\fB\-\-zone\fP=\fIzone\fP option, they affect the specified zone\&. If the option is
+omitted, they affect default zone (see \fB\-\-get\-default\-zone\fP)\&.
+.PP
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] \fB\-\-add\-icmp\-block\-inversion\fP
+.RS 4
+Enable ICMP block inversion\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] \fB\-\-remove\-icmp\-block\-inversion\fP
+.RS 4
+Disable ICMP block inversion\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] \fB\-\-query\-icmp\-block\-inversion\fP
+.RS 4
+Return whether ICMP block inversion is enabled\&. Returns 0 if true, 1
+otherwise\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] \fB\-\-add\-forward\fP
+.RS 4
+Enable intra zone forwarding\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] \fB\-\-remove\-forward\fP
+.RS 4
+Disable intra zone forwarding\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] \fB\-\-query\-forward\fP
+.RS 4
+Return whether intra zone forwarding is enabled\&. Returns 0 if true, 1
+otherwise\&.
+.RE
+.SS "Options to Adapt and Query Policies"
+.PP
+Options in this section affect only one particular policy\&. It\*(Aqs
+required to specify \fB\-\-policy\fP=\fIpolicy\fP with these options\&.
+.PP
+\fB\-\-permanent\fP \fB\-\-policy\fP=\fIpolicy\fP \fB\-\-get\-priority\fP
+.RS 4
+Get the priority\&.
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-policy\fP=\fIpolicy\fP \fB\-\-set\-priority\fP\fIpriority\fP
+.RS 4
+Set the priority\&. The priority determines the relative ordering of
+policies\&. This is an integer value between \-32768 and 32767 where \-1 is
+the default value for new policies and 0 is reserved for internal use\&.
+.sp
+If a priority is < 0, then the policy\*(Aqs rules will execute before
+all rules in all zones\&.
+.sp
+If a priority is > 0, then the policy\*(Aqs rules will execute after all
+rules in all zones\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] \fB\-\-policy\fP=\fIpolicy\fP \fB\-\-list\-ingress\-zones\fP
+.RS 4
+List ingress zones added as a space separated list\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] \fB\-\-policy\fP=\fIpolicy\fP \fB\-\-add\-ingress\-zone\fP=\fIzone\fP
+.RS 4
+Add an ingress zone\&. This option can be specified multiple times\&.
+.sp
+The ingress zone is one of the firewalld provided zones or one of the
+pseudo\-zones: HOST, ANY\&.
+.sp
+HOST is used for traffic originating from the host machine, i\&.e\&. the
+host running firewalld\&.
+.sp
+ANY is used for traffic originating from any zone\&. This can be thought of
+as a wild card for zones\&. However it does not include traffic originating
+from the host machine \- use HOST for that\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] \fB\-\-policy\fP=\fIpolicy\fP \fB\-\-remove\-ingress\-zone\fP=\fIzone\fP
+.RS 4
+Remove an ingress zone\&. This option can be specified multiple times\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] \fB\-\-policy\fP=\fIpolicy\fP \fB\-\-query\-ingress\-zone\fP=\fIzone\fP
+.RS 4
+Return whether \fIzone\fP has been added\&. Returns 0 if true, 1 otherwise\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] \fB\-\-policy\fP=\fIpolicy\fP \fB\-\-list\-egress\-zones\fP
+.RS 4
+List egress zones added as a space separated list\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] \fB\-\-policy\fP=\fIpolicy\fP \fB\-\-add\-egress\-zone\fP=\fIzone\fP
+.RS 4
+Add an egress zone\&. This option can be specified multiple times\&.
+.sp
+The egress zone is one of the firewalld provided zones or one of the
+pseudo\-zones: HOST, ANY\&.
+.sp
+For clarification on HOST and ANY see option \fB\-\-add\-ingress\-zone\fP\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] \fB\-\-policy\fP=\fIpolicy\fP \fB\-\-remove\-egress\-zone\fP=\fIzone\fP
+.RS 4
+Remove an egress zone\&. This option can be specified multiple times\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] \fB\-\-policy\fP=\fIpolicy\fP \fB\-\-query\-egress\-zone\fP=\fIzone\fP
+.RS 4
+Return whether \fIzone\fP has been added\&. Returns 0 if true, 1 otherwise\&.
+.RE
+.SS "Options to Handle Bindings of Interfaces"
+.PP
+Binding an interface to a zone means that this zone settings are used to
+restrict traffic via the interface\&.
+.PP
+Options in this section affect only one particular zone\&. If used with
+\fB\-\-zone\fP=\fIzone\fP option, they affect the zone \fIzone\fP\&. If the option is
+omitted, they affect default zone (see \fB\-\-get\-default\-zone\fP)\&.
+.PP
+For a list of predefined zones use \fBfirewall\-cmd \-\-get\-zones\fP\&.
+.PP
+An interface name is a string up to 16 characters long, that may not contain
+\fB\*(Aq \*(Aq\fP, \fB\*(Aq/\*(Aq\fP, \fB\*(Aq!\*(Aq\fP and \fB\*(Aq*\*(Aq\fP\&.
+.PP
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] \fB\-\-list\-interfaces\fP
+.RS 4
+List interfaces that are bound to zone \fIzone\fP as a space separated
+list\&. If zone is omitted, default zone will be used\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] \fB\-\-add\-interface\fP=\fIinterface\fP
+.RS 4
+Bind interface \fIinterface\fP to zone \fIzone\fP\&. If zone is omitted, default
+zone will be used\&.
+.sp
+If the interface is under control of NetworkManager, it is at first
+connected to change the zone for the connection that is using the
+interface\&. If this fails, the zone binding is created in firewalld and the
+limitations below apply\&. For interfaces that are not under control of
+NetworkManager, firewalld tries to change the ZONE setting in the ifcfg
+file, if the file exists\&.
+.sp
+As a end user you don\*(Aqt need this in most cases, because NetworkManager
+(or legacy network service) adds interfaces into zones automatically
+(according to \fBZONE=\fP option from ifcfg\-\fIinterface\fP file) if
+\fINM_CONTROLLED=no\fP is not set\&. You should do it only if there\*(Aqs no
+/etc/sysconfig/network\-scripts/ifcfg\-\fIinterface\fP file\&. If there is such
+file and you add interface to zone with this \fB\-\-add\-interface\fP option, make
+sure the zone is the same in both cases, otherwise the behaviour would be
+undefined\&. Please also have a look at the \fBfirewalld\fP(1)  man page in the
+\fIConcepts\fP section\&. For permanent association of interface with a zone,
+see also \*(AqHow to set or change a zone for a connection?\*(Aq in
+\fBfirewalld.zones\fP(5)\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] \fB\-\-change\-interface\fP=\fIinterface\fP
+.RS 4
+If the interface is under control of NetworkManager, it is at first
+connected to change the zone for the connection that is using the
+interface\&. If this fails, the zone binding is created in firewalld and the
+limitations below apply\&. For interfaces that are not under control of
+NetworkManager, firewalld tries to change the ZONE setting in the ifcfg
+file, if the file exists\&.
+.sp
+Change zone the interface \fIinterface\fP is bound to to zone
+\fIzone\fP\&. It\*(Aqs basically \fB\-\-remove\-interface\fP followed by
+\fB\-\-add\-interface\fP\&. If the interface has not been bound to a zone before,
+it behaves like \fB\-\-add\-interface\fP\&. If zone is omitted, default zone will
+be used\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] \fB\-\-query\-interface\fP=\fIinterface\fP
+.RS 4
+Query whether interface \fIinterface\fP is bound to zone \fIzone\fP\&. Returns 0
+if true, 1 otherwise\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] \fB\-\-remove\-interface\fP=\fIinterface\fP
+.RS 4
+If the interface is under control of NetworkManager, it is at first
+connected to change the zone for the connection that is using the
+interface\&. If this fails, the zone binding is created in firewalld and the
+limitations below apply\&.
+.sp
+For the addion or change of interfaces that are not under control of
+NetworkManager: firewalld tries to change the ZONE setting in the ifcfg
+file, if an ifcfg file exists that is using the interface\&.
+.sp
+Only for the removal of interfaces that are not under control of
+NetworkManager: firewalld is not trying to change the ZONE setting in the
+ifcfg file\&. This is needed to make sure that an ifdown of the interface
+will not result in a reset of the zone setting to the default zone\&. Only
+the zone binding is then removed in firewalld then\&.
+.sp
+Remove binding of interface \fIinterface\fP from zone it was previously added
+to\&.
+.RE
+.SS "Options to Handle Bindings of Sources"
+.PP
+Binding a source to a zone means that this zone settings will be used to
+restrict traffic from this source\&.
+.PP
+A source address or address range is either an IP address or a network IP
+address with a mask for IPv4 or IPv6 or a MAC address or an ipset with the
+ipset: prefix\&. For IPv4, the mask can be a network mask or a plain
+number\&. For IPv6 the mask is a plain number\&. The use of host names is
+not supported\&.
+.PP
+Options in this section affect only one particular zone\&. If used with
+\fB\-\-zone\fP=\fIzone\fP option, they affect the zone \fIzone\fP\&. If the option is
+omitted, they affect default zone (see \fB\-\-get\-default\-zone\fP)\&.
+.PP
+For a list of predefined zones use \fBfirewall\-cmd \fP\fB[\-\-permanent\fP]\fB
+\-\-get\-zones\fP\&.
+.PP
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] \fB\-\-list\-sources\fP
+.RS 4
+List sources that are bound to zone \fIzone\fP as a space separated list\&. If
+zone is omitted, default zone will be used\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP]
+\fB\-\-add\-source\fP=\fIsource\fP[/\fImask\fP]|\fIMAC\fP|ipset:\fIipset\fP
+.RS 4
+Bind the source to zone \fIzone\fP\&. If zone is omitted, default zone will be
+used\&.
+.RE
+.PP
+[\fB\-\-zone\fP=\fIzone\fP]
+\fB\-\-change\-source\fP=\fIsource\fP[/\fImask\fP]|\fIMAC\fP|ipset:\fIipset\fP
+.RS 4
+Change zone the source is bound to to zone \fIzone\fP\&. It\*(Aqs basically
+\fB\-\-remove\-source\fP followed by \fB\-\-add\-source\fP\&. If the source has not been
+bound to a zone before, it behaves like \fB\-\-add\-source\fP\&. If zone is
+omitted, default zone will be used\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP]
+\fB\-\-query\-source\fP=\fIsource\fP[/\fImask\fP]|\fIMAC\fP|ipset:\fIipset\fP
+.RS 4
+Query whether the source is bound to the zone \fIzone\fP\&. Returns 0 if true,
+1 otherwise\&.
+.RE
+.PP
+[\fB\-\-permanent\fP]
+\fB\-\-remove\-source\fP=\fIsource\fP[/\fImask\fP]|\fIMAC\fP|ipset:\fIipset\fP
+.RS 4
+Remove binding of the source from zone it was previously added to\&.
+.RE
+.SS "IPSet Options"
+.PP
+\fB\-\-get\-ipset\-types\fP
+.RS 4
+Print the supported ipset types\&.
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-new\-ipset\fP=\fIipset\fP \fB\-\-type\fP=\fItype\fP
+[\fB\-\-family\fP=\fIinet\fP|\fIinet6\fP] [\fB\-\-option\fP=\fIkey\fP[=\fIvalue\fP]]
+.RS 4
+Add a new permanent and empty ipset with specifying the type and optional
+the family and options like \fItimeout\fP, \fIhashsize\fP and \fImaxelem\fP\&. For
+more information please have a look at \fBipset\fP(8)  man page\&.
+.sp
+ipset names must be alphanumeric and may additionally include characters:
+\*(Aq_\*(Aq and \*(Aq\-\*(Aq\&.
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-new\-ipset\-from\-file\fP=\fIfilename\fP [\fB\-\-name\fP=\fIipset\fP]
+.RS 4
+Add a new permanent ipset from a prepared ipset file with an optional name
+override\&.
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-delete\-ipset\fP=\fIipset\fP
+.RS 4
+Delete an existing permanent ipset\&.
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-load\-ipset\-defaults\fP=\fIipset\fP
+.RS 4
+Load ipset default settings or report NO_DEFAULTS error\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] \fB\-\-info\-ipset=\fP\fIipset\fP
+.RS 4
+Print information about the ipset \fIipset\fP\&. The output format is:
+.sp
+\fIipset\fP
+  type: \fItype\fP
+  options: \fIoption1[=value1]\fP \&.\&.
+  entries: \fIentry1\fP \&.\&.
+              
+.sp
+.RE
+.PP
+[\fB\-\-permanent\fP] \fB\-\-get\-ipsets\fP
+.RS 4
+Print predefined ipsets as a space separated list\&.
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-ipset\fP=\fIipset\fP \fB\-\-set\-description\fP=\fIdescription\fP
+.RS 4
+Set new description to ipset
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-ipset\fP=\fIipset\fP \fB\-\-get\-description\fP
+.RS 4
+Print description for ipset
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-ipset\fP=\fIipset\fP \fB\-\-set\-short\fP=\fIdescription\fP
+.RS 4
+Set short description to ipset
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-ipset\fP=\fIipset\fP \fB\-\-get\-short\fP
+.RS 4
+Print short description for ipset
+.RE
+.PP
+[\fB\-\-permanent\fP] \fB\-\-ipset\fP=\fIipset\fP \fB\-\-add\-entry\fP=\fIentry\fP
+.RS 4
+Add a new entry to the ipset\&.
+.sp
+Adding an entry to an ipset with option \fItimeout\fP is permitted, but these
+entries are not tracked by firewalld\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] \fB\-\-ipset\fP=\fIipset\fP \fB\-\-remove\-entry\fP=\fIentry\fP
+.RS 4
+Remove an entry from the ipset\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] \fB\-\-ipset\fP=\fIipset\fP \fB\-\-query\-entry\fP=\fIentry\fP
+.RS 4
+Return whether the entry has been added to an ipset\&. Returns 0 if true, 1
+otherwise\&.
+.sp
+Querying an ipset with a timeout will yield an error\&. Entries are not
+tracked for ipsets with a timeout\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] \fB\-\-ipset\fP=\fIipset\fP \fB\-\-get\-entries\fP
+.RS 4
+List all entries of the ipset\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] \fB\-\-ipset\fP=\fIipset\fP \fB\-\-add\-entries\-from\-file\fP=\fIfilename\fP
+.RS 4
+Add a new entries to the ipset from the file\&. For all entries that are
+listed in the file but already in the ipset, a warning will be printed\&.
+.sp
+The file should contain an entry per line\&. Lines starting with an hash or
+semicolon are ignored\&. Also empty lines\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] \fB\-\-ipset\fP=\fIipset\fP
+\fB\-\-remove\-entries\-from\-file\fP=\fIfilename\fP
+.RS 4
+Remove existing entries from the ipset from the file\&. For all entries that
+are listed in the file but not in the ipset, a warning will be printed\&.
+.sp
+The file should contain an entry per line\&. Lines starting with an hash or
+semicolon are ignored\&. Also empty lines\&.
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-path\-ipset=\fP\fIipset\fP
+.RS 4
+Print path of the ipset configuration file\&.
+.RE
+.SS "Параметри служби"
+.PP
+Options in this section affect only one particular service\&.
+.PP
+[\fB\-\-permanent\fP] \fB\-\-info\-service=\fP\fIservice\fP
+.RS 4
+Print information about the service \fIservice\fP\&. The output format is:
+.sp
+\fIservice\fP
+  ports: \fIport1\fP \&.\&.
+  protocols: \fIprotocol1\fP \&.\&.
+  source\-ports: \fIsource\-port1\fP \&.\&.
+  helpers: \fIhelper1\fP \&.\&.
+  destination: \fIipv1\fP:\fIaddress1\fP \&.\&.
+              
+.sp
+.RE
+.PP
+The following options are only usable in the permanent configuration\&.
+.PP
+\fB\-\-permanent\fP \fB\-\-new\-service\fP=\fIservice\fP
+.RS 4
+Add a new permanent and empty service\&.
+.sp
+Service names must be alphanumeric and may additionally include characters:
+\*(Aq_\*(Aq and \*(Aq\-\*(Aq\&.
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-new\-service\-from\-file\fP=\fIfilename\fP [\fB\-\-name\fP=\fIservice\fP]
+.RS 4
+Add a new permanent service from a prepared service file with an optional
+name override\&.
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-delete\-service\fP=\fIservice\fP
+.RS 4
+Delete an existing permanent service\&.
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-load\-service\-defaults\fP=\fIservice\fP
+.RS 4
+Load service default settings or report NO_DEFAULTS error\&.
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-path\-service=\fP\fIservice\fP
+.RS 4
+Print path of the service configuration file\&.
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-service\fP=\fIservice\fP \fB\-\-set\-description\fP=\fIdescription\fP
+.RS 4
+Set new description to service
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-service\fP=\fIservice\fP \fB\-\-get\-description\fP
+.RS 4
+Print description for service
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-service\fP=\fIservice\fP \fB\-\-set\-short\fP=\fIdescription\fP
+.RS 4
+Set short description to service
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-service\fP=\fIservice\fP \fB\-\-get\-short\fP
+.RS 4
+Print short description for service
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-service\fP=\fIservice\fP
+\fB\-\-add\-port\fP=\fIportid\fP[\-\fIportid\fP]/\fIprotocol\fP
+.RS 4
+Add a new port to the permanent service\&.
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-service\fP=\fIservice\fP
+\fB\-\-remove\-port\fP=\fIportid\fP[\-\fIportid\fP]/\fIprotocol\fP
+.RS 4
+Remove a port from the permanent service\&.
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-service\fP=\fIservice\fP
+\fB\-\-query\-port\fP=\fIportid\fP[\-\fIportid\fP]/\fIprotocol\fP
+.RS 4
+Return whether the port has been added to the permanent service\&.
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-service\fP=\fIservice\fP \fB\-\-get\-ports\fP
+.RS 4
+List ports added to the permanent service\&.
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-service\fP=\fIservice\fP \fB\-\-add\-protocol\fP=\fIprotocol\fP
+.RS 4
+Add a new protocol to the permanent service\&.
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-service\fP=\fIservice\fP \fB\-\-remove\-protocol\fP=\fIprotocol\fP
+.RS 4
+Remove a protocol from the permanent service\&.
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-service\fP=\fIservice\fP \fB\-\-query\-protocol\fP=\fIprotocol\fP
+.RS 4
+Return whether the protocol has been added to the permanent service\&.
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-service\fP=\fIservice\fP \fB\-\-get\-protocols\fP
+.RS 4
+List protocols added to the permanent service\&.
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-service\fP=\fIservice\fP
+\fB\-\-add\-source\-port\fP=\fIportid\fP[\-\fIportid\fP]/\fIprotocol\fP
+.RS 4
+Add a new source port to the permanent service\&.
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-service\fP=\fIservice\fP
+\fB\-\-remove\-source\-port\fP=\fIportid\fP[\-\fIportid\fP]/\fIprotocol\fP
+.RS 4
+Remove a source port from the permanent service\&.
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-service\fP=\fIservice\fP
+\fB\-\-query\-source\-port\fP=\fIportid\fP[\-\fIportid\fP]/\fIprotocol\fP
+.RS 4
+Return whether the source port has been added to the permanent service\&.
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-service\fP=\fIservice\fP \fB\-\-get\-source\-ports\fP
+.RS 4
+List source ports added to the permanent service\&.
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-service\fP=\fIservice\fP \fB\-\-add\-helper\fP=\fIhelper\fP
+.RS 4
+Add a new helper to the permanent service\&.
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-service\fP=\fIservice\fP \fB\-\-remove\-helper\fP=\fIhelper\fP
+.RS 4
+Remove a helper from the permanent service\&.
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-service\fP=\fIservice\fP \fB\-\-query\-helper\fP=\fIhelper\fP
+.RS 4
+Return whether the helper has been added to the permanent service\&.
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-service\fP=\fIservice\fP \fB\-\-get\-service\-helpers\fP
+.RS 4
+List helpers added to the permanent service\&.
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-service\fP=\fIservice\fP
+\fB\-\-set\-destination\fP=\fIipv\fP:\fIaddress\fP[/\fImask\fP]
+.RS 4
+Set destination for ipv to address[/mask] in the permanent service\&.
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-service\fP=\fIservice\fP \fB\-\-remove\-destination\fP=\fIipv\fP
+.RS 4
+Remove the destination for ipv from the permanent service\&.
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-service\fP=\fIservice\fP
+\fB\-\-query\-destination\fP=\fIipv\fP:\fIaddress\fP[/\fImask\fP]
+.RS 4
+Return whether the destination ipv to address[/mask] has been set in the
+permanent service\&.
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-service\fP=\fIservice\fP \fB\-\-get\-destinations\fP
+.RS 4
+List destinations added to the permanent service\&.
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-service\fP=\fIservice\fP \fB\-\-add\-include\fP=\fIservice\fP
+.RS 4
+Add a new include to the permanent service\&.
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-service\fP=\fIservice\fP \fB\-\-remove\-include\fP=\fIservice\fP
+.RS 4
+Remove a include from the permanent service\&.
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-service\fP=\fIservice\fP \fB\-\-query\-include\fP=\fIservice\fP
+.RS 4
+Return whether the include has been added to the permanent service\&.
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-service\fP=\fIservice\fP \fB\-\-get\-includes\fP
+.RS 4
+List includes added to the permanent service\&.
+.RE
+.SS "Helper Options"
+.PP
+Options in this section affect only one particular helper\&.
+.PP
+[\fB\-\-permanent\fP] \fB\-\-info\-helper=\fP\fIhelper\fP
+.RS 4
+Print information about the helper \fIhelper\fP\&. The output format is:
+.sp
+\fIhelper\fP
+  family: \fIfamily\fP
+  module: \fImodule\fP
+  ports: \fIport1\fP \&.\&.
+              
+.sp
+.RE
+.PP
+The following options are only usable in the permanent configuration\&.
+.PP
+\fB\-\-permanent\fP \fB\-\-new\-helper\fP=\fIhelper\fP \fB\-\-module\fP=\fInf_conntrack_module\fP
+[\fB\-\-family\fP=\fIipv4\fP|\fIipv6\fP]
+.RS 4
+Add a new permanent helper with module and optionally family defined\&.
+.sp
+Helper names must be alphanumeric and may additionally include characters:
+\*(Aq\-\*(Aq\&.
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-new\-helper\-from\-file\fP=\fIfilename\fP [\fB\-\-name\fP=\fIhelper\fP]
+.RS 4
+Add a new permanent helper from a prepared helper file with an optional name
+override\&.
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-delete\-helper\fP=\fIhelper\fP
+.RS 4
+Delete an existing permanent helper\&.
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-load\-helper\-defaults\fP=\fIhelper\fP
+.RS 4
+Load helper default settings or report NO_DEFAULTS error\&.
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-path\-helper=\fP\fIhelper\fP
+.RS 4
+Print path of the helper configuration file\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] \fB\-\-get\-helpers\fP
+.RS 4
+Print predefined helpers as a space separated list\&.
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-helper\fP=\fIhelper\fP \fB\-\-set\-description\fP=\fIdescription\fP
+.RS 4
+Set new description to helper
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-helper\fP=\fIhelper\fP \fB\-\-get\-description\fP
+.RS 4
+Print description for helper
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-helper\fP=\fIhelper\fP \fB\-\-set\-short\fP=\fIdescription\fP
+.RS 4
+Set short description to helper
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-helper\fP=\fIhelper\fP \fB\-\-get\-short\fP
+.RS 4
+Print short description for helper
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-helper\fP=\fIhelper\fP
+\fB\-\-add\-port\fP=\fIportid\fP[\-\fIportid\fP]/\fIprotocol\fP
+.RS 4
+Add a new port to the permanent helper\&.
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-helper\fP=\fIhelper\fP
+\fB\-\-remove\-port\fP=\fIportid\fP[\-\fIportid\fP]/\fIprotocol\fP
+.RS 4
+Remove a port from the permanent helper\&.
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-helper\fP=\fIhelper\fP
+\fB\-\-query\-port\fP=\fIportid\fP[\-\fIportid\fP]/\fIprotocol\fP
+.RS 4
+Return whether the port has been added to the permanent helper\&.
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-helper\fP=\fIhelper\fP \fB\-\-get\-ports\fP
+.RS 4
+List ports added to the permanent helper\&.
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-helper\fP=\fIhelper\fP \fB\-\-set\-module\fP=\fIdescription\fP
+.RS 4
+Set module description for helper
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-helper\fP=\fIhelper\fP \fB\-\-get\-module\fP
+.RS 4
+Print module description for helper
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-helper\fP=\fIhelper\fP \fB\-\-set\-family\fP=\fIdescription\fP
+.RS 4
+Set family description for helper
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-helper\fP=\fIhelper\fP \fB\-\-get\-family\fP
+.RS 4
+Print family description of helper
+.RE
+.SS "Internet Control Message Protocol (ICMP) type Options"
+.PP
+Options in this section affect only one particular icmptype\&.
+.PP
+[\fB\-\-permanent\fP] \fB\-\-info\-icmptype=\fP\fIicmptype\fP
+.RS 4
+Print information about the icmptype \fIicmptype\fP\&. The output format is:
+.sp
+\fIicmptype\fP
+  destination: \fIipv1\fP \&.\&.
+              
+.sp
+.RE
+.PP
+The following options are only usable in the permanent configuration\&.
+.PP
+\fB\-\-permanent\fP \fB\-\-new\-icmptype\fP=\fIicmptype\fP
+.RS 4
+Add a new permanent and empty icmptype\&.
+.sp
+ICMP type names must be alphanumeric and may additionally include
+characters: \*(Aq_\*(Aq and \*(Aq\-\*(Aq\&.
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-new\-icmptype\-from\-file\fP=\fIfilename\fP
+[\fB\-\-name\fP=\fIicmptype\fP]
+.RS 4
+Add a new permanent icmptype from a prepared icmptype file with an optional
+name override\&.
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-delete\-icmptype\fP=\fIicmptype\fP
+.RS 4
+Delete an existing permanent icmptype\&.
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-load\-icmptype\-defaults\fP=\fIicmptype\fP
+.RS 4
+Load icmptype default settings or report NO_DEFAULTS error\&.
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-icmptype\fP=\fIicmptype\fP \fB\-\-set\-description\fP=\fIdescription\fP
+.RS 4
+Set new description to icmptype
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-icmptype\fP=\fIicmptype\fP \fB\-\-get\-description\fP
+.RS 4
+Print description for icmptype
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-icmptype\fP=\fIicmptype\fP \fB\-\-set\-short\fP=\fIdescription\fP
+.RS 4
+Set short description to icmptype
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-icmptype\fP=\fIicmptype\fP \fB\-\-get\-short\fP
+.RS 4
+Print short description for icmptype
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-icmptype\fP=\fIicmptype\fP \fB\-\-add\-destination\fP=\fIipv\fP
+.RS 4
+Enable destination for ipv in permanent icmptype\&. ipv is one of \fIipv4\fP or
+\fIipv6\fP\&.
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-icmptype\fP=\fIicmptype\fP \fB\-\-remove\-destination\fP=\fIipv\fP
+.RS 4
+Disable destination for ipv in permanent icmptype\&. ipv is one of \fIipv4\fP
+or \fIipv6\fP\&.
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-icmptype\fP=\fIicmptype\fP \fB\-\-query\-destination\fP=\fIipv\fP
+.RS 4
+Return whether destination for ipv is enabled in permanent icmptype\&. ipv
+is one of \fIipv4\fP or \fIipv6\fP\&.
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-icmptype\fP=\fIicmptype\fP \fB\-\-get\-destinations\fP
+.RS 4
+List destinations in permanent icmptype\&.
+.RE
+.PP
+\fB\-\-permanent\fP \fB\-\-path\-icmptype=\fP\fIicmptype\fP
+.RS 4
+Print path of the icmptype configuration file\&.
+.RE
+.SS "Direct Options"
+.sp
+\fBDEPRECATED\fP
+.RS 4
+.PP
+The direct interface has been deprecated\&. It will be removed in a future
+release\&. It is superseded by policies, see \fBfirewalld.policies\fP(5)\&.
+.RE
+.PP
+The direct options give a more direct access to the firewall\&. These
+options require user to know basic iptables concepts, i\&.e\&.  \fItable\fP
+(filter/mangle/nat/\&.\&.\&.), \fIchain\fP (INPUT/OUTPUT/FORWARD/\&.\&.\&.),
+\fIcommands\fP (\-A/\-D/\-I/\&.\&.\&.), \fIparameters\fP (\-p/\-s/\-d/\-j/\&.\&.\&.) and
+\fItargets\fP (ACCEPT/DROP/REJECT/\&.\&.\&.)\&.
+.PP
+Direct options should be used only as a last resort when it\*(Aqs not
+possible to use for example \fB\-\-add\-service\fP=\fIservice\fP or
+\fB\-\-add\-rich\-rule\fP=\*(Aq\fIrule\fP\*(Aq\&.
+.PP
+\fBWarning\fP: Direct rules behavior is different depending on the value of
+\fIFirewallBackend\fP\&. See \fICAVEATS\fP in \fBfirewalld.direct\fP(5)\&.
+.PP
+The first argument of each option has to be \fIipv4\fP or \fIipv6\fP or
+\fIeb\fP\&. With \fIipv4\fP it will be for IPv4 (\fBiptables\fP(8)), with \fIipv6\fP for
+IPv6 (\fBip6tables\fP(8)) and with \fIeb\fP for ethernet bridges
+(\fBebtables\fP(8))\&.
+.PP
+[\fB\-\-permanent\fP] \fB\-\-direct\fP \fB\-\-get\-all\-chains\fP
+.RS 4
+Get all chains added to all tables\&. This option concerns only chains
+previously added with \fB\-\-direct \-\-add\-chain\fP\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] \fB\-\-direct\fP \fB\-\-get\-chains\fP { \fIipv4\fP | \fIipv6\fP | \fIeb\fP }
+\fItable\fP
+.RS 4
+Get all chains added to table \fItable\fP as a space separated list\&. This
+option concerns only chains previously added with \fB\-\-direct \-\-add\-chain\fP\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] \fB\-\-direct\fP \fB\-\-add\-chain\fP { \fIipv4\fP | \fIipv6\fP | \fIeb\fP }
+\fItable\fP \fIchain\fP
+.RS 4
+Add a new chain with name \fIchain\fP to table \fItable\fP\&. Make sure
+there\*(Aqs no other chain with this name already\&.
+.sp
+There already exist basic chains to use with direct options, for example
+\fIINPUT_direct\fP chain (see \fIiptables\-save | grep direct\fP output for all of
+them)\&. These chains are jumped into before chains for zones,
+i\&.e\&. every rule put into \fIINPUT_direct\fP will be checked before rules in
+zones\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] \fB\-\-direct\fP \fB\-\-remove\-chain\fP { \fIipv4\fP | \fIipv6\fP | \fIeb\fP }
+\fItable\fP \fIchain\fP
+.RS 4
+Remove chain with name \fIchain\fP from table \fItable\fP\&. Only chains
+previously added with \fB\-\-direct \-\-add\-chain\fP can be removed this way\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] \fB\-\-direct\fP \fB\-\-query\-chain\fP { \fIipv4\fP | \fIipv6\fP | \fIeb\fP }
+\fItable\fP \fIchain\fP
+.RS 4
+Return whether a chain with name \fIchain\fP exists in table
+\fItable\fP\&. Returns 0 if true, 1 otherwise\&. This option concerns only
+chains previously added with \fB\-\-direct \-\-add\-chain\fP\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] \fB\-\-direct\fP \fB\-\-get\-all\-rules\fP
+.RS 4
+Get all rules added to all chains in all tables as a newline separated list
+of the priority and arguments\&. This option concerns only rules previously
+added with \fB\-\-direct \-\-add\-rule\fP\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] \fB\-\-direct\fP \fB\-\-get\-rules\fP { \fIipv4\fP | \fIipv6\fP | \fIeb\fP }
+\fItable\fP \fIchain\fP
+.RS 4
+Get all rules added to chain \fIchain\fP in table \fItable\fP as a newline
+separated list of the priority and arguments\&. This option concerns only
+rules previously added with \fB\-\-direct \-\-add\-rule\fP\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] \fB\-\-direct\fP \fB\-\-add\-rule\fP { \fIipv4\fP | \fIipv6\fP | \fIeb\fP }
+\fItable\fP \fIchain\fP \fIpriority\fP \fIargs\fP
+.RS 4
+Add a rule with the arguments \fIargs\fP to chain \fIchain\fP in table \fItable\fP
+with priority \fIpriority\fP\&.
+.sp
+The \fIpriority\fP is used to order rules\&. Priority 0 means add rule on top
+of the chain, with a higher priority the rule will be added further
+down\&. Rules with the same priority are on the same level and the order of
+these rules is not fixed and may change\&. If you want to make sure that a
+rule will be added after another one, use a low priority for the first and a
+higher for the following\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] \fB\-\-direct\fP \fB\-\-remove\-rule\fP { \fIipv4\fP | \fIipv6\fP | \fIeb\fP }
+\fItable\fP \fIchain\fP \fIpriority\fP \fIargs\fP
+.RS 4
+Remove a rule with \fIpriority\fP and the arguments \fIargs\fP from chain \fIchain\fP
+in table \fItable\fP\&. Only rules previously added with \fB\-\-direct \-\-add\-rule\fP
+can be removed this way\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] \fB\-\-direct\fP \fB\-\-remove\-rules\fP { \fIipv4\fP | \fIipv6\fP | \fIeb\fP }
+\fItable\fP \fIchain\fP
+.RS 4
+Remove all rules in the chain with name \fIchain\fP exists in table
+\fItable\fP\&. This option concerns only rules previously added with \fB\-\-direct
+\-\-add\-rule\fP in this chain\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] \fB\-\-direct\fP \fB\-\-query\-rule\fP { \fIipv4\fP | \fIipv6\fP | \fIeb\fP }
+\fItable\fP \fIchain\fP \fIpriority\fP \fIargs\fP
+.RS 4
+Return whether a rule with \fIpriority\fP and the arguments \fIargs\fP exists in
+chain \fIchain\fP in table \fItable\fP\&. Returns 0 if true, 1 otherwise\&. This
+option concerns only rules previously added with \fB\-\-direct \-\-add\-rule\fP\&.
+.RE
+.PP
+\fB\-\-direct\fP \fB\-\-passthrough\fP { \fIipv4\fP | \fIipv6\fP | \fIeb\fP } \fIargs\fP
+.RS 4
+Pass a command through to the firewall\&.  \fIargs\fP can be all \fBiptables\fP,
+\fBip6tables\fP and \fBebtables\fP command line arguments\&. This command is
+untracked, which means that firewalld is not able to provide information
+about this command later on, also not a listing of the untracked
+passthoughs\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] \fB\-\-direct\fP \fB\-\-get\-all\-passthroughs\fP
+.RS 4
+Get all passthrough rules as a newline separated list of the ipv value and
+arguments\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] \fB\-\-direct\fP \fB\-\-get\-passthroughs\fP { \fIipv4\fP | \fIipv6\fP |
+\fIeb\fP }
+.RS 4
+Get all passthrough rules for the ipv value as a newline separated list of
+the priority and arguments\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] \fB\-\-direct\fP \fB\-\-add\-passthrough\fP { \fIipv4\fP | \fIipv6\fP |
+\fIeb\fP } \fIargs\fP
+.RS 4
+Add a passthrough rule with the arguments \fIargs\fP for the ipv value\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] \fB\-\-direct\fP \fB\-\-remove\-passthrough\fP { \fIipv4\fP | \fIipv6\fP |
+\fIeb\fP } \fIargs\fP
+.RS 4
+Remove a passthrough rule with the arguments \fIargs\fP for the ipv value\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] \fB\-\-direct\fP \fB\-\-query\-passthrough\fP { \fIipv4\fP | \fIipv6\fP |
+\fIeb\fP } \fIargs\fP
+.RS 4
+Return whether a passthrough rule with the arguments \fIargs\fP exists for the
+ipv value\&. Returns 0 if true, 1 otherwise\&.
+.RE
+.SS "Lockdown Options"
+.PP
+Local applications or services are able to change the firewall configuration
+if they are running as root (example: libvirt) or are authenticated using
+PolicyKit\&. With this feature administrators can lock the firewall
+configuration so that only applications on lockdown whitelist are able to
+request firewall changes\&.
+.PP
+The lockdown access check limits D\-Bus methods that are changing firewall
+rules\&. Query, list and get methods are not limited\&.
+.PP
+The lockdown feature is a very light version of user and application
+policies for firewalld and is turned off by default\&.
+.PP
+\fB\-\-lockdown\-on\fP
+.RS 4
+Enable lockdown\&. Be careful \- if firewall\-cmd is not on lockdown whitelist
+when you enable lockdown you won\*(Aqt be able to disable it again with
+firewall\-cmd, you would need to edit firewalld\&.conf\&.
+.sp
+This is a runtime and permanent change\&.
+.RE
+.PP
+\fB\-\-lockdown\-off\fP
+.RS 4
+Disable lockdown\&.
+.sp
+This is a runtime and permanent change\&.
+.RE
+.PP
+\fB\-\-query\-lockdown\fP
+.RS 4
+Query whether lockdown is enabled\&. Returns 0 if lockdown is enabled, 1
+otherwise\&.
+.RE
+.SS "Lockdown Whitelist Options"
+.PP
+The lockdown whitelist can contain \fIcommands\fP, \fIcontexts\fP, \fIusers\fP and
+\fIuser ids\fP\&.
+.PP
+If a command entry on the whitelist ends with an asterisk \*(Aq*\*(Aq, then
+all command lines starting with the command will match\&. If the \*(Aq*\*(Aq
+is not there the absolute command inclusive arguments must match\&.
+.PP
+Command paths for users are not always the same and depends on the users
+PATH\&. Some distributions symlink \fB/bin\fP to \fB/usr/bin\fP in which case it
+depends on the order they appear in the PATH environment variable\&.
+.PP
+The context is the security (SELinux) context of a running application or
+service\&. To get the context of a running application use \fBps \-e
+\-\-context\fP\&.
+.PP
+\fBWarning:\fP If the context is unconfined, then this will open access for
+more than the desired application\&.
+.PP
+The lockdown whitelist entries are checked in the following order:
+.RS 4
+1\&. \fIcontext\fP
+.RE
+.RS 4
+2\&. \fIuid\fP
+.RE
+.RS 4
+3\&. \fIuser\fP
+.RE
+.RS 4
+4\&. \fIcommand\fP
+.RE
+.PP
+[\fB\-\-permanent\fP] \fB\-\-list\-lockdown\-whitelist\-commands\fP
+.RS 4
+List all command lines that are on the whitelist\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] \fB\-\-add\-lockdown\-whitelist\-command\fP=\fIcommand\fP
+.RS 4
+Add the \fIcommand\fP to the whitelist\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] \fB\-\-remove\-lockdown\-whitelist\-command\fP=\fIcommand\fP
+.RS 4
+Remove the \fIcommand\fP from the whitelist\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] \fB\-\-query\-lockdown\-whitelist\-command\fP=\fIcommand\fP
+.RS 4
+Query whether the \fIcommand\fP is on the whitelist\&. Returns 0 if true, 1
+otherwise\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] \fB\-\-list\-lockdown\-whitelist\-contexts\fP
+.RS 4
+List all contexts that are on the whitelist\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] \fB\-\-add\-lockdown\-whitelist\-context\fP=\fIcontext\fP
+.RS 4
+Add the context \fIcontext\fP to the whitelist\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] \fB\-\-remove\-lockdown\-whitelist\-context\fP=\fIcontext\fP
+.RS 4
+Remove the \fIcontext\fP from the whitelist\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] \fB\-\-query\-lockdown\-whitelist\-context\fP=\fIcontext\fP
+.RS 4
+Query whether the \fIcontext\fP is on the whitelist\&. Returns 0 if true, 1
+otherwise\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] \fB\-\-list\-lockdown\-whitelist\-uids\fP
+.RS 4
+List all user ids that are on the whitelist\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] \fB\-\-add\-lockdown\-whitelist\-uid\fP=\fIuid\fP
+.RS 4
+Add the user id \fIuid\fP to the whitelist\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] \fB\-\-remove\-lockdown\-whitelist\-uid\fP=\fIuid\fP
+.RS 4
+Remove the user id \fIuid\fP from the whitelist\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] \fB\-\-query\-lockdown\-whitelist\-uid\fP=\fIuid\fP
+.RS 4
+Query whether the user id \fIuid\fP is on the whitelist\&. Returns 0 if true, 1
+otherwise\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] \fB\-\-list\-lockdown\-whitelist\-users\fP
+.RS 4
+List all user names that are on the whitelist\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] \fB\-\-add\-lockdown\-whitelist\-user\fP=\fIuser\fP
+.RS 4
+Add the user name \fIuser\fP to the whitelist\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] \fB\-\-remove\-lockdown\-whitelist\-user\fP=\fIuser\fP
+.RS 4
+Remove the user name \fIuser\fP from the whitelist\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] \fB\-\-query\-lockdown\-whitelist\-user\fP=\fIuser\fP
+.RS 4
+Query whether the user name \fIuser\fP is on the whitelist\&. Returns 0 if
+true, 1 otherwise\&.
+.RE
+.SS "Panic Options"
+.PP
+\fB\-\-panic\-on\fP
+.RS 4
+Enable panic mode\&. All incoming and outgoing packets are dropped, active
+connections will expire\&. Enable this only if there are serious problems
+with your network environment\&. For example if the machine is getting
+hacked in\&.
+.sp
+This is a runtime only change\&.
+.RE
+.PP
+\fB\-\-panic\-off\fP
+.RS 4
+Disable panic mode\&. After disabling panic mode established connections
+might work again, if panic mode was enabled for a short period of time\&.
+.sp
+This is a runtime only change\&.
+.RE
+.PP
+\fB\-\-query\-panic\fP
+.RS 4
+Returns 0 if panic mode is enabled, 1 otherwise\&.
+.RE
+.SH ПРИКЛАДИ
+.PP
+For more examples see
+\m[blue]\fB\%http://fedoraproject.org/wiki/FirewallD\fP\m[]
+.SS "Приклад 1"
+.PP
+Enable http service in default zone\&. This is runtime only change,
+i\&.e\&. effective until restart\&.
+.PP
+firewall\-cmd \-\-add\-service=http
+.sp
+.SS "Example 2"
+.PP
+Enable port 443/tcp immediately and permanently in default zone\&. To make
+the change effective immediately and also after restart we need two
+commands\&. The first command makes the change in runtime configuration,
+i\&.e\&. makes it effective immediately, until restart\&. The second command
+makes the change in permanent configuration, i\&.e\&. makes it effective
+after restart\&.
+.PP
+firewall\-cmd \-\-add\-port=443/tcp firewall\-cmd \-\-permanent \-\-add\-port=443/tcp
+.sp
+.SH "EXIT CODES"
+.PP
+On success 0 is returned\&. On failure the output is red colored and exit
+code is either 2 in case of wrong command\-line option usage or one of the
+following error codes in other cases:
+.TS
+allbox tab(:);
+lB rB.
+T{
+String
+T}:T{
+Code
+T}
+.T&
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r
+l r.
+T{
+ALREADY_ENABLED
+T}:T{
+11
+T}
+T{
+NOT_ENABLED
+T}:T{
+12
+T}
+T{
+COMMAND_FAILED
+T}:T{
+13
+T}
+T{
+NO_IPV6_NAT
+T}:T{
+14
+T}
+T{
+PANIC_MODE
+T}:T{
+15
+T}
+T{
+ZONE_ALREADY_SET
+T}:T{
+16
+T}
+T{
+UNKNOWN_INTERFACE
+T}:T{
+17
+T}
+T{
+ZONE_CONFLICT
+T}:T{
+18
+T}
+T{
+BUILTIN_CHAIN
+T}:T{
+19
+T}
+T{
+EBTABLES_NO_REJECT
+T}:T{
+20
+T}
+T{
+NOT_OVERLOADABLE
+T}:T{
+21
+T}
+T{
+NO_DEFAULTS
+T}:T{
+22
+T}
+T{
+BUILTIN_ZONE
+T}:T{
+23
+T}
+T{
+BUILTIN_SERVICE
+T}:T{
+24
+T}
+T{
+BUILTIN_ICMPTYPE
+T}:T{
+25
+T}
+T{
+NAME_CONFLICT
+T}:T{
+26
+T}
+T{
+NAME_MISMATCH
+T}:T{
+27
+T}
+T{
+PARSE_ERROR
+T}:T{
+28
+T}
+T{
+ACCESS_DENIED
+T}:T{
+29
+T}
+T{
+UNKNOWN_SOURCE
+T}:T{
+30
+T}
+T{
+RT_TO_PERM_FAILED
+T}:T{
+31
+T}
+T{
+IPSET_WITH_TIMEOUT
+T}:T{
+32
+T}
+T{
+BUILTIN_IPSET
+T}:T{
+33
+T}
+T{
+ALREADY_SET
+T}:T{
+34
+T}
+T{
+MISSING_IMPORT
+T}:T{
+35
+T}
+T{
+DBUS_ERROR
+T}:T{
+36
+T}
+T{
+BUILTIN_HELPER
+T}:T{
+37
+T}
+T{
+NOT_APPLIED
+T}:T{
+38
+T}
+T{
+INVALID_ACTION
+T}:T{
+100
+T}
+T{
+INVALID_SERVICE
+T}:T{
+101
+T}
+T{
+INVALID_PORT
+T}:T{
+102
+T}
+T{
+INVALID_PROTOCOL
+T}:T{
+103
+T}
+T{
+INVALID_INTERFACE
+T}:T{
+104
+T}
+T{
+INVALID_ADDR
+T}:T{
+105
+T}
+T{
+INVALID_FORWARD
+T}:T{
+106
+T}
+T{
+INVALID_ICMPTYPE
+T}:T{
+107
+T}
+T{
+INVALID_TABLE
+T}:T{
+108
+T}
+T{
+INVALID_CHAIN
+T}:T{
+109
+T}
+T{
+INVALID_TARGET
+T}:T{
+110
+T}
+T{
+INVALID_IPV
+T}:T{
+111
+T}
+T{
+INVALID_ZONE
+T}:T{
+112
+T}
+T{
+INVALID_PROPERTY
+T}:T{
+113
+T}
+T{
+INVALID_VALUE
+T}:T{
+114
+T}
+T{
+INVALID_OBJECT
+T}:T{
+115
+T}
+T{
+INVALID_NAME
+T}:T{
+116
+T}
+T{
+INVALID_FILENAME
+T}:T{
+117
+T}
+T{
+INVALID_DIRECTORY
+T}:T{
+118
+T}
+T{
+INVALID_TYPE
+T}:T{
+119
+T}
+T{
+INVALID_SETTING
+T}:T{
+120
+T}
+T{
+INVALID_DESTINATION
+T}:T{
+121
+T}
+T{
+INVALID_RULE
+T}:T{
+122
+T}
+T{
+INVALID_LIMIT
+T}:T{
+123
+T}
+T{
+INVALID_FAMILY
+T}:T{
+124
+T}
+T{
+INVALID_LOG_LEVEL
+T}:T{
+125
+T}
+T{
+INVALID_AUDIT_TYPE
+T}:T{
+126
+T}
+T{
+INVALID_MARK
+T}:T{
+127
+T}
+T{
+INVALID_CONTEXT
+T}:T{
+128
+T}
+T{
+INVALID_COMMAND
+T}:T{
+129
+T}
+T{
+INVALID_USER
+T}:T{
+130
+T}
+T{
+INVALID_UID
+T}:T{
+131
+T}
+T{
+INVALID_MODULE
+T}:T{
+132
+T}
+T{
+INVALID_PASSTHROUGH
+T}:T{
+133
+T}
+T{
+INVALID_MAC
+T}:T{
+134
+T}
+T{
+INVALID_IPSET
+T}:T{
+135
+T}
+T{
+INVALID_ENTRY
+T}:T{
+136
+T}
+T{
+INVALID_OPTION
+T}:T{
+137
+T}
+T{
+INVALID_HELPER
+T}:T{
+138
+T}
+T{
+INVALID_PRIORITY
+T}:T{
+139
+T}
+T{
+INVALID_POLICY
+T}:T{
+140
+T}
+T{
+INVALID_LOG_PREFIX
+T}:T{
+141
+T}
+T{
+INVALID_NFLOG_GROUP
+T}:T{
+142
+T}
+T{
+INVALID_NFLOG_QUEUE
+T}:T{
+143
+T}
+T{
+MISSING_TABLE
+T}:T{
+200
+T}
+T{
+MISSING_CHAIN
+T}:T{
+201
+T}
+T{
+MISSING_PORT
+T}:T{
+202
+T}
+T{
+MISSING_PROTOCOL
+T}:T{
+203
+T}
+T{
+MISSING_ADDR
+T}:T{
+204
+T}
+T{
+MISSING_NAME
+T}:T{
+205
+T}
+T{
+MISSING_SETTING
+T}:T{
+206
+T}
+T{
+MISSING_FAMILY
+T}:T{
+207
+T}
+T{
+RUNNING_BUT_FAILED
+T}:T{
+251
+T}
+T{
+NOT_RUNNING
+T}:T{
+252
+T}
+T{
+NOT_AUTHORIZED
+T}:T{
+253
+T}
+T{
+UNKNOWN_ERROR
+T}:T{
+254
+T}
+.TE
+.sp 1
+.PP
+Note that return codes of \fB\-\-query\-*\fP options are special: Successful
+queries return 0, unsuccessful ones return 1 unless an error occurred in
+which case the table above applies\&.
+.SH "ДИВ. ТАКОЖ"
+\fBfirewall\-applet\fP(1), \fBfirewalld\fP(1), \fBfirewall\-cmd\fP(1),
+\fBfirewall\-config\fP(1), \fBfirewalld.conf\fP(5), \fBfirewalld.direct\fP(5),
+\fBfirewalld.dbus\fP(5), \fBfirewalld.icmptype\fP(5),
+\fBfirewalld.lockdown\-whitelist\fP(5), \fBfirewall\-offline\-cmd\fP(1),
+\fBfirewalld.richlanguage\fP(5), \fBfirewalld.service\fP(5), \fBfirewalld.zone\fP(5),
+\fBfirewalld.zones\fP(5), \fBfirewalld.policy\fP(5), \fBfirewalld.policies\fP(5),
+\fBfirewalld.ipset\fP(5), \fBfirewalld.helper\fP(5)
+.SH NOTES
+.PP
+firewalld home page:
+.RS 4
+\m[blue]\fB\%http://firewalld.org\fP\m[]
+.RE
+.PP
+More documentation with examples:
+.RS 4
+\m[blue]\fB\%http://fedoraproject.org/wiki/FirewallD\fP\m[]
+.RE
+.SH АВТОРИ
+.PP
+\fBThomas Woerner\fP <\&twoerner@redhat\&.com\&>
+.RS 4
+Developer
+.RE
+.PP
+\fBJiri Popelka\fP <\&jpopelka@redhat\&.com\&>
+.RS 4
+Developer
+.RE
+.PP
+\fBEric Garver\fP <\&eric@garver\&.life\&>
+.RS 4
+Developer
+.RE
