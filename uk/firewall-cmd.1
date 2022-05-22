@@ -37,23 +37,26 @@ firewall\-cmd — клієнт командного рядка firewalld
 \fBfirewall\-cmd\fP [ПАРАМЕТРИ...]
 .SH ОПИС
 .PP
-firewall\-cmd is the command line client of the firewalld daemon\&. It
-provides an interface to manage the runtime and permanent configurations\&.
+firewall\-cmd — клієнтська програма фонової служби firewalld, якою керують з
+командного рядка\&. Вона надає інтерфейс для керування динамічними і
+постійними налаштуваннями служби\&.
 .PP
-The runtime configuration in firewalld is separated from the permanent
-configuration\&. This means that things can get changed in the runtime or
-permanent configuration\&.
+Динамічні налаштування у firewalld відокремлено від постійних
+налаштувань\&. Це означає, що поведінку програми можна змінювати у
+динамічних або постійних налаштуваннях\&.
 .SH ПАРАМЕТРИ
 .PP
-Sequence options are the options that can be specified multiple times, the
-exit code is 0 if there is at least one item that succeeded\&. The
-\fIALREADY_ENABLED\fP (11), \fINOT_ENABLED\fP (12) and also \fIZONE_ALREADY_SET\fP
-(16) errors are treated as succeeded\&. If there are issues while parsing
-the items, then these are treated as warnings and will not change the result
-as long as there is a succeeded one\&. Without any succeeded item, the exit
-code will depend on the error codes\&. If there is exactly one error code,
-then this is used\&. If there are more than one then \fIUNKNOWN_ERROR\fP (254)
-will be used\&.
+Параметри послідовності є параметрами, які може бути вказано декілька разів;
+кодом виходу буде 0, якщо успішним буде принаймні один з елементів
+послідовності\&. Коди помилок \fIALREADY_ENABLED\fP (11, «вже увімкнено»),
+\fINOT_ENABLED\fP (12, «не увімкнено») і \fIZONE_ALREADY_SET\fP (16, «зону вже
+встановлено») також вважаються кодами успішного виконання\&. Якщо під час
+обробки записів буде виявлено помилки, ці помилки вважаються попередженнями
+і не змінюють результату, якщо було успішно виконано принаймні один
+запис\&. Якщо успішно виконаного запису не буде, код виходу залежатиме від
+кодів помилок\&. Якщо буде отримано точно один код помилки, буде використано
+саме цей код\&. Якщо кодів помилок було декілька, буде використано
+\fIUNKNOWN_ERROR\fP (254)\&.
 .PP
 Передбачено підтримку таких загальних параметрів:
 .SS "Загальні параметри"
@@ -65,8 +68,8 @@ will be used\&.
 .PP
 \fB\-V\fP, \fB\-\-version\fP
 .RS 4
-Print the version string of firewalld\&. This option is not combinable with
-other options\&.
+Вивести рядок версії firewalld\&. Цей параметр не можна поєднувати з іншими
+параметрами\&.
 .RE
 .PP
 \fB\-q\fP, \fB\-\-quiet\fP
@@ -77,182 +80,192 @@ other options\&.
 .PP
 \fB\-\-state\fP
 .RS 4
-Check whether the firewalld daemon is active (i\&.e\&. running)\&. Returns
-an exit code 0 if it is active, \fIRUNNING_BUT_FAILED\fP if failure occurred on
-startup, \fINOT_RUNNING\fP otherwise\&. See the section called \(lqEXIT
-CODES\(rq\&. This will also print the state to \fISTDOUT\fP\&.
+Перевірити, чи є активною фонова служба firewalld (тобто, чи запущено
+програму)\&. Повертає код виходу 0, якщо служба є активною;
+\fIRUNNING_BUT_FAILED\fP, якщо під час запуску програми сталася помилка;
+\fINOT_RUNNING\fP в усіх інших випадках\&. Див. розділ \(lqКОДИ
+ВИХОДУ\(rq\&. Також стан буде виведено до \fISTDOUT\fP\&.
 .RE
 .PP
 \fB\-\-reload\fP
 .RS 4
-Reload firewall rules and keep state information\&. Current permanent
-configuration will become new runtime configuration, i\&.e\&. all runtime
-only changes done until reload are lost with reload if they have not been
-also in permanent configuration\&.
+Перезавантажити правила брандмауера і зберегти дані щодо стану\&. Поточні
+постійні налаштування стануть новими динамічними налаштуваннями, тобто усі
+зміни у динамічних налаштуваннях, які було внесено до динамічних налаштувань
+до моменту перезавантаження, буде втрачено після перезавантаження, якщо їх
+не було у постійних налаштуваннях\&.
 .sp
-Note: If FlushAllOnReload=no, runtime changes applied via the direct
-interface are not affected and will therefore stay in place until firewalld
-daemon is restarted completely\&. For FlushAllOnReload, see
-\fBfirewalld.conf\fP(5)\&.
+Зауваження: якщо FlushAllOnReload=no, зміни у динамічних налаштуваннях,
+застосовані за допомогою безпосереднього інтерфейсу, не зміняться і тому
+лишаться чинними, аж доки фонову службу firewalld не буде перезапущено
+повністю\&. Щодо FlushAllOnReload див. \fBfirewalld.conf\fP(5)\&.
 .RE
 .PP
 \fB\-\-complete\-reload\fP
 .RS 4
-Reload firewall completely, even netfilter kernel modules\&. This will most
-likely terminate active connections, because state information is
-lost\&. This option should only be used in case of severe firewall
-problems\&. For example if there are state information problems that no
-connection can be established with correct firewall rules\&.
+Повністю перезавантажити брандмауер, навіть модулі ядра netfilter\&. Це,
+найімовірніше, призведе до розірвання активних з'єднань, оскільки дані щодо
+стану буде втрачено\&. Цим параметром слід користуватися, лише у разі
+критичних проблем із брандмауером\&. Наприклад, якщо є проблеми із даними
+щодо стану такі, що жодне з'єднання не може бути встановлено із належними
+правилами брандмауера\&.
 .sp
-Note: If FlushAllOnReload=no, runtime changes applied via the direct
-interface are not affected and will therefore stay in place until firewalld
-daemon is restarted completely\&. For FlushAllOnReload, see
-\fBfirewalld.conf\fP(5)\&.
+Зауваження: якщо FlushAllOnReload=no, зміни у динамічних налаштуваннях,
+застосовані за допомогою безпосереднього інтерфейсу, не зміняться і тому
+лишаться чинними, аж доки фонову службу firewalld не буде перезапущено
+повністю\&. Щодо FlushAllOnReload див. \fBfirewalld.conf\fP(5)\&.
 .RE
 .PP
 \fB\-\-runtime\-to\-permanent\fP
 .RS 4
-Save active runtime configuration and overwrite permanent configuration with
-it\&. The way this is supposed to work is that when configuring firewalld
-you do runtime changes only and once you\*(Aqre happy with the configuration
-and you tested that it works the way you want, you save the configuration to
-disk\&.
+Зберегти активні динамічні налаштування і перезаписати постійні налаштування
+ними\&. Це відбувається так: при налаштовуванні firewalld ви вносите зміни
+лише до динамічних налаштувань, і коли досягнуто прийнятного варіанта, ви
+перевірили, що усе працює так, як слід, ви зберігаєте налаштування на
+диск\&.
 .RE
 .PP
 \fB\-\-check\-config\fP
 .RS 4
-Run checks on the permanent configuration\&. This includes XML validity and
-semantics\&.
+Виконати перевірки щодо постійних налаштувань\&. Перевірки стосуватимуться
+чинності XML і семантики\&.
 .RE
-.SS "Log Denied Options"
+.SS "Параметри журналу відмов"
 .PP
 \fB\-\-get\-log\-denied\fP
 .RS 4
-Print the log denied setting\&.
+Вивести параметр запису відмов до журналу\&.
 .RE
 .PP
 \fB\-\-set\-log\-denied\fP=\fIзначення\fP
 .RS 4
-Add logging rules right before reject and drop rules in the INPUT, FORWARD
-and OUTPUT chains for the default rules and also final reject and drop rules
-in zones for the configured link\-layer packet type\&. The possible values
-are: \fIall\fP, \fIunicast\fP, \fIbroadcast\fP, \fImulticast\fP and \fIoff\fP\&. The
-default setting is \fIoff\fP, which disables the logging\&.
+Додати правила журналювання безпосередньо перед правилами відмови (reject)
+та відкидання (drop) у ланцюжках INPUT, FORWARD і OUTPUT для типових правил,
+а також правилами остаточної відмови та відкидання у зонах для налаштованих
+типів пакетів зв'язку\-шару\&. Можливими значеннями є такі: \fIall\fP,
+\fIunicast\fP, \fIbroadcast\fP, \fImulticast\fP і \fIoff\fP\&. Типовим значенням є
+\fIoff\fP, що означає «вимкнути записування до журналу»\&.
 .sp
-This is a runtime and permanent change and will also reload the firewall to
-be able to add the logging rules\&.
+Це зміна у динамічних і постійних налаштуваннях, вона також призведе до
+перезавантаження брандмауера з метою уможливлення додавання правил запису до
+журналу\&.
 .RE
-.SS "Permanent Options"
+.SS "Постійні параметри"
 .PP
 \fB\-\-permanent\fP
 .RS 4
-The permanent option \fB\-\-permanent\fP can be used to set options
-permanently\&. These changes are not effective immediately, only after
-service restart/reload or system reboot\&. Without the \fB\-\-permanent\fP
-option, a change will only be part of the runtime configuration\&.
+Параметр постійних налаштувань \fB\-\-permanent\fP можна використати для
+встановлення постійних значень параметрів\&. Ці параметри не набудуть
+чинності негайно, а лише після перезапуску/перезавантаження налаштувань або
+перезавантаження системи\&. Без параметра \fB\-\-permanent\fP зміни лишатимуться
+частиною лише динамічних налаштувань\&.
 .sp
-If you want to make a change in runtime and permanent configuration, use the
-same call with and without the \fB\-\-permanent\fP option\&.
+Якщо ви хочете внести зміни до динамічних і постійних налаштувань,
+скористайтеся тим самим викликом з параметром \fB\-\-permanent\fP і без нього\&.
 .sp
-The \fB\-\-permanent\fP option can be optionally added to all options further
-down where it is supported\&.
+Параметр \fB\-\-permanent\fP можна додати до усіх параметрів, які описано нижче,
+там, де передбачено його підтримку\&.
 .RE
 .SS "Параметри зони"
 .PP
 \fB\-\-get\-default\-zone\fP
 .RS 4
-Print default zone for connections and interfaces\&.
+Вивести типову зону для з'єднань та інтерфейсів\&.
 .RE
 .PP
 \fB\-\-set\-default\-zone\fP=\fIзона\fP
 .RS 4
-Set default zone for connections and interfaces where no zone has been
-selected\&. Setting the default zone changes the zone for the connections or
-interfaces, that are using the default zone\&.
+Встановити типову зону для з'єднань та інтерфейсів там, де не було вибрано
+жодної зони\&. Встановлення типової зони змінить зону для з'єднань та
+інтерфейсів, у яких використано типову зону\&.
 .sp
-This is a runtime and permanent change\&.
+Це зміна у динамічних і постійних налаштуваннях\&.
 .RE
 .PP
 \fB\-\-get\-active\-zones\fP
 .RS 4
-Print currently active zones altogether with interfaces and sources used in
-these zones\&. Active zones are zones, that have a binding to an interface
-or source\&. The output format is:
+Вивести поточні активні зони разом із інтерфейсами і адресами походження,
+які використано у цих зонах\&. Активними є зони, які пов'язано із
+інтерфейсом або походженням\&. Формат виведення є таким:
 .RS 4
-\fIzone1\fP
-  interfaces: \fIinterface1\fP \fIinterface2\fP \&.\&.
-  sources: \fIsource1\fP \&.\&.
-\fIzone2\fP
-  interfaces: \fIinterface3\fP \&.\&.
-\fIzone3\fP
-  sources: \fIsource2\fP \&.\&.
+\fIзона\fP
+  interfaces: \fIінтерфейс1\fP \fIінтерфейс2\fP \&.\&.
+  sources: \fIпоходження1\fP \&.\&.
+\fIпоходження2\fP
+  interfaces: \fIінтерфейс3\fP \&.\&.
+\fIзона3\fP
+  sources: \fIпоходження2\fP \&.\&.
 	     
-If there are no interfaces or sources bound to the zone, the corresponding line will be omitted\&.
+Якщо з зоною не пов'язано жодних інтерфейсів або походжень, відповідний рядок буде пропущено\&.
 .RE
 .PP
 [\fB\-\-permanent\fP] \fB\-\-get\-zones\fP
 .RS 4
-Print predefined zones as a space separated list\&.
+Вивести попередньо визначені зони у форматі списку відокремлених пробілами
+значень\&.
 .RE
 .PP
 [\fB\-\-permanent\fP] \fB\-\-get\-services\fP
 .RS 4
-Print predefined services as a space separated list\&.
+Вивести попередньо визначені служби у форматі списку відокремлених пробілами
+значень\&.
 .RE
 .PP
 [\fB\-\-permanent\fP] \fB\-\-get\-icmptypes\fP
 .RS 4
-Print predefined icmptypes as a space separated list\&.
+Вивести попередньо визначені типи ICMP у форматі списку відокремлених
+пробілами значень\&.
 .RE
 .PP
 [\fB\-\-permanent\fP] \fB\-\-get\-zone\-of\-interface\fP=\fIінтерфейс\fP
 .RS 4
-Print the name of the zone the \fIinterface\fP is bound to or \fIno zone\fP\&.
+Вивести назву зони, із якою пов'язано \fIінтерфейс\fP або \fIнемає зони\fP\&.
 .RE
 .PP
 [\fB\-\-permanent\fP]
 \fB\-\-get\-zone\-of\-source\fP=\fIджерело\fP[/\fIмаска\fP]|\fIMAC\fP|ipset:\fIнабір_ip\fP
 .RS 4
-Print the name of the zone the source is bound to or \fIno zone\fP\&.
+Вивести назву зони, із якою пов'язано походження або \fIнемає зони\fP\&.
 .RE
 .PP
 [\fB\-\-permanent\fP] \fB\-\-info\-zone=\fP\fIзона\fP
 .RS 4
-Print information about the zone \fIzone\fP\&. The output format is:
+Вивести відомості щодо зони \fIзона\fP\&. Формат виведення є таким:
 .RS 4
-\fIzone\fP
-  interfaces: \fIinterface1\fP \&.\&.
-  sources: \fIsource1\fP \&.\&.
-  services: \fIservice1\fP \&.\&.
-  ports: \fIport1\fP \&.\&.
-  protocols: \fIprotocol1\fP \&.\&.
+\fIзона\fP
+  interfaces: \fIінтерфейс1\fP \&.\&.
+  sources: \fIпоходження1\fP \&.\&.
+  services: \fIслужба1\fP \&.\&.
+  ports: \fIпорт1\fP \&.\&.
+  protocols: \fIпротокол1\fP \&.\&.
   forward\-ports:
-        \fIforward\-port1\fP
+        \fIпорт_переспрямування1\fP
         \&.\&.
-  source\-ports: \fIsource\-port1\fP \&.\&.
-  icmp\-blocks: \fIicmp\-type1\fP \&.\&.
+  source\-ports: \fIпорт_походження1\fP \&.\&.
+  icmp\-blocks: \fIтип_icmp1\fP \&.\&.
   rich rules:
-        \fIrich\-rule1\fP
+        \fIрозширене_правило1\fP
         \&.\&.
               
 .RE
 .PP
 [\fB\-\-permanent\fP] \fB\-\-list\-all\-zones\fP
 .RS 4
-List everything added for or enabled in all zones\&. The output format is:
+Вивести список усього доданого або увімкненого в усіх зонах\&. Формат
+виведення є таким:
 .RS 4
-\fIzone1\fP
-  interfaces: \fIinterface1\fP \&.\&.
-  sources: \fIsource1\fP \&.\&.
-  services: \fIservice1\fP \&.\&.
-  ports: \fIport1\fP \&.\&.
-  protocols: \fIprotocol1\fP \&.\&.
+\fIзона1\fP
+  interfaces: \fIінтерфейс1\fP \&\&
+  sources: \fIпоходження\fP \&\&
+  services: \fIслужба1\fP \&.\&.
+  ports: \fIпорт1\fP \&.\&.
+  protocols: \fIпротокол1\fP \&.\&.
   forward\-ports:
-        \fIforward\-port1\fP
+        \fIпорт_переспрямування1\fP
         \&.\&.
-  icmp\-blocks: \fIicmp\-type1\fP \&.\&.
+  icmp\-blocks: \fIтип_icmp1\fP \&.\&.
   rich rules:
-        \fIrich\-rule1\fP
+        \fIрозширене_правило1\fP
         \&.\&.
 \&.\&.
               
@@ -260,62 +273,63 @@ List everything added for or enabled in all zones\&. The output format is:
 .PP
 \fB\-\-permanent\fP \fB\-\-new\-zone\fP=\fIзона\fP
 .RS 4
-Add a new permanent and empty zone\&.
+Додати нову постійну і порожню зону\&.
 .sp
-Zone names must be alphanumeric and may additionally include characters:
-\*(Aq_\*(Aq and \*(Aq\-\*(Aq\&.
+Назви зон мають складатися з літер і цифр і додатково можуть містити такі
+символи: \*(Aq\-\*(Aq\&.
 .RE
 .PP
 \fB\-\-permanent\fP \fB\-\-new\-zone\-from\-file\fP=\fIназва_файла\fP [\fB\-\-name\fP=\fIзона\fP]
 .RS 4
-Add a new permanent zone from a prepared zone file with an optional name
-override\&.
+Додати новий постійну зону засіб з приготованої зони із необов'язковим
+перевизначенням назви\&.
 .RE
 .PP
 \fB\-\-permanent\fP \fB\-\-delete\-zone\fP=\fIзона\fP
 .RS 4
-Delete an existing permanent zone\&.
+Вилучити наявну постійну зону\&.
 .RE
 .PP
 \fB\-\-permanent\fP \fB\-\-load\-zone\-defaults\fP=\fIзона\fP
 .RS 4
-Load zone default settings or report NO_DEFAULTS error\&.
+Завантажити типові параметри зони або повідомити про помилку NO_DEFAULTS\&.
 .RE
 .PP
 \fB\-\-permanent\fP \fB\-\-path\-zone=\fP\fIзона\fP
 .RS 4
-Print path of the zone configuration file\&.
+Вивести шлях до файла налаштувань зони\&.
 .RE
 .SS "Параметри правил"
 .PP
 [\fB\-\-permanent\fP] \fB\-\-get\-policies\fP
 .RS 4
-Print predefined policies as a space separated list\&.
+Вивести попередньо визначені правила у форматі списку відокремлених
+пробілами значень\&.
 .RE
 .PP
 [\fB\-\-permanent\fP] \fB\-\-info\-policy\fP=\fIправило\fP
 .RS 4
-Print information about the policy \fIpolicy\fP\&.
+Вивести відомості щодо правила \fIправило\fP\&.
 .RE
 .PP
 [\fB\-\-permanent\fP] \fB\-\-list\-all\-policies\fP
 .RS 4
-List everything added for or enabled in all policies\&.
+Вивести список усього доданого або увімкненого в усіх правилах\&.
 .RE
 .PP
 \fB\-\-permanent\fP \fB\-\-new\-policy\fP=\fIправило\fP
 .RS 4
 Додати нове постійне правило\&.
 .sp
-Policy names must be alphanumeric and may additionally include characters:
-\*(Aq_\*(Aq and \*(Aq\-\*(Aq\&.
+Назви правил мають складатися з літер і цифр і додатково можуть містити такі
+символи: \*(Aq\-\*(Aq\&.
 .RE
 .PP
 \fB\-\-permanent\fP \fB\-\-new\-policy\-from\-file\fP=\fIназва_файла\fP
 [\fB\-\-name\fP=\fIправило\fP]
 .RS 4
-Add a new permanent policy from a prepared policy file with an optional name
-override\&.
+Додати новий постійне правило з приготованого файла правил із необов'язковим
+перевизначенням назви\&.
 .RE
 .PP
 \fB\-\-permanent\fP \fB\-\-path\-policy\fP=\fIправило\fP
@@ -330,24 +344,26 @@ override\&.
 .PP
 \fB\-\-permanent\fP \fB\-\-load\-policy\-defaults\fP=\fIправило\fP
 .RS 4
-Load the shipped defaults for a policy\&. Only applies to policies shipped
-with firewalld\&. Does not apply to user defined policies\&.
+Завантажити типові параметри для правила\&. Стосується лише правил, які є
+частиною пакунка firewalld\&. Не стосується визначених користувачем
+правил\&.
 .RE
 .SS "Параметри для пристосування зон та правил та опитування зон та правил"
 .PP
-Options in this section affect only one particular zone or policy\&. If used
-with \fB\-\-zone\fP=\fIzone\fP or \fB\-\-policy\fP=\fIpolicy\fP option, they affect the
-specified zone or policy\&. If both options are omitted, they affect the
-default zone (see \fB\-\-get\-default\-zone\fP)\&.
+Параметри з цього розділу стосуються лише одної певної зони або одного
+певного правила\&. Якщо їх використано разом із параметром \fB\-\-zone\fP=\fIзона\fP
+або \fB\-\-policy\fP=\fIправило\fP, вони стосуватимуться вказаної зони або вказаного
+правила\&. Якщо не вказано жодного з цих параметрів, вони стосуватимуться
+типової зони (див. \fB\-\-get\-default\-zone\fP)\&.
 .PP
 [\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIзона\fP] [\fB\-\-policy\fP=\fIправило\fP] \fB\-\-list\-all\fP
 .RS 4
-List everything added or enabled\&.
+Вивести список усього доданого або увімкненого\&.
 .RE
 .PP
 \fB\-\-permanent\fP [\fB\-\-zone\fP=\fIзона\fP] [\fB\-\-policy\fP=\fIправило\fP] \fB\-\-get\-target\fP
 .RS 4
-Get the target\&.
+Отримати призначення\&.
 .RE
 .PP
 \fB\-\-permanent\fP [\fB\-\-zone\fP=\fIзона\fP] [\fB\-\-policy\fP=\fIправило\fP]
@@ -355,11 +371,14 @@ Get the target\&.
 .RS 4
 Встановити призначення\&.
 .sp
-For zones \fItarget\fP is one of: \fIdefault\fP, \fIACCEPT\fP, \fIDROP\fP, \fIREJECT\fP
+Для зон \fIпризначення\fP є одним з таких значень: \fIdefault\fP (типове),
+\fIACCEPT\fP (прийняти), \fIDROP\fP (відкинути), \fIREJECT\fP (відмовити)
 .sp
-For policies \fItarget\fP is one of: \fICONTINUE\fP, \fIACCEPT\fP, \fIDROP\fP, \fIREJECT\fP
+Для правил \fIпризначення\fP є одним з таких значень: \fICONTINUE\fP (продовжити),
+\fIACCEPT\fP (прийняти), \fIDROP\fP (відкинути), \fIREJECT\fP (відмовити)
 .sp
-\fIdefault\fP is similar to \fIREJECT\fP, but it implicitly allows ICMP packets\&.
+Варіант \fIdefault\fP є подібним до \fIREJECT\fP, але неявним чином дозволяє
+пакети ICMP\&.
 .RE
 .PP
 \fB\-\-permanent\fP [\fB\-\-zone\fP=\fIзона\fP] [\fB\-\-policy\fP=\fIправило\fP]
@@ -368,43 +387,44 @@ For policies \fItarget\fP is one of: \fICONTINUE\fP, \fIACCEPT\fP, \fIDROP\fP, \
 Встановити опис\&.
 .RE
 .PP
-\fB\-\-permanent\fP [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-policy\fP=\fIpolicy\fP]
+\fB\-\-permanent\fP [\fB\-\-zone\fP=\fIзона\fP] [\fB\-\-policy\fP=\fIправило\fP]
 \fB\-\-get\-description\fP
 .RS 4
-Print description\&.
+Вивести опис\&.
 .RE
 .PP
-\fB\-\-permanent\fP [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-policy\fP=\fIpolicy\fP]
-\fB\-\-set\-short\fP=\fIdescription\fP
+\fB\-\-permanent\fP [\fB\-\-zone\fP=\fIзона\fP] [\fB\-\-policy\fP=\fIправило\fP]
+\fB\-\-set\-short\fP=\fIопис\fP
 .RS 4
-Set short description\&.
+Встановити короткий опис\&.
 .RE
 .PP
-\fB\-\-permanent\fP [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-policy\fP=\fIpolicy\fP] \fB\-\-get\-short\fP
+\fB\-\-permanent\fP [\fB\-\-zone\fP=\fIзона\fP] [\fB\-\-policy\fP=\fIправило\fP] \fB\-\-get\-short\fP
 .RS 4
-Print short description\&.
+Вивести короткий опис\&.
 .RE
 .PP
-[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-permanent\fP]
-[\fB\-\-policy\fP=\fIpolicy\fP] \fB\-\-list\-services\fP
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIзона\fP] [\fB\-\-permanent\fP]
+[\fB\-\-policy\fP=\fIправило\fP] \fB\-\-list\-services\fP
 .RS 4
-List services added as a space separated list\&.
+Вивести список доданих служб як список відокремлених пробілами значень\&.
 .RE
 .PP
-[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-permanent\fP]
-[\fB\-\-policy\fP=\fIpolicy\fP] \fB\-\-add\-service\fP=\fIservice\fP
-[\fB\-\-timeout\fP=\fItimeval\fP]
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIзона\fP] [\fB\-\-permanent\fP]
+[\fB\-\-policy\fP=\fIправило\fP] \fB\-\-add\-service\fP=\fIслужба\fP
+[\fB\-\-timeout\fP=\fIзначення_часу\fP]
 .RS 4
-Add a service\&. This option can be specified multiple times\&. If a timeout
-is supplied, the rule will be active for the specified amount of time and
-will be removed automatically afterwards\&.  \fItimeval\fP is either a number
-(of seconds) or number followed by one of characters \fIs\fP (seconds), \fIm\fP
-(minutes), \fIh\fP (hours), for example \fI20m\fP or \fI1h\fP\&.
+Додати службу\&. Цей параметр можна вказувати декілька разів в одній
+команді\&. Якщо вказано значення часу очікування, правило буде активним
+протягом вказаного періоду часу, а потім його буде автоматично
+вилучено\&. Значення \fIзначення_часу\fP можна вказати або як кількість
+(секунд) або як число, за яким вказано один із таких символів: \fIs\fP
+(секунди), \fIm\fP (хвилини), \fIh\fP (години), приклади: \fI20m\fP або \fI1h\fP\&.
 .sp
-The service is one of the firewalld provided services\&. To get a list of
-the supported services, use \fBfirewall\-cmd \-\-get\-services\fP\&.
+Службою є одна із служб, які надає firewalld\&. Для отримання списку
+підтримуваних служб скористайтеся командою \fBfirewall\-cmd \-\-get\-services\fP\&.
 .sp
-The \fB\-\-timeout\fP option is not combinable with the \fB\-\-permanent\fP option\&.
+Параметр \fB\-\-timeout\fP не можна поєднувати з параметром \fB\-\-permanent\fP\&.
 .sp
 \fBNote\fP: Some services define connection tracking helpers\&. Helpers that
 may operate in client mode (e\&.g\&. tftp) must be added to an outbound
@@ -413,7 +433,8 @@ will not be applied to the outbound traffic\&. The related traffic, as
 defined by the connection tracking helper, on the return path (ingress) will
 be allowed by the stateful firewall rules\&.
 .sp
-An example of an outbound policy for connection tracking helpers:
+Приклад правил для вихідних даних для допоміжних засобів стеження за
+з'єднанням:
 .sp
 # firewall\-cmd \-\-permanent \-\-new\-policy clientConntrack # firewall\-cmd
 \-\-permanent \-\-policy clientConntrack \-\-add\-ingress\-zone HOST # firewall\-cmd
@@ -423,8 +444,8 @@ An example of an outbound policy for connection tracking helpers:
 .sp
 .RE
 .PP
-[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-permanent\fP]
-[\fB\-\-policy\fP=\fIpolicy\fP] \fB\-\-remove\-service\fP=\fIservice\fP
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIзона\fP] [\fB\-\-permanent\fP]
+[\fB\-\-policy\fP=\fIправило\fP] \fB\-\-remove\-service\fP=\fIслужба\fP
 .RS 4
 Remove a service\&. This option can be specified multiple times\&.
 .RE
@@ -458,7 +479,7 @@ The port can either be a single port number or a port range
 \fIportid\fP\-\fIportid\fP\&. The protocol can either be \fItcp\fP, \fIudp\fP, \fIsctp\fP or
 \fIdccp\fP\&.
 .sp
-The \fB\-\-timeout\fP option is not combinable with the \fB\-\-permanent\fP option\&.
+Параметр \fB\-\-timeout\fP не можна поєднувати з параметром \fB\-\-permanent\fP\&.
 .RE
 .PP
 [\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-permanent\fP]
@@ -492,7 +513,7 @@ number (of seconds) or number followed by one of characters \fIs\fP (seconds),
 The protocol can be any protocol supported by the system\&. Please have a
 look at \fI/etc/protocols\fP for supported protocols\&.
 .sp
-The \fB\-\-timeout\fP option is not combinable with the \fB\-\-permanent\fP option\&.
+Параметр \fB\-\-timeout\fP не можна поєднувати з параметром \fB\-\-permanent\fP\&.
 .RE
 .PP
 [\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-permanent\fP]
@@ -530,7 +551,7 @@ The port can either be a single port number or a port range
 \fIportid\fP\-\fIportid\fP\&. The protocol can either be \fItcp\fP, \fIudp\fP, \fIsctp\fP or
 \fIdccp\fP\&.
 .sp
-The \fB\-\-timeout\fP option is not combinable with the \fB\-\-permanent\fP option\&.
+Параметр \fB\-\-timeout\fP не можна поєднувати з параметром \fB\-\-permanent\fP\&.
 .RE
 .PP
 [\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-permanent\fP]
@@ -568,7 +589,7 @@ is either a number (of seconds) or number followed by one of characters \fIs\fP
 The \fIicmptype\fP is the one of the icmp types firewalld supports\&. To get a
 listing of supported icmp types: \fBfirewall\-cmd \-\-get\-icmptypes\fP
 .sp
-The \fB\-\-timeout\fP option is not combinable with the \fB\-\-permanent\fP option\&.
+Параметр \fB\-\-timeout\fP не можна поєднувати з параметром \fB\-\-permanent\fP\&.
 .RE
 .PP
 [\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-permanent\fP]
@@ -608,7 +629,7 @@ The port can either be a single port number \fIportid\fP or a port range
 \fIportid\fP\-\fIportid\fP\&. The protocol can either be \fItcp\fP, \fIudp\fP, \fIsctp\fP or
 \fIdccp\fP\&. The destination address is a simple IP address\&.
 .sp
-The \fB\-\-timeout\fP option is not combinable with the \fB\-\-permanent\fP option\&.
+Параметр \fB\-\-timeout\fP не можна поєднувати з параметром \fB\-\-permanent\fP\&.
 .sp
 For \fIIPv6\fP forward ports, please use the rich language\&.
 .sp
@@ -646,40 +667,43 @@ active for the specified amount of time\&.  \fItimeval\fP is either a number
 useful if the machine is a router and machines connected over an interface
 in another zone should be able to use the first connection\&.
 .sp
-The \fB\-\-timeout\fP option is not combinable with the \fB\-\-permanent\fP option\&.
+Параметр \fB\-\-timeout\fP не можна поєднувати з параметром \fB\-\-permanent\fP\&.
 .sp
-For \fIIPv6\fP masquerading, please use the rich language\&.
+Для приховування \fIIPv6\fP, будь ласка, скористайтеся розширеним варіантом
+мови\&.
 .sp
-\fINote:\fP IP forwarding will be implicitly enabled\&.
+\fIЗауваження:\fP буде неявними чином увімкнено переспрямовування IP\&.
 .RE
 .PP
 [\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-permanent\fP]
-[\fB\-\-policy\fP=\fIpolicy\fP] \fB\-\-remove\-masquerade\fP
+[\fB\-\-policy\fP=\fIправило\fP] \fB\-\-remove\-masquerade\fP
 .RS 4
 Disable \fIIPv4\fP masquerade\&. If the masquerading was enabled with a
 timeout, it will be disabled also\&.
 .sp
-For \fIIPv6\fP masquerading, please use the rich language\&.
+Для приховування \fIIPv6\fP, будь ласка, скористайтеся розширеним варіантом
+мови\&.
 .RE
 .PP
-[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-permanent\fP]
-[\fB\-\-policy\fP=\fIpolicy\fP] \fB\-\-query\-masquerade\fP
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIзона\fP] [\fB\-\-permanent\fP]
+[\fB\-\-policy\fP=\fIправило\fP] \fB\-\-query\-masquerade\fP
 .RS 4
-Return whether \fIIPv4\fP masquerading has been enabled\&. Returns 0 if true, 1
-otherwise\&.
+Повернути, чи було увімкнено приховування \fIIPv4\fP\&. Повертає 0, якщо було;
+1, якщо не було\&.
 .sp
-For \fIIPv6\fP masquerading, please use the rich language\&.
+Для приховування \fIIPv6\fP, будь ласка, скористайтеся розширеним варіантом
+мови\&.
 .RE
 .PP
-[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-permanent\fP]
-[\fB\-\-policy\fP=\fIpolicy\fP] \fB\-\-list\-rich\-rules\fP
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIзона\fP] [\fB\-\-permanent\fP]
+[\fB\-\-policy\fP=\fIправило\fP] \fB\-\-list\-rich\-rules\fP
 .RS 4
 List rich language rules added as a newline separated list\&.
 .RE
 .PP
-[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-permanent\fP]
-[\fB\-\-policy\fP=\fIpolicy\fP] \fB\-\-add\-rich\-rule\fP=\*(Aq\fIrule\fP\*(Aq
-[\fB\-\-timeout\fP=\fItimeval\fP]
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIзона\fP] [\fB\-\-permanent\fP]
+[\fB\-\-policy\fP=\fIправло\fP] \fB\-\-add\-rich\-rule\fP=\*(Aq\fIправило\fP\*(Aq
+[\fB\-\-timeout\fP=\fIзначення_часу\fP]
 .RS 4
 Add rich language rule \*(Aq\fIrule\fP\*(Aq\&. This option can be specified
 multiple times\&. If a timeout is supplied, the \fIrule\fP will be active for
@@ -691,11 +715,11 @@ example \fI20m\fP or \fI1h\fP\&.
 For the rich language rule syntax, please have a look at
 \fBfirewalld.richlanguage\fP(5)\&.
 .sp
-The \fB\-\-timeout\fP option is not combinable with the \fB\-\-permanent\fP option\&.
+Параметр \fB\-\-timeout\fP не можна поєднувати з параметром \fB\-\-permanent\fP\&.
 .RE
 .PP
-[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-permanent\fP]
-[\fB\-\-policy\fP=\fIpolicy\fP] \fB\-\-remove\-rich\-rule\fP=\*(Aq\fIrule\fP\*(Aq
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIзона\fP] [\fB\-\-permanent\fP]
+[\fB\-\-policy\fP=\fIправило\fP] \fB\-\-remove\-rich\-rule\fP=\*(Aq\fIправило\fP\*(Aq
 .RS 4
 Remove rich language rule \*(Aq\fIrule\fP\*(Aq\&. This option can be specified
 multiple times\&.
@@ -721,12 +745,12 @@ omitted, they affect default zone (see \fB\-\-get\-default\-zone\fP)\&.
 .PP
 [\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIзона\fP] \fB\-\-add\-icmp\-block\-inversion\fP
 .RS 4
-Enable ICMP block inversion\&.
+Увімкнути інверсію блоків ICMP\&.
 .RE
 .PP
 [\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIзона\fP] \fB\-\-remove\-icmp\-block\-inversion\fP
 .RS 4
-Disable ICMP block inversion\&.
+Вимкнути інверсію блоків ICMP\&.
 .RE
 .PP
 [\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIзона\fP] \fB\-\-query\-icmp\-block\-inversion\fP
@@ -750,14 +774,14 @@ Disable intra zone forwarding\&.
 Return whether intra zone forwarding is enabled\&. Returns 0 if true, 1
 otherwise\&.
 .RE
-.SS "Options to Adapt and Query Policies"
+.SS "Параметри для пристосування правил та опитування правил"
 .PP
 Options in this section affect only one particular policy\&. It\*(Aqs
 required to specify \fB\-\-policy\fP=\fIpolicy\fP with these options\&.
 .PP
 \fB\-\-permanent\fP \fB\-\-policy\fP=\fIправило\fP \fB\-\-get\-priority\fP
 .RS 4
-Get the priority\&.
+Отримати пріоритетність\&.
 .RE
 .PP
 \fB\-\-permanent\fP \fB\-\-policy\fP=\fIправило\fP \fB\-\-set\-priority\fP\fIпріоритетність\fP
@@ -827,7 +851,7 @@ Remove an egress zone\&. This option can be specified multiple times\&.
 .RS 4
 Return whether \fIzone\fP has been added\&. Returns 0 if true, 1 otherwise\&.
 .RE
-.SS "Options to Handle Bindings of Interfaces"
+.SS "Параметри обробки прив'язки інтерфейсів"
 .PP
 Binding an interface to a zone means that this zone settings are used to
 restrict traffic via the interface\&.
@@ -836,7 +860,8 @@ Options in this section affect only one particular zone\&. If used with
 \fB\-\-zone\fP=\fIzone\fP option, they affect the zone \fIzone\fP\&. If the option is
 omitted, they affect default zone (see \fB\-\-get\-default\-zone\fP)\&.
 .PP
-For a list of predefined zones use \fBfirewall\-cmd \-\-get\-zones\fP\&.
+Щоб отримати список попередньо визначених зон, скористайтеся командою
+\fBfirewall\-cmd \-\-get\-zones\fP\&.
 .PP
 An interface name is a string up to 16 characters long, that may not contain
 \fB\*(Aq \*(Aq\fP, \fB\*(Aq/\*(Aq\fP, \fB\*(Aq!\*(Aq\fP and \fB\*(Aq*\*(Aq\fP\&.
@@ -911,8 +936,8 @@ ifcfg file\&. This is needed to make sure that an ifdown of the interface
 will not result in a reset of the zone setting to the default zone\&. Only
 the zone binding is then removed in firewalld then\&.
 .sp
-Remove binding of interface \fIinterface\fP from zone it was previously added
-to\&.
+Вилучити прив'язку інтерфейсу \fIінтерфейс\fP з зони, коди її було раніше
+додано\&.
 .RE
 .SS "Параметри для обробки прив'язки джерел"
 .PP
@@ -957,20 +982,20 @@ omitted, default zone will be used\&.
 [\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIзона\fP]
 \fB\-\-query\-source\fP=\fIджерело\fP[/\fIмаска\fP]|\fIMAC\fP|ipset:\fIнабір_ip\fP
 .RS 4
-Query whether the source is bound to the zone \fIzone\fP\&. Returns 0 if true,
-1 otherwise\&.
+Опитати, чи прив'язано походження до зони \fIзона\fP\&. Повертає 0, якщо
+прив'язано; 1, якщо не прив'язано\&.
 .RE
 .PP
 [\fB\-\-permanent\fP]
 \fB\-\-remove\-source\fP=\fIджерело\fP[/\fIмаска\fP]|\fIMAC\fP|ipset:\fIнабір_ip\fP
 .RS 4
-Remove binding of the source from zone it was previously added to\&.
+Вилучити прив'язку походження з зони, коди її було раніше додано\&.
 .RE
-.SS "IPSet Options"
+.SS "Параметри наборів IP"
 .PP
 \fB\-\-get\-ipset\-types\fP
 .RS 4
-Print the supported ipset types\&.
+Вивести підтримувані типи наборів ip\&.
 .RE
 .PP
 \fB\-\-permanent\fP \fB\-\-new\-ipset\fP=\fIнабір_ip\fP \fB\-\-type\fP=\fIтип\fP
@@ -980,158 +1005,166 @@ Add a new permanent and empty ipset with specifying the type and optional
 the family and options like \fItimeout\fP, \fIhashsize\fP and \fImaxelem\fP\&. For
 more information please have a look at \fBipset\fP(8)  man page\&.
 .sp
-ipset names must be alphanumeric and may additionally include characters:
-\*(Aq_\*(Aq and \*(Aq\-\*(Aq\&.
+Набори ip мають складатися з літер і цифр і додатково можуть містити такі
+символи: \*(Aq\-\*(Aq\&.
 .RE
 .PP
 \fB\-\-permanent\fP \fB\-\-new\-ipset\-from\-file\fP=\fIназва_файла\fP
 [\fB\-\-name\fP=\fIнабір_ip\fP]
 .RS 4
-Add a new permanent ipset from a prepared ipset file with an optional name
-override\&.
+Додати новий постійний набір ip засіб з приготованого набору ip із
+необов'язковим перевизначенням назви\&.
 .RE
 .PP
 \fB\-\-permanent\fP \fB\-\-delete\-ipset\fP=\fIнабір_ip\fP
 .RS 4
-Delete an existing permanent ipset\&.
+Вилучити наявний постійний набір ip\&.
 .RE
 .PP
 \fB\-\-permanent\fP \fB\-\-load\-ipset\-defaults\fP=\fIнабір_ip\fP
 .RS 4
-Load ipset default settings or report NO_DEFAULTS error\&.
+Завантажити типові параметри набору ip або повідомити про помилку
+NO_DEFAULTS\&.
 .RE
 .PP
 [\fB\-\-permanent\fP] \fB\-\-info\-ipset=\fP\fIнабір_ip\fP
 .RS 4
-Print information about the ipset \fIipset\fP\&. The output format is:
+Вивести відомості щодо набору ip \fIнабір_ip\fP\&. Формат виведення є таким:
 .sp
-\fIipset\fP
-  type: \fItype\fP
-  options: \fIoption1[=value1]\fP \&.\&.
-  entries: \fIentry1\fP \&.\&.
+\fIнабір_ip\fP
+  type: \fIтип\fP
+  options: \fIпараметр1[=значення1]\fP \&.\&.
+  entries: \fIзапис1\fP \&.\&.
               
 .sp
 .RE
 .PP
 [\fB\-\-permanent\fP] \fB\-\-get\-ipsets\fP
 .RS 4
-Print predefined ipsets as a space separated list\&.
+Вивести попередньо визначені набори ip у форматі списку відокремлених
+пробілами значень\&.
 .RE
 .PP
 \fB\-\-permanent\fP \fB\-\-ipset\fP=\fIнабір_ip\fP \fB\-\-set\-description\fP=\fIопис\fP
 .RS 4
-Set new description to ipset
+Встановити новий опис набору ip
 .RE
 .PP
 \fB\-\-permanent\fP \fB\-\-ipset\fP=\fIнабір_ip\fP \fB\-\-get\-description\fP
 .RS 4
-Print description for ipset
+Вивести опис набору ip
 .RE
 .PP
 \fB\-\-permanent\fP \fB\-\-ipset\fP=\fIнабір_ip\fP \fB\-\-set\-short\fP=\fIопис\fP
 .RS 4
-Set short description to ipset
+Встановити короткий опис набору ip
 .RE
 .PP
 \fB\-\-permanent\fP \fB\-\-ipset\fP=\fIнабір_ip\fP \fB\-\-get\-short\fP
 .RS 4
-Print short description for ipset
+Вивести короткий опис набору ip
 .RE
 .PP
 [\fB\-\-permanent\fP] \fB\-\-ipset\fP=\fIнабір_ip\fP \fB\-\-add\-entry\fP=\fIзапис\fP
 .RS 4
-Add a new entry to the ipset\&.
+Додати новий запис до набору ip\&.
 .sp
-Adding an entry to an ipset with option \fItimeout\fP is permitted, but these
-entries are not tracked by firewalld\&.
+Дозволено додавання запису до набору ipset за допомогою параметра
+\fItimeout\fP, але firewalld не виконуватиме спостереження за такими
+записами\&.
 .RE
 .PP
 [\fB\-\-permanent\fP] \fB\-\-ipset\fP=\fIнабір_ip\fP \fB\-\-remove\-entry\fP=\fIзапис\fP
 .RS 4
-Remove an entry from the ipset\&.
+Вилучити запис із набору ip\&.
 .RE
 .PP
 [\fB\-\-permanent\fP] \fB\-\-ipset\fP=\fIнабір_ip\fP \fB\-\-query\-entry\fP=\fIзапис\fP
 .RS 4
-Return whether the entry has been added to an ipset\&. Returns 0 if true, 1
-otherwise\&.
+Повернути, чи було додано запис до набору ip\&. Повертає 0, якщо було, і 1,
+якщо не було\&.
 .sp
-Querying an ipset with a timeout will yield an error\&. Entries are not
-tracked for ipsets with a timeout\&.
+Опитування набору ipset зі встановленим часом очікування призведе до
+помилки\&. Для наборів ip з часами очікування стеження за записами не
+відбуватиметься\&.
 .RE
 .PP
 [\fB\-\-permanent\fP] \fB\-\-ipset\fP=\fIнабір_ip\fP \fB\-\-get\-entries\fP
 .RS 4
-List all entries of the ipset\&.
+Вивести список усіх записів у наборі ip\&.
 .RE
 .PP
 [\fB\-\-permanent\fP] \fB\-\-ipset\fP=\fIнабір_ip\fP
 \fB\-\-add\-entries\-from\-file\fP=\fIназва_файла\fP
 .RS 4
-Add a new entries to the ipset from the file\&. For all entries that are
-listed in the file but already in the ipset, a warning will be printed\&.
+Додати нові записи до набору ip з файла\&. Для усіх записів, які є у списку
+файла, але які вже є у наборі ip, буде виведено попередження\&.
 .sp
-The file should contain an entry per line\&. Lines starting with an hash or
-semicolon are ignored\&. Also empty lines\&.
+Файл має містити по одному запису на рядок\&. Рядки, які починаються з
+символу решітки або крапки з комою, буде проігноровано\&. Також буде
+проігноровано порожні рядки\&.
 .RE
 .PP
 [\fB\-\-permanent\fP] \fB\-\-ipset\fP=\fIнабір_ip\fP
 \fB\-\-remove\-entries\-from\-file\fP=\fIназва_файла\fP
 .RS 4
-Remove existing entries from the ipset from the file\&. For all entries that
-are listed in the file but not in the ipset, a warning will be printed\&.
+Вилучити наявні записи з набору ip з файла\&. Для усіх записів, які є у
+списку файла, але яких немає у наборі ip, буде виведено попередження\&.
 .sp
-The file should contain an entry per line\&. Lines starting with an hash or
-semicolon are ignored\&. Also empty lines\&.
+Файл має містити по одному запису на рядок\&. Рядки, які починаються з
+символу решітки або крапки з комою, буде проігноровано\&. Також буде
+проігноровано порожні рядки\&.
 .RE
 .PP
 \fB\-\-permanent\fP \fB\-\-path\-ipset=\fP\fIнабір_ip\fP
 .RS 4
-Print path of the ipset configuration file\&.
+Вивести шлях до файла налаштувань набору ip\&.
 .RE
 .SS "Параметри служби"
 .PP
-Options in this section affect only one particular service\&.
+Параметри у цьому розділі стосуються лише однієї окремої служби\&.
 .PP
 [\fB\-\-permanent\fP] \fB\-\-info\-service=\fP\fIслужба\fP
 .RS 4
-Print information about the service \fIservice\fP\&. The output format is:
+Вивести відомості щодо служби \fIслужба\fP\&. Формат виведення є таким:
 .sp
-\fIservice\fP
-  ports: \fIport1\fP \&.\&.
-  protocols: \fIprotocol1\fP \&.\&.
-  source\-ports: \fIsource\-port1\fP \&.\&.
-  helpers: \fIhelper1\fP \&.\&.
-  destination: \fIipv1\fP:\fIaddress1\fP \&.\&.
+\fIслужба\fP
+  ports: \fIпорт1\fP \&.\&.
+  protocols: \fIпротокол1\fP \&.\&.
+  source\-ports: \fIпорт_походження1\fP \&.\&.
+  helpers: \fIдопоміжний_засіб1\fP \&.\&.
+  destination: \fIipv1\fP:\fIадреса1\fP \&.\&.
               
 .sp
 .RE
 .PP
-The following options are only usable in the permanent configuration\&.
+Наведеними нижче параметрами можна користуватися лише для постійних
+налаштувань\&.
 .PP
 \fB\-\-permanent\fP \fB\-\-new\-service\fP=\fIслужба\fP
 .RS 4
-Add a new permanent and empty service\&.
+Додати новий постійний і порожній запис служби\&.
 .sp
-Service names must be alphanumeric and may additionally include characters:
-\*(Aq_\*(Aq and \*(Aq\-\*(Aq\&.
+Назви служб мають складатися з літер і цифр і додатково можуть містити такі
+символи: \*(Aq\-\*(Aq\&.
 .RE
 .PP
 \fB\-\-permanent\fP \fB\-\-new\-service\-from\-file\fP=\fIназва_файла\fP
 [\fB\-\-name\fP=\fIслужба\fP]
 .RS 4
-Add a new permanent service from a prepared service file with an optional
-name override\&.
+Додати новий постійну службу з приготованої служби із необов'язковим
+перевизначенням назви\&.
 .RE
 .PP
 \fB\-\-permanent\fP \fB\-\-delete\-service\fP=\fIслужба\fP
 .RS 4
-Delete an existing permanent service\&.
+Вилучити наявну постійну службу\&.
 .RE
 .PP
 \fB\-\-permanent\fP \fB\-\-load\-service\-defaults\fP=\fIслужба\fP
 .RS 4
-Load service default settings or report NO_DEFAULTS error\&.
+Завантажити типові параметри служби або повідомити про помилку
+NO_DEFAULTS\&.
 .RE
 .PP
 \fB\-\-permanent\fP \fB\-\-path\-service=\fP\fIслужба\fP
@@ -1156,25 +1189,25 @@ Load service default settings or report NO_DEFAULTS error\&.
 .PP
 \fB\-\-permanent\fP \fB\-\-service\fP=\fIслужба\fP \fB\-\-get\-short\fP
 .RS 4
-Print short description for service
+Вивести короткий опис служби
 .RE
 .PP
 \fB\-\-permanent\fP \fB\-\-service\fP=\fIслужба\fP
 \fB\-\-add\-port\fP=\fIідентифікатор_порту\fP[\-\fIідентифікатор_порту\fP]/\fIпротокол\fP
 .RS 4
-Add a new port to the permanent service\&.
+Додати новий порт до постійної служби\&.
 .RE
 .PP
 \fB\-\-permanent\fP \fB\-\-service\fP=\fIслужба\fP
 \fB\-\-remove\-port\fP=\fIідентифікатор_порту\fP[\-\fIідентифікатор_порту\fP]/\fIпротокол\fP
 .RS 4
-Remove a port from the permanent service\&.
+Вилучити порт з постійної служби\&.
 .RE
 .PP
 \fB\-\-permanent\fP \fB\-\-service\fP=\fIслужба\fP
 \fB\-\-query\-port\fP=\fIідентифікатор_порту\fP[\-\fIідентифікатор_порту\fP]/\fIпротокол\fP
 .RS 4
-Return whether the port has been added to the permanent service\&.
+Повернути, чи було додано порт до постійної служби\&.
 .RE
 .PP
 \fB\-\-permanent\fP \fB\-\-service\fP=\fIслужба\fP \fB\-\-get\-ports\fP
@@ -1194,93 +1227,93 @@ Return whether the port has been added to the permanent service\&.
 .PP
 \fB\-\-permanent\fP \fB\-\-service\fP=\fIслужба\fP \fB\-\-query\-protocol\fP=\fIпротокол\fP
 .RS 4
-Return whether the protocol has been added to the permanent service\&.
+Повернути, чи було додано протокол до постійної служби\&.
 .RE
 .PP
 \fB\-\-permanent\fP \fB\-\-service\fP=\fIслужба\fP \fB\-\-get\-protocols\fP
 .RS 4
-List protocols added to the permanent service\&.
+Вивести список протоколів, які додано до постійної служби\&.
 .RE
 .PP
 \fB\-\-permanent\fP \fB\-\-service\fP=\fIслужба\fP
 \fB\-\-add\-source\-port\fP=\fIідентифікатор_порту\fP[\-\fIідентифікатор_порту\fP]/\fIпротокол\fP
 .RS 4
-Add a new source port to the permanent service\&.
+Додати новий порт походження до постійної служби\&.
 .RE
 .PP
 \fB\-\-permanent\fP \fB\-\-service\fP=\fIслужба\fP
 \fB\-\-remove\-source\-port\fP=\fIіденти\fP[\-\fIідентифікатор_порту\fP]/\fIпротокол\fP
 .RS 4
-Remove a source port from the permanent service\&.
+Вилучити порт походження з постійної служби\&.
 .RE
 .PP
 \fB\-\-permanent\fP \fB\-\-service\fP=\fIслужба\fP
 \fB\-\-query\-source\-port\fP=\fIідентифікатор_порту\fP[\-\fIідентифікатор_порту\fP]/\fIпротокол\fP
 .RS 4
-Return whether the source port has been added to the permanent service\&.
+Повернути, чи було додано порт походження до постійної служби\&.
 .RE
 .PP
 \fB\-\-permanent\fP \fB\-\-service\fP=\fIслужба\fP \fB\-\-get\-source\-ports\fP
 .RS 4
-List source ports added to the permanent service\&.
+Вивести список портів походження, які додано до постійної служби\&.
 .RE
 .PP
 \fB\-\-permanent\fP \fB\-\-service\fP=\fIслужба\fP \fB\-\-add\-helper\fP=\fIдопоміжний_засіб\fP
 .RS 4
-Add a new helper to the permanent service\&.
+Додати новий допоміжний засіб до постійної служби\&.
 .RE
 .PP
 \fB\-\-permanent\fP \fB\-\-service\fP=\fIслужба\fP \fB\-\-remove\-helper\fP=\fIдопоміжний_засіб\fP
 .RS 4
-Remove a helper from the permanent service\&.
+Вилучити допоміжний засіб з постійної служби\&.
 .RE
 .PP
 \fB\-\-permanent\fP \fB\-\-service\fP=\fIслужба\fP \fB\-\-query\-helper\fP=\fIдопоміжний_засіб\fP
 .RS 4
-Return whether the helper has been added to the permanent service\&.
+Повернути, чи було додано допоміжний засіб до постійної служби\&.
 .RE
 .PP
 \fB\-\-permanent\fP \fB\-\-service\fP=\fIслужба\fP \fB\-\-get\-service\-helpers\fP
 .RS 4
-List helpers added to the permanent service\&.
+Вивести список допоміжних засобів, які додано до постійної служби\&.
 .RE
 .PP
 \fB\-\-permanent\fP \fB\-\-service\fP=\fIслужба\fP
 \fB\-\-set\-destination\fP=\fIipv\fP:\fIадреса\fP[/\fIмаска\fP]
 .RS 4
-Set destination for ipv to address[/mask] in the permanent service\&.
+Встановити призначення для ipv у адресу[/маску] в постійній службі\&.
 .RE
 .PP
 \fB\-\-permanent\fP \fB\-\-service\fP=\fIслужба\fP \fB\-\-remove\-destination\fP=\fIipv\fP
 .RS 4
-Remove the destination for ipv from the permanent service\&.
+Вилучити призначення для версії протоколу з постійної служби\&.
 .RE
 .PP
 \fB\-\-permanent\fP \fB\-\-service\fP=\fIслужба\fP
 \fB\-\-query\-destination\fP=\fIipv\fP:\fIадреса\fP[/\fIмаска\fP]
 .RS 4
-Return whether the destination ipv to address[/mask] has been set in the
-permanent service\&.
+Повернути, чи було встановлено версію протоколу призначення у адресу[/маску]
+в постійній службі\&.
 .RE
 .PP
 \fB\-\-permanent\fP \fB\-\-service\fP=\fIслужба\fP \fB\-\-get\-destinations\fP
 .RS 4
-List destinations added to the permanent service\&.
+Вивести список призначень, які додано до постійної служби\&.
 .RE
 .PP
 \fB\-\-permanent\fP \fB\-\-service\fP=\fIслужба\fP \fB\-\-add\-include\fP=\fIслужба\fP
 .RS 4
-Add a new include to the permanent service\&.
+Додати нове включення до постійної служби\&.
 .RE
 .PP
 \fB\-\-permanent\fP \fB\-\-service\fP=\fIслужба\fP \fB\-\-remove\-include\fP=\fIслужба\fP
 .RS 4
-Remove a include from the permanent service\&.
+Вилучити включення з постійної служби\&.
 .RE
 .PP
 \fB\-\-permanent\fP \fB\-\-service\fP=\fIслужба\fP \fB\-\-query\-include\fP=\fIслужба\fP
 .RS 4
-Return whether the include has been added to the permanent service\&.
+Повернути, чи було додано включення до постійної служби\&.
 .RE
 .PP
 \fB\-\-permanent\fP \fB\-\-service\fP=\fIслужба\fP \fB\-\-get\-includes\fP
@@ -1305,7 +1338,8 @@ Return whether the include has been added to the permanent service\&.
 .sp
 .RE
 .PP
-The following options are only usable in the permanent configuration\&.
+Наведеними нижче параметрами можна користуватися лише для постійних
+налаштувань\&.
 .PP
 \fB\-\-permanent\fP \fB\-\-new\-helper\fP=\fIдопоміжний_засіб\fP
 \fB\-\-module\fP=\fIмодуль_conntrack_nf\fP [\fB\-\-family\fP=\fIipv4\fP|\fIipv6\fP]
@@ -1320,18 +1354,19 @@ The following options are only usable in the permanent configuration\&.
 \fB\-\-permanent\fP \fB\-\-new\-helper\-from\-file\fP=\fIназва_файла\fP
 [\fB\-\-name\fP=\fIдопоміжний_засіб\fP]
 .RS 4
-Add a new permanent helper from a prepared helper file with an optional name
-override\&.
+Додати новий постійний допоміжний засіб з приготованого допоміжного файла із
+необов'язковим перевизначенням назви\&.
 .RE
 .PP
 \fB\-\-permanent\fP \fB\-\-delete\-helper\fP=\fIдопоміжний_засіб\fP
 .RS 4
-Delete an existing permanent helper\&.
+Вилучити наявний постійний допоміжний засіб\&.
 .RE
 .PP
 \fB\-\-permanent\fP \fB\-\-load\-helper\-defaults\fP=\fIдопоміжний_засіб\fP
 .RS 4
-Load helper default settings or report NO_DEFAULTS error\&.
+Завантажити типові параметри допоміжного засобу або повідомити про помилку
+NO_DEFAULTS\&.
 .RE
 .PP
 \fB\-\-permanent\fP \fB\-\-path\-helper=\fP\fIдопоміжний_засіб\fP
@@ -1341,50 +1376,51 @@ Load helper default settings or report NO_DEFAULTS error\&.
 .PP
 [\fB\-\-permanent\fP] \fB\-\-get\-helpers\fP
 .RS 4
-Print predefined helpers as a space separated list\&.
+Вивести попередньо визначені допоміжні засоби у форматі списку відокремлених
+пробілами значень\&.
 .RE
 .PP
 \fB\-\-permanent\fP \fB\-\-helper\fP=\fIдопоміжний_засіб\fP \fB\-\-set\-description\fP=\fIопис\fP
 .RS 4
-Set new description to helper
+Встановити новий опис допоміжного засобу
 .RE
 .PP
 \fB\-\-permanent\fP \fB\-\-helper\fP=\fIдопоміжний_засіб\fP \fB\-\-get\-description\fP
 .RS 4
-Print description for helper
+Вивести опис допоміжного засобу
 .RE
 .PP
 \fB\-\-permanent\fP \fB\-\-helper\fP=\fIдопоміжний_засіб\fP \fB\-\-set\-short\fP=\fIопис\fP
 .RS 4
-Set short description to helper
+Встановити короткий опис допоміжного засобу
 .RE
 .PP
 \fB\-\-permanent\fP \fB\-\-helper\fP=\fIдопоміжний_засіб\fP \fB\-\-get\-short\fP
 .RS 4
-Print short description for helper
+Вивести короткий опис допоміжного засобу
 .RE
 .PP
 \fB\-\-permanent\fP \fB\-\-helper\fP=\fIдопоміжний_засіб\fP
 \fB\-\-add\-port\fP=\fIідентифікатор_порту\fP[\-\fIідентифікатор_порту\fP]/\fIпротокол\fP
 .RS 4
-Add a new port to the permanent helper\&.
+Додати новий порт до постійного допоміжного засобу\&.
 .RE
 .PP
 \fB\-\-permanent\fP \fB\-\-helper\fP=\fIдопоміжний_засіб\fP
 \fB\-\-remove\-port\fP=\fIідентифікатор_порту\fP[\-\fIідентифікатор_порту\fP]/\fIпротокол\fP
 .RS 4
-Remove a port from the permanent helper\&.
+Вилучити порт з постійного допоміжного засобу\&.
 .RE
 .PP
 \fB\-\-permanent\fP \fB\-\-helper\fP=\fIдопоміжний_засіб\fP
 \fB\-\-query\-port\fP=\fIідентифікатор_порту\fP[\-\fIідентифікатор_порту\fP]/\fIпротокол\fP
 .RS 4
-Return whether the port has been added to the permanent helper\&.
+Повернути, чи було додано порт до постійного допоміжного засобу\&.
 .RE
 .PP
 \fB\-\-permanent\fP \fB\-\-helper\fP=\fIдопоміжний_засіб\fP \fB\-\-get\-ports\fP
 .RS 4
-List ports added to the permanent helper\&.
+Вивести список портів, які додано до постійного допоміжного засобу\&.
 .RE
 .PP
 \fB\-\-permanent\fP \fB\-\-helper\fP=\fIдопоміжний_засіб\fP \fB\-\-set\-module\fP=\fIопис\fP
@@ -1394,25 +1430,25 @@ List ports added to the permanent helper\&.
 .PP
 \fB\-\-permanent\fP \fB\-\-helper\fP=\fIдопоміжний_засіб\fP \fB\-\-get\-module\fP
 .RS 4
-Print module description for helper
+Вивести опис модуля допоміжного засобу
 .RE
 .PP
-\fB\-\-permanent\fP \fB\-\-helper\fP=\fIhelper\fP \fB\-\-set\-family\fP=\fIdescription\fP
+\fB\-\-permanent\fP \fB\-\-helper\fP=\fIдопоміжний_засіб\fP \fB\-\-set\-family\fP=\fIопис\fP
 .RS 4
-Set family description for helper
+Встановити опис сімейства для допоміжного засобу
 .RE
 .PP
 \fB\-\-permanent\fP \fB\-\-helper\fP=\fIдопоміжний_засіб\fP \fB\-\-get\-family\fP
 .RS 4
-Print family description of helper
+Вивести опис сімейства допоміжного засобу
 .RE
-.SS "Internet Control Message Protocol (ICMP) type Options"
+.SS "Параметри типу Internet Control Message Protocol (ICMP)"
 .PP
-Options in this section affect only one particular icmptype\&.
+Параметри у цьому розділі стосуються лише одного окремого типу ICMP\&.
 .PP
 [\fB\-\-permanent\fP] \fB\-\-info\-icmptype=\fP\fIтип_icmp\fP
 .RS 4
-Print information about the icmptype \fIicmptype\fP\&. The output format is:
+Вивести відомості щодо типу ICMP \fIтип_icmp\fP\&. Формат виведення є таким:
 .sp
 \fIтип_icmp\fP
   призначення: \fIipv1\fP \&.\&.
@@ -1420,69 +1456,71 @@ Print information about the icmptype \fIicmptype\fP\&. The output format is:
 .sp
 .RE
 .PP
-The following options are only usable in the permanent configuration\&.
+Наведеними нижче параметрами можна користуватися лише для постійних
+налаштувань\&.
 .PP
 \fB\-\-permanent\fP \fB\-\-new\-icmptype\fP=\fIтип_icmp\fP
 .RS 4
-Add a new permanent and empty icmptype\&.
+Додати новий постійний і порожній тип ICMP\&.
 .sp
-ICMP type names must be alphanumeric and may additionally include
-characters: \*(Aq_\*(Aq and \*(Aq\-\*(Aq\&.
+Назви типів ICMP мають складатися з літер і цифр і додатково можуть містити
+такі символи: \*(Aq\-\*(Aq\&.
 .RE
 .PP
 \fB\-\-permanent\fP \fB\-\-new\-icmptype\-from\-file\fP=\fIназва_файла\fP
 [\fB\-\-name\fP=\fIтип_icmp\fP]
 .RS 4
-Add a new permanent icmptype from a prepared icmptype file with an optional
-name override\&.
+Додати новий постійний тип ICMP з приготованого типу ICMP із необов'язковим
+перевизначенням назви\&.
 .RE
 .PP
 \fB\-\-permanent\fP \fB\-\-delete\-icmptype\fP=\fIтип_icmp\fP
 .RS 4
-Delete an existing permanent icmptype\&.
+Вилучити наявний постійний тип ICMP\&.
 .RE
 .PP
 \fB\-\-permanent\fP \fB\-\-load\-icmptype\-defaults\fP=\fIтип_icmp\fP
 .RS 4
-Load icmptype default settings or report NO_DEFAULTS error\&.
+Завантажити типові параметри типу ICMP або повідомити про помилку
+NO_DEFAULTS\&.
 .RE
 .PP
 \fB\-\-permanent\fP \fB\-\-icmptype\fP=\fIтип_icmp\fP \fB\-\-set\-description\fP=\fIопси\fP
 .RS 4
-Set new description to icmptype
+Встановити новий опис типу ICMP
 .RE
 .PP
 \fB\-\-permanent\fP \fB\-\-icmptype\fP=\fIтип_icmp\fP \fB\-\-get\-description\fP
 .RS 4
-Print description for icmptype
+Вивести опис типу ICMP
 .RE
 .PP
 \fB\-\-permanent\fP \fB\-\-icmptype\fP=\fIтип_icmp\fP \fB\-\-set\-short\fP=\fIопис\fP
 .RS 4
-Set short description to icmptype
+Встановити короткий опис типу ICMP
 .RE
 .PP
 \fB\-\-permanent\fP \fB\-\-icmptype\fP=\fIтип_icmp\fP \fB\-\-get\-short\fP
 .RS 4
-Print short description for icmptype
+Вивести короткий опис типу ICMP
 .RE
 .PP
 \fB\-\-permanent\fP \fB\-\-icmptype\fP=\fIтип_icmp\fP \fB\-\-add\-destination\fP=\fIipv\fP
 .RS 4
-Enable destination for ipv in permanent icmptype\&. ipv is one of \fIipv4\fP or
-\fIipv6\fP\&.
+Увімкнути призначення для ipv у постійному типі ICMP\&. ipv є одним з таких
+значень: \fIipv4\fP або \fIipv6\fP\&.
 .RE
 .PP
 \fB\-\-permanent\fP \fB\-\-icmptype\fP=\fIтип_icmp\fP \fB\-\-remove\-destination\fP=\fIipv\fP
 .RS 4
-Disable destination for ipv in permanent icmptype\&. ipv is one of \fIipv4\fP
-or \fIipv6\fP\&.
+Вимкнути призначення для ipv у постійному типі ICMP\&. ipv є одним з таких
+значень: \fIipv4\fP або \fIipv6\fP\&.
 .RE
 .PP
 \fB\-\-permanent\fP \fB\-\-icmptype\fP=\fIтип_icmp\fP \fB\-\-query\-destination\fP=\fIipv\fP
 .RS 4
-Return whether destination for ipv is enabled in permanent icmptype\&. ipv
-is one of \fIipv4\fP or \fIipv6\fP\&.
+Повернути, чи призначення для ipv увімкнено у постійному типі ICMP\&. ipv є
+одним з таких значень: \fIipv4\fP або \fIipv6\fP\&.
 .RE
 .PP
 \fB\-\-permanent\fP \fB\-\-icmptype\fP=\fIтип_icmp\fP \fB\-\-get\-destinations\fP
@@ -1504,11 +1542,12 @@ is one of \fIipv4\fP or \fIipv6\fP\&.
 див. \fBfirewalld.policies\fP(5)\&.
 .RE
 .PP
-The direct options give a more direct access to the firewall\&. These
-options require user to know basic iptables concepts, i\&.e\&.  \fItable\fP
-(filter/mangle/nat/\&.\&.\&.), \fIchain\fP (INPUT/OUTPUT/FORWARD/\&.\&.\&.),
-\fIcommands\fP (\-A/\-D/\-I/\&.\&.\&.), \fIparameters\fP (\-p/\-s/\-d/\-j/\&.\&.\&.) and
-\fItargets\fP (ACCEPT/DROP/REJECT/\&.\&.\&.)\&.
+Параметри безпосереднього керування надають безпосередніший доступ до
+брандмауера\&. Для користування цими параметрами користувач має бути
+ознайомлений із базовими поняттями iptables, тобто поняттями \fIтаблиця\fP
+(filter/mangle/nat/\&.\&.\&.), \fIланцюжок\fP (INPUT/OUTPUT/FORWARD/\&.\&.\&.),
+\fIкоманда\fP (\-A/\-D/\-I/\&.\&.\&.), \fIпараметр\fP (\-p/\-s/\-d/\-j/\&.\&.\&.) і
+\fIпризначення\fP (ACCEPT/DROP/REJECT/\&.\&.\&.)\&.
 .PP
 Direct options should be used only as a last resort when it\*(Aqs not
 possible to use for example \fB\-\-add\-service\fP=\fIservice\fP or
@@ -1676,14 +1715,14 @@ Enable lockdown\&. Be careful \- if firewall\-cmd is not on lockdown whitelist
 when you enable lockdown you won\*(Aqt be able to disable it again with
 firewall\-cmd, you would need to edit firewalld\&.conf\&.
 .sp
-This is a runtime and permanent change\&.
+Це зміна у динамічних і постійних налаштуваннях\&.
 .RE
 .PP
 \fB\-\-lockdown\-off\fP
 .RS 4
 Disable lockdown\&.
 .sp
-This is a runtime and permanent change\&.
+Це зміна у динамічних і постійних налаштуваннях\&.
 .RE
 .PP
 \fB\-\-query\-lockdown\fP

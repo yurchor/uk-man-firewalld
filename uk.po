@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Firewalld documentation 1.0\n"
 "Report-Msgid-Bugs-To: trans-uk@lists.fedoraproject.org\n"
 "POT-Creation-Date: 2022-05-22 09:27+0300\n"
-"PO-Revision-Date: 2022-05-22 13:04+0300\n"
+"PO-Revision-Date: 2022-05-22 22:16+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "Language: uk\n"
@@ -73,6 +73,9 @@ msgid ""
 "firewall-cmd is the command line client of the firewalld daemon\\&. It "
 "provides an interface to manage the runtime and permanent configurations\\&."
 msgstr ""
+"firewall-cmd — клієнтська програма фонової служби firewalld, якою керують з"
+" командного рядка\\&. Вона надає інтерфейс для керування динамічними і"
+" постійними налаштуваннями служби\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:38
@@ -81,6 +84,9 @@ msgid ""
 "configuration\\&. This means that things can get changed in the runtime or "
 "permanent configuration\\&."
 msgstr ""
+"Динамічні налаштування у firewalld відокремлено від постійних налаштувань\\&."
+" Це означає, що поведінку програми можна змінювати у динамічних або постійних"
+" налаштуваннях\\&."
 
 #. type: SH
 #: firewall-cmd.1:38 firewalld.1:36
@@ -101,6 +107,17 @@ msgid ""
 "then this is used\\&. If there are more than one then I<UNKNOWN_ERROR> (254) "
 "will be used\\&."
 msgstr ""
+"Параметри послідовності є параметрами, які може бути вказано декілька разів;"
+" кодом виходу буде 0, якщо успішним буде принаймні один з елементів"
+" послідовності\\&. Коди помилок I<ALREADY_ENABLED> (11, «вже увімкнено»), I<"
+"NOT_ENABLED> (12, «не увімкнено») і I<ZONE_ALREADY_SET> (16, «зону вже"
+" встановлено») також вважаються кодами успішного виконання\\&. Якщо під час"
+" обробки записів буде виявлено помилки, ці помилки вважаються попередженнями"
+" і не змінюють результату, якщо було успішно виконано принаймні один"
+" запис\\&. Якщо успішно виконаного запису не буде, код виходу залежатиме від"
+" кодів помилок\\&. Якщо буде отримано точно один код помилки, буде"
+" використано саме цей код\\&. Якщо кодів помилок було декілька, буде"
+" використано I<UNKNOWN_ERROR> (254)\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:51
@@ -134,6 +151,8 @@ msgid ""
 "Print the version string of firewalld\\&. This option is not combinable with "
 "other options\\&."
 msgstr ""
+"Вивести рядок версії firewalld\\&. Цей параметр не можна поєднувати з іншими"
+" параметрами\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:64
@@ -164,6 +183,11 @@ msgid ""
 "occurred on startup, I<NOT_RUNNING> otherwise\\&. See the section called "
 "\\(lqEXIT CODES\\(rq\\&. This will also print the state to I<STDOUT>\\&."
 msgstr ""
+"Перевірити, чи є активною фонова служба firewalld (тобто, чи запущено"
+" програму)\\&. Повертає код виходу 0, якщо служба є активною; I<"
+"RUNNING_BUT_FAILED>, якщо під час запуску програми сталася помилка; I<"
+"NOT_RUNNING> в усіх інших випадках\\&. Див. розділ \\(lqКОДИ ВИХОДУ\\(rq\\&."
+" Також стан буде виведено до I<STDOUT>\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:81
@@ -178,6 +202,11 @@ msgid ""
 "only changes done until reload are lost with reload if they have not been "
 "also in permanent configuration\\&."
 msgstr ""
+"Перезавантажити правила брандмауера і зберегти дані щодо стану\\&. Поточні"
+" постійні налаштування стануть новими динамічними налаштуваннями, тобто усі"
+" зміни у динамічних налаштуваннях, які було внесено до динамічних налаштувань"
+" до моменту перезавантаження, буде втрачено після перезавантаження, якщо їх"
+" не було у постійних налаштуваннях\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:86 firewall-cmd.1:94
@@ -187,6 +216,10 @@ msgid ""
 "daemon is restarted completely\\&. For FlushAllOnReload, see B<firewalld."
 "conf>(5)\\&."
 msgstr ""
+"Зауваження: якщо FlushAllOnReload=no, зміни у динамічних налаштуваннях,"
+" застосовані за допомогою безпосереднього інтерфейсу, не зміняться і тому"
+" лишаться чинними, аж доки фонову службу firewalld не буде перезапущено"
+" повністю\\&. Щодо FlushAllOnReload див. B<firewalld.conf>(5)\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:89
@@ -202,6 +235,12 @@ msgid ""
 "example if there are state information problems that no connection can be "
 "established with correct firewall rules\\&."
 msgstr ""
+"Повністю перезавантажити брандмауер, навіть модулі ядра netfilter\\&. Це,"
+" найімовірніше, призведе до розірвання активних з'єднань, оскільки дані щодо"
+" стану буде втрачено\\&. Цим параметром слід користуватися, лише у разі"
+" критичних проблем із брандмауером\\&. Наприклад, якщо є проблеми із даними"
+" щодо стану такі, що жодне з'єднання не може бути встановлено із належними"
+" правилами брандмауера\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:97
@@ -217,6 +256,11 @@ msgid ""
 "configuration and you tested that it works the way you want, you save the "
 "configuration to disk\\&."
 msgstr ""
+"Зберегти активні динамічні налаштування і перезаписати постійні налаштування"
+" ними\\&. Це відбувається так: при налаштовуванні firewalld ви вносите зміни"
+" лише до динамічних налаштувань, і коли досягнуто прийнятного варіанта, ви"
+" перевірили, що усе працює так, як слід, ви зберігаєте налаштування на"
+" диск\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:102
@@ -229,12 +273,14 @@ msgid ""
 "Run checks on the permanent configuration\\&. This includes XML validity and "
 "semantics\\&."
 msgstr ""
+"Виконати перевірки щодо постійних налаштувань\\&. Перевірки стосуватимуться"
+" чинності XML і семантики\\&."
 
 #. type: SS
 #: firewall-cmd.1:105
 #, no-wrap
 msgid "Log Denied Options"
-msgstr ""
+msgstr "Параметри журналу відмов"
 
 #. type: Plain text
 #: firewall-cmd.1:108
@@ -244,7 +290,7 @@ msgstr "B<--get-log-denied>"
 #. type: Plain text
 #: firewall-cmd.1:110
 msgid "Print the log denied setting\\&."
-msgstr ""
+msgstr "Вивести параметр запису відмов до журналу\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:113
@@ -260,6 +306,12 @@ msgid ""
 "are: I<all>, I<unicast>, I<broadcast>, I<multicast> and I<off>\\&. The "
 "default setting is I<off>, which disables the logging\\&."
 msgstr ""
+"Додати правила журналювання безпосередньо перед правилами відмови (reject) та"
+" відкидання (drop) у ланцюжках INPUT, FORWARD і OUTPUT для типових правил, а"
+" також правилами остаточної відмови та відкидання у зонах для налаштованих"
+" типів пакетів зв'язку-шару\\&. Можливими значеннями є такі: I<all>, I<"
+"unicast>, I<broadcast>, I<multicast> і I<off>\\&. Типовим значенням є I<off>,"
+" що означає «вимкнути записування до журналу»\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:124
@@ -267,12 +319,15 @@ msgid ""
 "This is a runtime and permanent change and will also reload the firewall to "
 "be able to add the logging rules\\&."
 msgstr ""
+"Це зміна у динамічних і постійних налаштуваннях, вона також призведе до"
+" перезавантаження брандмауера з метою уможливлення додавання правил запису до"
+" журналу\\&."
 
 #. type: SS
 #: firewall-cmd.1:125
 #, no-wrap
 msgid "Permanent Options"
-msgstr ""
+msgstr "Постійні параметри"
 
 #. type: Plain text
 #: firewall-cmd.1:128
@@ -287,6 +342,11 @@ msgid ""
 "reload or system reboot\\&. Without the B<--permanent> option, a change will "
 "only be part of the runtime configuration\\&."
 msgstr ""
+"Параметр постійних налаштувань B<--permanent> можна використати для"
+" встановлення постійних значень параметрів\\&. Ці параметри не набудуть"
+" чинності негайно, а лише після перезапуску/перезавантаження налаштувань або"
+" перезавантаження системи\\&. Без параметра B<--permanent> зміни лишатимуться"
+" частиною лише динамічних налаштувань\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:138
@@ -294,6 +354,8 @@ msgid ""
 "If you want to make a change in runtime and permanent configuration, use the "
 "same call with and without the B<--permanent> option\\&."
 msgstr ""
+"Якщо ви хочете внести зміни до динамічних і постійних налаштувань,"
+" скористайтеся тим самим викликом з параметром B<--permanent> і без нього\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:142
@@ -301,6 +363,8 @@ msgid ""
 "The B<--permanent> option can be optionally added to all options further "
 "down where it is supported\\&."
 msgstr ""
+"Параметр B<--permanent> можна додати до усіх параметрів, які описано нижче,"
+" там, де передбачено його підтримку\\&."
 
 #. type: SS
 #: firewall-cmd.1:143
@@ -316,7 +380,7 @@ msgstr "B<--get-default-zone>"
 #. type: Plain text
 #: firewall-cmd.1:148
 msgid "Print default zone for connections and interfaces\\&."
-msgstr ""
+msgstr "Вивести типову зону для з'єднань та інтерфейсів\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:151
@@ -330,11 +394,14 @@ msgid ""
 "selected\\&. Setting the default zone changes the zone for the connections "
 "or interfaces, that are using the default zone\\&."
 msgstr ""
+"Встановити типову зону для з'єднань та інтерфейсів там, де не було вибрано"
+" жодної зони\\&. Встановлення типової зони змінить зону для з'єднань та"
+" інтерфейсів, у яких використано типову зону\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:155 firewall-cmd.1:1754 firewall-cmd.1:1761
 msgid "This is a runtime and permanent change\\&."
-msgstr ""
+msgstr "Це зміна у динамічних і постійних налаштуваннях\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:158
@@ -348,6 +415,9 @@ msgid ""
 "these zones\\&. Active zones are zones, that have a binding to an interface "
 "or source\\&. The output format is:"
 msgstr ""
+"Вивести поточні активні зони разом із інтерфейсами і адресами походження, які"
+" використано у цих зонах\\&. Активними є зони, які пов'язано із інтерфейсом"
+" або походженням\\&. Формат виведення є таким:"
 
 #. type: Plain text
 #: firewall-cmd.1:170
@@ -364,6 +434,16 @@ msgid ""
 "If there are no interfaces or sources bound to the zone, the corresponding"
 " line will be omitted\\&.\n"
 msgstr ""
+"I<зона>\n"
+"  interfaces: I<інтерфейс1> I<інтерфейс2> \\&.\\&.\n"
+"  sources: I<походження1> \\&.\\&.\n"
+"I<походження2>\n"
+"  interfaces: I<інтерфейс3> \\&.\\&.\n"
+"I<зона3>\n"
+"  sources: I<походження2> \\&.\\&.\n"
+"\t      \n"
+"Якщо з зоною не пов'язано жодних інтерфейсів або походжень, відповідний рядок"
+" буде пропущено\\&.\n"
 
 #. type: Plain text
 #: firewall-cmd.1:173
@@ -374,6 +454,8 @@ msgstr "[B<--permanent>] B<--get-zones>"
 #: firewall-cmd.1:175
 msgid "Print predefined zones as a space separated list\\&."
 msgstr ""
+"Вивести попередньо визначені зони у форматі списку відокремлених"
+" пробілами значень\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:178
@@ -384,6 +466,8 @@ msgstr "[B<--permanent>] B<--get-services>"
 #: firewall-cmd.1:180
 msgid "Print predefined services as a space separated list\\&."
 msgstr ""
+"Вивести попередньо визначені служби у форматі списку відокремлених"
+" пробілами значень\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:183
@@ -394,6 +478,8 @@ msgstr "[B<--permanent>] B<--get-icmptypes>"
 #: firewall-cmd.1:185
 msgid "Print predefined icmptypes as a space separated list\\&."
 msgstr ""
+"Вивести попередньо визначені типи ICMP у форматі списку відокремлених"
+" пробілами значень\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:188
@@ -405,6 +491,7 @@ msgstr "[B<--permanent>] B<--get-zone-of-interface>=I<інтерфейс>"
 msgid ""
 "Print the name of the zone the I<interface> is bound to or I<no zone>\\&."
 msgstr ""
+"Вивести назву зони, із якою пов'язано I<інтерфейс> або I<немає зони>\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:196
@@ -418,7 +505,7 @@ msgstr ""
 #. type: Plain text
 #: firewall-cmd.1:199
 msgid "Print the name of the zone the source is bound to or I<no zone>\\&."
-msgstr ""
+msgstr "Вивести назву зони, із якою пов'язано походження або I<немає зони>\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:202
@@ -428,7 +515,7 @@ msgstr "[B<--permanent>] B<--info-zone=>I<зона>"
 #. type: Plain text
 #: firewall-cmd.1:205
 msgid "Print information about the zone I<zone>\\&. The output format is:"
-msgstr ""
+msgstr "Вивести відомості щодо зони I<зона>\\&. Формат виведення є таким:"
 
 #. type: Plain text
 #: firewall-cmd.1:220
@@ -449,6 +536,20 @@ msgid ""
 "        I<rich-rule1>\n"
 "        \\&.\\&.\n"
 msgstr ""
+"I<зона>\n"
+"  interfaces: I<інтерфейс1> \\&.\\&.\n"
+"  sources: I<походження1> \\&.\\&.\n"
+"  services: I<служба1> \\&.\\&.\n"
+"  ports: I<порт1> \\&.\\&.\n"
+"  protocols: I<протокол1> \\&.\\&.\n"
+"  forward-ports:\n"
+"        I<порт_переспрямування1>\n"
+"        \\&.\\&.\n"
+"  source-ports: I<порт_походження1> \\&.\\&.\n"
+"  icmp-blocks: I<тип_icmp1> \\&.\\&.\n"
+"  rich rules:\n"
+"        I<розширене_правило1>\n"
+"        \\&.\\&.\n"
 
 #. type: Plain text
 #: firewall-cmd.1:224
@@ -460,6 +561,8 @@ msgstr "[B<--permanent>] B<--list-all-zones>"
 msgid ""
 "List everything added for or enabled in all zones\\&. The output format is:"
 msgstr ""
+"Вивести список усього доданого або увімкненого в усіх зонах\\&. Формат"
+" виведення є таким:"
 
 #. type: Plain text
 #: firewall-cmd.1:241
@@ -480,6 +583,20 @@ msgid ""
 "        \\&.\\&.\n"
 "\\&.\\&.\n"
 msgstr ""
+"I<зона1>\n"
+"  interfaces: I<інтерфейс1> \\&\\&\n"
+"  sources: I<походження> \\&\\&\n"
+"  services: I<служба1> \\&.\\&.\n"
+"  ports: I<порт1> \\&.\\&.\n"
+"  protocols: I<протокол1> \\&.\\&.\n"
+"  forward-ports:\n"
+"        I<порт_переспрямування1>\n"
+"        \\&.\\&.\n"
+"  icmp-blocks: I<тип_icmp1> \\&.\\&.\n"
+"  rich rules:\n"
+"        I<розширене_правило1>\n"
+"        \\&.\\&.\n"
+"\\&.\\&.\n"
 
 #. type: Plain text
 #: firewall-cmd.1:245
@@ -489,7 +606,7 @@ msgstr "B<--permanent> B<--new-zone>=I<зона>"
 #. type: Plain text
 #: firewall-cmd.1:247
 msgid "Add a new permanent and empty zone\\&."
-msgstr ""
+msgstr "Додати нову постійну і порожню зону\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:249
@@ -497,6 +614,8 @@ msgid ""
 "Zone names must be alphanumeric and may additionally include characters: "
 "\\*(Aq_\\*(Aq and \\*(Aq-\\*(Aq\\&."
 msgstr ""
+"Назви зон мають складатися з літер і цифр і додатково можуть містити такі"
+" символи: \\*(Aq-\\*(Aq\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:252
@@ -510,6 +629,8 @@ msgid ""
 "Add a new permanent zone from a prepared zone file with an optional name "
 "override\\&."
 msgstr ""
+"Додати новий постійну зону засіб з приготованої зони із необов'язковим"
+" перевизначенням назви\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:257
@@ -519,7 +640,7 @@ msgstr "B<--permanent> B<--delete-zone>=I<зона>"
 #. type: Plain text
 #: firewall-cmd.1:259
 msgid "Delete an existing permanent zone\\&."
-msgstr ""
+msgstr "Вилучити наявну постійну зону\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:262
@@ -530,6 +651,8 @@ msgstr "B<--permanent> B<--load-zone-defaults>=I<зона>"
 #: firewall-cmd.1:264
 msgid "Load zone default settings or report NO_DEFAULTS error\\&."
 msgstr ""
+"Завантажити типові параметри зони або повідомити про помилку"
+" NO_DEFAULTS\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:267
@@ -539,7 +662,7 @@ msgstr "B<--permanent> B<--path-zone=>I<зона>"
 #. type: Plain text
 #: firewall-cmd.1:269
 msgid "Print path of the zone configuration file\\&."
-msgstr ""
+msgstr "Вивести шлях до файла налаштувань зони\\&."
 
 #. type: SS
 #: firewall-cmd.1:270
@@ -556,6 +679,8 @@ msgstr "[B<--permanent>] B<--get-policies>"
 #: firewall-cmd.1:275
 msgid "Print predefined policies as a space separated list\\&."
 msgstr ""
+"Вивести попередньо визначені правила у форматі списку відокремлених"
+" пробілами значень\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:278
@@ -565,7 +690,7 @@ msgstr "[B<--permanent>] B<--info-policy>=I<правило>"
 #. type: Plain text
 #: firewall-cmd.1:281
 msgid "Print information about the policy I<policy>\\&."
-msgstr ""
+msgstr "Вивести відомості щодо правила I<правило>\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:284
@@ -575,7 +700,7 @@ msgstr "[B<--permanent>] B<--list-all-policies>"
 #. type: Plain text
 #: firewall-cmd.1:286
 msgid "List everything added for or enabled in all policies\\&."
-msgstr ""
+msgstr "Вивести список усього доданого або увімкненого в усіх правилах\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:289
@@ -593,6 +718,8 @@ msgid ""
 "Policy names must be alphanumeric and may additionally include characters: "
 "\\*(Aq_\\*(Aq and \\*(Aq-\\*(Aq\\&."
 msgstr ""
+"Назви правил мають складатися з літер і цифр і додатково можуть містити такі"
+" символи: \\*(Aq-\\*(Aq\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:296
@@ -607,6 +734,8 @@ msgid ""
 "Add a new permanent policy from a prepared policy file with an optional name "
 "override\\&."
 msgstr ""
+"Додати новий постійне правило з приготованого файла правил із необов'язковим"
+" перевизначенням назви\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:301
@@ -639,6 +768,9 @@ msgid ""
 "Load the shipped defaults for a policy\\&. Only applies to policies shipped "
 "with firewalld\\&. Does not apply to user defined policies\\&."
 msgstr ""
+"Завантажити типові параметри для правила\\&. Стосується лише правил, які є"
+" частиною пакунка firewalld\\&. Не стосується визначених користувачем"
+" правил\\&."
 
 #. type: SS
 #: firewall-cmd.1:314
@@ -654,6 +786,11 @@ msgid ""
 "specified zone or policy\\&. If both options are omitted, they affect the "
 "default zone (see B<--get-default-zone>)\\&."
 msgstr ""
+"Параметри з цього розділу стосуються лише одної певної зони або одного"
+" певного правила\\&. Якщо їх використано разом із параметром B<--zone>=I<зона"
+"> або B<--policy>=I<правило>, вони стосуватимуться вказаної зони або"
+" вказаного правила\\&. Якщо не вказано жодного з цих параметрів, вони"
+" стосуватимуться типової зони (див. B<--get-default-zone>)\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:324
@@ -665,7 +802,7 @@ msgstr ""
 #. type: Plain text
 #: firewall-cmd.1:326
 msgid "List everything added or enabled\\&."
-msgstr ""
+msgstr "Вивести список усього доданого або увімкненого\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:329
@@ -677,7 +814,7 @@ msgstr ""
 #. type: Plain text
 #: firewall-cmd.1:331
 msgid "Get the target\\&."
-msgstr ""
+msgstr "Отримати призначення\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:334
@@ -698,18 +835,24 @@ msgstr "Встановити призначення\\&."
 msgid ""
 "For zones I<target> is one of: I<default>, I<ACCEPT>, I<DROP>, I<REJECT>"
 msgstr ""
+"Для зон I<призначення> є одним з таких значень: I<default> (типове), I<ACCEPT"
+"> (прийняти), I<DROP> (відкинути), I<REJECT> (відмовити)"
 
 #. type: Plain text
 #: firewall-cmd.1:352
 msgid ""
 "For policies I<target> is one of: I<CONTINUE>, I<ACCEPT>, I<DROP>, I<REJECT>"
 msgstr ""
+"Для правил I<призначення> є одним з таких значень: I<CONTINUE> (продовжити),"
+" I<ACCEPT> (прийняти), I<DROP> (відкинути), I<REJECT> (відмовити)"
 
 #. type: Plain text
 #: firewall-cmd.1:356
 msgid ""
 "I<default> is similar to I<REJECT>, but it implicitly allows ICMP packets\\&."
 msgstr ""
+"Варіант I<default> є подібним до I<REJECT>, але неявним чином дозволяє пакети"
+" ICMP\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:359
@@ -731,11 +874,13 @@ msgid ""
 "B<--permanent> [B<--zone>=I<zone>] [B<--policy>=I<policy>] B<--get-"
 "description>"
 msgstr ""
+"B<--permanent> [B<--zone>=I<зона>] [B<--policy>=I<правило>] B<--get-"
+"description>"
 
 #. type: Plain text
 #: firewall-cmd.1:366
 msgid "Print description\\&."
-msgstr ""
+msgstr "Вивести опис\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:369
@@ -743,22 +888,25 @@ msgid ""
 "B<--permanent> [B<--zone>=I<zone>] [B<--policy>=I<policy>] B<--set-"
 "short>=I<description>"
 msgstr ""
+"B<--permanent> [B<--zone>=I<зона>] [B<--policy>=I<правило>] B<--set-"
+"short>=I<опис>"
 
 #. type: Plain text
 #: firewall-cmd.1:371
 msgid "Set short description\\&."
-msgstr ""
+msgstr "Встановити короткий опис\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:374
 msgid ""
 "B<--permanent> [B<--zone>=I<zone>] [B<--policy>=I<policy>] B<--get-short>"
 msgstr ""
+"B<--permanent> [B<--zone>=I<зона>] [B<--policy>=I<правило>] B<--get-short>"
 
 #. type: Plain text
 #: firewall-cmd.1:376
 msgid "Print short description\\&."
-msgstr ""
+msgstr "Вивести короткий опис\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:379
@@ -766,11 +914,14 @@ msgid ""
 "[B<--permanent>] [B<--zone>=I<zone>] [B<--permanent>] [B<--"
 "policy>=I<policy>] B<--list-services>"
 msgstr ""
+"[B<--permanent>] [B<--zone>=I<зона>] [B<--permanent>] [B<--policy>=I<правило"
+">] B<--list-services>"
 
 #. type: Plain text
 #: firewall-cmd.1:381
 msgid "List services added as a space separated list\\&."
 msgstr ""
+"Вивести список доданих служб як список відокремлених пробілами значень\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:384
@@ -778,6 +929,8 @@ msgid ""
 "[B<--permanent>] [B<--zone>=I<zone>] [B<--permanent>] [B<--"
 "policy>=I<policy>] B<--add-service>=I<service> [B<--timeout>=I<timeval>]"
 msgstr ""
+"[B<--permanent>] [B<--zone>=I<зона>] [B<--permanent>] [B<--"
+"policy>=I<правило>] B<--add-service>=I<служба> [B<--timeout>=I<значення_часу>]"
 
 #. type: Plain text
 #: firewall-cmd.1:397
@@ -788,6 +941,12 @@ msgid ""
 "a number (of seconds) or number followed by one of characters I<s> "
 "(seconds), I<m> (minutes), I<h> (hours), for example I<20m> or I<1h>\\&."
 msgstr ""
+"Додати службу\\&. Цей параметр можна вказувати декілька разів в одній"
+" команді\\&. Якщо вказано значення часу очікування, правило буде активним"
+" протягом вказаного періоду часу, а потім його буде автоматично вилучено\\&."
+" Значення I<значення_часу> можна вказати або як кількість (секунд) або як"
+" число, за яким вказано один із таких символів: I<s> (секунди), I<m>"
+" (хвилини), I<h> (години), приклади: I<20m> або I<1h>\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:400
@@ -795,6 +954,8 @@ msgid ""
 "The service is one of the firewalld provided services\\&. To get a list of "
 "the supported services, use B<firewall-cmd --get-services>\\&."
 msgstr ""
+"Службою є одна із служб, які надає firewalld\\&. Для отримання списку"
+" підтримуваних служб скористайтеся командою B<firewall-cmd --get-services>\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:406 firewall-cmd.1:465 firewall-cmd.1:506 firewall-cmd.1:552
@@ -802,6 +963,7 @@ msgstr ""
 msgid ""
 "The B<--timeout> option is not combinable with the B<--permanent> option\\&."
 msgstr ""
+"Параметр B<--timeout> не можна поєднувати з параметром B<--permanent>\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:408
@@ -818,6 +980,8 @@ msgstr ""
 #: firewall-cmd.1:410
 msgid "An example of an outbound policy for connection tracking helpers:"
 msgstr ""
+"Приклад правил для вихідних даних для допоміжних засобів стеження за"
+" з'єднанням:"
 
 #. type: Plain text
 #: firewall-cmd.1:415
@@ -827,6 +991,10 @@ msgid ""
 "permanent --policy clientConntrack --add-egress-zone ANY # firewall-cmd --"
 "permanent --policy clientConntrack --add-service tftp"
 msgstr ""
+"# firewall-cmd --permanent --new-policy clientConntrack # firewall-cmd --"
+"permanent --policy clientConntrack --add-ingress-zone HOST # firewall-cmd --"
+"permanent --policy clientConntrack --add-egress-zone ANY # firewall-cmd --"
+"permanent --policy clientConntrack --add-service tftp"
 
 #. type: Plain text
 #: firewall-cmd.1:420
@@ -834,6 +1002,8 @@ msgid ""
 "[B<--permanent>] [B<--zone>=I<zone>] [B<--permanent>] [B<--"
 "policy>=I<policy>] B<--remove-service>=I<service>"
 msgstr ""
+"[B<--permanent>] [B<--zone>=I<зона>] [B<--permanent>] [B<--policy>=I<правило"
+">] B<--remove-service>=I<служба>"
 
 #. type: Plain text
 #: firewall-cmd.1:422
@@ -1213,11 +1383,13 @@ msgstr ""
 #: firewall-cmd.1:712 firewall-cmd.1:726 firewall-cmd.1:737
 msgid "For I<IPv6> masquerading, please use the rich language\\&."
 msgstr ""
+"Для приховування I<IPv6>, будь ласка, скористайтеся розширеним варіантом"
+" мови\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:715
 msgid "I<Note:> IP forwarding will be implicitly enabled\\&."
-msgstr ""
+msgstr "I<Зауваження:> буде неявними чином увімкнено переспрямовування IP\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:718
@@ -1225,6 +1397,8 @@ msgid ""
 "[B<--permanent>] [B<--zone>=I<zone>] [B<--permanent>] [B<--"
 "policy>=I<policy>] B<--remove-masquerade>"
 msgstr ""
+"[B<--permanent>] [B<--zone>=I<zone>] [B<--permanent>] [B<--"
+"policy>=I<правило>] B<--remove-masquerade>"
 
 #. type: Plain text
 #: firewall-cmd.1:722
@@ -1239,6 +1413,8 @@ msgid ""
 "[B<--permanent>] [B<--zone>=I<zone>] [B<--permanent>] [B<--"
 "policy>=I<policy>] B<--query-masquerade>"
 msgstr ""
+"[B<--permanent>] [B<--zone>=I<зона>] [B<--permanent>] [B<--policy>=I<правило"
+">] B<--query-masquerade>"
 
 #. type: Plain text
 #: firewall-cmd.1:733
@@ -1246,6 +1422,8 @@ msgid ""
 "Return whether I<IPv4> masquerading has been enabled\\&. Returns 0 if true, "
 "1 otherwise\\&."
 msgstr ""
+"Повернути, чи було увімкнено приховування I<IPv4>\\&. Повертає 0, якщо було;"
+" 1, якщо не було\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:740
@@ -1253,6 +1431,8 @@ msgid ""
 "[B<--permanent>] [B<--zone>=I<zone>] [B<--permanent>] [B<--"
 "policy>=I<policy>] B<--list-rich-rules>"
 msgstr ""
+"[B<--permanent>] [B<--zone>=I<зона>] [B<--permanent>] [B<--policy>=I<правило"
+">] B<--list-rich-rules>"
 
 #. type: Plain text
 #: firewall-cmd.1:742
@@ -1266,6 +1446,9 @@ msgid ""
 "policy>=I<policy>] B<--add-rich-rule>=\\*(AqI<rule>\\*(Aq [B<--"
 "timeout>=I<timeval>]"
 msgstr ""
+"[B<--permanent>] [B<--zone>=I<зона>] [B<--permanent>] [B<--"
+"policy>=I<правло>] B<--add-rich-rule>=\\*(AqI<правило>\\*(Aq [B<--"
+"timeout>=I<значення_часу>]"
 
 #. type: Plain text
 #: firewall-cmd.1:760
@@ -1291,6 +1474,8 @@ msgid ""
 "[B<--permanent>] [B<--zone>=I<zone>] [B<--permanent>] [B<--"
 "policy>=I<policy>] B<--remove-rich-rule>=\\*(AqI<rule>\\*(Aq"
 msgstr ""
+"[B<--permanent>] [B<--zone>=I<зона>] [B<--permanent>] [B<--"
+"policy>=I<правило>] B<--remove-rich-rule>=\\*(AqI<правило>\\*(Aq"
 
 #. type: Plain text
 #: firewall-cmd.1:774
@@ -1337,7 +1522,7 @@ msgstr "[B<--permanent>] [B<--zone>=I<зона>] B<--add-icmp-block-inversion>"
 #. type: Plain text
 #: firewall-cmd.1:796
 msgid "Enable ICMP block inversion\\&."
-msgstr ""
+msgstr "Увімкнути інверсію блоків ICMP\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:799
@@ -1347,7 +1532,7 @@ msgstr "[B<--permanent>] [B<--zone>=I<зона>] B<--remove-icmp-block-inversion
 #. type: Plain text
 #: firewall-cmd.1:801
 msgid "Disable ICMP block inversion\\&."
-msgstr ""
+msgstr "Вимкнути інверсію блоків ICMP\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:804
@@ -1397,7 +1582,7 @@ msgstr ""
 #: firewall-cmd.1:822
 #, no-wrap
 msgid "Options to Adapt and Query Policies"
-msgstr ""
+msgstr "Параметри для пристосування правил та опитування правил"
 
 #. type: Plain text
 #: firewall-cmd.1:827
@@ -1414,7 +1599,7 @@ msgstr "B<--permanent> B<--policy>=I<правило> B<--get-priority>"
 #. type: Plain text
 #: firewall-cmd.1:831
 msgid "Get the priority\\&."
-msgstr ""
+msgstr "Отримати пріоритетність\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:834
@@ -1563,7 +1748,7 @@ msgstr "[B<--permanent>] B<--policy>=I<правило> B<--query-egress-zone>=I<
 #: firewall-cmd.1:896
 #, no-wrap
 msgid "Options to Handle Bindings of Interfaces"
-msgstr ""
+msgstr "Параметри обробки прив'язки інтерфейсів"
 
 #. type: Plain text
 #: firewall-cmd.1:899
@@ -1584,6 +1769,8 @@ msgstr ""
 #: firewall-cmd.1:908
 msgid "For a list of predefined zones use B<firewall-cmd --get-zones>\\&."
 msgstr ""
+"Щоб отримати список попередньо визначених зон, скористайтеся командою B<"
+"firewall-cmd --get-zones>\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:915
@@ -1708,6 +1895,8 @@ msgid ""
 "Remove binding of interface I<interface> from zone it was previously added to"
 "\\&."
 msgstr ""
+"Вилучити прив'язку інтерфейсу I<інтерфейс> з зони, коди її було раніше"
+" додано\\&."
 
 #. type: SS
 #: firewall-cmd.1:982
@@ -1800,6 +1989,8 @@ msgid ""
 "Query whether the source is bound to the zone I<zone>\\&. Returns 0 if true, "
 "1 otherwise\\&."
 msgstr ""
+"Опитати, чи прив'язано походження до зони I<зона>\\&. Повертає 0, якщо"
+" прив'язано; 1, якщо не прив'язано\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1027
@@ -1812,13 +2003,13 @@ msgstr ""
 #. type: Plain text
 #: firewall-cmd.1:1029
 msgid "Remove binding of the source from zone it was previously added to\\&."
-msgstr ""
+msgstr "Вилучити прив'язку походження з зони, коди її було раніше додано\\&."
 
 #. type: SS
 #: firewall-cmd.1:1030
 #, no-wrap
 msgid "IPSet Options"
-msgstr ""
+msgstr "Параметри наборів IP"
 
 #. type: Plain text
 #: firewall-cmd.1:1033
@@ -1828,7 +2019,7 @@ msgstr "B<--get-ipset-types>"
 #. type: Plain text
 #: firewall-cmd.1:1035
 msgid "Print the supported ipset types\\&."
-msgstr ""
+msgstr "Вивести підтримувані типи наборів ip\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1038
@@ -1853,6 +2044,8 @@ msgid ""
 "ipset names must be alphanumeric and may additionally include characters: "
 "\\*(Aq_\\*(Aq and \\*(Aq-\\*(Aq\\&."
 msgstr ""
+"Набори ip мають складатися з літер і цифр і додатково можуть містити такі"
+" символи: \\*(Aq-\\*(Aq\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1051
@@ -1867,6 +2060,8 @@ msgid ""
 "Add a new permanent ipset from a prepared ipset file with an optional name "
 "override\\&."
 msgstr ""
+"Додати новий постійний набір ip засіб з приготованого набору ip із"
+" необов'язковим перевизначенням назви\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1056
@@ -1876,7 +2071,7 @@ msgstr "B<--permanent> B<--delete-ipset>=I<набір_ip>"
 #. type: Plain text
 #: firewall-cmd.1:1058
 msgid "Delete an existing permanent ipset\\&."
-msgstr ""
+msgstr "Вилучити наявний постійний набір ip\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1061
@@ -1887,6 +2082,8 @@ msgstr "B<--permanent> B<--load-ipset-defaults>=I<набір_ip>"
 #: firewall-cmd.1:1063
 msgid "Load ipset default settings or report NO_DEFAULTS error\\&."
 msgstr ""
+"Завантажити типові параметри набору ip або повідомити про помилку"
+" NO_DEFAULTS\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1066
@@ -1897,6 +2094,8 @@ msgstr "[B<--permanent>] B<--info-ipset=>I<набір_ip>"
 #: firewall-cmd.1:1069
 msgid "Print information about the ipset I<ipset>\\&. The output format is:"
 msgstr ""
+"Вивести відомості щодо набору ip I<набір_ip>\\&. Формат"
+" виведення є таким:"
 
 #. type: Plain text
 #: firewall-cmd.1:1074
@@ -1907,6 +2106,10 @@ msgid ""
 "  options: I<option1[=value1]> \\&.\\&.\n"
 "  entries: I<entry1> \\&.\\&.\n"
 msgstr ""
+"I<набір_ip>\n"
+"  type: I<тип>\n"
+"  options: I<параметр1[=значення1]> \\&.\\&.\n"
+"  entries: I<запис1> \\&.\\&.\n"
 
 #. type: Plain text
 #: firewall-cmd.1:1079
@@ -1917,6 +2120,8 @@ msgstr "[B<--permanent>] B<--get-ipsets>"
 #: firewall-cmd.1:1081
 msgid "Print predefined ipsets as a space separated list\\&."
 msgstr ""
+"Вивести попередньо визначені набори ip у форматі списку відокремлених"
+" пробілами значень\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1084
@@ -1926,7 +2131,7 @@ msgstr "B<--permanent> B<--ipset>=I<набір_ip> B<--set-description>=I<опи
 #. type: Plain text
 #: firewall-cmd.1:1086
 msgid "Set new description to ipset"
-msgstr ""
+msgstr "Встановити новий опис набору ip"
 
 #. type: Plain text
 #: firewall-cmd.1:1089
@@ -1936,7 +2141,7 @@ msgstr "B<--permanent> B<--ipset>=I<набір_ip> B<--get-description>"
 #. type: Plain text
 #: firewall-cmd.1:1091
 msgid "Print description for ipset"
-msgstr ""
+msgstr "Вивести опис набору ip"
 
 #. type: Plain text
 #: firewall-cmd.1:1094
@@ -1946,7 +2151,7 @@ msgstr "B<--permanent> B<--ipset>=I<набір_ip> B<--set-short>=I<опис>"
 #. type: Plain text
 #: firewall-cmd.1:1096
 msgid "Set short description to ipset"
-msgstr ""
+msgstr "Встановити короткий опис набору ip"
 
 #. type: Plain text
 #: firewall-cmd.1:1099
@@ -1956,7 +2161,7 @@ msgstr "B<--permanent> B<--ipset>=I<набір_ip> B<--get-short>"
 #. type: Plain text
 #: firewall-cmd.1:1101
 msgid "Print short description for ipset"
-msgstr ""
+msgstr "Вивести короткий опис набору ip"
 
 #. type: Plain text
 #: firewall-cmd.1:1104
@@ -1966,7 +2171,7 @@ msgstr "[B<--permanent>] B<--ipset>=I<набір_ip> B<--add-entry>=I<запис
 #. type: Plain text
 #: firewall-cmd.1:1106
 msgid "Add a new entry to the ipset\\&."
-msgstr ""
+msgstr "Додати новий запис до набору ip\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1110
@@ -1974,6 +2179,8 @@ msgid ""
 "Adding an entry to an ipset with option I<timeout> is permitted, but these "
 "entries are not tracked by firewalld\\&."
 msgstr ""
+"Дозволено додавання запису до набору ipset за допомогою параметра I<timeout>,"
+" але firewalld не виконуватиме спостереження за такими записами\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1113
@@ -1983,7 +2190,7 @@ msgstr "[B<--permanent>] B<--ipset>=I<набір_ip> B<--remove-entry>=I<зап�
 #. type: Plain text
 #: firewall-cmd.1:1115
 msgid "Remove an entry from the ipset\\&."
-msgstr ""
+msgstr "Вилучити запис із набору ip\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1118
@@ -1996,6 +2203,8 @@ msgid ""
 "Return whether the entry has been added to an ipset\\&. Returns 0 if true, 1 "
 "otherwise\\&."
 msgstr ""
+"Повернути, чи було додано запис до набору ip\\&. Повертає 0, якщо було, і 1,"
+" якщо не було\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1122
@@ -2003,6 +2212,9 @@ msgid ""
 "Querying an ipset with a timeout will yield an error\\&. Entries are not "
 "tracked for ipsets with a timeout\\&."
 msgstr ""
+"Опитування набору ipset зі встановленим часом очікування призведе до"
+" помилки\\&. Для наборів ip з часами очікування стеження за записами не"
+" відбуватиметься\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1125
@@ -2012,7 +2224,7 @@ msgstr "[B<--permanent>] B<--ipset>=I<набір_ip> B<--get-entries>"
 #. type: Plain text
 #: firewall-cmd.1:1127
 msgid "List all entries of the ipset\\&."
-msgstr ""
+msgstr "Вивести список усіх записів у наборі ip\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1130
@@ -2028,6 +2240,8 @@ msgid ""
 "Add a new entries to the ipset from the file\\&. For all entries that are "
 "listed in the file but already in the ipset, a warning will be printed\\&."
 msgstr ""
+"Додати нові записи до набору ip з файла\\&. Для усіх записів, які є у списку"
+" файла, але які вже є у наборі ip, буде виведено попередження\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1134 firewall-cmd.1:1141
@@ -2035,6 +2249,9 @@ msgid ""
 "The file should contain an entry per line\\&. Lines starting with an hash or "
 "semicolon are ignored\\&. Also empty lines\\&."
 msgstr ""
+"Файл має містити по одному запису на рядок\\&. Рядки, які починаються з"
+" символу решітки або крапки з комою, буде проігноровано\\&. Також буде"
+" проігноровано порожні рядки\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1137
@@ -2052,6 +2269,8 @@ msgid ""
 "that are listed in the file but not in the ipset, a warning will be printed"
 "\\&."
 msgstr ""
+"Вилучити наявні записи з набору ip з файла\\&. Для усіх записів, які є у"
+" списку файла, але яких немає у наборі ip, буде виведено попередження\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1144
@@ -2061,7 +2280,7 @@ msgstr "B<--permanent> B<--path-ipset=>I<набір_ip>"
 #. type: Plain text
 #: firewall-cmd.1:1146
 msgid "Print path of the ipset configuration file\\&."
-msgstr ""
+msgstr "Вивести шлях до файла налаштувань набору ip\\&."
 
 #. type: SS
 #: firewall-cmd.1:1147
@@ -2072,7 +2291,7 @@ msgstr "Параметри служби"
 #. type: Plain text
 #: firewall-cmd.1:1150
 msgid "Options in this section affect only one particular service\\&."
-msgstr ""
+msgstr "Параметри у цьому розділі стосуються лише однієї окремої служби\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1152
@@ -2083,7 +2302,7 @@ msgstr "[B<--permanent>] B<--info-service=>I<служба>"
 #: firewall-cmd.1:1155
 msgid ""
 "Print information about the service I<service>\\&. The output format is:"
-msgstr ""
+msgstr "Вивести відомості щодо служби I<служба>\\&. Формат виведення є таким:"
 
 #. type: Plain text
 #: firewall-cmd.1:1162
@@ -2096,12 +2315,20 @@ msgid ""
 "  helpers: I<helper1> \\&.\\&.\n"
 "  destination: I<ipv1>:I<address1> \\&.\\&.\n"
 msgstr ""
+"I<служба>\n"
+"  ports: I<порт1> \\&.\\&.\n"
+"  protocols: I<протокол1> \\&.\\&.\n"
+"  source-ports: I<порт_походження1> \\&.\\&.\n"
+"  helpers: I<допоміжний_засіб1> \\&.\\&.\n"
+"  destination: I<ipv1>:I<адреса1> \\&.\\&.\n"
 
 #. type: Plain text
 #: firewall-cmd.1:1167 firewall-cmd.1:1352 firewall-cmd.1:1460
 msgid ""
 "The following options are only usable in the permanent configuration\\&."
 msgstr ""
+"Наведеними нижче параметрами можна користуватися лише для постійних"
+" налаштувань\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1169
@@ -2111,7 +2338,7 @@ msgstr "B<--permanent> B<--new-service>=I<служба>"
 #. type: Plain text
 #: firewall-cmd.1:1171
 msgid "Add a new permanent and empty service\\&."
-msgstr ""
+msgstr "Додати новий постійний і порожній запис служби\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1173
@@ -2119,6 +2346,8 @@ msgid ""
 "Service names must be alphanumeric and may additionally include characters: "
 "\\*(Aq_\\*(Aq and \\*(Aq-\\*(Aq\\&."
 msgstr ""
+"Назви служб мають складатися з літер і цифр і додатково можуть містити такі"
+" символи: \\*(Aq-\\*(Aq\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1176
@@ -2133,6 +2362,8 @@ msgid ""
 "Add a new permanent service from a prepared service file with an optional "
 "name override\\&."
 msgstr ""
+"Додати новий постійну службу з приготованої служби із необов'язковим"
+" перевизначенням назви\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1181
@@ -2142,7 +2373,7 @@ msgstr "B<--permanent> B<--delete-service>=I<служба>"
 #. type: Plain text
 #: firewall-cmd.1:1183
 msgid "Delete an existing permanent service\\&."
-msgstr ""
+msgstr "Вилучити наявну постійну службу\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1186
@@ -2153,6 +2384,7 @@ msgstr "B<--permanent> B<--load-service-defaults>=I<служба>"
 #: firewall-cmd.1:1188
 msgid "Load service default settings or report NO_DEFAULTS error\\&."
 msgstr ""
+"Завантажити типові параметри служби або повідомити про помилку NO_DEFAULTS\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1191
@@ -2203,7 +2435,7 @@ msgstr "B<--permanent> B<--service>=I<служба> B<--get-short>"
 #. type: Plain text
 #: firewall-cmd.1:1213
 msgid "Print short description for service"
-msgstr ""
+msgstr "Вивести короткий опис служби"
 
 #. type: Plain text
 #: firewall-cmd.1:1216
@@ -2217,7 +2449,7 @@ msgstr ""
 #. type: Plain text
 #: firewall-cmd.1:1218
 msgid "Add a new port to the permanent service\\&."
-msgstr ""
+msgstr "Додати новий порт до постійної служби\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1221
@@ -2231,7 +2463,7 @@ msgstr ""
 #. type: Plain text
 #: firewall-cmd.1:1223
 msgid "Remove a port from the permanent service\\&."
-msgstr ""
+msgstr "Вилучити порт з постійної служби\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1226
@@ -2245,7 +2477,7 @@ msgstr ""
 #. type: Plain text
 #: firewall-cmd.1:1228
 msgid "Return whether the port has been added to the permanent service\\&."
-msgstr ""
+msgstr "Повернути, чи було додано порт до постійної служби\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1231
@@ -2285,7 +2517,7 @@ msgstr "B<--permanent> B<--service>=I<служба> B<--query-protocol>=I<про
 #. type: Plain text
 #: firewall-cmd.1:1248
 msgid "Return whether the protocol has been added to the permanent service\\&."
-msgstr ""
+msgstr "Повернути, чи було додано протокол до постійної служби\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1251
@@ -2295,7 +2527,7 @@ msgstr "B<--permanent> B<--service>=I<служба> B<--get-protocols>"
 #. type: Plain text
 #: firewall-cmd.1:1253
 msgid "List protocols added to the permanent service\\&."
-msgstr ""
+msgstr "Вивести список протоколів, які додано до постійної служби\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1256
@@ -2309,7 +2541,7 @@ msgstr ""
 #. type: Plain text
 #: firewall-cmd.1:1258
 msgid "Add a new source port to the permanent service\\&."
-msgstr ""
+msgstr "Додати новий порт походження до постійної служби\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1261
@@ -2323,7 +2555,7 @@ msgstr ""
 #. type: Plain text
 #: firewall-cmd.1:1263
 msgid "Remove a source port from the permanent service\\&."
-msgstr ""
+msgstr "Вилучити порт походження з постійної служби\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1266
@@ -2338,7 +2570,7 @@ msgstr ""
 #: firewall-cmd.1:1268
 msgid ""
 "Return whether the source port has been added to the permanent service\\&."
-msgstr ""
+msgstr "Повернути, чи було додано порт походження до постійної служби\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1271
@@ -2348,7 +2580,7 @@ msgstr "B<--permanent> B<--service>=I<служба> B<--get-source-ports>"
 #. type: Plain text
 #: firewall-cmd.1:1273
 msgid "List source ports added to the permanent service\\&."
-msgstr ""
+msgstr "Вивести список портів походження, які додано до постійної служби\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1276
@@ -2359,7 +2591,7 @@ msgstr ""
 #. type: Plain text
 #: firewall-cmd.1:1278
 msgid "Add a new helper to the permanent service\\&."
-msgstr ""
+msgstr "Додати новий допоміжний засіб до постійної служби\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1281
@@ -2370,7 +2602,7 @@ msgstr ""
 #. type: Plain text
 #: firewall-cmd.1:1283
 msgid "Remove a helper from the permanent service\\&."
-msgstr ""
+msgstr "Вилучити допоміжний засіб з постійної служби\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1286
@@ -2381,7 +2613,7 @@ msgstr ""
 #. type: Plain text
 #: firewall-cmd.1:1288
 msgid "Return whether the helper has been added to the permanent service\\&."
-msgstr ""
+msgstr "Повернути, чи було додано допоміжний засіб до постійної служби\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1291
@@ -2391,7 +2623,7 @@ msgstr "B<--permanent> B<--service>=I<служба> B<--get-service-helpers>"
 #. type: Plain text
 #: firewall-cmd.1:1293
 msgid "List helpers added to the permanent service\\&."
-msgstr ""
+msgstr "Вивести список допоміжних засобів, які додано до постійної служби\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1296
@@ -2405,7 +2637,7 @@ msgstr ""
 #. type: Plain text
 #: firewall-cmd.1:1298
 msgid "Set destination for ipv to address[/mask] in the permanent service\\&."
-msgstr ""
+msgstr "Встановити призначення для ipv у адресу[/маску] в постійній службі\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1301
@@ -2415,7 +2647,7 @@ msgstr "B<--permanent> B<--service>=I<служба> B<--remove-destination>=I<ip
 #. type: Plain text
 #: firewall-cmd.1:1303
 msgid "Remove the destination for ipv from the permanent service\\&."
-msgstr ""
+msgstr "Вилучити призначення для версії протоколу з постійної служби\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1306
@@ -2432,6 +2664,8 @@ msgid ""
 "Return whether the destination ipv to address[/mask] has been set in the "
 "permanent service\\&."
 msgstr ""
+"Повернути, чи було встановлено версію протоколу призначення у адресу[/маску]"
+" в постійній службі\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1311
@@ -2441,7 +2675,7 @@ msgstr "B<--permanent> B<--service>=I<служба> B<--get-destinations>"
 #. type: Plain text
 #: firewall-cmd.1:1313
 msgid "List destinations added to the permanent service\\&."
-msgstr ""
+msgstr "Вивести список призначень, які додано до постійної служби\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1316
@@ -2451,7 +2685,7 @@ msgstr "B<--permanent> B<--service>=I<служба> B<--add-include>=I<служ�
 #. type: Plain text
 #: firewall-cmd.1:1318
 msgid "Add a new include to the permanent service\\&."
-msgstr ""
+msgstr "Додати нове включення до постійної служби\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1321
@@ -2461,7 +2695,7 @@ msgstr "B<--permanent> B<--service>=I<служба> B<--remove-include>=I<слу
 #. type: Plain text
 #: firewall-cmd.1:1323
 msgid "Remove a include from the permanent service\\&."
-msgstr ""
+msgstr "Вилучити включення з постійної служби\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1326
@@ -2471,7 +2705,7 @@ msgstr "B<--permanent> B<--service>=I<служба> B<--query-include>=I<слу�
 #. type: Plain text
 #: firewall-cmd.1:1328
 msgid "Return whether the include has been added to the permanent service\\&."
-msgstr ""
+msgstr "Повернути, чи було додано включення до постійної служби\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1331
@@ -2563,6 +2797,8 @@ msgid ""
 "Add a new permanent helper from a prepared helper file with an optional name "
 "override\\&."
 msgstr ""
+"Додати новий постійний допоміжний засіб з приготованого допоміжного файла із"
+" необов'язковим перевизначенням назви\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1366
@@ -2572,7 +2808,7 @@ msgstr "B<--permanent> B<--delete-helper>=I<допоміжний_засіб>"
 #. type: Plain text
 #: firewall-cmd.1:1368
 msgid "Delete an existing permanent helper\\&."
-msgstr ""
+msgstr "Вилучити наявний постійний допоміжний засіб\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1371
@@ -2583,6 +2819,8 @@ msgstr "B<--permanent> B<--load-helper-defaults>=I<допоміжний_засі
 #: firewall-cmd.1:1373
 msgid "Load helper default settings or report NO_DEFAULTS error\\&."
 msgstr ""
+"Завантажити типові параметри допоміжного засобу або повідомити про помилку"
+" NO_DEFAULTS\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1376
@@ -2603,6 +2841,8 @@ msgstr "[B<--permanent>] B<--get-helpers>"
 #: firewall-cmd.1:1383
 msgid "Print predefined helpers as a space separated list\\&."
 msgstr ""
+"Вивести попередньо визначені допоміжні засоби у форматі списку відокремлених"
+" пробілами значень\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1386
@@ -2614,7 +2854,7 @@ msgstr ""
 #. type: Plain text
 #: firewall-cmd.1:1388
 msgid "Set new description to helper"
-msgstr ""
+msgstr "Встановити новий опис допоміжного засобу"
 
 #. type: Plain text
 #: firewall-cmd.1:1391
@@ -2624,7 +2864,7 @@ msgstr "B<--permanent> B<--helper>=I<допоміжний_засіб> B<--get-de
 #. type: Plain text
 #: firewall-cmd.1:1393
 msgid "Print description for helper"
-msgstr ""
+msgstr "Вивести опис допоміжного засобу"
 
 #. type: Plain text
 #: firewall-cmd.1:1396
@@ -2634,7 +2874,7 @@ msgstr "B<--permanent> B<--helper>=I<допоміжний_засіб> B<--set-sh
 #. type: Plain text
 #: firewall-cmd.1:1398
 msgid "Set short description to helper"
-msgstr ""
+msgstr "Встановити короткий опис допоміжного засобу"
 
 #. type: Plain text
 #: firewall-cmd.1:1401
@@ -2644,7 +2884,7 @@ msgstr "B<--permanent> B<--helper>=I<допоміжний_засіб> B<--get-sh
 #. type: Plain text
 #: firewall-cmd.1:1403
 msgid "Print short description for helper"
-msgstr ""
+msgstr "Вивести короткий опис допоміжного засобу"
 
 #. type: Plain text
 #: firewall-cmd.1:1406
@@ -2658,7 +2898,7 @@ msgstr ""
 #. type: Plain text
 #: firewall-cmd.1:1408
 msgid "Add a new port to the permanent helper\\&."
-msgstr ""
+msgstr "Додати новий порт до постійного допоміжного засобу\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1411
@@ -2672,7 +2912,7 @@ msgstr ""
 #. type: Plain text
 #: firewall-cmd.1:1413
 msgid "Remove a port from the permanent helper\\&."
-msgstr ""
+msgstr "Вилучити порт з постійного допоміжного засобу\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1416
@@ -2686,7 +2926,7 @@ msgstr ""
 #. type: Plain text
 #: firewall-cmd.1:1418
 msgid "Return whether the port has been added to the permanent helper\\&."
-msgstr ""
+msgstr "Повернути, чи було додано порт до постійного допоміжного засобу\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1421
@@ -2696,7 +2936,7 @@ msgstr "B<--permanent> B<--helper>=I<допоміжний_засіб> B<--get-po
 #. type: Plain text
 #: firewall-cmd.1:1423
 msgid "List ports added to the permanent helper\\&."
-msgstr ""
+msgstr "Вивести список портів, які додано до постійного допоміжного засобу\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1426
@@ -2716,17 +2956,17 @@ msgstr "B<--permanent> B<--helper>=I<допоміжний_засіб> B<--get-mo
 #. type: Plain text
 #: firewall-cmd.1:1433
 msgid "Print module description for helper"
-msgstr ""
+msgstr "Вивести опис модуля допоміжного засобу"
 
 #. type: Plain text
 #: firewall-cmd.1:1436
 msgid "B<--permanent> B<--helper>=I<helper> B<--set-family>=I<description>"
-msgstr ""
+msgstr "B<--permanent> B<--helper>=I<допоміжний_засіб> B<--set-family>=I<опис>"
 
 #. type: Plain text
 #: firewall-cmd.1:1438
 msgid "Set family description for helper"
-msgstr ""
+msgstr "Встановити опис сімейства для допоміжного засобу"
 
 #. type: Plain text
 #: firewall-cmd.1:1441
@@ -2736,18 +2976,19 @@ msgstr "B<--permanent> B<--helper>=I<допоміжний_засіб> B<--get-fa
 #. type: Plain text
 #: firewall-cmd.1:1443
 msgid "Print family description of helper"
-msgstr ""
+msgstr "Вивести опис сімейства допоміжного засобу"
 
 #. type: SS
 #: firewall-cmd.1:1444
 #, no-wrap
 msgid "Internet Control Message Protocol (ICMP) type Options"
-msgstr ""
+msgstr "Параметри типу Internet Control Message Protocol (ICMP)"
 
 #. type: Plain text
 #: firewall-cmd.1:1447
 msgid "Options in this section affect only one particular icmptype\\&."
 msgstr ""
+"Параметри у цьому розділі стосуються лише одного окремого типу ICMP\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1449
@@ -2759,6 +3000,7 @@ msgstr "[B<--permanent>] B<--info-icmptype=>I<тип_icmp>"
 msgid ""
 "Print information about the icmptype I<icmptype>\\&. The output format is:"
 msgstr ""
+"Вивести відомості щодо типу ICMP I<тип_icmp>\\&. Формат виведення є таким:"
 
 #. type: Plain text
 #: firewall-cmd.1:1455
@@ -2778,7 +3020,7 @@ msgstr "B<--permanent> B<--new-icmptype>=I<тип_icmp>"
 #. type: Plain text
 #: firewall-cmd.1:1464
 msgid "Add a new permanent and empty icmptype\\&."
-msgstr ""
+msgstr "Додати новий постійний і порожній тип ICMP\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1466
@@ -2786,6 +3028,8 @@ msgid ""
 "ICMP type names must be alphanumeric and may additionally include "
 "characters: \\*(Aq_\\*(Aq and \\*(Aq-\\*(Aq\\&."
 msgstr ""
+"Назви типів ICMP мають складатися з літер і цифр і додатково можуть містити"
+" такі символи: \\*(Aq-\\*(Aq\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1469
@@ -2802,6 +3046,8 @@ msgid ""
 "Add a new permanent icmptype from a prepared icmptype file with an optional "
 "name override\\&."
 msgstr ""
+"Додати новий постійний тип ICMP з приготованого типу ICMP із необов'язковим"
+" перевизначенням назви\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1474
@@ -2811,7 +3057,7 @@ msgstr "B<--permanent> B<--delete-icmptype>=I<тип_icmp>"
 #. type: Plain text
 #: firewall-cmd.1:1476
 msgid "Delete an existing permanent icmptype\\&."
-msgstr ""
+msgstr "Вилучити наявний постійний тип ICMP\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1479
@@ -2822,6 +3068,8 @@ msgstr "B<--permanent> B<--load-icmptype-defaults>=I<тип_icmp>"
 #: firewall-cmd.1:1481
 msgid "Load icmptype default settings or report NO_DEFAULTS error\\&."
 msgstr ""
+"Завантажити типові параметри типу ICMP або повідомити про помилку"
+" NO_DEFAULTS\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1484
@@ -2832,7 +3080,7 @@ msgstr "B<--permanent> B<--icmptype>=I<тип_icmp> B<--set-description>=I<оп�
 #. type: Plain text
 #: firewall-cmd.1:1486
 msgid "Set new description to icmptype"
-msgstr ""
+msgstr "Встановити новий опис типу ICMP"
 
 #. type: Plain text
 #: firewall-cmd.1:1489
@@ -2842,7 +3090,7 @@ msgstr "B<--permanent> B<--icmptype>=I<тип_icmp> B<--get-description>"
 #. type: Plain text
 #: firewall-cmd.1:1491
 msgid "Print description for icmptype"
-msgstr ""
+msgstr "Вивести опис типу ICMP"
 
 #. type: Plain text
 #: firewall-cmd.1:1494
@@ -2852,7 +3100,7 @@ msgstr "B<--permanent> B<--icmptype>=I<тип_icmp> B<--set-short>=I<опис>"
 #. type: Plain text
 #: firewall-cmd.1:1496
 msgid "Set short description to icmptype"
-msgstr ""
+msgstr "Встановити короткий опис типу ICMP"
 
 #. type: Plain text
 #: firewall-cmd.1:1499
@@ -2862,7 +3110,7 @@ msgstr "B<--permanent> B<--icmptype>=I<тип_icmp> B<--get-short>"
 #. type: Plain text
 #: firewall-cmd.1:1501
 msgid "Print short description for icmptype"
-msgstr ""
+msgstr "Вивести короткий опис типу ICMP"
 
 #. type: Plain text
 #: firewall-cmd.1:1504
@@ -2875,6 +3123,8 @@ msgid ""
 "Enable destination for ipv in permanent icmptype\\&. ipv is one of I<ipv4> "
 "or I<ipv6>\\&."
 msgstr ""
+"Увімкнути призначення для ipv у постійному типі ICMP\\&. ipv є одним з таких"
+" значень: I<ipv4> або I<ipv6>\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1512
@@ -2888,6 +3138,8 @@ msgid ""
 "Disable destination for ipv in permanent icmptype\\&. ipv is one of I<ipv4> "
 "or I<ipv6>\\&."
 msgstr ""
+"Вимкнути призначення для ipv у постійному типі ICMP\\&. ipv є одним з таких"
+" значень: I<ipv4> або I<ipv6>\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1520
@@ -2900,6 +3152,8 @@ msgid ""
 "Return whether destination for ipv is enabled in permanent icmptype\\&. ipv "
 "is one of I<ipv4> or I<ipv6>\\&."
 msgstr ""
+"Повернути, чи призначення для ipv увімкнено у постійному типі ICMP\\&. ipv є"
+" одним з таких значень: I<ipv4> або I<ipv6>\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1528
@@ -2951,6 +3205,13 @@ msgid ""
 "\\&.), I<commands> (-A/-D/-I/\\&.\\&.\\&.), I<parameters> (-p/-s/-d/-j/\\&."
 "\\&.\\&.) and I<targets> (ACCEPT/DROP/REJECT/\\&.\\&.\\&.)\\&."
 msgstr ""
+"Параметри безпосереднього керування надають безпосередніший доступ до"
+" брандмауера\\&. Для користування цими параметрами користувач має бути"
+" ознайомлений із базовими поняттями iptables, тобто поняттями I<таблиця>"
+" (filter/mangle/nat/\\&.\\&.\\&.), I<ланцюжок>"
+" (INPUT/OUTPUT/FORWARD/\\&.\\&.\\&.), I<команда> (-A/-D/-I/\\&.\\&.\\&.), I<"
+"параметр> (-p/-s/-d/-j/\\&.\\&.\\&.) і I<призначення>"
+" (ACCEPT/DROP/REJECT/\\&.\\&.\\&.)\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1561
