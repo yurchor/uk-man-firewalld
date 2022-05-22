@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Firewalld documentation 1.0\n"
 "Report-Msgid-Bugs-To: trans-uk@lists.fedoraproject.org\n"
 "POT-Creation-Date: 2022-05-22 09:27+0300\n"
-"PO-Revision-Date: 2022-05-22 09:09+0300\n"
+"PO-Revision-Date: 2022-05-22 13:04+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<"
+"=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Lokalize 20.12.0\n"
 
 #. type: TH
@@ -361,13 +361,14 @@ msgid ""
 "I<zone3>\n"
 "  sources: I<source2> \\&.\\&.\n"
 "\t      \n"
-"If there are no interfaces or sources bound to the zone, the corresponding line will be omitted\\&.\n"
+"If there are no interfaces or sources bound to the zone, the corresponding"
+" line will be omitted\\&.\n"
 msgstr ""
 
 #. type: Plain text
 #: firewall-cmd.1:173
 msgid "[B<--permanent>] B<--get-zones>"
-msgstr ""
+msgstr "[B<--permanent>] B<--get-zones>"
 
 #. type: Plain text
 #: firewall-cmd.1:175
@@ -377,7 +378,7 @@ msgstr ""
 #. type: Plain text
 #: firewall-cmd.1:178
 msgid "[B<--permanent>] B<--get-services>"
-msgstr ""
+msgstr "[B<--permanent>] B<--get-services>"
 
 #. type: Plain text
 #: firewall-cmd.1:180
@@ -387,7 +388,7 @@ msgstr ""
 #. type: Plain text
 #: firewall-cmd.1:183
 msgid "[B<--permanent>] B<--get-icmptypes>"
-msgstr ""
+msgstr "[B<--permanent>] B<--get-icmptypes>"
 
 #. type: Plain text
 #: firewall-cmd.1:185
@@ -411,6 +412,8 @@ msgid ""
 "[B<--permanent>] B<--get-zone-of-source>=I<source>[/I<mask>]|I<MAC>|ipset:"
 "I<ipset>"
 msgstr ""
+"[B<--permanent>] B<--get-zone-of-source>=I<джерело>[/I<маска>]|I<MAC>|ipset:"
+"I<набір_ip>"
 
 #. type: Plain text
 #: firewall-cmd.1:199
@@ -450,7 +453,7 @@ msgstr ""
 #. type: Plain text
 #: firewall-cmd.1:224
 msgid "[B<--permanent>] B<--list-all-zones>"
-msgstr ""
+msgstr "[B<--permanent>] B<--list-all-zones>"
 
 #. type: Plain text
 #: firewall-cmd.1:226
@@ -480,9 +483,8 @@ msgstr ""
 
 #. type: Plain text
 #: firewall-cmd.1:245
-#, fuzzy
 msgid "B<--permanent> B<--new-zone>=I<zone>"
-msgstr "*\\ \\ B<a> | B<w>\\ \\ :I<Наступне-вікно-вперед/назад >"
+msgstr "B<--permanent> B<--new-zone>=I<зона>"
 
 #. type: Plain text
 #: firewall-cmd.1:247
@@ -500,6 +502,7 @@ msgstr ""
 #: firewall-cmd.1:252
 msgid "B<--permanent> B<--new-zone-from-file>=I<filename> [B<--name>=I<zone>]"
 msgstr ""
+"B<--permanent> B<--new-zone-from-file>=I<назва_файла> [B<--name>=I<зона>]"
 
 #. type: Plain text
 #: firewall-cmd.1:254
@@ -510,9 +513,8 @@ msgstr ""
 
 #. type: Plain text
 #: firewall-cmd.1:257
-#, fuzzy
 msgid "B<--permanent> B<--delete-zone>=I<zone>"
-msgstr "*\\ \\ B<a> | B<w>\\ \\ :I<Наступне-вікно-вперед/назад >"
+msgstr "B<--permanent> B<--delete-zone>=I<зона>"
 
 #. type: Plain text
 #: firewall-cmd.1:259
@@ -521,9 +523,8 @@ msgstr ""
 
 #. type: Plain text
 #: firewall-cmd.1:262
-#, fuzzy
 msgid "B<--permanent> B<--load-zone-defaults>=I<zone>"
-msgstr "*\\ \\ B<a> | B<w>\\ \\ :I<Наступне-вікно-вперед/назад >"
+msgstr "B<--permanent> B<--load-zone-defaults>=I<зона>"
 
 #. type: Plain text
 #: firewall-cmd.1:264
@@ -532,9 +533,8 @@ msgstr ""
 
 #. type: Plain text
 #: firewall-cmd.1:267
-#, fuzzy
 msgid "B<--permanent> B<--path-zone=>I<zone>"
-msgstr "*\\ \\ B<a> | B<w>\\ \\ :I<Наступне-вікно-вперед/назад >"
+msgstr "B<--permanent> B<--path-zone=>I<зона>"
 
 #. type: Plain text
 #: firewall-cmd.1:269
@@ -545,12 +545,12 @@ msgstr ""
 #: firewall-cmd.1:270
 #, no-wrap
 msgid "Policy Options"
-msgstr ""
+msgstr "Параметри правил"
 
 #. type: Plain text
 #: firewall-cmd.1:273
 msgid "[B<--permanent>] B<--get-policies>"
-msgstr ""
+msgstr "[B<--permanent>] B<--get-policies>"
 
 #. type: Plain text
 #: firewall-cmd.1:275
@@ -559,9 +559,8 @@ msgstr ""
 
 #. type: Plain text
 #: firewall-cmd.1:278
-#, fuzzy
 msgid "[B<--permanent>] B<--info-policy>=I<policy>"
-msgstr "*\\ \\ B<a> | B<w>\\ \\ :I<Наступне-вікно-вперед/назад >"
+msgstr "[B<--permanent>] B<--info-policy>=I<правило>"
 
 #. type: Plain text
 #: firewall-cmd.1:281
@@ -571,7 +570,7 @@ msgstr ""
 #. type: Plain text
 #: firewall-cmd.1:284
 msgid "[B<--permanent>] B<--list-all-policies>"
-msgstr ""
+msgstr "[B<--permanent>] B<--list-all-policies>"
 
 #. type: Plain text
 #: firewall-cmd.1:286
@@ -580,14 +579,13 @@ msgstr ""
 
 #. type: Plain text
 #: firewall-cmd.1:289
-#, fuzzy
 msgid "B<--permanent> B<--new-policy>=I<policy>"
-msgstr "*\\ \\ B<a> | B<w>\\ \\ :I<Наступне-вікно-вперед/назад >"
+msgstr "B<--permanent> B<--new-policy>=I<правило>"
 
 #. type: Plain text
 #: firewall-cmd.1:291
 msgid "Add a new permanent policy\\&."
-msgstr ""
+msgstr "Додати нове постійне правило\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:293
@@ -601,6 +599,7 @@ msgstr ""
 msgid ""
 "B<--permanent> B<--new-policy-from-file>=I<filename> [B<--name>=I<policy>]"
 msgstr ""
+"B<--permanent> B<--new-policy-from-file>=I<назва_файла> [B<--name>=I<правило>]"
 
 #. type: Plain text
 #: firewall-cmd.1:298
@@ -611,31 +610,28 @@ msgstr ""
 
 #. type: Plain text
 #: firewall-cmd.1:301
-#, fuzzy
 msgid "B<--permanent> B<--path-policy>=I<policy>"
-msgstr "*\\ \\ B<a> | B<w>\\ \\ :I<Наступне-вікно-вперед/назад >"
+msgstr "B<--permanent> B<--path-policy>=I<правило>"
 
 #. type: Plain text
 #: firewall-cmd.1:303
 msgid "Print path of the policy configuration file\\&."
-msgstr ""
+msgstr "Вивести шлях до файла налаштувань правил\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:306
-#, fuzzy
 msgid "B<--permanent> B<--delete-policy>=I<policy>"
-msgstr "*\\ \\ B<a> | B<w>\\ \\ :I<Наступне-вікно-вперед/назад >"
+msgstr "B<--permanent> B<--delete-policy>=I<правило>"
 
 #. type: Plain text
 #: firewall-cmd.1:308
 msgid "Delete an existing permanent policy\\&."
-msgstr ""
+msgstr "Вилучити наявне постійне правило\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:311
-#, fuzzy
 msgid "B<--permanent> B<--load-policy-defaults>=I<policy>"
-msgstr "*\\ \\ B<a> | B<w>\\ \\ :I<Наступне-вікно-вперед/назад >"
+msgstr "B<--permanent> B<--load-policy-defaults>=I<правило>"
 
 #. type: Plain text
 #: firewall-cmd.1:313
@@ -648,7 +644,7 @@ msgstr ""
 #: firewall-cmd.1:314
 #, no-wrap
 msgid "Options to Adapt and Query Zones and Policies"
-msgstr ""
+msgstr "Параметри для пристосування зон та правил та опитування зон та правил"
 
 #. type: Plain text
 #: firewall-cmd.1:322
@@ -664,6 +660,7 @@ msgstr ""
 msgid ""
 "[B<--permanent>] [B<--zone>=I<zone>] [B<--policy>=I<policy>] B<--list-all>"
 msgstr ""
+"[B<--permanent>] [B<--zone>=I<зона>] [B<--policy>=I<правило>] B<--list-all>"
 
 #. type: Plain text
 #: firewall-cmd.1:326
@@ -675,6 +672,7 @@ msgstr ""
 msgid ""
 "B<--permanent> [B<--zone>=I<zone>] [B<--policy>=I<policy>] B<--get-target>"
 msgstr ""
+"B<--permanent> [B<--zone>=I<зона>] [B<--policy>=I<правило>] B<--get-target>"
 
 #. type: Plain text
 #: firewall-cmd.1:331
@@ -687,11 +685,13 @@ msgid ""
 "B<--permanent> [B<--zone>=I<zone>] [B<--policy>=I<policy>] B<--set-"
 "target>=I<target>"
 msgstr ""
+"B<--permanent> [B<--zone>=I<зона>] [B<--policy>=I<правило>] B<--set-target"
+">=I<призначення>"
 
 #. type: Plain text
 #: firewall-cmd.1:336
 msgid "Set the target\\&."
-msgstr ""
+msgstr "Встановити призначення\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:344
@@ -717,12 +717,13 @@ msgid ""
 "B<--permanent> [B<--zone>=I<zone>] [B<--policy>=I<policy>] B<--set-"
 "description>=I<description>"
 msgstr ""
+"B<--permanent> [B<--zone>=I<зона>] [B<--policy>=I<правило>] B<"
+"--set-description>=I<опис>"
 
 #. type: Plain text
 #: firewall-cmd.1:361
-#, fuzzy
 msgid "Set description\\&."
-msgstr "Встановити &опис…"
+msgstr "Встановити опис\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:364
@@ -1304,6 +1305,8 @@ msgid ""
 "[B<--permanent>] [B<--zone>=I<zone>] [B<--permanent>] [B<--"
 "policy>=I<policy>] B<--query-rich-rule>=\\*(AqI<rule>\\*(Aq"
 msgstr ""
+"[B<--permanent>] [B<--zone>=I<зона>] [B<--permanent>] [B<--"
+"policy>=I<правило>] B<--query-rich-rule>=\\*(AqI<правило>\\*(Aq"
 
 #. type: Plain text
 #: firewall-cmd.1:782
@@ -1316,7 +1319,7 @@ msgstr ""
 #: firewall-cmd.1:786
 #, no-wrap
 msgid "Options to Adapt and Query Zones"
-msgstr ""
+msgstr "Параметри для пристосування зон та опитування зон"
 
 #. type: Plain text
 #: firewall-cmd.1:792
@@ -1328,9 +1331,8 @@ msgstr ""
 
 #. type: Plain text
 #: firewall-cmd.1:794
-#, fuzzy
 msgid "[B<--permanent>] [B<--zone>=I<zone>] B<--add-icmp-block-inversion>"
-msgstr "B<//po4a: style >B<[>I<список атрибутів>B<]>"
+msgstr "[B<--permanent>] [B<--zone>=I<зона>] B<--add-icmp-block-inversion>"
 
 #. type: Plain text
 #: firewall-cmd.1:796
@@ -1339,9 +1341,8 @@ msgstr ""
 
 #. type: Plain text
 #: firewall-cmd.1:799
-#, fuzzy
 msgid "[B<--permanent>] [B<--zone>=I<zone>] B<--remove-icmp-block-inversion>"
-msgstr "B<//po4a: style >B<[>I<список атрибутів>B<]>"
+msgstr "[B<--permanent>] [B<--zone>=I<зона>] B<--remove-icmp-block-inversion>"
 
 #. type: Plain text
 #: firewall-cmd.1:801
@@ -1350,9 +1351,8 @@ msgstr ""
 
 #. type: Plain text
 #: firewall-cmd.1:804
-#, fuzzy
 msgid "[B<--permanent>] [B<--zone>=I<zone>] B<--query-icmp-block-inversion>"
-msgstr "B<//po4a: style >B<[>I<список атрибутів>B<]>"
+msgstr "[B<--permanent>] [B<--zone>=I<зона>] B<--query-icmp-block-inversion>"
 
 #. type: Plain text
 #: firewall-cmd.1:806
@@ -1363,9 +1363,8 @@ msgstr ""
 
 #. type: Plain text
 #: firewall-cmd.1:809
-#, fuzzy
 msgid "[B<--permanent>] [B<--zone>=I<zone>] B<--add-forward>"
-msgstr "B<//po4a: style >B<[>I<список атрибутів>B<]>"
+msgstr "[B<--permanent>] [B<--zone>=I<зона>] B<--add-forward>"
 
 #. type: Plain text
 #: firewall-cmd.1:811
@@ -1374,9 +1373,8 @@ msgstr ""
 
 #. type: Plain text
 #: firewall-cmd.1:814
-#, fuzzy
 msgid "[B<--permanent>] [B<--zone>=I<zone>] B<--remove-forward>"
-msgstr "B<//po4a: style >B<[>I<список атрибутів>B<]>"
+msgstr "[B<--permanent>] [B<--zone>=I<зона>] B<--remove-forward>"
 
 #. type: Plain text
 #: firewall-cmd.1:816
@@ -1385,9 +1383,8 @@ msgstr ""
 
 #. type: Plain text
 #: firewall-cmd.1:819
-#, fuzzy
 msgid "[B<--permanent>] [B<--zone>=I<zone>] B<--query-forward>"
-msgstr "B<//po4a: style >B<[>I<список атрибутів>B<]>"
+msgstr "[B<--permanent>] [B<--zone>=I<зона>] B<--query-forward>"
 
 #. type: Plain text
 #: firewall-cmd.1:821
@@ -1411,9 +1408,8 @@ msgstr ""
 
 #. type: Plain text
 #: firewall-cmd.1:829
-#, fuzzy
 msgid "B<--permanent> B<--policy>=I<policy> B<--get-priority>"
-msgstr "B<//po4a: style >B<[>I<список атрибутів>B<]>"
+msgstr "B<--permanent> B<--policy>=I<правило> B<--get-priority>"
 
 #. type: Plain text
 #: firewall-cmd.1:831
@@ -1424,6 +1420,7 @@ msgstr ""
 #: firewall-cmd.1:834
 msgid "B<--permanent> B<--policy>=I<policy> B<--set-priority>I<priority>"
 msgstr ""
+"B<--permanent> B<--policy>=I<правило> B<--set-priority>I<пріоритетність>"
 
 #. type: Plain text
 #: firewall-cmd.1:836
@@ -1449,9 +1446,8 @@ msgstr ""
 
 #. type: Plain text
 #: firewall-cmd.1:843
-#, fuzzy
 msgid "[B<--permanent>] B<--policy>=I<policy> B<--list-ingress-zones>"
-msgstr "B<//po4a: style >B<[>I<список атрибутів>B<]>"
+msgstr "[B<--permanent>] B<--policy>=I<правило> B<--list-ingress-zones>"
 
 #. type: Plain text
 #: firewall-cmd.1:845
@@ -1461,7 +1457,7 @@ msgstr ""
 #. type: Plain text
 #: firewall-cmd.1:848
 msgid "[B<--permanent>] B<--policy>=I<policy> B<--add-ingress-zone>=I<zone>"
-msgstr ""
+msgstr "[B<--permanent>] B<--policy>=I<правило> B<--add-ingress-zone>=I<зона>"
 
 #. type: Plain text
 #: firewall-cmd.1:850
@@ -1494,6 +1490,7 @@ msgstr ""
 #: firewall-cmd.1:859
 msgid "[B<--permanent>] B<--policy>=I<policy> B<--remove-ingress-zone>=I<zone>"
 msgstr ""
+"[B<--permanent>] B<--policy>=I<правило> B<--remove-ingress-zone>=I<зона>"
 
 #. type: Plain text
 #: firewall-cmd.1:861
@@ -1505,6 +1502,7 @@ msgstr ""
 #: firewall-cmd.1:864
 msgid "[B<--permanent>] B<--policy>=I<policy> B<--query-ingress-zone>=I<zone>"
 msgstr ""
+"[B<--permanent>] B<--policy>=I<правило> B<--query-ingress-zone>=I<зона>"
 
 #. type: Plain text
 #: firewall-cmd.1:868 firewall-cmd.1:895
@@ -1514,9 +1512,8 @@ msgstr ""
 
 #. type: Plain text
 #: firewall-cmd.1:871
-#, fuzzy
 msgid "[B<--permanent>] B<--policy>=I<policy> B<--list-egress-zones>"
-msgstr "B<//po4a: style >B<[>I<список атрибутів>B<]>"
+msgstr "[B<--permanent>] B<--policy>=I<правило> B<--list-egress-zones>"
 
 #. type: Plain text
 #: firewall-cmd.1:873
@@ -1526,7 +1523,7 @@ msgstr ""
 #. type: Plain text
 #: firewall-cmd.1:876
 msgid "[B<--permanent>] B<--policy>=I<policy> B<--add-egress-zone>=I<zone>"
-msgstr ""
+msgstr "[B<--permanent>] B<--policy>=I<правило> B<--add-egress-zone>=I<зона>"
 
 #. type: Plain text
 #: firewall-cmd.1:878
@@ -1549,6 +1546,7 @@ msgstr ""
 #: firewall-cmd.1:886
 msgid "[B<--permanent>] B<--policy>=I<policy> B<--remove-egress-zone>=I<zone>"
 msgstr ""
+"[B<--permanent>] B<--policy>=I<правило> B<--remove-egress-zone>=I<зона>"
 
 #. type: Plain text
 #: firewall-cmd.1:888
@@ -1559,7 +1557,7 @@ msgstr ""
 #. type: Plain text
 #: firewall-cmd.1:891
 msgid "[B<--permanent>] B<--policy>=I<policy> B<--query-egress-zone>=I<zone>"
-msgstr ""
+msgstr "[B<--permanent>] B<--policy>=I<правило> B<--query-egress-zone>=I<зона>"
 
 #. type: SS
 #: firewall-cmd.1:896
@@ -1596,9 +1594,8 @@ msgstr ""
 
 #. type: Plain text
 #: firewall-cmd.1:917
-#, fuzzy
 msgid "[B<--permanent>] [B<--zone>=I<zone>] B<--list-interfaces>"
-msgstr "B<//po4a: style >B<[>I<список атрибутів>B<]>"
+msgstr "[B<--permanent>] [B<--zone>=I<зона>] B<--list-interfaces>"
 
 #. type: Plain text
 #: firewall-cmd.1:921
@@ -1610,7 +1607,7 @@ msgstr ""
 #. type: Plain text
 #: firewall-cmd.1:924
 msgid "[B<--permanent>] [B<--zone>=I<zone>] B<--add-interface>=I<interface>"
-msgstr ""
+msgstr "[B<--permanent>] [B<--zone>=I<зона>] B<--add-interface>=I<інтерфейс>"
 
 #. type: Plain text
 #: firewall-cmd.1:929
@@ -1650,6 +1647,7 @@ msgstr ""
 #: firewall-cmd.1:949
 msgid "[B<--permanent>] [B<--zone>=I<zone>] B<--change-interface>=I<interface>"
 msgstr ""
+"[B<--permanent>] [B<--zone>=I<зона>] B<--change-interface>=I<інтерфейс>"
 
 #. type: Plain text
 #: firewall-cmd.1:960
@@ -1663,7 +1661,7 @@ msgstr ""
 #. type: Plain text
 #: firewall-cmd.1:963
 msgid "[B<--permanent>] [B<--zone>=I<zone>] B<--query-interface>=I<interface>"
-msgstr ""
+msgstr "[B<--permanent>] [B<--zone>=I<зона>] B<--query-interface>=I<інтерфейс>"
 
 #. type: Plain text
 #: firewall-cmd.1:968
@@ -1674,9 +1672,8 @@ msgstr ""
 
 #. type: Plain text
 #: firewall-cmd.1:971
-#, fuzzy
 msgid "[B<--permanent>] B<--remove-interface>=I<interface>"
-msgstr "*\\ \\ B<a> | B<w>\\ \\ :I<Наступне-вікно-вперед/назад >"
+msgstr "[B<--permanent>] B<--remove-interface>=I<інтерфейс>"
 
 #. type: Plain text
 #: firewall-cmd.1:973
@@ -1716,7 +1713,7 @@ msgstr ""
 #: firewall-cmd.1:982
 #, no-wrap
 msgid "Options to Handle Bindings of Sources"
-msgstr ""
+msgstr "Параметри для обробки прив'язки джерел"
 
 #. type: Plain text
 #: firewall-cmd.1:985
@@ -1744,9 +1741,8 @@ msgstr ""
 
 #. type: Plain text
 #: firewall-cmd.1:998
-#, fuzzy
 msgid "[B<--permanent>] [B<--zone>=I<zone>] B<--list-sources>"
-msgstr "B<//po4a: style >B<[>I<список атрибутів>B<]>"
+msgstr "[B<--permanent>] [B<--zone>=I<зона>] B<--list-sources>"
 
 #. type: Plain text
 #: firewall-cmd.1:1002
@@ -1761,6 +1757,8 @@ msgid ""
 "[B<--permanent>] [B<--zone>=I<zone>] B<--add-source>=I<source>[/I<mask>]|"
 "I<MAC>|ipset:I<ipset>"
 msgstr ""
+"[B<--permanent>] [B<--zone>=I<зона>] B<--add-source>=I<джерело>[/I<маска>]|"
+"I<MAC>|ipset:I<набір_ip>"
 
 #. type: Plain text
 #: firewall-cmd.1:1008
@@ -1775,6 +1773,8 @@ msgid ""
 "[B<--zone>=I<zone>] B<--change-source>=I<source>[/I<mask>]|I<MAC>|ipset:"
 "I<ipset>"
 msgstr ""
+"[B<--zone>=I<зона>] B<--change-source>=I<джерело>[/I<маска>]|I<MAC>|ipset:"
+"I<набір_ip>"
 
 #. type: Plain text
 #: firewall-cmd.1:1018
@@ -1791,6 +1791,8 @@ msgid ""
 "[B<--permanent>] [B<--zone>=I<zone>] B<--query-source>=I<source>[/I<mask>]|"
 "I<MAC>|ipset:I<ipset>"
 msgstr ""
+"[B<--permanent>] [B<--zone>=I<зона>] B<--query-source>=I<джерело>[/I<маска>]|"
+"I<MAC>|ipset:I<набір_ip>"
 
 #. type: Plain text
 #: firewall-cmd.1:1024
@@ -1804,6 +1806,8 @@ msgstr ""
 msgid ""
 "[B<--permanent>] B<--remove-source>=I<source>[/I<mask>]|I<MAC>|ipset:I<ipset>"
 msgstr ""
+"[B<--permanent>] B<--remove-source>=I<джерело>[/I<маска>]|I<MAC>|ipset:"
+"I<набір_ip>"
 
 #. type: Plain text
 #: firewall-cmd.1:1029
@@ -1818,9 +1822,8 @@ msgstr ""
 
 #. type: Plain text
 #: firewall-cmd.1:1033
-#, fuzzy
 msgid "B<--get-ipset-types>"
-msgstr "B"
+msgstr "B<--get-ipset-types>"
 
 #. type: Plain text
 #: firewall-cmd.1:1035
@@ -1833,6 +1836,8 @@ msgid ""
 "B<--permanent> B<--new-ipset>=I<ipset> B<--type>=I<type> [B<--"
 "family>=I<inet>|I<inet6>] [B<--option>=I<key>[=I<value>]]"
 msgstr ""
+"B<--permanent> B<--new-ipset>=I<набір_ip> B<--type>=I<тип> [B<--family>=I<"
+"inet>|I<inet6>] [B<--option>=I<ключ>[=I<значення>]]"
 
 #. type: Plain text
 #: firewall-cmd.1:1046
@@ -1854,6 +1859,7 @@ msgstr ""
 msgid ""
 "B<--permanent> B<--new-ipset-from-file>=I<filename> [B<--name>=I<ipset>]"
 msgstr ""
+"B<--permanent> B<--new-ipset-from-file>=I<назва_файла> [B<--name>=I<набір_ip>]"
 
 #. type: Plain text
 #: firewall-cmd.1:1053
@@ -1864,9 +1870,8 @@ msgstr ""
 
 #. type: Plain text
 #: firewall-cmd.1:1056
-#, fuzzy
 msgid "B<--permanent> B<--delete-ipset>=I<ipset>"
-msgstr "*\\ \\ B<a> | B<w>\\ \\ :I<Наступне-вікно-вперед/назад >"
+msgstr "B<--permanent> B<--delete-ipset>=I<набір_ip>"
 
 #. type: Plain text
 #: firewall-cmd.1:1058
@@ -1875,9 +1880,8 @@ msgstr ""
 
 #. type: Plain text
 #: firewall-cmd.1:1061
-#, fuzzy
 msgid "B<--permanent> B<--load-ipset-defaults>=I<ipset>"
-msgstr "*\\ \\ B<a> | B<w>\\ \\ :I<Наступне-вікно-вперед/назад >"
+msgstr "B<--permanent> B<--load-ipset-defaults>=I<набір_ip>"
 
 #. type: Plain text
 #: firewall-cmd.1:1063
@@ -1886,9 +1890,8 @@ msgstr ""
 
 #. type: Plain text
 #: firewall-cmd.1:1066
-#, fuzzy
 msgid "[B<--permanent>] B<--info-ipset=>I<ipset>"
-msgstr "*\\ \\ B<a> | B<w>\\ \\ :I<Наступне-вікно-вперед/назад >"
+msgstr "[B<--permanent>] B<--info-ipset=>I<набір_ip>"
 
 #. type: Plain text
 #: firewall-cmd.1:1069
@@ -1908,7 +1911,7 @@ msgstr ""
 #. type: Plain text
 #: firewall-cmd.1:1079
 msgid "[B<--permanent>] B<--get-ipsets>"
-msgstr ""
+msgstr "[B<--permanent>] B<--get-ipsets>"
 
 #. type: Plain text
 #: firewall-cmd.1:1081
@@ -1918,7 +1921,7 @@ msgstr ""
 #. type: Plain text
 #: firewall-cmd.1:1084
 msgid "B<--permanent> B<--ipset>=I<ipset> B<--set-description>=I<description>"
-msgstr ""
+msgstr "B<--permanent> B<--ipset>=I<набір_ip> B<--set-description>=I<опис>"
 
 #. type: Plain text
 #: firewall-cmd.1:1086
@@ -1927,9 +1930,8 @@ msgstr ""
 
 #. type: Plain text
 #: firewall-cmd.1:1089
-#, fuzzy
 msgid "B<--permanent> B<--ipset>=I<ipset> B<--get-description>"
-msgstr "B<//po4a: style >B<[>I<список атрибутів>B<]>"
+msgstr "B<--permanent> B<--ipset>=I<набір_ip> B<--get-description>"
 
 #. type: Plain text
 #: firewall-cmd.1:1091
@@ -1939,7 +1941,7 @@ msgstr ""
 #. type: Plain text
 #: firewall-cmd.1:1094
 msgid "B<--permanent> B<--ipset>=I<ipset> B<--set-short>=I<description>"
-msgstr ""
+msgstr "B<--permanent> B<--ipset>=I<набір_ip> B<--set-short>=I<опис>"
 
 #. type: Plain text
 #: firewall-cmd.1:1096
@@ -1948,9 +1950,8 @@ msgstr ""
 
 #. type: Plain text
 #: firewall-cmd.1:1099
-#, fuzzy
 msgid "B<--permanent> B<--ipset>=I<ipset> B<--get-short>"
-msgstr "B<//po4a: style >B<[>I<список атрибутів>B<]>"
+msgstr "B<--permanent> B<--ipset>=I<набір_ip> B<--get-short>"
 
 #. type: Plain text
 #: firewall-cmd.1:1101
@@ -1960,7 +1961,7 @@ msgstr ""
 #. type: Plain text
 #: firewall-cmd.1:1104
 msgid "[B<--permanent>] B<--ipset>=I<ipset> B<--add-entry>=I<entry>"
-msgstr ""
+msgstr "[B<--permanent>] B<--ipset>=I<набір_ip> B<--add-entry>=I<запис>"
 
 #. type: Plain text
 #: firewall-cmd.1:1106
@@ -1977,7 +1978,7 @@ msgstr ""
 #. type: Plain text
 #: firewall-cmd.1:1113
 msgid "[B<--permanent>] B<--ipset>=I<ipset> B<--remove-entry>=I<entry>"
-msgstr ""
+msgstr "[B<--permanent>] B<--ipset>=I<набір_ip> B<--remove-entry>=I<запис>"
 
 #. type: Plain text
 #: firewall-cmd.1:1115
@@ -1987,7 +1988,7 @@ msgstr ""
 #. type: Plain text
 #: firewall-cmd.1:1118
 msgid "[B<--permanent>] B<--ipset>=I<ipset> B<--query-entry>=I<entry>"
-msgstr ""
+msgstr "[B<--permanent>] B<--ipset>=I<набір_ip> B<--query-entry>=I<запис>"
 
 #. type: Plain text
 #: firewall-cmd.1:1120
@@ -2005,9 +2006,8 @@ msgstr ""
 
 #. type: Plain text
 #: firewall-cmd.1:1125
-#, fuzzy
 msgid "[B<--permanent>] B<--ipset>=I<ipset> B<--get-entries>"
-msgstr "B<//po4a: style >B<[>I<список атрибутів>B<]>"
+msgstr "[B<--permanent>] B<--ipset>=I<набір_ip> B<--get-entries>"
 
 #. type: Plain text
 #: firewall-cmd.1:1127
@@ -2019,6 +2019,8 @@ msgstr ""
 msgid ""
 "[B<--permanent>] B<--ipset>=I<ipset> B<--add-entries-from-file>=I<filename>"
 msgstr ""
+"[B<--permanent>] B<--ipset>=I<набір_ip> B<--add-entries-from-file>=I<"
+"назва_файла>"
 
 #. type: Plain text
 #: firewall-cmd.1:1132
@@ -2040,6 +2042,8 @@ msgid ""
 "[B<--permanent>] B<--ipset>=I<ipset> B<--remove-entries-from-"
 "file>=I<filename>"
 msgstr ""
+"[B<--permanent>] B<--ipset>=I<набір_ip> B<--remove-entries-from-file>=I<"
+"назва_файла>"
 
 #. type: Plain text
 #: firewall-cmd.1:1139
@@ -2051,9 +2055,8 @@ msgstr ""
 
 #. type: Plain text
 #: firewall-cmd.1:1144
-#, fuzzy
 msgid "B<--permanent> B<--path-ipset=>I<ipset>"
-msgstr "*\\ \\ B<a> | B<w>\\ \\ :I<Наступне-вікно-вперед/назад >"
+msgstr "B<--permanent> B<--path-ipset=>I<набір_ip>"
 
 #. type: Plain text
 #: firewall-cmd.1:1146
@@ -2073,9 +2076,8 @@ msgstr ""
 
 #. type: Plain text
 #: firewall-cmd.1:1152
-#, fuzzy
 msgid "[B<--permanent>] B<--info-service=>I<service>"
-msgstr "*\\ \\ B<a> | B<w>\\ \\ :I<Наступне-вікно-вперед/назад >"
+msgstr "[B<--permanent>] B<--info-service=>I<служба>"
 
 #. type: Plain text
 #: firewall-cmd.1:1155
@@ -2103,9 +2105,8 @@ msgstr ""
 
 #. type: Plain text
 #: firewall-cmd.1:1169
-#, fuzzy
 msgid "B<--permanent> B<--new-service>=I<service>"
-msgstr "*\\ \\ B<a> | B<w>\\ \\ :I<Наступне-вікно-вперед/назад >"
+msgstr "B<--permanent> B<--new-service>=I<служба>"
 
 #. type: Plain text
 #: firewall-cmd.1:1171
@@ -2124,6 +2125,7 @@ msgstr ""
 msgid ""
 "B<--permanent> B<--new-service-from-file>=I<filename> [B<--name>=I<service>]"
 msgstr ""
+"B<--permanent> B<--new-service-from-file>=I<назва_файла> [B<--name>=I<служба>]"
 
 #. type: Plain text
 #: firewall-cmd.1:1178
@@ -2134,9 +2136,8 @@ msgstr ""
 
 #. type: Plain text
 #: firewall-cmd.1:1181
-#, fuzzy
 msgid "B<--permanent> B<--delete-service>=I<service>"
-msgstr "*\\ \\ B<a> | B<w>\\ \\ :I<Наступне-вікно-вперед/назад >"
+msgstr "B<--permanent> B<--delete-service>=I<служба>"
 
 #. type: Plain text
 #: firewall-cmd.1:1183
@@ -2145,9 +2146,8 @@ msgstr ""
 
 #. type: Plain text
 #: firewall-cmd.1:1186
-#, fuzzy
 msgid "B<--permanent> B<--load-service-defaults>=I<service>"
-msgstr "*\\ \\ B<a> | B<w>\\ \\ :I<Наступне-вікно-вперед/назад >"
+msgstr "B<--permanent> B<--load-service-defaults>=I<служба>"
 
 #. type: Plain text
 #: firewall-cmd.1:1188
@@ -2156,52 +2156,49 @@ msgstr ""
 
 #. type: Plain text
 #: firewall-cmd.1:1191
-#, fuzzy
 msgid "B<--permanent> B<--path-service=>I<service>"
-msgstr "*\\ \\ B<a> | B<w>\\ \\ :I<Наступне-вікно-вперед/назад >"
+msgstr "B<--permanent> B<--path-service=>I<служба>"
 
 #. type: Plain text
 #: firewall-cmd.1:1193
 msgid "Print path of the service configuration file\\&."
-msgstr ""
+msgstr "Вивести шлях до файла налаштувань служби\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1196
 msgid ""
 "B<--permanent> B<--service>=I<service> B<--set-description>=I<description>"
-msgstr ""
+msgstr "B<--permanent> B<--service>=I<служба> B<--set-description>=I<опис>"
 
 #. type: Plain text
 #: firewall-cmd.1:1198
 msgid "Set new description to service"
-msgstr ""
+msgstr "Встановити новий опис служби"
 
 #. type: Plain text
 #: firewall-cmd.1:1201
-#, fuzzy
 msgid "B<--permanent> B<--service>=I<service> B<--get-description>"
-msgstr "B<//po4a: style >B<[>I<список атрибутів>B<]>"
+msgstr "B<--permanent> B<--service>=I<служба> B<--get-description>"
 
 #. type: Plain text
 #: firewall-cmd.1:1203
 msgid "Print description for service"
-msgstr ""
+msgstr "Вивести опис служби"
 
 #. type: Plain text
 #: firewall-cmd.1:1206
 msgid "B<--permanent> B<--service>=I<service> B<--set-short>=I<description>"
-msgstr ""
+msgstr "B<--permanent> B<--service>=I<служба> B<--set-short>=I<опис>"
 
 #. type: Plain text
 #: firewall-cmd.1:1208
 msgid "Set short description to service"
-msgstr ""
+msgstr "Встановити короткий опис служби"
 
 #. type: Plain text
 #: firewall-cmd.1:1211
-#, fuzzy
 msgid "B<--permanent> B<--service>=I<service> B<--get-short>"
-msgstr "B<//po4a: style >B<[>I<список атрибутів>B<]>"
+msgstr "B<--permanent> B<--service>=I<служба> B<--get-short>"
 
 #. type: Plain text
 #: firewall-cmd.1:1213
@@ -2214,6 +2211,8 @@ msgid ""
 "B<--permanent> B<--service>=I<service> B<--add-port>=I<portid>[-I<portid>]/"
 "I<protocol>"
 msgstr ""
+"B<--permanent> B<--service>=I<служба> B<--add-port>=I<ідентифікатор_порту"
+">[-I<ідентифікатор_порту>]/I<протокол>"
 
 #. type: Plain text
 #: firewall-cmd.1:1218
@@ -2226,6 +2225,8 @@ msgid ""
 "B<--permanent> B<--service>=I<service> B<--remove-port>=I<portid>[-"
 "I<portid>]/I<protocol>"
 msgstr ""
+"B<--permanent> B<--service>=I<служба> B<--remove-port>=I<ідентифікатор_порту"
+">[-I<ідентифікатор_порту>]/I<протокол>"
 
 #. type: Plain text
 #: firewall-cmd.1:1223
@@ -2238,6 +2239,8 @@ msgid ""
 "B<--permanent> B<--service>=I<service> B<--query-port>=I<portid>[-I<portid>]/"
 "I<protocol>"
 msgstr ""
+"B<--permanent> B<--service>=I<служба> B<--query-port>=I<ідентифікатор_порту"
+">[-I<ідентифікатор_порту>]/I<протокол>"
 
 #. type: Plain text
 #: firewall-cmd.1:1228
@@ -2246,39 +2249,38 @@ msgstr ""
 
 #. type: Plain text
 #: firewall-cmd.1:1231
-#, fuzzy
 msgid "B<--permanent> B<--service>=I<service> B<--get-ports>"
-msgstr "B<//po4a: style >B<[>I<список атрибутів>B<]>"
+msgstr "B<--permanent> B<--service>=I<служба> B<--get-ports>"
 
 #. type: Plain text
 #: firewall-cmd.1:1233
 msgid "List ports added to the permanent service\\&."
-msgstr ""
+msgstr "Вивести список портів, які додано до постійної служби\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1236
 msgid "B<--permanent> B<--service>=I<service> B<--add-protocol>=I<protocol>"
-msgstr ""
+msgstr "B<--permanent> B<--service>=I<служба> B<--add-protocol>=I<протокол>"
 
 #. type: Plain text
 #: firewall-cmd.1:1238
 msgid "Add a new protocol to the permanent service\\&."
-msgstr ""
+msgstr "Додати новий протокол до постійної служби\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1241
 msgid "B<--permanent> B<--service>=I<service> B<--remove-protocol>=I<protocol>"
-msgstr ""
+msgstr "B<--permanent> B<--service>=I<служба> B<--remove-protocol>=I<протокол>"
 
 #. type: Plain text
 #: firewall-cmd.1:1243
 msgid "Remove a protocol from the permanent service\\&."
-msgstr ""
+msgstr "Вилучити протокол з постійної служби\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1246
 msgid "B<--permanent> B<--service>=I<service> B<--query-protocol>=I<protocol>"
-msgstr ""
+msgstr "B<--permanent> B<--service>=I<служба> B<--query-protocol>=I<протокол>"
 
 #. type: Plain text
 #: firewall-cmd.1:1248
@@ -2287,9 +2289,8 @@ msgstr ""
 
 #. type: Plain text
 #: firewall-cmd.1:1251
-#, fuzzy
 msgid "B<--permanent> B<--service>=I<service> B<--get-protocols>"
-msgstr "B<//po4a: style >B<[>I<список атрибутів>B<]>"
+msgstr "B<--permanent> B<--service>=I<служба> B<--get-protocols>"
 
 #. type: Plain text
 #: firewall-cmd.1:1253
@@ -2302,6 +2303,8 @@ msgid ""
 "B<--permanent> B<--service>=I<service> B<--add-source-port>=I<portid>[-"
 "I<portid>]/I<protocol>"
 msgstr ""
+"B<--permanent> B<--service>=I<служба> B<--add-source-port>=I<"
+"ідентифікатор_порту>[-I<ідентифікатор_порту>]/I<протокол>"
 
 #. type: Plain text
 #: firewall-cmd.1:1258
@@ -2314,6 +2317,8 @@ msgid ""
 "B<--permanent> B<--service>=I<service> B<--remove-source-port>=I<portid>[-"
 "I<portid>]/I<protocol>"
 msgstr ""
+"B<--permanent> B<--service>=I<служба> B<--remove-source-port>=I<іденти>[-I<"
+"ідентифікатор_порту>]/I<протокол>"
 
 #. type: Plain text
 #: firewall-cmd.1:1263
@@ -2326,6 +2331,8 @@ msgid ""
 "B<--permanent> B<--service>=I<service> B<--query-source-port>=I<portid>[-"
 "I<portid>]/I<protocol>"
 msgstr ""
+"B<--permanent> B<--service>=I<служба> B<--query-source-port>=I<"
+"ідентифікатор_порту>[-I<ідентифікатор_порту>]/I<протокол>"
 
 #. type: Plain text
 #: firewall-cmd.1:1268
@@ -2335,9 +2342,8 @@ msgstr ""
 
 #. type: Plain text
 #: firewall-cmd.1:1271
-#, fuzzy
 msgid "B<--permanent> B<--service>=I<service> B<--get-source-ports>"
-msgstr "B<//po4a: style >B<[>I<список атрибутів>B<]>"
+msgstr "B<--permanent> B<--service>=I<служба> B<--get-source-ports>"
 
 #. type: Plain text
 #: firewall-cmd.1:1273
@@ -2348,6 +2354,7 @@ msgstr ""
 #: firewall-cmd.1:1276
 msgid "B<--permanent> B<--service>=I<service> B<--add-helper>=I<helper>"
 msgstr ""
+"B<--permanent> B<--service>=I<служба> B<--add-helper>=I<допоміжний_засіб>"
 
 #. type: Plain text
 #: firewall-cmd.1:1278
@@ -2358,6 +2365,7 @@ msgstr ""
 #: firewall-cmd.1:1281
 msgid "B<--permanent> B<--service>=I<service> B<--remove-helper>=I<helper>"
 msgstr ""
+"B<--permanent> B<--service>=I<служба> B<--remove-helper>=I<допоміжний_засіб>"
 
 #. type: Plain text
 #: firewall-cmd.1:1283
@@ -2368,6 +2376,7 @@ msgstr ""
 #: firewall-cmd.1:1286
 msgid "B<--permanent> B<--service>=I<service> B<--query-helper>=I<helper>"
 msgstr ""
+"B<--permanent> B<--service>=I<служба> B<--query-helper>=I<допоміжний_засіб>"
 
 #. type: Plain text
 #: firewall-cmd.1:1288
@@ -2376,9 +2385,8 @@ msgstr ""
 
 #. type: Plain text
 #: firewall-cmd.1:1291
-#, fuzzy
 msgid "B<--permanent> B<--service>=I<service> B<--get-service-helpers>"
-msgstr "B<//po4a: style >B<[>I<список атрибутів>B<]>"
+msgstr "B<--permanent> B<--service>=I<служба> B<--get-service-helpers>"
 
 #. type: Plain text
 #: firewall-cmd.1:1293
@@ -2391,6 +2399,8 @@ msgid ""
 "B<--permanent> B<--service>=I<service> B<--set-destination>=I<ipv>:"
 "I<address>[/I<mask>]"
 msgstr ""
+"B<--permanent> B<--service>=I<служба> B<--set-destination>=I<ipv>:I<адреса"
+">[/I<маска>]"
 
 #. type: Plain text
 #: firewall-cmd.1:1298
@@ -2400,7 +2410,7 @@ msgstr ""
 #. type: Plain text
 #: firewall-cmd.1:1301
 msgid "B<--permanent> B<--service>=I<service> B<--remove-destination>=I<ipv>"
-msgstr ""
+msgstr "B<--permanent> B<--service>=I<служба> B<--remove-destination>=I<ipv>"
 
 #. type: Plain text
 #: firewall-cmd.1:1303
@@ -2413,6 +2423,8 @@ msgid ""
 "B<--permanent> B<--service>=I<service> B<--query-destination>=I<ipv>:"
 "I<address>[/I<mask>]"
 msgstr ""
+"B<--permanent> B<--service>=I<служба> B<--query-destination>=I<ipv>:I<адреса"
+">[/I<маска>]"
 
 #. type: Plain text
 #: firewall-cmd.1:1308
@@ -2423,9 +2435,8 @@ msgstr ""
 
 #. type: Plain text
 #: firewall-cmd.1:1311
-#, fuzzy
 msgid "B<--permanent> B<--service>=I<service> B<--get-destinations>"
-msgstr "B<//po4a: style >B<[>I<список атрибутів>B<]>"
+msgstr "B<--permanent> B<--service>=I<служба> B<--get-destinations>"
 
 #. type: Plain text
 #: firewall-cmd.1:1313
@@ -2435,7 +2446,7 @@ msgstr ""
 #. type: Plain text
 #: firewall-cmd.1:1316
 msgid "B<--permanent> B<--service>=I<service> B<--add-include>=I<service>"
-msgstr ""
+msgstr "B<--permanent> B<--service>=I<служба> B<--add-include>=I<служба>"
 
 #. type: Plain text
 #: firewall-cmd.1:1318
@@ -2445,7 +2456,7 @@ msgstr ""
 #. type: Plain text
 #: firewall-cmd.1:1321
 msgid "B<--permanent> B<--service>=I<service> B<--remove-include>=I<service>"
-msgstr ""
+msgstr "B<--permanent> B<--service>=I<служба> B<--remove-include>=I<служба>"
 
 #. type: Plain text
 #: firewall-cmd.1:1323
@@ -2455,7 +2466,7 @@ msgstr ""
 #. type: Plain text
 #: firewall-cmd.1:1326
 msgid "B<--permanent> B<--service>=I<service> B<--query-include>=I<service>"
-msgstr ""
+msgstr "B<--permanent> B<--service>=I<служба> B<--query-include>=I<служба>"
 
 #. type: Plain text
 #: firewall-cmd.1:1328
@@ -2464,36 +2475,38 @@ msgstr ""
 
 #. type: Plain text
 #: firewall-cmd.1:1331
-#, fuzzy
 msgid "B<--permanent> B<--service>=I<service> B<--get-includes>"
-msgstr "B<//po4a: style >B<[>I<список атрибутів>B<]>"
+msgstr "B<--permanent> B<--service>=I<служба> B<--get-includes>"
 
 #. type: Plain text
 #: firewall-cmd.1:1333
 msgid "List includes added to the permanent service\\&."
-msgstr ""
+msgstr "Вивести список включень, які додано до постійної служби\\&."
 
 #. type: SS
 #: firewall-cmd.1:1334
 #, no-wrap
 msgid "Helper Options"
-msgstr ""
+msgstr "Параметри допоміжного засобу"
 
 #. type: Plain text
 #: firewall-cmd.1:1337
 msgid "Options in this section affect only one particular helper\\&."
 msgstr ""
+"Параметри у цьому розділі стосуються лише одного окремого допоміжного"
+" засобу\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1339
-#, fuzzy
 msgid "[B<--permanent>] B<--info-helper=>I<helper>"
-msgstr "*\\ \\ B<a> | B<w>\\ \\ :I<Наступне-вікно-вперед/назад >"
+msgstr "[B<--permanent>] B<--info-helper=>I<допоміжний_засіб>"
 
 #. type: Plain text
 #: firewall-cmd.1:1342
 msgid "Print information about the helper I<helper>\\&. The output format is:"
 msgstr ""
+"Вивести відомості щодо допоміжного засобу I<допоміжний_засіб>\\&. Формат"
+" виведення є таким:"
 
 #. type: Plain text
 #: firewall-cmd.1:1347
@@ -2504,6 +2517,10 @@ msgid ""
 "  module: I<module>\n"
 "  ports: I<port1> \\&.\\&.\n"
 msgstr ""
+"I<допоміжний_засіб>\n"
+"  family: I<сімейство>\n"
+"  module: I<модуль>\n"
+"  ports: I<порт1> \\&.\\&.\n"
 
 #. type: Plain text
 #: firewall-cmd.1:1354
@@ -2511,12 +2528,17 @@ msgid ""
 "B<--permanent> B<--new-helper>=I<helper> B<--module>=I<nf_conntrack_module> "
 "[B<--family>=I<ipv4>|I<ipv6>]"
 msgstr ""
+"B<--permanent> B<--new-helper>=I<допоміжний_засіб> B<--module>=I<"
+"модуль_conntrack_nf> "
+"[B<--family>=I<ipv4>|I<ipv6>]"
 
 #. type: Plain text
 #: firewall-cmd.1:1356
 msgid ""
 "Add a new permanent helper with module and optionally family defined\\&."
 msgstr ""
+"Додати постійний допоміжний засіб із визначенням модуля та, необов'язково,"
+" сімейства\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1358
@@ -2524,12 +2546,16 @@ msgid ""
 "Helper names must be alphanumeric and may additionally include characters: "
 "\\*(Aq-\\*(Aq\\&."
 msgstr ""
+"Назви допоміжних засобів мають складатися з літер і цифр і додатково можуть"
+" містити такі символи: \\*(Aq-\\*(Aq\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1361
 msgid ""
 "B<--permanent> B<--new-helper-from-file>=I<filename> [B<--name>=I<helper>]"
 msgstr ""
+"B<--permanent> B<--new-helper-from-file>=I<назва_файла> [B<--name>=I<"
+"допоміжний_засіб>]"
 
 #. type: Plain text
 #: firewall-cmd.1:1363
@@ -2540,9 +2566,8 @@ msgstr ""
 
 #. type: Plain text
 #: firewall-cmd.1:1366
-#, fuzzy
 msgid "B<--permanent> B<--delete-helper>=I<helper>"
-msgstr "*\\ \\ B<a> | B<w>\\ \\ :I<Наступне-вікно-вперед/назад >"
+msgstr "B<--permanent> B<--delete-helper>=I<допоміжний_засіб>"
 
 #. type: Plain text
 #: firewall-cmd.1:1368
@@ -2551,9 +2576,8 @@ msgstr ""
 
 #. type: Plain text
 #: firewall-cmd.1:1371
-#, fuzzy
 msgid "B<--permanent> B<--load-helper-defaults>=I<helper>"
-msgstr "*\\ \\ B<a> | B<w>\\ \\ :I<Наступне-вікно-вперед/назад >"
+msgstr "B<--permanent> B<--load-helper-defaults>=I<допоміжний_засіб>"
 
 #. type: Plain text
 #: firewall-cmd.1:1373
@@ -2562,19 +2586,18 @@ msgstr ""
 
 #. type: Plain text
 #: firewall-cmd.1:1376
-#, fuzzy
 msgid "B<--permanent> B<--path-helper=>I<helper>"
-msgstr "*\\ \\ B<a> | B<w>\\ \\ :I<Наступне-вікно-вперед/назад >"
+msgstr "B<--permanent> B<--path-helper=>I<допоміжний_засіб>"
 
 #. type: Plain text
 #: firewall-cmd.1:1378
 msgid "Print path of the helper configuration file\\&."
-msgstr ""
+msgstr "Вивести шлях до файла налаштувань допоміжного засобу\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1381
 msgid "[B<--permanent>] B<--get-helpers>"
-msgstr ""
+msgstr "[B<--permanent>] B<--get-helpers>"
 
 #. type: Plain text
 #: firewall-cmd.1:1383
@@ -2586,6 +2609,7 @@ msgstr ""
 msgid ""
 "B<--permanent> B<--helper>=I<helper> B<--set-description>=I<description>"
 msgstr ""
+"B<--permanent> B<--helper>=I<допоміжний_засіб> B<--set-description>=I<опис>"
 
 #. type: Plain text
 #: firewall-cmd.1:1388
@@ -2594,9 +2618,8 @@ msgstr ""
 
 #. type: Plain text
 #: firewall-cmd.1:1391
-#, fuzzy
 msgid "B<--permanent> B<--helper>=I<helper> B<--get-description>"
-msgstr "B<//po4a: style >B<[>I<список атрибутів>B<]>"
+msgstr "B<--permanent> B<--helper>=I<допоміжний_засіб> B<--get-description>"
 
 #. type: Plain text
 #: firewall-cmd.1:1393
@@ -2606,7 +2629,7 @@ msgstr ""
 #. type: Plain text
 #: firewall-cmd.1:1396
 msgid "B<--permanent> B<--helper>=I<helper> B<--set-short>=I<description>"
-msgstr ""
+msgstr "B<--permanent> B<--helper>=I<допоміжний_засіб> B<--set-short>=I<опис>"
 
 #. type: Plain text
 #: firewall-cmd.1:1398
@@ -2615,9 +2638,8 @@ msgstr ""
 
 #. type: Plain text
 #: firewall-cmd.1:1401
-#, fuzzy
 msgid "B<--permanent> B<--helper>=I<helper> B<--get-short>"
-msgstr "B<//po4a: style >B<[>I<список атрибутів>B<]>"
+msgstr "B<--permanent> B<--helper>=I<допоміжний_засіб> B<--get-short>"
 
 #. type: Plain text
 #: firewall-cmd.1:1403
@@ -2630,6 +2652,8 @@ msgid ""
 "B<--permanent> B<--helper>=I<helper> B<--add-port>=I<portid>[-I<portid>]/"
 "I<protocol>"
 msgstr ""
+"B<--permanent> B<--helper>=I<допоміжний_засіб> B<--add-port>=I<"
+"ідентифікатор_порту>[-I<ідентифікатор_порту>]/I<протокол>"
 
 #. type: Plain text
 #: firewall-cmd.1:1408
@@ -2642,6 +2666,8 @@ msgid ""
 "B<--permanent> B<--helper>=I<helper> B<--remove-port>=I<portid>[-I<portid>]/"
 "I<protocol>"
 msgstr ""
+"B<--permanent> B<--helper>=I<допоміжний_засіб> B<--remove-port>=I<"
+"ідентифікатор_порту>[-I<ідентифікатор_порту>]/I<протокол>"
 
 #. type: Plain text
 #: firewall-cmd.1:1413
@@ -2654,6 +2680,8 @@ msgid ""
 "B<--permanent> B<--helper>=I<helper> B<--query-port>=I<portid>[-I<portid>]/"
 "I<protocol>"
 msgstr ""
+"B<--permanent> B<--helper>=I<допоміжний_засіб> B<--query-port>=I<"
+"ідентифікатор_порту>[-I<ідентифікатор_порту>]/I<протокол>"
 
 #. type: Plain text
 #: firewall-cmd.1:1418
@@ -2662,9 +2690,8 @@ msgstr ""
 
 #. type: Plain text
 #: firewall-cmd.1:1421
-#, fuzzy
 msgid "B<--permanent> B<--helper>=I<helper> B<--get-ports>"
-msgstr "B<//po4a: style >B<[>I<список атрибутів>B<]>"
+msgstr "B<--permanent> B<--helper>=I<допоміжний_засіб> B<--get-ports>"
 
 #. type: Plain text
 #: firewall-cmd.1:1423
@@ -2674,18 +2701,17 @@ msgstr ""
 #. type: Plain text
 #: firewall-cmd.1:1426
 msgid "B<--permanent> B<--helper>=I<helper> B<--set-module>=I<description>"
-msgstr ""
+msgstr "B<--permanent> B<--helper>=I<допоміжний_засіб> B<--set-module>=I<опис>"
 
 #. type: Plain text
 #: firewall-cmd.1:1428
 msgid "Set module description for helper"
-msgstr ""
+msgstr "Встановити опис модуля для допоміжного засобу"
 
 #. type: Plain text
 #: firewall-cmd.1:1431
-#, fuzzy
 msgid "B<--permanent> B<--helper>=I<helper> B<--get-module>"
-msgstr "B<//po4a: style >B<[>I<список атрибутів>B<]>"
+msgstr "B<--permanent> B<--helper>=I<допоміжний_засіб> B<--get-module>"
 
 #. type: Plain text
 #: firewall-cmd.1:1433
@@ -2704,9 +2730,8 @@ msgstr ""
 
 #. type: Plain text
 #: firewall-cmd.1:1441
-#, fuzzy
 msgid "B<--permanent> B<--helper>=I<helper> B<--get-family>"
-msgstr "B<//po4a: style >B<[>I<список атрибутів>B<]>"
+msgstr "B<--permanent> B<--helper>=I<допоміжний_засіб> B<--get-family>"
 
 #. type: Plain text
 #: firewall-cmd.1:1443
@@ -2726,9 +2751,8 @@ msgstr ""
 
 #. type: Plain text
 #: firewall-cmd.1:1449
-#, fuzzy
 msgid "[B<--permanent>] B<--info-icmptype=>I<icmptype>"
-msgstr "*\\ \\ B<a> | B<w>\\ \\ :I<Наступне-вікно-вперед/назад >"
+msgstr "[B<--permanent>] B<--info-icmptype=>I<тип_icmp>"
 
 #. type: Plain text
 #: firewall-cmd.1:1452
@@ -2743,12 +2767,13 @@ msgid ""
 "I<icmptype>\n"
 "  destination: I<ipv1> \\&.\\&.\n"
 msgstr ""
+"I<тип_icmp>\n"
+"  призначення: I<ipv1> \\&.\\&.\n"
 
 #. type: Plain text
 #: firewall-cmd.1:1462
-#, fuzzy
 msgid "B<--permanent> B<--new-icmptype>=I<icmptype>"
-msgstr "*\\ \\ B<a> | B<w>\\ \\ :I<Наступне-вікно-вперед/назад >"
+msgstr "B<--permanent> B<--new-icmptype>=I<тип_icmp>"
 
 #. type: Plain text
 #: firewall-cmd.1:1464
@@ -2768,6 +2793,8 @@ msgid ""
 "B<--permanent> B<--new-icmptype-from-file>=I<filename> [B<--"
 "name>=I<icmptype>]"
 msgstr ""
+"B<--permanent> B<--new-icmptype-from-file>=I<назва_файла> [B<--"
+"name>=I<тип_icmp>]"
 
 #. type: Plain text
 #: firewall-cmd.1:1471
@@ -2778,9 +2805,8 @@ msgstr ""
 
 #. type: Plain text
 #: firewall-cmd.1:1474
-#, fuzzy
 msgid "B<--permanent> B<--delete-icmptype>=I<icmptype>"
-msgstr "*\\ \\ B<a> | B<w>\\ \\ :I<Наступне-вікно-вперед/назад >"
+msgstr "B<--permanent> B<--delete-icmptype>=I<тип_icmp>"
 
 #. type: Plain text
 #: firewall-cmd.1:1476
@@ -2789,9 +2815,8 @@ msgstr ""
 
 #. type: Plain text
 #: firewall-cmd.1:1479
-#, fuzzy
 msgid "B<--permanent> B<--load-icmptype-defaults>=I<icmptype>"
-msgstr "*\\ \\ B<a> | B<w>\\ \\ :I<Наступне-вікно-вперед/назад >"
+msgstr "B<--permanent> B<--load-icmptype-defaults>=I<тип_icmp>"
 
 #. type: Plain text
 #: firewall-cmd.1:1481
@@ -2802,7 +2827,7 @@ msgstr ""
 #: firewall-cmd.1:1484
 msgid ""
 "B<--permanent> B<--icmptype>=I<icmptype> B<--set-description>=I<description>"
-msgstr ""
+msgstr "B<--permanent> B<--icmptype>=I<тип_icmp> B<--set-description>=I<опси>"
 
 #. type: Plain text
 #: firewall-cmd.1:1486
@@ -2811,9 +2836,8 @@ msgstr ""
 
 #. type: Plain text
 #: firewall-cmd.1:1489
-#, fuzzy
 msgid "B<--permanent> B<--icmptype>=I<icmptype> B<--get-description>"
-msgstr "B<//po4a: style >B<[>I<список атрибутів>B<]>"
+msgstr "B<--permanent> B<--icmptype>=I<тип_icmp> B<--get-description>"
 
 #. type: Plain text
 #: firewall-cmd.1:1491
@@ -2823,7 +2847,7 @@ msgstr ""
 #. type: Plain text
 #: firewall-cmd.1:1494
 msgid "B<--permanent> B<--icmptype>=I<icmptype> B<--set-short>=I<description>"
-msgstr ""
+msgstr "B<--permanent> B<--icmptype>=I<тип_icmp> B<--set-short>=I<опис>"
 
 #. type: Plain text
 #: firewall-cmd.1:1496
@@ -2832,9 +2856,8 @@ msgstr ""
 
 #. type: Plain text
 #: firewall-cmd.1:1499
-#, fuzzy
 msgid "B<--permanent> B<--icmptype>=I<icmptype> B<--get-short>"
-msgstr "B<//po4a: style >B<[>I<список атрибутів>B<]>"
+msgstr "B<--permanent> B<--icmptype>=I<тип_icmp> B<--get-short>"
 
 #. type: Plain text
 #: firewall-cmd.1:1501
@@ -2844,7 +2867,7 @@ msgstr ""
 #. type: Plain text
 #: firewall-cmd.1:1504
 msgid "B<--permanent> B<--icmptype>=I<icmptype> B<--add-destination>=I<ipv>"
-msgstr ""
+msgstr "B<--permanent> B<--icmptype>=I<тип_icmp> B<--add-destination>=I<ipv>"
 
 #. type: Plain text
 #: firewall-cmd.1:1509
@@ -2857,6 +2880,7 @@ msgstr ""
 #: firewall-cmd.1:1512
 msgid "B<--permanent> B<--icmptype>=I<icmptype> B<--remove-destination>=I<ipv>"
 msgstr ""
+"B<--permanent> B<--icmptype>=I<тип_icmp> B<--remove-destination>=I<ipv>"
 
 #. type: Plain text
 #: firewall-cmd.1:1517
@@ -2868,7 +2892,7 @@ msgstr ""
 #. type: Plain text
 #: firewall-cmd.1:1520
 msgid "B<--permanent> B<--icmptype>=I<icmptype> B<--query-destination>=I<ipv>"
-msgstr ""
+msgstr "B<--permanent> B<--icmptype>=I<тип_icmp> B<--query-destination>=I<ipv>"
 
 #. type: Plain text
 #: firewall-cmd.1:1525
@@ -2879,37 +2903,34 @@ msgstr ""
 
 #. type: Plain text
 #: firewall-cmd.1:1528
-#, fuzzy
 msgid "B<--permanent> B<--icmptype>=I<icmptype> B<--get-destinations>"
-msgstr "B<//po4a: style >B<[>I<список атрибутів>B<]>"
+msgstr "B<--permanent> B<--icmptype>=I<тип_icmp> B<--get-destinations>"
 
 #. type: Plain text
 #: firewall-cmd.1:1530
 msgid "List destinations in permanent icmptype\\&."
-msgstr ""
+msgstr "Вивести список призначень у постійному типі ICMP\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1533
-#, fuzzy
 msgid "B<--permanent> B<--path-icmptype=>I<icmptype>"
-msgstr "*\\ \\ B<a> | B<w>\\ \\ :I<Наступне-вікно-вперед/назад >"
+msgstr "B<--permanent> B<--path-icmptype=>I<тип_icmp>"
 
 #. type: Plain text
 #: firewall-cmd.1:1535
 msgid "Print path of the icmptype configuration file\\&."
-msgstr ""
+msgstr "Вивести шлях до файла налаштувань типу ICMP\\&."
 
 #. type: SS
 #: firewall-cmd.1:1536
 #, no-wrap
 msgid "Direct Options"
-msgstr ""
+msgstr "Параметри безпосереднього інтерфейсу"
 
 #. type: Plain text
 #: firewall-cmd.1:1539 firewalld.1:122
-#, fuzzy
 msgid "B<DEPRECATED>"
-msgstr "B"
+msgstr "B<ЗАСТАРІЛЕ>"
 
 #. type: Plain text
 #: firewall-cmd.1:1543 firewalld.1:126
@@ -2917,6 +2938,9 @@ msgid ""
 "The direct interface has been deprecated\\&. It will be removed in a future "
 "release\\&. It is superseded by policies, see B<firewalld.policies>(5)\\&."
 msgstr ""
+"Безпосередній інтерфейс вважається застарілим\\&. Його буде вилучено у"
+" майбутніх випусках\\&. Його наступником стали правила, див. B<"
+"firewalld.policies>(5)\\&."
 
 #. type: Plain text
 #: firewall-cmd.1:1556
@@ -2954,7 +2978,7 @@ msgstr ""
 #. type: Plain text
 #: firewall-cmd.1:1582
 msgid "[B<--permanent>] B<--direct> B<--get-all-chains>"
-msgstr ""
+msgstr "[B<--permanent>] B<--direct> B<--get-all-chains>"
 
 #. type: Plain text
 #: firewall-cmd.1:1585
@@ -2969,6 +2993,8 @@ msgid ""
 "[B<--permanent>] B<--direct> B<--get-chains> { I<ipv4> | I<ipv6> | I<eb> } "
 "I<table>"
 msgstr ""
+"[B<--permanent>] B<--direct> B<--get-chains> { I<ipv4> | I<ipv6> | I<eb> } "
+"I<таблиця>"
 
 #. type: Plain text
 #: firewall-cmd.1:1593
@@ -2983,6 +3009,8 @@ msgid ""
 "[B<--permanent>] B<--direct> B<--add-chain> { I<ipv4> | I<ipv6> | I<eb> } "
 "I<table> I<chain>"
 msgstr ""
+"[B<--permanent>] B<--direct> B<--add-chain> { I<ipv4> | I<ipv6> | I<eb> } "
+"I<таблиця> I<ланцюжок>"
 
 #. type: Plain text
 #: firewall-cmd.1:1601
@@ -3006,6 +3034,8 @@ msgid ""
 "[B<--permanent>] B<--direct> B<--remove-chain> { I<ipv4> | I<ipv6> | I<eb> } "
 "I<table> I<chain>"
 msgstr ""
+"[B<--permanent>] B<--direct> B<--remove-chain> { I<ipv4> | I<ipv6> | I<eb> } "
+"I<таблиця> I<ланцюжок>"
 
 #. type: Plain text
 #: firewall-cmd.1:1619
@@ -3020,6 +3050,8 @@ msgid ""
 "[B<--permanent>] B<--direct> B<--query-chain> { I<ipv4> | I<ipv6> | I<eb> } "
 "I<table> I<chain>"
 msgstr ""
+"[B<--permanent>] B<--direct> B<--query-chain> { I<ipv4> | I<ipv6> | I<eb> } "
+"I<таблиця> I<ланцюжок>"
 
 #. type: Plain text
 #: firewall-cmd.1:1628
@@ -3032,7 +3064,7 @@ msgstr ""
 #. type: Plain text
 #: firewall-cmd.1:1631
 msgid "[B<--permanent>] B<--direct> B<--get-all-rules>"
-msgstr ""
+msgstr "[B<--permanent>] B<--direct> B<--get-all-rules>"
 
 #. type: Plain text
 #: firewall-cmd.1:1634
@@ -3048,6 +3080,8 @@ msgid ""
 "[B<--permanent>] B<--direct> B<--get-rules> { I<ipv4> | I<ipv6> | I<eb> } "
 "I<table> I<chain>"
 msgstr ""
+"[B<--permanent>] B<--direct> B<--get-rules> { I<ipv4> | I<ipv6> | I<eb> } "
+"I<таблиця> I<ланцюжок>"
 
 #. type: Plain text
 #: firewall-cmd.1:1644
@@ -3063,6 +3097,8 @@ msgid ""
 "[B<--permanent>] B<--direct> B<--add-rule> { I<ipv4> | I<ipv6> | I<eb> } "
 "I<table> I<chain> I<priority> I<args>"
 msgstr ""
+"[B<--permanent>] B<--direct> B<--add-rule> { I<ipv4> | I<ipv6> | I<eb> } "
+"I<таблиця> I<ланцюжок> I<пріоритетність> I<аргументи>"
 
 #. type: Plain text
 #: firewall-cmd.1:1656
@@ -3088,6 +3124,8 @@ msgid ""
 "[B<--permanent>] B<--direct> B<--remove-rule> { I<ipv4> | I<ipv6> | I<eb> } "
 "I<table> I<chain> I<priority> I<args>"
 msgstr ""
+"[B<--permanent>] B<--direct> B<--remove-rule> { I<ipv4> | I<ipv6> | I<eb> } "
+"I<таблиця> I<ланцюжок> I<пріоритетність> I<аргументи>"
 
 #. type: Plain text
 #: firewall-cmd.1:1674
@@ -3103,6 +3141,8 @@ msgid ""
 "[B<--permanent>] B<--direct> B<--remove-rules> { I<ipv4> | I<ipv6> | I<eb> } "
 "I<table> I<chain>"
 msgstr ""
+"[B<--permanent>] B<--direct> B<--remove-rules> { I<ipv4> | I<ipv6> | I<eb> }"
+" I<таблиця> I<ланцюжок>"
 
 #. type: Plain text
 #: firewall-cmd.1:1684
@@ -3118,6 +3158,8 @@ msgid ""
 "[B<--permanent>] B<--direct> B<--query-rule> { I<ipv4> | I<ipv6> | I<eb> } "
 "I<table> I<chain> I<priority> I<args>"
 msgstr ""
+"[B<--permanent>] B<--direct> B<--query-rule> { I<ipv4> | I<ipv6> | I<eb> } "
+"I<таблиця> I<ланцюжок> I<пріоритетність> I<аргументи>"
 
 #. type: Plain text
 #: firewall-cmd.1:1697
@@ -3131,6 +3173,7 @@ msgstr ""
 #: firewall-cmd.1:1700
 msgid "B<--direct> B<--passthrough> { I<ipv4> | I<ipv6> | I<eb> } I<args>"
 msgstr ""
+"B<--direct> B<--passthrough> { I<ipv4> | I<ipv6> | I<eb> } I<аргументи>"
 
 #. type: Plain text
 #: firewall-cmd.1:1709
@@ -3145,7 +3188,7 @@ msgstr ""
 #. type: Plain text
 #: firewall-cmd.1:1712
 msgid "[B<--permanent>] B<--direct> B<--get-all-passthroughs>"
-msgstr ""
+msgstr "[B<--permanent>] B<--direct> B<--get-all-passthroughs>"
 
 #. type: Plain text
 #: firewall-cmd.1:1714
@@ -3160,6 +3203,8 @@ msgid ""
 "[B<--permanent>] B<--direct> B<--get-passthroughs> { I<ipv4> | I<ipv6> | "
 "I<eb> }"
 msgstr ""
+"[B<--permanent>] B<--direct> B<--get-passthroughs> { I<ipv4> | I<ipv6> | "
+"I<eb> }"
 
 #. type: Plain text
 #: firewall-cmd.1:1719
@@ -3174,6 +3219,8 @@ msgid ""
 "[B<--permanent>] B<--direct> B<--add-passthrough> { I<ipv4> | I<ipv6> | "
 "I<eb> } I<args>"
 msgstr ""
+"[B<--permanent>] B<--direct> B<--add-passthrough> { I<ipv4> | I<ipv6> | "
+"I<eb> } I<аргументи>"
 
 #. type: Plain text
 #: firewall-cmd.1:1726
@@ -3186,6 +3233,8 @@ msgid ""
 "[B<--permanent>] B<--direct> B<--remove-passthrough> { I<ipv4> | I<ipv6> | "
 "I<eb> } I<args>"
 msgstr ""
+"[B<--permanent>] B<--direct> B<--remove-passthrough> { I<ipv4> | I<ipv6> | "
+"I<eb> } I<аргументи>"
 
 #. type: Plain text
 #: firewall-cmd.1:1733
@@ -3199,6 +3248,8 @@ msgid ""
 "[B<--permanent>] B<--direct> B<--query-passthrough> { I<ipv4> | I<ipv6> | "
 "I<eb> } I<args>"
 msgstr ""
+"[B<--permanent>] B<--direct> B<--query-passthrough> { I<ipv4> | I<ipv6> | "
+"I<eb> } I<аргументи>"
 
 #. type: Plain text
 #: firewall-cmd.1:1740
@@ -3239,9 +3290,8 @@ msgstr ""
 
 #. type: Plain text
 #: firewall-cmd.1:1750
-#, fuzzy
 msgid "B<--lockdown-on>"
-msgstr "B"
+msgstr "B<--lockdown-on>"
 
 #. type: Plain text
 #: firewall-cmd.1:1752
@@ -3253,9 +3303,8 @@ msgstr ""
 
 #. type: Plain text
 #: firewall-cmd.1:1757
-#, fuzzy
 msgid "B<--lockdown-off>"
-msgstr "B"
+msgstr "B<--lockdown-off>"
 
 #. type: Plain text
 #: firewall-cmd.1:1759
@@ -3264,9 +3313,8 @@ msgstr ""
 
 #. type: Plain text
 #: firewall-cmd.1:1764
-#, fuzzy
 msgid "B<--query-lockdown>"
-msgstr "B"
+msgstr "B<--query-lockdown>"
 
 #. type: Plain text
 #: firewall-cmd.1:1766
@@ -3327,32 +3375,28 @@ msgstr ""
 
 #. type: Plain text
 #: firewall-cmd.1:1793
-#, fuzzy
 msgid "1\\&. I<context>"
-msgstr "I"
+msgstr "1\\&. I<контекст>"
 
 #. type: Plain text
 #: firewall-cmd.1:1796
-#, fuzzy
 msgid "2\\&. I<uid>"
-msgstr "I"
+msgstr "2\\&. I<uid>"
 
 #. type: Plain text
 #: firewall-cmd.1:1799
-#, fuzzy
 msgid "3\\&. I<user>"
-msgstr "I"
+msgstr "3\\&. I<користувач>"
 
 #. type: Plain text
 #: firewall-cmd.1:1802
-#, fuzzy
 msgid "4\\&. I<command>"
-msgstr "I"
+msgstr "4\\&. I<команда>"
 
 #. type: Plain text
 #: firewall-cmd.1:1805
 msgid "[B<--permanent>] B<--list-lockdown-whitelist-commands>"
-msgstr ""
+msgstr "[B<--permanent>] B<--list-lockdown-whitelist-commands>"
 
 #. type: Plain text
 #: firewall-cmd.1:1807
@@ -3361,9 +3405,8 @@ msgstr ""
 
 #. type: Plain text
 #: firewall-cmd.1:1810
-#, fuzzy
 msgid "[B<--permanent>] B<--add-lockdown-whitelist-command>=I<command>"
-msgstr "-B<h> | -B<v>\\ \\ :I<Довідка/Версія >"
+msgstr "[B<--permanent>] B<--add-lockdown-whitelist-command>=I<команда>"
 
 #. type: Plain text
 #: firewall-cmd.1:1814
@@ -3372,9 +3415,8 @@ msgstr ""
 
 #. type: Plain text
 #: firewall-cmd.1:1817
-#, fuzzy
 msgid "[B<--permanent>] B<--remove-lockdown-whitelist-command>=I<command>"
-msgstr "-B<h> | -B<v>\\ \\ :I<Довідка/Версія >"
+msgstr "[B<--permanent>] B<--remove-lockdown-whitelist-command>=I<команда>"
 
 #. type: Plain text
 #: firewall-cmd.1:1821
@@ -3383,9 +3425,8 @@ msgstr ""
 
 #. type: Plain text
 #: firewall-cmd.1:1824
-#, fuzzy
 msgid "[B<--permanent>] B<--query-lockdown-whitelist-command>=I<command>"
-msgstr "-B<h> | -B<v>\\ \\ :I<Довідка/Версія >"
+msgstr "[B<--permanent>] B<--query-lockdown-whitelist-command>=I<команда>"
 
 #. type: Plain text
 #: firewall-cmd.1:1828
@@ -3397,7 +3438,7 @@ msgstr ""
 #. type: Plain text
 #: firewall-cmd.1:1831
 msgid "[B<--permanent>] B<--list-lockdown-whitelist-contexts>"
-msgstr ""
+msgstr "[B<--permanent>] B<--list-lockdown-whitelist-contexts>"
 
 #. type: Plain text
 #: firewall-cmd.1:1833
@@ -3406,9 +3447,8 @@ msgstr ""
 
 #. type: Plain text
 #: firewall-cmd.1:1836
-#, fuzzy
 msgid "[B<--permanent>] B<--add-lockdown-whitelist-context>=I<context>"
-msgstr "-B<h> | -B<v>\\ \\ :I<Довідка/Версія >"
+msgstr "[B<--permanent>] B<--add-lockdown-whitelist-context>=I<контекст>"
 
 #. type: Plain text
 #: firewall-cmd.1:1840
@@ -3417,9 +3457,8 @@ msgstr ""
 
 #. type: Plain text
 #: firewall-cmd.1:1843
-#, fuzzy
 msgid "[B<--permanent>] B<--remove-lockdown-whitelist-context>=I<context>"
-msgstr "-B<h> | -B<v>\\ \\ :I<Довідка/Версія >"
+msgstr "[B<--permanent>] B<--remove-lockdown-whitelist-context>=I<контекст>"
 
 #. type: Plain text
 #: firewall-cmd.1:1847
@@ -3428,9 +3467,8 @@ msgstr ""
 
 #. type: Plain text
 #: firewall-cmd.1:1850
-#, fuzzy
 msgid "[B<--permanent>] B<--query-lockdown-whitelist-context>=I<context>"
-msgstr "-B<h> | -B<v>\\ \\ :I<Довідка/Версія >"
+msgstr "[B<--permanent>] B<--query-lockdown-whitelist-context>=I<контекст>"
 
 #. type: Plain text
 #: firewall-cmd.1:1854
@@ -3442,7 +3480,7 @@ msgstr ""
 #. type: Plain text
 #: firewall-cmd.1:1857
 msgid "[B<--permanent>] B<--list-lockdown-whitelist-uids>"
-msgstr ""
+msgstr "[B<--permanent>] B<--list-lockdown-whitelist-uids>"
 
 #. type: Plain text
 #: firewall-cmd.1:1859
@@ -3451,9 +3489,8 @@ msgstr ""
 
 #. type: Plain text
 #: firewall-cmd.1:1862
-#, fuzzy
 msgid "[B<--permanent>] B<--add-lockdown-whitelist-uid>=I<uid>"
-msgstr "*\\ \\ B<a> | B<w>\\ \\ :I<Наступне-вікно-вперед/назад >"
+msgstr "[B<--permanent>] B<--add-lockdown-whitelist-uid>=I<uid>"
 
 #. type: Plain text
 #: firewall-cmd.1:1866
@@ -3462,9 +3499,8 @@ msgstr ""
 
 #. type: Plain text
 #: firewall-cmd.1:1869
-#, fuzzy
 msgid "[B<--permanent>] B<--remove-lockdown-whitelist-uid>=I<uid>"
-msgstr "*\\ \\ B<a> | B<w>\\ \\ :I<Наступне-вікно-вперед/назад >"
+msgstr "[B<--permanent>] B<--remove-lockdown-whitelist-uid>=I<uid>"
 
 #. type: Plain text
 #: firewall-cmd.1:1873
@@ -3473,9 +3509,8 @@ msgstr ""
 
 #. type: Plain text
 #: firewall-cmd.1:1876
-#, fuzzy
 msgid "[B<--permanent>] B<--query-lockdown-whitelist-uid>=I<uid>"
-msgstr "*\\ \\ B<a> | B<w>\\ \\ :I<Наступне-вікно-вперед/назад >"
+msgstr "[B<--permanent>] B<--query-lockdown-whitelist-uid>=I<uid>"
 
 #. type: Plain text
 #: firewall-cmd.1:1880
@@ -3487,7 +3522,7 @@ msgstr ""
 #. type: Plain text
 #: firewall-cmd.1:1883
 msgid "[B<--permanent>] B<--list-lockdown-whitelist-users>"
-msgstr ""
+msgstr "[B<--permanent>] B<--list-lockdown-whitelist-users>"
 
 #. type: Plain text
 #: firewall-cmd.1:1885
@@ -3496,9 +3531,8 @@ msgstr ""
 
 #. type: Plain text
 #: firewall-cmd.1:1888
-#, fuzzy
 msgid "[B<--permanent>] B<--add-lockdown-whitelist-user>=I<user>"
-msgstr "*\\ \\ B<a> | B<w>\\ \\ :I<Наступне-вікно-вперед/назад >"
+msgstr "[B<--permanent>] B<--add-lockdown-whitelist-user>=I<користувач>"
 
 #. type: Plain text
 #: firewall-cmd.1:1892
@@ -3507,9 +3541,8 @@ msgstr ""
 
 #. type: Plain text
 #: firewall-cmd.1:1895
-#, fuzzy
 msgid "[B<--permanent>] B<--remove-lockdown-whitelist-user>=I<user>"
-msgstr "-B<h> | -B<v>\\ \\ :I<Довідка/Версія >"
+msgstr "[B<--permanent>] B<--remove-lockdown-whitelist-user>=I<користувач>"
 
 #. type: Plain text
 #: firewall-cmd.1:1899
@@ -3518,9 +3551,8 @@ msgstr ""
 
 #. type: Plain text
 #: firewall-cmd.1:1902
-#, fuzzy
 msgid "[B<--permanent>] B<--query-lockdown-whitelist-user>=I<user>"
-msgstr "*\\ \\ B<a> | B<w>\\ \\ :I<Наступне-вікно-вперед/назад >"
+msgstr "[B<--permanent>] B<--query-lockdown-whitelist-user>=I<користувач>"
 
 #. type: Plain text
 #: firewall-cmd.1:1906
@@ -3533,13 +3565,12 @@ msgstr ""
 #: firewall-cmd.1:1907
 #, no-wrap
 msgid "Panic Options"
-msgstr ""
+msgstr "Параметри паніки"
 
 #. type: Plain text
 #: firewall-cmd.1:1910
-#, fuzzy
 msgid "B<--panic-on>"
-msgstr "B"
+msgstr "B<--panic-on>"
 
 #. type: Plain text
 #: firewall-cmd.1:1912
@@ -3557,9 +3588,8 @@ msgstr ""
 
 #. type: Plain text
 #: firewall-cmd.1:1917
-#, fuzzy
 msgid "B<--panic-off>"
-msgstr "B"
+msgstr "B<--panic-off>"
 
 #. type: Plain text
 #: firewall-cmd.1:1919
@@ -3570,14 +3600,13 @@ msgstr ""
 
 #. type: Plain text
 #: firewall-cmd.1:1924
-#, fuzzy
 msgid "B<--query-panic>"
-msgstr "B"
+msgstr "B<--query-panic>"
 
 #. type: Plain text
 #: firewall-cmd.1:1926
 msgid "Returns 0 if panic mode is enabled, 1 otherwise\\&."
-msgstr ""
+msgstr "Повертає 0, якщо увімкнено режим паніки, і 1, якщо ні\\&."
 
 #. type: SH
 #: firewall-cmd.1:1927
@@ -3591,6 +3620,9 @@ msgid ""
 "For more examples see \\m[blue]B<\\%http://fedoraproject.org/wiki/FirewallD>"
 "\\m[]"
 msgstr ""
+"Інші приклад можна знайти на сторінці \\m[blue]B<\\"
+"%http://fedoraproject.org/wiki/FirewallD>"
+"\\m[]"
 
 #. type: SS
 #: firewall-cmd.1:1931
@@ -3612,9 +3644,9 @@ msgstr ""
 
 #. type: SS
 #: firewall-cmd.1:1938
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Example 2"
-msgstr "Приклад:"
+msgstr "Приклад 2"
 
 #. type: Plain text
 #: firewall-cmd.1:1941
@@ -3632,12 +3664,13 @@ msgstr ""
 msgid ""
 "firewall-cmd --add-port=443/tcp firewall-cmd --permanent --add-port=443/tcp"
 msgstr ""
+"firewall-cmd --add-port=443/tcp firewall-cmd --permanent --add-port=443/tcp"
 
 #. type: SH
 #: firewall-cmd.1:1946
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "EXIT CODES"
-msgstr "Коди завершення"
+msgstr "КОДИ ЗАВЕРШЕННЯ"
 
 #. type: Plain text
 #: firewall-cmd.1:1949
@@ -3649,7 +3682,7 @@ msgstr ""
 
 #. type: tbl table
 #: firewall-cmd.1:1954
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "String"
 msgstr "Рядок"
 
@@ -3657,13 +3690,13 @@ msgstr "Рядок"
 #: firewall-cmd.1:1956
 #, no-wrap
 msgid "Code"
-msgstr ""
+msgstr "Код"
 
 #. type: tbl table
 #: firewall-cmd.1:1957
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ".T&"
-msgstr "Т"
+msgstr ".T&"
 
 #. type: tbl table
 #: firewall-cmd.1:1958 firewall-cmd.1:1959 firewall-cmd.1:1960
@@ -3696,1021 +3729,1021 @@ msgstr "Т"
 #: firewall-cmd.1:2039 firewall-cmd.1:2040
 #, no-wrap
 msgid "l r"
-msgstr ""
+msgstr "l r"
 
 #. type: tbl table
 #: firewall-cmd.1:2041
 #, no-wrap
 msgid "l r."
-msgstr ""
+msgstr "l r."
 
 #. type: tbl table
 #: firewall-cmd.1:2044
 #, no-wrap
 msgid "ALREADY_ENABLED"
-msgstr ""
+msgstr "ALREADY_ENABLED"
 
 #. type: tbl table
 #: firewall-cmd.1:2046
 #, no-wrap
 msgid "11"
-msgstr ""
+msgstr "11"
 
 #. type: tbl table
 #: firewall-cmd.1:2049
 #, no-wrap
 msgid "NOT_ENABLED"
-msgstr ""
+msgstr "NOT_ENABLED"
 
 #. type: tbl table
 #: firewall-cmd.1:2051
 #, no-wrap
 msgid "12"
-msgstr ""
+msgstr "12"
 
 #. type: tbl table
 #: firewall-cmd.1:2054
 #, no-wrap
 msgid "COMMAND_FAILED"
-msgstr ""
+msgstr "COMMAND_FAILED"
 
 #. type: tbl table
 #: firewall-cmd.1:2056
 #, no-wrap
 msgid "13"
-msgstr ""
+msgstr "13"
 
 #. type: tbl table
 #: firewall-cmd.1:2059
 #, no-wrap
 msgid "NO_IPV6_NAT"
-msgstr ""
+msgstr "NO_IPV6_NAT"
 
 #. type: tbl table
 #: firewall-cmd.1:2061
 #, no-wrap
 msgid "14"
-msgstr ""
+msgstr "14"
 
 #. type: tbl table
 #: firewall-cmd.1:2064
 #, no-wrap
 msgid "PANIC_MODE"
-msgstr ""
+msgstr "PANIC_MODE"
 
 #. type: tbl table
 #: firewall-cmd.1:2066
 #, no-wrap
 msgid "15"
-msgstr ""
+msgstr "15"
 
 #. type: tbl table
 #: firewall-cmd.1:2069
 #, no-wrap
 msgid "ZONE_ALREADY_SET"
-msgstr ""
+msgstr "ZONE_ALREADY_SET"
 
 #. type: tbl table
 #: firewall-cmd.1:2071
 #, no-wrap
 msgid "16"
-msgstr ""
+msgstr "16"
 
 #. type: tbl table
 #: firewall-cmd.1:2074
 #, no-wrap
 msgid "UNKNOWN_INTERFACE"
-msgstr ""
+msgstr "UNKNOWN_INTERFACE"
 
 #. type: tbl table
 #: firewall-cmd.1:2076
 #, no-wrap
 msgid "17"
-msgstr ""
+msgstr "17"
 
 #. type: tbl table
 #: firewall-cmd.1:2079
 #, no-wrap
 msgid "ZONE_CONFLICT"
-msgstr ""
+msgstr "ZONE_CONFLICT"
 
 #. type: tbl table
 #: firewall-cmd.1:2081
 #, no-wrap
 msgid "18"
-msgstr ""
+msgstr "18"
 
 #. type: tbl table
 #: firewall-cmd.1:2084
 #, no-wrap
 msgid "BUILTIN_CHAIN"
-msgstr ""
+msgstr "BUILTIN_CHAIN"
 
 #. type: tbl table
 #: firewall-cmd.1:2086
 #, no-wrap
 msgid "19"
-msgstr ""
+msgstr "19"
 
 #. type: tbl table
 #: firewall-cmd.1:2089
 #, no-wrap
 msgid "EBTABLES_NO_REJECT"
-msgstr ""
+msgstr "EBTABLES_NO_REJECT"
 
 #. type: tbl table
 #: firewall-cmd.1:2091
 #, no-wrap
 msgid "20"
-msgstr ""
+msgstr "20"
 
 #. type: tbl table
 #: firewall-cmd.1:2094
 #, no-wrap
 msgid "NOT_OVERLOADABLE"
-msgstr ""
+msgstr "NOT_OVERLOADABLE"
 
 #. type: tbl table
 #: firewall-cmd.1:2096
 #, no-wrap
 msgid "21"
-msgstr ""
+msgstr "21"
 
 #. type: tbl table
 #: firewall-cmd.1:2099
 #, no-wrap
 msgid "NO_DEFAULTS"
-msgstr ""
+msgstr "NO_DEFAULTS"
 
 #. type: tbl table
 #: firewall-cmd.1:2101
 #, no-wrap
 msgid "22"
-msgstr ""
+msgstr "22"
 
 #. type: tbl table
 #: firewall-cmd.1:2104
 #, no-wrap
 msgid "BUILTIN_ZONE"
-msgstr ""
+msgstr "BUILTIN_ZONE"
 
 #. type: tbl table
 #: firewall-cmd.1:2106
 #, no-wrap
 msgid "23"
-msgstr ""
+msgstr "23"
 
 #. type: tbl table
 #: firewall-cmd.1:2109
 #, no-wrap
 msgid "BUILTIN_SERVICE"
-msgstr ""
+msgstr "BUILTIN_SERVICE"
 
 #. type: tbl table
 #: firewall-cmd.1:2111
 #, no-wrap
 msgid "24"
-msgstr ""
+msgstr "24"
 
 #. type: tbl table
 #: firewall-cmd.1:2114
 #, no-wrap
 msgid "BUILTIN_ICMPTYPE"
-msgstr ""
+msgstr "BUILTIN_ICMPTYPE"
 
 #. type: tbl table
 #: firewall-cmd.1:2116
 #, no-wrap
 msgid "25"
-msgstr ""
+msgstr "25"
 
 #. type: tbl table
 #: firewall-cmd.1:2119
 #, no-wrap
 msgid "NAME_CONFLICT"
-msgstr ""
+msgstr "NAME_CONFLICT"
 
 #. type: tbl table
 #: firewall-cmd.1:2121
 #, no-wrap
 msgid "26"
-msgstr ""
+msgstr "26"
 
 #. type: tbl table
 #: firewall-cmd.1:2124
 #, no-wrap
 msgid "NAME_MISMATCH"
-msgstr ""
+msgstr "NAME_MISMATCH"
 
 #. type: tbl table
 #: firewall-cmd.1:2126
 #, no-wrap
 msgid "27"
-msgstr ""
+msgstr "27"
 
 #. type: tbl table
 #: firewall-cmd.1:2129
 #, no-wrap
 msgid "PARSE_ERROR"
-msgstr ""
+msgstr "PARSE_ERROR"
 
 #. type: tbl table
 #: firewall-cmd.1:2131
 #, no-wrap
 msgid "28"
-msgstr ""
+msgstr "28"
 
 #. type: tbl table
 #: firewall-cmd.1:2134
 #, no-wrap
 msgid "ACCESS_DENIED"
-msgstr ""
+msgstr "ACCESS_DENIED"
 
 #. type: tbl table
 #: firewall-cmd.1:2136
 #, no-wrap
 msgid "29"
-msgstr ""
+msgstr "29"
 
 #. type: tbl table
 #: firewall-cmd.1:2139
 #, no-wrap
 msgid "UNKNOWN_SOURCE"
-msgstr ""
+msgstr "UNKNOWN_SOURCE"
 
 #. type: tbl table
 #: firewall-cmd.1:2141
 #, no-wrap
 msgid "30"
-msgstr ""
+msgstr "30"
 
 #. type: tbl table
 #: firewall-cmd.1:2144
 #, no-wrap
 msgid "RT_TO_PERM_FAILED"
-msgstr ""
+msgstr "RT_TO_PERM_FAILED"
 
 #. type: tbl table
 #: firewall-cmd.1:2146
 #, no-wrap
 msgid "31"
-msgstr ""
+msgstr "31"
 
 #. type: tbl table
 #: firewall-cmd.1:2149
 #, no-wrap
 msgid "IPSET_WITH_TIMEOUT"
-msgstr ""
+msgstr "IPSET_WITH_TIMEOUT"
 
 #. type: tbl table
 #: firewall-cmd.1:2151
 #, no-wrap
 msgid "32"
-msgstr ""
+msgstr "32"
 
 #. type: tbl table
 #: firewall-cmd.1:2154
 #, no-wrap
 msgid "BUILTIN_IPSET"
-msgstr ""
+msgstr "BUILTIN_IPSET"
 
 #. type: tbl table
 #: firewall-cmd.1:2156
 #, no-wrap
 msgid "33"
-msgstr ""
+msgstr "33"
 
 #. type: tbl table
 #: firewall-cmd.1:2159
 #, no-wrap
 msgid "ALREADY_SET"
-msgstr ""
+msgstr "ALREADY_SET"
 
 #. type: tbl table
 #: firewall-cmd.1:2161
 #, no-wrap
 msgid "34"
-msgstr ""
+msgstr "34"
 
 #. type: tbl table
 #: firewall-cmd.1:2164
 #, no-wrap
 msgid "MISSING_IMPORT"
-msgstr ""
+msgstr "MISSING_IMPORT"
 
 #. type: tbl table
 #: firewall-cmd.1:2166
 #, no-wrap
 msgid "35"
-msgstr ""
+msgstr "35"
 
 #. type: tbl table
 #: firewall-cmd.1:2169
 #, no-wrap
 msgid "DBUS_ERROR"
-msgstr ""
+msgstr "DBUS_ERROR"
 
 #. type: tbl table
 #: firewall-cmd.1:2171
 #, no-wrap
 msgid "36"
-msgstr ""
+msgstr "36"
 
 #. type: tbl table
 #: firewall-cmd.1:2174
 #, no-wrap
 msgid "BUILTIN_HELPER"
-msgstr ""
+msgstr "BUILTIN_HELPER"
 
 #. type: tbl table
 #: firewall-cmd.1:2176
 #, no-wrap
 msgid "37"
-msgstr ""
+msgstr "37"
 
 #. type: tbl table
 #: firewall-cmd.1:2179
 #, no-wrap
 msgid "NOT_APPLIED"
-msgstr ""
+msgstr "NOT_APPLIED"
 
 #. type: tbl table
 #: firewall-cmd.1:2181
 #, no-wrap
 msgid "38"
-msgstr ""
+msgstr "38"
 
 #. type: tbl table
 #: firewall-cmd.1:2184
 #, no-wrap
 msgid "INVALID_ACTION"
-msgstr ""
+msgstr "INVALID_ACTION"
 
 #. type: tbl table
 #: firewall-cmd.1:2186
 #, no-wrap
 msgid "100"
-msgstr ""
+msgstr "100"
 
 #. type: tbl table
 #: firewall-cmd.1:2189
 #, no-wrap
 msgid "INVALID_SERVICE"
-msgstr ""
+msgstr "INVALID_SERVICE"
 
 #. type: tbl table
 #: firewall-cmd.1:2191
 #, no-wrap
 msgid "101"
-msgstr ""
+msgstr "101"
 
 #. type: tbl table
 #: firewall-cmd.1:2194
 #, no-wrap
 msgid "INVALID_PORT"
-msgstr ""
+msgstr "INVALID_PORT"
 
 #. type: tbl table
 #: firewall-cmd.1:2196
 #, no-wrap
 msgid "102"
-msgstr ""
+msgstr "102"
 
 #. type: tbl table
 #: firewall-cmd.1:2199
 #, no-wrap
 msgid "INVALID_PROTOCOL"
-msgstr ""
+msgstr "INVALID_PROTOCOL"
 
 #. type: tbl table
 #: firewall-cmd.1:2201
 #, no-wrap
 msgid "103"
-msgstr ""
+msgstr "103"
 
 #. type: tbl table
 #: firewall-cmd.1:2204
 #, no-wrap
 msgid "INVALID_INTERFACE"
-msgstr ""
+msgstr "INVALID_INTERFACE"
 
 #. type: tbl table
 #: firewall-cmd.1:2206
 #, no-wrap
 msgid "104"
-msgstr ""
+msgstr "104"
 
 #. type: tbl table
 #: firewall-cmd.1:2209
 #, no-wrap
 msgid "INVALID_ADDR"
-msgstr ""
+msgstr "INVALID_ADDR"
 
 #. type: tbl table
 #: firewall-cmd.1:2211
 #, no-wrap
 msgid "105"
-msgstr ""
+msgstr "105"
 
 #. type: tbl table
 #: firewall-cmd.1:2214
 #, no-wrap
 msgid "INVALID_FORWARD"
-msgstr ""
+msgstr "INVALID_FORWARD"
 
 #. type: tbl table
 #: firewall-cmd.1:2216
 #, no-wrap
 msgid "106"
-msgstr ""
+msgstr "106"
 
 #. type: tbl table
 #: firewall-cmd.1:2219
 #, no-wrap
 msgid "INVALID_ICMPTYPE"
-msgstr ""
+msgstr "INVALID_ICMPTYPE"
 
 #. type: tbl table
 #: firewall-cmd.1:2221
 #, no-wrap
 msgid "107"
-msgstr ""
+msgstr "107"
 
 #. type: tbl table
 #: firewall-cmd.1:2224
 #, no-wrap
 msgid "INVALID_TABLE"
-msgstr ""
+msgstr "INVALID_TABLE"
 
 #. type: tbl table
 #: firewall-cmd.1:2226
 #, no-wrap
 msgid "108"
-msgstr ""
+msgstr "108"
 
 #. type: tbl table
 #: firewall-cmd.1:2229
 #, no-wrap
 msgid "INVALID_CHAIN"
-msgstr ""
+msgstr "INVALID_CHAIN"
 
 #. type: tbl table
 #: firewall-cmd.1:2231
 #, no-wrap
 msgid "109"
-msgstr ""
+msgstr "109"
 
 #. type: tbl table
 #: firewall-cmd.1:2234
 #, no-wrap
 msgid "INVALID_TARGET"
-msgstr ""
+msgstr "INVALID_TARGET"
 
 #. type: tbl table
 #: firewall-cmd.1:2236
 #, no-wrap
 msgid "110"
-msgstr ""
+msgstr "110"
 
 #. type: tbl table
 #: firewall-cmd.1:2239
 #, no-wrap
 msgid "INVALID_IPV"
-msgstr ""
+msgstr "INVALID_IPV"
 
 #. type: tbl table
 #: firewall-cmd.1:2241
 #, no-wrap
 msgid "111"
-msgstr ""
+msgstr "111"
 
 #. type: tbl table
 #: firewall-cmd.1:2244
 #, no-wrap
 msgid "INVALID_ZONE"
-msgstr ""
+msgstr "INVALID_ZONE"
 
 #. type: tbl table
 #: firewall-cmd.1:2246
 #, no-wrap
 msgid "112"
-msgstr ""
+msgstr "112"
 
 #. type: tbl table
 #: firewall-cmd.1:2249
 #, no-wrap
 msgid "INVALID_PROPERTY"
-msgstr ""
+msgstr "INVALID_PROPERTY"
 
 #. type: tbl table
 #: firewall-cmd.1:2251
 #, no-wrap
 msgid "113"
-msgstr ""
+msgstr "113"
 
 #. type: tbl table
 #: firewall-cmd.1:2254
 #, no-wrap
 msgid "INVALID_VALUE"
-msgstr ""
+msgstr "INVALID_VALUE"
 
 #. type: tbl table
 #: firewall-cmd.1:2256
 #, no-wrap
 msgid "114"
-msgstr ""
+msgstr "114"
 
 #. type: tbl table
 #: firewall-cmd.1:2259
 #, no-wrap
 msgid "INVALID_OBJECT"
-msgstr ""
+msgstr "INVALID_OBJECT"
 
 #. type: tbl table
 #: firewall-cmd.1:2261
 #, no-wrap
 msgid "115"
-msgstr ""
+msgstr "115"
 
 #. type: tbl table
 #: firewall-cmd.1:2264
 #, no-wrap
 msgid "INVALID_NAME"
-msgstr ""
+msgstr "INVALID_NAME"
 
 #. type: tbl table
 #: firewall-cmd.1:2266
 #, no-wrap
 msgid "116"
-msgstr ""
+msgstr "116"
 
 #. type: tbl table
 #: firewall-cmd.1:2269
 #, no-wrap
 msgid "INVALID_FILENAME"
-msgstr ""
+msgstr "INVALID_FILENAME"
 
 #. type: tbl table
 #: firewall-cmd.1:2271
 #, no-wrap
 msgid "117"
-msgstr ""
+msgstr "117"
 
 #. type: tbl table
 #: firewall-cmd.1:2274
 #, no-wrap
 msgid "INVALID_DIRECTORY"
-msgstr ""
+msgstr "INVALID_DIRECTORY"
 
 #. type: tbl table
 #: firewall-cmd.1:2276
 #, no-wrap
 msgid "118"
-msgstr ""
+msgstr "118"
 
 #. type: tbl table
 #: firewall-cmd.1:2279
 #, no-wrap
 msgid "INVALID_TYPE"
-msgstr ""
+msgstr "INVALID_TYPE"
 
 #. type: tbl table
 #: firewall-cmd.1:2281
 #, no-wrap
 msgid "119"
-msgstr ""
+msgstr "119"
 
 #. type: tbl table
 #: firewall-cmd.1:2284
 #, no-wrap
 msgid "INVALID_SETTING"
-msgstr ""
+msgstr "INVALID_SETTING"
 
 #. type: tbl table
 #: firewall-cmd.1:2286
 #, no-wrap
 msgid "120"
-msgstr ""
+msgstr "120"
 
 #. type: tbl table
 #: firewall-cmd.1:2289
 #, no-wrap
 msgid "INVALID_DESTINATION"
-msgstr ""
+msgstr "INVALID_DESTINATION"
 
 #. type: tbl table
 #: firewall-cmd.1:2291
 #, no-wrap
 msgid "121"
-msgstr ""
+msgstr "121"
 
 #. type: tbl table
 #: firewall-cmd.1:2294
 #, no-wrap
 msgid "INVALID_RULE"
-msgstr ""
+msgstr "INVALID_RULE"
 
 #. type: tbl table
 #: firewall-cmd.1:2296
 #, no-wrap
 msgid "122"
-msgstr ""
+msgstr "122"
 
 #. type: tbl table
 #: firewall-cmd.1:2299
 #, no-wrap
 msgid "INVALID_LIMIT"
-msgstr ""
+msgstr "INVALID_LIMIT"
 
 #. type: tbl table
 #: firewall-cmd.1:2301
 #, no-wrap
 msgid "123"
-msgstr ""
+msgstr "123"
 
 #. type: tbl table
 #: firewall-cmd.1:2304
 #, no-wrap
 msgid "INVALID_FAMILY"
-msgstr ""
+msgstr "INVALID_FAMILY"
 
 #. type: tbl table
 #: firewall-cmd.1:2306
 #, no-wrap
 msgid "124"
-msgstr ""
+msgstr "124"
 
 #. type: tbl table
 #: firewall-cmd.1:2309
 #, no-wrap
 msgid "INVALID_LOG_LEVEL"
-msgstr ""
+msgstr "INVALID_LOG_LEVEL"
 
 #. type: tbl table
 #: firewall-cmd.1:2311
 #, no-wrap
 msgid "125"
-msgstr ""
+msgstr "125"
 
 #. type: tbl table
 #: firewall-cmd.1:2314
 #, no-wrap
 msgid "INVALID_AUDIT_TYPE"
-msgstr ""
+msgstr "INVALID_AUDIT_TYPE"
 
 #. type: tbl table
 #: firewall-cmd.1:2316
 #, no-wrap
 msgid "126"
-msgstr ""
+msgstr "126"
 
 #. type: tbl table
 #: firewall-cmd.1:2319
 #, no-wrap
 msgid "INVALID_MARK"
-msgstr ""
+msgstr "INVALID_MARK"
 
 #. type: tbl table
 #: firewall-cmd.1:2321
 #, no-wrap
 msgid "127"
-msgstr ""
+msgstr "127"
 
 #. type: tbl table
 #: firewall-cmd.1:2324
 #, no-wrap
 msgid "INVALID_CONTEXT"
-msgstr ""
+msgstr "INVALID_CONTEXT"
 
 #. type: tbl table
 #: firewall-cmd.1:2326
 #, no-wrap
 msgid "128"
-msgstr ""
+msgstr "128"
 
 #. type: tbl table
 #: firewall-cmd.1:2329
 #, no-wrap
 msgid "INVALID_COMMAND"
-msgstr ""
+msgstr "INVALID_COMMAND"
 
 #. type: tbl table
 #: firewall-cmd.1:2331
 #, no-wrap
 msgid "129"
-msgstr ""
+msgstr "129"
 
 #. type: tbl table
 #: firewall-cmd.1:2334
 #, no-wrap
 msgid "INVALID_USER"
-msgstr ""
+msgstr "INVALID_USER"
 
 #. type: tbl table
 #: firewall-cmd.1:2336
 #, no-wrap
 msgid "130"
-msgstr ""
+msgstr "130"
 
 #. type: tbl table
 #: firewall-cmd.1:2339
 #, no-wrap
 msgid "INVALID_UID"
-msgstr ""
+msgstr "INVALID_UID"
 
 #. type: tbl table
 #: firewall-cmd.1:2341
 #, no-wrap
 msgid "131"
-msgstr ""
+msgstr "131"
 
 #. type: tbl table
 #: firewall-cmd.1:2344
 #, no-wrap
 msgid "INVALID_MODULE"
-msgstr ""
+msgstr "INVALID_MODULE"
 
 #. type: tbl table
 #: firewall-cmd.1:2346
 #, no-wrap
 msgid "132"
-msgstr ""
+msgstr "132"
 
 #. type: tbl table
 #: firewall-cmd.1:2349
 #, no-wrap
 msgid "INVALID_PASSTHROUGH"
-msgstr ""
+msgstr "INVALID_PASSTHROUGH"
 
 #. type: tbl table
 #: firewall-cmd.1:2351
 #, no-wrap
 msgid "133"
-msgstr ""
+msgstr "133"
 
 #. type: tbl table
 #: firewall-cmd.1:2354
 #, no-wrap
 msgid "INVALID_MAC"
-msgstr ""
+msgstr "INVALID_MAC"
 
 #. type: tbl table
 #: firewall-cmd.1:2356
 #, no-wrap
 msgid "134"
-msgstr ""
+msgstr "134"
 
 #. type: tbl table
 #: firewall-cmd.1:2359
 #, no-wrap
 msgid "INVALID_IPSET"
-msgstr ""
+msgstr "INVALID_IPSET"
 
 #. type: tbl table
 #: firewall-cmd.1:2361
 #, no-wrap
 msgid "135"
-msgstr ""
+msgstr "135"
 
 #. type: tbl table
 #: firewall-cmd.1:2364
 #, no-wrap
 msgid "INVALID_ENTRY"
-msgstr ""
+msgstr "INVALID_ENTRY"
 
 #. type: tbl table
 #: firewall-cmd.1:2366
 #, no-wrap
 msgid "136"
-msgstr ""
+msgstr "136"
 
 #. type: tbl table
 #: firewall-cmd.1:2369
 #, no-wrap
 msgid "INVALID_OPTION"
-msgstr ""
+msgstr "INVALID_OPTION"
 
 #. type: tbl table
 #: firewall-cmd.1:2371
 #, no-wrap
 msgid "137"
-msgstr ""
+msgstr "137"
 
 #. type: tbl table
 #: firewall-cmd.1:2374
 #, no-wrap
 msgid "INVALID_HELPER"
-msgstr ""
+msgstr "INVALID_HELPER"
 
 #. type: tbl table
 #: firewall-cmd.1:2376
 #, no-wrap
 msgid "138"
-msgstr ""
+msgstr "138"
 
 #. type: tbl table
 #: firewall-cmd.1:2379
 #, no-wrap
 msgid "INVALID_PRIORITY"
-msgstr ""
+msgstr "INVALID_PRIORITY"
 
 #. type: tbl table
 #: firewall-cmd.1:2381
 #, no-wrap
 msgid "139"
-msgstr ""
+msgstr "139"
 
 #. type: tbl table
 #: firewall-cmd.1:2384
 #, no-wrap
 msgid "INVALID_POLICY"
-msgstr ""
+msgstr "INVALID_POLICY"
 
 #. type: tbl table
 #: firewall-cmd.1:2386
 #, no-wrap
 msgid "140"
-msgstr ""
+msgstr "140"
 
 #. type: tbl table
 #: firewall-cmd.1:2389
 #, no-wrap
 msgid "INVALID_LOG_PREFIX"
-msgstr ""
+msgstr "INVALID_LOG_PREFIX"
 
 #. type: tbl table
 #: firewall-cmd.1:2391
 #, no-wrap
 msgid "141"
-msgstr ""
+msgstr "141"
 
 #. type: tbl table
 #: firewall-cmd.1:2394
 #, no-wrap
 msgid "INVALID_NFLOG_GROUP"
-msgstr ""
+msgstr "INVALID_NFLOG_GROUP"
 
 #. type: tbl table
 #: firewall-cmd.1:2396
 #, no-wrap
 msgid "142"
-msgstr ""
+msgstr "142"
 
 #. type: tbl table
 #: firewall-cmd.1:2399
 #, no-wrap
 msgid "INVALID_NFLOG_QUEUE"
-msgstr ""
+msgstr "INVALID_NFLOG_QUEUE"
 
 #. type: tbl table
 #: firewall-cmd.1:2401
 #, no-wrap
 msgid "143"
-msgstr ""
+msgstr "143"
 
 #. type: tbl table
 #: firewall-cmd.1:2404
 #, no-wrap
 msgid "MISSING_TABLE"
-msgstr ""
+msgstr "MISSING_TABLE"
 
 #. type: tbl table
 #: firewall-cmd.1:2406
 #, no-wrap
 msgid "200"
-msgstr ""
+msgstr "200"
 
 #. type: tbl table
 #: firewall-cmd.1:2409
 #, no-wrap
 msgid "MISSING_CHAIN"
-msgstr ""
+msgstr "MISSING_CHAIN"
 
 #. type: tbl table
 #: firewall-cmd.1:2411
 #, no-wrap
 msgid "201"
-msgstr ""
+msgstr "201"
 
 #. type: tbl table
 #: firewall-cmd.1:2414
 #, no-wrap
 msgid "MISSING_PORT"
-msgstr ""
+msgstr "MISSING_PORT"
 
 #. type: tbl table
 #: firewall-cmd.1:2416
 #, no-wrap
 msgid "202"
-msgstr ""
+msgstr "202"
 
 #. type: tbl table
 #: firewall-cmd.1:2419
 #, no-wrap
 msgid "MISSING_PROTOCOL"
-msgstr ""
+msgstr "MISSING_PROTOCOL"
 
 #. type: tbl table
 #: firewall-cmd.1:2421
 #, no-wrap
 msgid "203"
-msgstr ""
+msgstr "203"
 
 #. type: tbl table
 #: firewall-cmd.1:2424
 #, no-wrap
 msgid "MISSING_ADDR"
-msgstr ""
+msgstr "MISSING_ADDR"
 
 #. type: tbl table
 #: firewall-cmd.1:2426
 #, no-wrap
 msgid "204"
-msgstr ""
+msgstr "204"
 
 #. type: tbl table
 #: firewall-cmd.1:2429
 #, no-wrap
 msgid "MISSING_NAME"
-msgstr ""
+msgstr "MISSING_NAME"
 
 #. type: tbl table
 #: firewall-cmd.1:2431
 #, no-wrap
 msgid "205"
-msgstr ""
+msgstr "205"
 
 #. type: tbl table
 #: firewall-cmd.1:2434
 #, no-wrap
 msgid "MISSING_SETTING"
-msgstr ""
+msgstr "MISSING_SETTING"
 
 #. type: tbl table
 #: firewall-cmd.1:2436
 #, no-wrap
 msgid "206"
-msgstr ""
+msgstr "206"
 
 #. type: tbl table
 #: firewall-cmd.1:2439
 #, no-wrap
 msgid "MISSING_FAMILY"
-msgstr ""
+msgstr "MISSING_FAMILY"
 
 #. type: tbl table
 #: firewall-cmd.1:2441
 #, no-wrap
 msgid "207"
-msgstr ""
+msgstr "207"
 
 #. type: tbl table
 #: firewall-cmd.1:2444
 #, no-wrap
 msgid "RUNNING_BUT_FAILED"
-msgstr ""
+msgstr "RUNNING_BUT_FAILED"
 
 #. type: tbl table
 #: firewall-cmd.1:2446
 #, no-wrap
 msgid "251"
-msgstr ""
+msgstr "251"
 
 #. type: tbl table
 #: firewall-cmd.1:2449
 #, no-wrap
 msgid "NOT_RUNNING"
-msgstr ""
+msgstr "NOT_RUNNING"
 
 #. type: tbl table
 #: firewall-cmd.1:2451
 #, no-wrap
 msgid "252"
-msgstr ""
+msgstr "252"
 
 #. type: tbl table
 #: firewall-cmd.1:2454
 #, no-wrap
 msgid "NOT_AUTHORIZED"
-msgstr ""
+msgstr "NOT_AUTHORIZED"
 
 #. type: tbl table
 #: firewall-cmd.1:2456
 #, no-wrap
 msgid "253"
-msgstr ""
+msgstr "253"
 
 #. type: tbl table
 #: firewall-cmd.1:2459
 #, no-wrap
 msgid "UNKNOWN_ERROR"
-msgstr ""
+msgstr "UNKNOWN_ERROR"
 
 #. type: tbl table
 #: firewall-cmd.1:2461
 #, no-wrap
 msgid "254"
-msgstr ""
+msgstr "254"
 
 #. type: Plain text
 #: firewall-cmd.1:2468
@@ -4737,32 +4770,39 @@ msgid ""
 "policy>(5), B<firewalld.policies>(5), B<firewalld.ipset>(5), B<firewalld."
 "helper>(5)"
 msgstr ""
+"B<firewall-applet>(1), B<firewalld>(1), B<firewall-cmd>(1), B<firewall-"
+"config>(1), B<firewalld.conf>(5), B<firewalld.direct>(5), B<firewalld."
+"dbus>(5), B<firewalld.icmptype>(5), B<firewalld.lockdown-whitelist>(5), "
+"B<firewall-offline-cmd>(1), B<firewalld.richlanguage>(5), B<firewalld."
+"service>(5), B<firewalld.zone>(5), B<firewalld.zones>(5), B<firewalld."
+"policy>(5), B<firewalld.policies>(5), B<firewalld.ipset>(5), B<firewalld."
+"helper>(5)"
 
 #. type: SH
 #: firewall-cmd.1:2470 firewalld.1:161
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "NOTES"
 msgstr "ПРИМІТКИ"
 
 #. type: Plain text
 #: firewall-cmd.1:2473 firewalld.1:164
 msgid "firewalld home page:"
-msgstr ""
+msgstr "Домашня сторінка firewalld:"
 
 #. type: Plain text
 #: firewall-cmd.1:2475 firewalld.1:166
 msgid "\\m[blue]B<\\%http://firewalld.org>\\m[]"
-msgstr ""
+msgstr "\\m[blue]B<\\%http://firewalld.org>\\m[]"
 
 #. type: Plain text
 #: firewall-cmd.1:2478 firewalld.1:169
 msgid "More documentation with examples:"
-msgstr ""
+msgstr "Додаткова документація з прикладами:"
 
 #. type: Plain text
 #: firewall-cmd.1:2480 firewalld.1:171
 msgid "\\m[blue]B<\\%http://fedoraproject.org/wiki/FirewallD>\\m[]"
-msgstr ""
+msgstr "\\m[blue]B<\\%http://fedoraproject.org/wiki/FirewallD>\\m[]"
 
 #. type: SH
 #: firewall-cmd.1:2481 firewalld.1:172
@@ -4773,30 +4813,29 @@ msgstr "АВТОРИ"
 #. type: Plain text
 #: firewall-cmd.1:2484 firewalld.1:175
 msgid "B<Thomas Woerner> E<lt>\\&twoerner@redhat\\&.com\\&E<gt>"
-msgstr ""
+msgstr "B<Thomas Woerner> E<lt>\\&twoerner@redhat\\&.com\\&E<gt>"
 
 #. type: Plain text
 #: firewall-cmd.1:2486 firewall-cmd.1:2491 firewall-cmd.1:2496 firewalld.1:177
 #: firewalld.1:182 firewalld.1:187
-#, fuzzy
 msgid "Developer"
 msgstr "Розробник"
 
 #. type: Plain text
 #: firewall-cmd.1:2489 firewalld.1:180
 msgid "B<Jiri Popelka> E<lt>\\&jpopelka@redhat\\&.com\\&E<gt>"
-msgstr ""
+msgstr "B<Jiri Popelka> E<lt>\\&jpopelka@redhat\\&.com\\&E<gt>"
 
 #. type: Plain text
 #: firewall-cmd.1:2494 firewalld.1:185
 msgid "B<Eric Garver> E<lt>\\&eric@garver\\&.life\\&E<gt>"
-msgstr ""
+msgstr "B<Eric Garver> E<lt>\\&eric@garver\\&.life\\&E<gt>"
 
 #. type: TH
 #: firewalld.1:10
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "FIREWALLD"
-msgstr "firewalld 1.1.999"
+msgstr "FIREWALLD"
 
 #. type: TH
 #: firewalld.1:10
@@ -4807,12 +4846,12 @@ msgstr "firewalld"
 #. type: Plain text
 #: firewalld.1:30
 msgid "firewalld - Dynamic Firewall Manager"
-msgstr ""
+msgstr "firewalld — динамічний засіб керування брандмауером"
 
 #. type: Plain text
 #: firewalld.1:33
 msgid "B<firewalld >B<[OPTIONS...]>"
-msgstr ""
+msgstr "B<firewalld >B<[ПАРАМЕТРИ...]>"
 
 #. type: Plain text
 #: firewalld.1:36
@@ -4824,17 +4863,22 @@ msgid ""
 "\\&. It also supports an interface for services or applications to add "
 "firewall rules directly\\&."
 msgstr ""
+"firewalld забезпечує роботу динамічно керованого брандмауера із підтримкою"
+" зон мережі/брандмауера для визначення рівня довіри до мережевих з'єднань або"
+" інтерфейсів\\&. Передбачено підтримку параметрів брандмауера для IPv4, IPv6"
+" і містків ethernet, а також поділ параметрів налаштувань на динамічні і"
+" постійні\\&. Також передбачено підтримку інтерфейсу для служб або програм"
+" для безпосереднього додавання правил брандмауера\\&."
 
 #. type: Plain text
 #: firewalld.1:39
 msgid "These are the command line options of firewalld:"
-msgstr ""
+msgstr "Ось параметри командного рядка firewalld:"
 
 #. type: Plain text
 #: firewalld.1:46
-#, fuzzy
 msgid "B<--default-config>"
-msgstr "B"
+msgstr "B<--default-config>"
 
 #. type: Plain text
 #: firewalld.1:49
@@ -4842,12 +4886,12 @@ msgid ""
 "Path to firewalld default configuration\\&. This usually defaults to I</usr/"
 "lib/firewalld>\\&."
 msgstr ""
+"Шлях до типових налаштувань\\&. Зазвичай, типовим є I</usr/lib/firewalld>\\&."
 
 #. type: Plain text
 #: firewalld.1:52
-#, fuzzy
 msgid "B<--debug>[=I<level>]"
-msgstr "\\ \\ \\ B<q>\\ \\ :I<Вийти >"
+msgstr "B<--debug>[=I<рівень>]"
 
 #. type: Plain text
 #: firewalld.1:56
@@ -4856,12 +4900,15 @@ msgid ""
 "level is 1 (lowest level) to 10 (highest level)\\&. The debug output will be "
 "written to the firewalld log file I</var/log/firewalld>\\&."
 msgstr ""
+"Встановити для рівня діагностики firewalld значення I<рівень>\\&. Діапазоном"
+" рівня діагностики є значення від 1 (найнижчий рівень) до 10 (найвищий"
+" рівень)\\&. Діагностичні дані буде записано до файла журналу firewalld I<"
+"/var/log/firewalld>\\&."
 
 #. type: Plain text
 #: firewalld.1:59
-#, fuzzy
 msgid "B<--debug-gc>"
-msgstr "B"
+msgstr "B<--debug-gc>"
 
 #. type: Plain text
 #: firewalld.1:61
@@ -4869,12 +4916,14 @@ msgid ""
 "Print garbage collector leak information\\&. The collector runs every 10 "
 "seconds and if there are leaks, it prints information about the leaks\\&."
 msgstr ""
+"Вивести відомості щодо витоків у засобі збирання сміття\\&. Засіб збирання"
+" сміття запускається кожні 10 секунді, і якщо було виявлено витоки, вивести"
+" відомості щодо витоків\\&."
 
 #. type: Plain text
 #: firewalld.1:64
-#, fuzzy
 msgid "B<--nofork>"
-msgstr "B"
+msgstr "B<--nofork>"
 
 #. type: Plain text
 #: firewalld.1:66
@@ -4882,12 +4931,13 @@ msgid ""
 "Turn off daemon forking\\&. Force firewalld to run as a foreground process "
 "instead of as a daemon in the background\\&."
 msgstr ""
+"Вимкнути відгалуження фонової служби\\&. Примусити firewalld до запуску як"
+" основного процесу, замість фонової служби у тлі\\&."
 
 #. type: Plain text
 #: firewalld.1:69
-#, fuzzy
 msgid "B<--nopid>"
-msgstr "B"
+msgstr "B<--nopid>"
 
 #. type: Plain text
 #: firewalld.1:71
@@ -4896,12 +4946,14 @@ msgid ""
 "\\&. If the program is invoked with this option it will not check for an "
 "existing server process\\&."
 msgstr ""
+"Вимкнути запис файла pid\\&. Типово, програма записує файл pid\\&. Якщо"
+" програму викликано з цим параметром, вона не перевірятиме наявність процесу"
+" сервера\\&."
 
 #. type: Plain text
 #: firewalld.1:74
-#, fuzzy
 msgid "B<--system-config>"
-msgstr "B"
+msgstr "B<--system-config>"
 
 #. type: Plain text
 #: firewalld.1:77
@@ -4909,12 +4961,14 @@ msgid ""
 "Path to firewalld system (user) configuration\\&. This usually defaults to "
 "I</etc/firewalld>\\&."
 msgstr ""
+"Шлях до загальносистемних (користувача) налаштувань firewalld\\&. Зазвичай,"
+" типовим значенням є I</etc/firewalld>\\&."
 
 #. type: SH
 #: firewalld.1:78
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "CONCEPTS"
-msgstr "Принципи"
+msgstr "ЗАГАЛЬНІ ПОНЯТТЯ"
 
 #. type: Plain text
 #: firewalld.1:82
@@ -4925,6 +4979,12 @@ msgid ""
 "the D-Bus interface directly\\&. For more information on the firewalld D-Bus "
 "interface, please have a look at B<firewalld.dbus>(5)\\&."
 msgstr ""
+"firewalld має інтерфейс D-Bus для налаштувань служб і програм брандмауера\\&."
+" У комплекті є клієнт командного рядка для користувача\\&. Служби і програми,"
+" які вже використовують D-Bus, можуть надсилати безпосередні запити щодо змін"
+" у брандмауері за допомогою інтерфейсу D-Bus\\&. Щоб дізнатися більше про"
+" інтерфейс D-Bus firewalld, будь ласка, ознайомтеся із підручником щодо B<"
+"firewalld.dbus>(5)\\&."
 
 #. type: Plain text
 #: firewalld.1:89
@@ -4935,6 +4995,11 @@ msgid ""
 "(B<--default-config>) or I</etc/firewalld> (B<--system-config>) (see the "
 "section called \\(lqDIRECTORIES\\(rq)\\&."
 msgstr ""
+"У firewalld передбачено підтримку зон, попередньо визначених служб та типів"
+" ICMP, а також відокремлення динамічних і постійних параметрів"
+" налаштувань\\&. Постійні налаштування буде завантажено з файлів XML у I<"
+"/usr/lib/firewalld> (B<--default-config>) або I</etc/firewalld> (B<"
+"--system-config>) (див. розділ із назвою \\(lqКАТАЛОГИ\\(rq)\\&."
 
 #. type: Plain text
 #: firewalld.1:93
@@ -4947,6 +5012,13 @@ msgid ""
 "interfaces that are not controlled by NetworkManager if I<NM_CONTROLLED=no> "
 "is set\\&."
 msgstr ""
+"Якщо у системі не використовується NetworkManager, а firewalld запускається"
+" після забезпечення працездатності мережі, з'єднання та створені вручну"
+" інтерфейси є обмежено зоною, яке вказано у файлі ifcfg\\&. Обробка"
+" інтерфейсів виконуватиметься автоматично типовою зоною\\&. Крім того,"
+" firewalld не отримуватиме сповіщень щодо перейменувань пристроїв мережі\\&."
+" Усе це також стосується інтерфейсів, якими не керує NetworkManager, якщо"
+" встановлено I<NM_CONTROLLED=no>\\&."
 
 #. type: Plain text
 #: firewalld.1:98
@@ -4956,6 +5028,10 @@ msgid ""
 "sysconfig/network-scripts/ifcfg-I<interface> file, firewalld tries to change "
 "the ZONE=I<zone> setting in this file\\&."
 msgstr ""
+"Ви можете додати ці інтерфейси до зони за допомогою команди B<firewall-cmd"
+" [--permanent] --zone=>I<зона>B< --add-interface=>I<інтерфейс>\\&. Якщо існує"
+" файл /etc/sysconfig/network-scripts/ifcfg-I<інтерфейс>, firewalld"
+" намагатиметься змінити параметр ZONE=I<зона> у цьому файлі\\&."
 
 #. type: Plain text
 #: firewalld.1:100
@@ -4965,6 +5041,10 @@ msgid ""
 "NetworkManager uncontrolled interfaces\\&. This mechanism is not possible in "
 "the case of a firewalld service restart\\&."
 msgstr ""
+"При перезавантаженні firewalld відновлюватиме прив'язки інтерфейсів, які було"
+" використано до перезавантаження, для збереження стабільної прив'язки до"
+" інтерфейсів у випадку некерованих NetworkManager інтерфейсів\\&. Цей"
+" механізм неможливий у випадку перезапуску служби firewalld\\&."
 
 #. type: Plain text
 #: firewalld.1:102
@@ -4973,6 +5053,9 @@ msgid ""
 "the binding in firewalld in the case of NetworkManager uncontrolled "
 "interfaces\\&."
 msgstr ""
+"Критично важливо підтримувати узгодженість параметра ZONE= у файлі ifcfg із"
+" прив'язкою у firewalld у випадку неконтрольованих NetworkManager"
+" інтерфейсів\\&."
 
 #. type: SS
 #: firewalld.1:102
@@ -4988,10 +5071,14 @@ msgid ""
 "\\&. Zone configuration options and generic information about zones are "
 "described in B<firewalld.zone>(5)"
 msgstr ""
+"Зона мережі або брандмауера визначає рівень довіри до інтерфейсу, який буде"
+" використано для з'єднання\\&. У firewalld передбачено декілька попередньо"
+" визначених зон\\&. Параметри налаштування зон та загальні відомості щодо зон"
+" описано на сторінці підручника B<firewalld.zone>(5)"
 
 #. type: SS
 #: firewalld.1:106
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "Services"
 msgstr "Служби"
 
@@ -5005,12 +5092,18 @@ msgid ""
 "use of predefined services makes it easier for the user to enable and "
 "disable access to a service\\&."
 msgstr ""
+"Службою може бути список локальних портів, протоколів та призначено, а також"
+" список модулів допоміжних засобів брандмауера, які автоматично"
+" завантажуються, якщо службу увімкнено\\&. Параметри налаштувань служб та"
+" загальні відомості про служби наведено на сторінці підручника B<"
+"firewalld.service>(5)\\&. Використання попередньо визначених служб спрощує"
+" для користувача доступ до вмикання і вимикання служби\\&."
 
 #. type: SS
 #: firewalld.1:110
 #, no-wrap
 msgid "ICMP types"
-msgstr ""
+msgstr "Типи ICMP"
 
 #. type: Plain text
 #: firewalld.1:114
@@ -5020,12 +5113,18 @@ msgid ""
 "used in firewalld to limit the exchange of these messages\\&. For more "
 "information, please have a look at B<firewalld.icmptype>(5)\\&."
 msgstr ""
+"Протокол керування повідомленнями інтернету (Internet Control Message"
+" Protocol або ICMP) використовують для обміну відомостями, а також"
+" повідомленням про помилки у протоколі інтернету (Internet Protocol або"
+" IP)\\&. Типами ICMP можна скористатися у firewalld для обмеження обміну цими"
+" повідомленнями\\&. Щоб дізнатися більше, будь ласка, зверніться до сторінки"
+" підручника B<firewalld.icmptype>(5)\\&."
 
 #. type: SS
 #: firewalld.1:114
 #, no-wrap
 msgid "Runtime configuration"
-msgstr ""
+msgstr "Динамічні налаштування"
 
 #. type: Plain text
 #: firewalld.1:117
@@ -5035,12 +5134,16 @@ msgid ""
 "settings will be gone if they haven\\*(Aqt been also in permanent "
 "configuration\\&."
 msgstr ""
+"Динамічні налаштування — справжні активні налаштування, які не є"
+" постійними\\&. Після перезавантаження або перезапуску служби або"
+" перезавантаження системи динамічні параметрибуде втрачено, якщо їх немає"
+" також у постійних налаштуваннях\\&."
 
 #. type: SS
 #: firewalld.1:117
 #, no-wrap
 msgid "Permanent configuration"
-msgstr ""
+msgstr "Постійні налаштування"
 
 #. type: Plain text
 #: firewalld.1:120
@@ -5049,12 +5152,15 @@ msgid ""
 "become new runtime configuration with every machine boot or service reload/"
 "restart\\&."
 msgstr ""
+"Постійні налаштування зберігаються у файлах налаштувань. Їх буде завантажено,"
+" і вони стануть динамічними налаштуваннями під час кожного завантаження"
+" системи або перезавантаження/перезапуску служби\\&."
 
 #. type: SS
 #: firewalld.1:120
 #, no-wrap
 msgid "Direct interface"
-msgstr ""
+msgstr "Безпосередній інтерфейс"
 
 #. type: Plain text
 #: firewalld.1:129
@@ -5063,23 +5169,29 @@ msgid ""
 "specific firewall rules\\&. It requires basic knowledge of ip(6)tables "
 "concepts (tables, chains, commands, parameters, targets)\\&."
 msgstr ""
+"Безпосередній інтерфейс, в основному, використовують служби або програми для"
+" додавання специфічних правил брандмауера\\&. Щоб скористатися ними потрібні"
+" базові знання щодо понять ip(6)tables (таблиць, ланцюжків, команд,"
+" параметрів, призначень)\\&."
 
 #. type: SH
 #: firewalld.1:129
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "DIRECTORIES"
-msgstr "Каталоги"
+msgstr "КАТАЛОГИ"
 
 #. type: Plain text
 #: firewalld.1:132
 msgid "firewalld supports two configuration directories:"
-msgstr ""
+msgstr "У firewalld передбачено підтримку двох каталогів налаштувань:"
 
 #. type: SS
 #: firewalld.1:132
 #, no-wrap
-msgid "Default/Fallback configuration in I</usr/lib/firewalld>R< (--default-config)>"
+msgid ""
+"Default/Fallback configuration in I</usr/lib/firewalld>R< (--default-config)>"
 msgstr ""
+"Типові/Резервні налаштування у I</usr/lib/firewalld>R< (--default-config)>"
 
 #. type: Plain text
 #: firewalld.1:140
@@ -5090,12 +5202,19 @@ msgid ""
 "update of the firewalld package\\&. Additional B<icmptypes>, B<services> and "
 "B<zones> can be provided with packages or by creating files\\&."
 msgstr ""
+"У цьому каталозі зберігаються типові та резервні налаштування, які надаються"
+" firewalld для типів ICMP, служб і зон\\&. До файлів, які є частиною пакунка"
+" firewalld, не варто вносити зміни, оскільки внесені зміни буде втрачено під"
+" час оновлення пакунка firewalld\\&. Додаткові B<типи ICMP>, B<служби> і B<"
+"зони> додають окремими пакунками або створенням відповідних файлів\\&."
 
 #. type: SS
 #: firewalld.1:140
 #, no-wrap
 msgid "System configuration settings in I</etc/firewalld>R< (--system-config)>"
 msgstr ""
+"Загальносистемні параметри налаштувань в I</etc/firewalld>R<"
+" (--system-config)>"
 
 #. type: Plain text
 #: firewalld.1:143
@@ -5105,6 +5224,10 @@ msgid ""
 "firewalld or by hand\\&. The files will overload the default configuration "
 "files\\&."
 msgstr ""
+"Загальносистемні налаштування або налаштування користувача, які зберігаються"
+" у цих каталогах, має бути або створено адміністратором системи, налаштовано"
+" за допомогою інтерфейсу налаштовування firewalld або створено вручну\\&. Ці"
+" файли мають вищий пріоритет за файли типових налаштувань\\&."
 
 #. type: Plain text
 #: firewalld.1:145
@@ -5113,6 +5236,9 @@ msgid ""
 "copy the file from the default configuration directory to the corresponding "
 "directory in the system configuration directory and change it accordingly\\&."
 msgstr ""
+"Щоб змінити параметри попередньо визначених типів ICMP, зон або служб,"
+" скопіюйте файл з каталогу типових налаштувань до відповідного каталогу"
+" загальносистемних налаштувань і внесіть до нього бажані зміни\\&."
 
 #. type: Plain text
 #: firewalld.1:152
@@ -5121,6 +5247,10 @@ msgid ""
 "icmptype>(5)  man page, for services at B<firewalld.service>(5)  and for "
 "zones at B<firewalld.zone>(5)\\&."
 msgstr ""
+"Щоб дізнатися більше про типи ICMP, будь ласка, зазирніть на сторінку"
+" підручника B<firewalld.icmptype>(5). Докладніші відомості щодо служб можна"
+" знайти на сторінці B<firewalld.service>(5), а щодо зон — на сторінці B<"
+"firewalld.zone>(5)\\&."
 
 #. type: SH
 #: firewalld.1:152
@@ -5131,7 +5261,7 @@ msgstr "СИГНАЛИ"
 #. type: Plain text
 #: firewalld.1:155
 msgid "Currently only SIGHUP is supported\\&."
-msgstr ""
+msgstr "У поточній версії передбачено підтримку лише SIGHUP\\&."
 
 #. type: SS
 #: firewalld.1:155
@@ -5147,3 +5277,10 @@ msgid ""
 "Permanent configuration will change according to options defined in the "
 "configuration files\\&."
 msgstr ""
+"Перезавантажує налаштування брандмауера повністю\\&. Ви також можете"
+" скористатися B<firewall-cmd --reload>\\&. Усі динамічні параметри"
+" налаштувань буде відновлено\\&. Постійні налаштування буде змінено"
+" відповідно до параметрів, які визначено у файлах налаштувань\\&."
+
+#~ msgid "Prints a short help text and exists\\&."
+#~ msgstr "Виводить коротку текстову довідку і завершує роботу\\&."

@@ -31,173 +31,181 @@
 .\" * MAIN CONTENT STARTS HERE *
 .\" -----------------------------------------------------------------
 .SH НАЗВА
-firewalld \- Dynamic Firewall Manager
+firewalld — динамічний засіб керування брандмауером
 .SH "КОРОТКИЙ ОПИС"
 .HP \w'\fBfirewalld\ \fR\fB[OPTIONS...]\fR\ 'u
-\fBfirewalld \fP\fB[OPTIONS...]\fP
+\fBfirewalld \fP\fB[ПАРАМЕТРИ...]\fP
 .SH ОПИС
 .PP
-firewalld provides a dynamically managed firewall with support for
-network/firewall zones to define the trust level of network connections or
-interfaces\&. It has support for IPv4, IPv6 firewall settings and for
-ethernet bridges and has a separation of runtime and permanent configuration
-options\&. It also supports an interface for services or applications to add
-firewall rules directly\&.
+firewalld забезпечує роботу динамічно керованого брандмауера із підтримкою
+зон мережі/брандмауера для визначення рівня довіри до мережевих з'єднань або
+інтерфейсів\&. Передбачено підтримку параметрів брандмауера для IPv4, IPv6 і
+містків ethernet, а також поділ параметрів налаштувань на динамічні і
+постійні\&. Також передбачено підтримку інтерфейсу для служб або програм для
+безпосереднього додавання правил брандмауера\&.
 .SH ПАРАМЕТРИ
 .PP
-These are the command line options of firewalld:
+Ось параметри командного рядка firewalld:
 .PP
 \fB\-h\fP, \fB\-\-help\fP
 .RS 4
-Prints a short help text and exists\&.
+Виводить коротку текстову довідку і завершує роботу\&.
 .RE
 .PP
 \fB\-\-default\-config\fP
 .RS 4
-Path to firewalld default configuration\&. This usually defaults to
-\fI/usr/lib/firewalld\fP\&.
+Шлях до типових налаштувань\&. Зазвичай, типовим є \fI/usr/lib/firewalld\fP\&.
 .RE
 .PP
-\fB\-\-debug\fP[=\fIlevel\fP]
+\fB\-\-debug\fP[=\fIрівень\fP]
 .RS 4
-Set the debug level for firewalld to \fIlevel\fP\&. The range of the debug
-level is 1 (lowest level) to 10 (highest level)\&. The debug output will be
-written to the firewalld log file \fI/var/log/firewalld\fP\&.
+Встановити для рівня діагностики firewalld значення \fIрівень\fP\&. Діапазоном
+рівня діагностики є значення від 1 (найнижчий рівень) до 10 (найвищий
+рівень)\&. Діагностичні дані буде записано до файла журналу firewalld
+\fI/var/log/firewalld\fP\&.
 .RE
 .PP
 \fB\-\-debug\-gc\fP
 .RS 4
-Print garbage collector leak information\&. The collector runs every 10
-seconds and if there are leaks, it prints information about the leaks\&.
+Вивести відомості щодо витоків у засобі збирання сміття\&. Засіб збирання
+сміття запускається кожні 10 секунді, і якщо було виявлено витоки, вивести
+відомості щодо витоків\&.
 .RE
 .PP
 \fB\-\-nofork\fP
 .RS 4
-Turn off daemon forking\&. Force firewalld to run as a foreground process
-instead of as a daemon in the background\&.
+Вимкнути відгалуження фонової служби\&. Примусити firewalld до запуску як
+основного процесу, замість фонової служби у тлі\&.
 .RE
 .PP
 \fB\-\-nopid\fP
 .RS 4
-Disable writing pid file\&. By default the program will write a pid
-file\&. If the program is invoked with this option it will not check for an
-existing server process\&.
+Вимкнути запис файла pid\&. Типово, програма записує файл pid\&. Якщо
+програму викликано з цим параметром, вона не перевірятиме наявність процесу
+сервера\&.
 .RE
 .PP
 \fB\-\-system\-config\fP
 .RS 4
-Path to firewalld system (user) configuration\&. This usually defaults to
-\fI/etc/firewalld\fP\&.
+Шлях до загальносистемних (користувача) налаштувань firewalld\&. Зазвичай,
+типовим значенням є \fI/etc/firewalld\fP\&.
 .RE
-.SH CONCEPTS
+.SH "ЗАГАЛЬНІ ПОНЯТТЯ"
 .PP
-firewalld has a D\-Bus interface for firewall configuration of services and
-applications\&. It also has a command line client for the user\&. Services
-or applications already using D\-Bus can request changes to the firewall with
-the D\-Bus interface directly\&. For more information on the firewalld D\-Bus
-interface, please have a look at \fBfirewalld.dbus\fP(5)\&.
+firewalld має інтерфейс D\-Bus для налаштувань служб і програм
+брандмауера\&. У комплекті є клієнт командного рядка для
+користувача\&. Служби і програми, які вже використовують D\-Bus, можуть
+надсилати безпосередні запити щодо змін у брандмауері за допомогою
+інтерфейсу D\-Bus\&. Щоб дізнатися більше про інтерфейс D\-Bus firewalld, будь
+ласка, ознайомтеся із підручником щодо \fBfirewalld.dbus\fP(5)\&.
 .PP
-firewalld provides support for zones, predefined services and ICMP types and
-has a separation of runtime and permanent configuration options\&. Permanent
-configuration is loaded from XML files in \fI/usr/lib/firewalld\fP
-(\fB\-\-default\-config\fP) or \fI/etc/firewalld\fP (\fB\-\-system\-config\fP) (see the
-section called \(lqDIRECTORIES\(rq)\&.
+У firewalld передбачено підтримку зон, попередньо визначених служб та типів
+ICMP, а також відокремлення динамічних і постійних параметрів
+налаштувань\&. Постійні налаштування буде завантажено з файлів XML у
+\fI/usr/lib/firewalld\fP (\fB\-\-default\-config\fP) або \fI/etc/firewalld\fP
+(\fB\-\-system\-config\fP) (див. розділ із назвою \(lqКАТАЛОГИ\(rq)\&.
 .PP
-If NetworkManager is not in use and firewalld gets started after the network
-is already up, the connections and manually created interfaces are not bound
-to the zone specified in the ifcfg file\&. The interfaces will automatically
-be handled by the default zone\&. firewalld will also not get notified about
-network device renames\&. All this also applies to interfaces that are not
-controlled by NetworkManager if \fINM_CONTROLLED=no\fP is set\&.
+Якщо у системі не використовується NetworkManager, а firewalld запускається
+після забезпечення працездатності мережі, з'єднання та створені вручну
+інтерфейси є обмежено зоною, яке вказано у файлі ifcfg\&. Обробка
+інтерфейсів виконуватиметься автоматично типовою зоною\&. Крім того,
+firewalld не отримуватиме сповіщень щодо перейменувань пристроїв
+мережі\&. Усе це також стосується інтерфейсів, якими не керує
+NetworkManager, якщо встановлено \fINM_CONTROLLED=no\fP\&.
 .PP
-You can add these interfaces to a zone with \fBfirewall\-cmd [\-\-permanent]
-\-\-zone=\fP\fIzone\fP\fB \-\-add\-interface=\fP\fIinterface\fP\&. If there is a
-/etc/sysconfig/network\-scripts/ifcfg\-\fIinterface\fP file, firewalld tries to
-change the ZONE=\fIzone\fP setting in this file\&.
+Ви можете додати ці інтерфейси до зони за допомогою команди \fBfirewall\-cmd
+[\-\-permanent] \-\-zone=\fP\fIзона\fP\fB \-\-add\-interface=\fP\fIінтерфейс\fP\&. Якщо існує
+файл /etc/sysconfig/network\-scripts/ifcfg\-\fIінтерфейс\fP, firewalld
+намагатиметься змінити параметр ZONE=\fIзона\fP у цьому файлі\&.
 .PP
-If firewalld gets reloaded, it will restore the interface bindings that were
-in place before reloading to keep interface bindings stable in the case of
-NetworkManager uncontrolled interfaces\&. This mechanism is not possible in
-the case of a firewalld service restart\&.
+При перезавантаженні firewalld відновлюватиме прив'язки інтерфейсів, які
+було використано до перезавантаження, для збереження стабільної прив'язки до
+інтерфейсів у випадку некерованих NetworkManager інтерфейсів\&. Цей механізм
+неможливий у випадку перезапуску служби firewalld\&.
 .PP
-It is essential to keep the ZONE= setting in the ifcfg file consistent to
-the binding in firewalld in the case of NetworkManager uncontrolled
-interfaces\&.
+Критично важливо підтримувати узгодженість параметра ZONE= у файлі ifcfg із
+прив'язкою у firewalld у випадку неконтрольованих NetworkManager
+інтерфейсів\&.
 .SS Зони
 .PP
-A network or firewall zone defines the trust level of the interface used for
-a connection\&. There are several pre\-defined zones provided by
-firewalld\&. Zone configuration options and generic information about zones
-are described in \fBfirewalld.zone\fP(5)
-.SS Services
+Зона мережі або брандмауера визначає рівень довіри до інтерфейсу, який буде
+використано для з'єднання\&. У firewalld передбачено декілька попередньо
+визначених зон\&. Параметри налаштування зон та загальні відомості щодо зон
+описано на сторінці підручника \fBfirewalld.zone\fP(5)
+.SS Служби
 .PP
-A service can be a list of local ports, protocols and destinations and
-additionally also a list of firewall helper modules automatically loaded if
-a service is enabled\&. Service configuration options and generic
-information about services are described in \fBfirewalld.service\fP(5)\&. The
-use of predefined services makes it easier for the user to enable and
-disable access to a service\&.
-.SS "ICMP types"
+Службою може бути список локальних портів, протоколів та призначено, а також
+список модулів допоміжних засобів брандмауера, які автоматично
+завантажуються, якщо службу увімкнено\&. Параметри налаштувань служб та
+загальні відомості про служби наведено на сторінці підручника
+\fBfirewalld.service\fP(5)\&. Використання попередньо визначених служб спрощує
+для користувача доступ до вмикання і вимикання служби\&.
+.SS "Типи ICMP"
 .PP
-The Internet Control Message Protocol (ICMP) is used to exchange information
-and also error messages in the Internet Protocol (IP)\&. ICMP types can be
-used in firewalld to limit the exchange of these messages\&. For more
-information, please have a look at \fBfirewalld.icmptype\fP(5)\&.
-.SS "Runtime configuration"
+Протокол керування повідомленнями інтернету (Internet Control Message
+Protocol або ICMP) використовують для обміну відомостями, а також
+повідомленням про помилки у протоколі інтернету (Internet Protocol або
+IP)\&. Типами ICMP можна скористатися у firewalld для обмеження обміну цими
+повідомленнями\&. Щоб дізнатися більше, будь ласка, зверніться до сторінки
+підручника \fBfirewalld.icmptype\fP(5)\&.
+.SS "Динамічні налаштування"
 .PP
-Runtime configuration is the actual active configuration and is not
-permanent\&. After reload/restart of the service or a system reboot, runtime
-settings will be gone if they haven\*(Aqt been also in permanent
-configuration\&.
-.SS "Permanent configuration"
+Динамічні налаштування — справжні активні налаштування, які не є
+постійними\&. Після перезавантаження або перезапуску служби або
+перезавантаження системи динамічні параметрибуде втрачено, якщо їх немає
+також у постійних налаштуваннях\&.
+.SS "Постійні налаштування"
 .PP
-The permanent configuration is stored in config files and will be loaded and
-become new runtime configuration with every machine boot or service
-reload/restart\&.
-.SS "Direct interface"
-\fBDEPRECATED\fP
+Постійні налаштування зберігаються у файлах налаштувань. Їх буде
+завантажено, і вони стануть динамічними налаштуваннями під час кожного
+завантаження системи або перезавантаження/перезапуску служби\&.
+.SS "Безпосередній інтерфейс"
+\fBЗАСТАРІЛЕ\fP
 .RS 4
 .PP
-The direct interface has been deprecated\&. It will be removed in a future
-release\&. It is superseded by policies, see \fBfirewalld.policies\fP(5)\&.
+Безпосередній інтерфейс вважається застарілим\&. Його буде вилучено у
+майбутніх випусках\&. Його наступником стали правила,
+див. \fBfirewalld.policies\fP(5)\&.
 .RE
 .PP
-The direct interface is mainly used by services or applications to add
-specific firewall rules\&. It requires basic knowledge of ip(6)tables
-concepts (tables, chains, commands, parameters, targets)\&.
-.SH DIRECTORIES
+Безпосередній інтерфейс, в основному, використовують служби або програми для
+додавання специфічних правил брандмауера\&. Щоб скористатися ними потрібні
+базові знання щодо понять ip(6)tables (таблиць, ланцюжків, команд,
+параметрів, призначень)\&.
+.SH КАТАЛОГИ
 .PP
-firewalld supports two configuration directories:
-.SS "Default/Fallback configuration in \fI/usr/lib/firewalld\fP\fR (\-\-default\-config)\fP"
+У firewalld передбачено підтримку двох каталогів налаштувань:
+.SS "Типові/Резервні налаштування у \fI/usr/lib/firewalld\fP\fR (\-\-default\-config)\fP"
 .PP
-This directory contains the default and fallback configuration provided by
-firewalld for icmptypes, services and zones\&. The files provided with the
-firewalld package should not get changed and the changes are gone with an
-update of the firewalld package\&. Additional \fBicmptypes\fP, \fBservices\fP and
-\fBzones\fP can be provided with packages or by creating files\&.
-.SS "System configuration settings in \fI/etc/firewalld\fP\fR (\-\-system\-config)\fP"
+У цьому каталозі зберігаються типові та резервні налаштування, які надаються
+firewalld для типів ICMP, служб і зон\&. До файлів, які є частиною пакунка
+firewalld, не варто вносити зміни, оскільки внесені зміни буде втрачено під
+час оновлення пакунка firewalld\&. Додаткові \fBтипи ICMP\fP, \fBслужби\fP і
+\fBзони\fP додають окремими пакунками або створенням відповідних файлів\&.
+.SS "Загальносистемні параметри налаштувань в \fI/etc/firewalld\fP\fR (\-\-system\-config)\fP"
 .PP
-The system or user configuration stored here is either created by the system
-administrator or by customization with the configuration interface of
-firewalld or by hand\&. The files will overload the default configuration
-files\&.
+Загальносистемні налаштування або налаштування користувача, які зберігаються
+у цих каталогах, має бути або створено адміністратором системи, налаштовано
+за допомогою інтерфейсу налаштовування firewalld або створено вручну\&. Ці
+файли мають вищий пріоритет за файли типових налаштувань\&.
 .PP
-To manually change settings of pre\-defined icmptypes, zones or services,
-copy the file from the default configuration directory to the corresponding
-directory in the system configuration directory and change it accordingly\&.
+Щоб змінити параметри попередньо визначених типів ICMP, зон або служб,
+скопіюйте файл з каталогу типових налаштувань до відповідного каталогу
+загальносистемних налаштувань і внесіть до нього бажані зміни\&.
 .PP
-For more information on icmptypes, please have a look at the
-\fBfirewalld.icmptype\fP(5)  man page, for services at \fBfirewalld.service\fP(5)
-and for zones at \fBfirewalld.zone\fP(5)\&.
+Щоб дізнатися більше про типи ICMP, будь ласка, зазирніть на сторінку
+підручника \fBfirewalld.icmptype\fP(5). Докладніші відомості щодо служб можна
+знайти на сторінці \fBfirewalld.service\fP(5), а щодо зон — на сторінці
+\fBfirewalld.zone\fP(5)\&.
 .SH СИГНАЛИ
 .PP
-Currently only SIGHUP is supported\&.
+У поточній версії передбачено підтримку лише SIGHUP\&.
 .SS SIGHUP
 .PP
-Reloads the complete firewall configuration\&. You can also use
-\fBfirewall\-cmd \-\-reload\fP\&. All runtime configuration settings will be
-restored\&. Permanent configuration will change according to options defined
-in the configuration files\&.
+Перезавантажує налаштування брандмауера повністю\&. Ви також можете
+скористатися \fBfirewall\-cmd \-\-reload\fP\&. Усі динамічні параметри налаштувань
+буде відновлено\&. Постійні налаштування буде змінено відповідно до
+параметрів, які визначено у файлах налаштувань\&.
 .SH "ДИВ. ТАКОЖ"
 \fBfirewall\-applet\fP(1), \fBfirewalld\fP(1), \fBfirewall\-cmd\fP(1),
 \fBfirewall\-config\fP(1), \fBfirewalld.conf\fP(5), \fBfirewalld.direct\fP(5),
@@ -206,14 +214,14 @@ in the configuration files\&.
 \fBfirewalld.richlanguage\fP(5), \fBfirewalld.service\fP(5), \fBfirewalld.zone\fP(5),
 \fBfirewalld.zones\fP(5), \fBfirewalld.policy\fP(5), \fBfirewalld.policies\fP(5),
 \fBfirewalld.ipset\fP(5), \fBfirewalld.helper\fP(5)
-.SH NOTES
+.SH ПРИМІТКИ
 .PP
-firewalld home page:
+Домашня сторінка firewalld:
 .RS 4
 \m[blue]\fB\%http://firewalld.org\fP\m[]
 .RE
 .PP
-More documentation with examples:
+Додаткова документація з прикладами:
 .RS 4
 \m[blue]\fB\%http://fedoraproject.org/wiki/FirewallD\fP\m[]
 .RE
@@ -221,15 +229,15 @@ More documentation with examples:
 .PP
 \fBThomas Woerner\fP <\&twoerner@redhat\&.com\&>
 .RS 4
-Developer
+Розробник
 .RE
 .PP
 \fBJiri Popelka\fP <\&jpopelka@redhat\&.com\&>
 .RS 4
-Developer
+Розробник
 .RE
 .PP
 \fBEric Garver\fP <\&eric@garver\&.life\&>
 .RS 4
-Developer
+Розробник
 .RE
