@@ -426,12 +426,13 @@ firewall\-cmd — клієнтська програма фонової служ�
 .sp
 Параметр \fB\-\-timeout\fP не можна поєднувати з параметром \fB\-\-permanent\fP\&.
 .sp
-\fBNote\fP: Some services define connection tracking helpers\&. Helpers that
-may operate in client mode (e\&.g\&. tftp) must be added to an outbound
-policy instead of a zone to take effect for clients\&. Otherwise the helper
-will not be applied to the outbound traffic\&. The related traffic, as
-defined by the connection tracking helper, on the return path (ingress) will
-be allowed by the stateful firewall rules\&.
+\fBЗауваження\fP: деякі служби визначають допоміжні засоби стеження за
+з'єднанням\&. Допоміжні засоби, які можуть працювати у клієнтському режимі
+(наприклад, tftp), слід додати до правила вихідних з'єднань, а не до зони,
+щоб вони працювали для клієнтів\&. Якщо цього не зробити, допоміжний засіб
+не буде застосовано до вихідного з'єднання\&. Пов'язаний обмін даними, як це
+визначено допоміжним засобом стеження за з'єднанням, на зворотному шляху
+(вхід) буде дозволено правилами брандмауера з керуванням станом\&.
 .sp
 Приклад правил для вихідних даних для допоміжних засобів стеження за
 з'єднанням:
@@ -447,225 +448,250 @@ be allowed by the stateful firewall rules\&.
 [\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIзона\fP] [\fB\-\-permanent\fP]
 [\fB\-\-policy\fP=\fIправило\fP] \fB\-\-remove\-service\fP=\fIслужба\fP
 .RS 4
-Remove a service\&. This option can be specified multiple times\&.
+Вилучити службу\&. Цей параметр можна вказувати декілька разів в одній
+команді\&.
 .RE
 .PP
-[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-permanent\fP]
-[\fB\-\-policy\fP=\fIpolicy\fP] \fB\-\-query\-service\fP=\fIservice\fP
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIзона\fP] [\fB\-\-permanent\fP]
+[\fB\-\-policy\fP=\fIправило\fP] \fB\-\-query\-service\fP=\fIслужба\fP
 .RS 4
-Return whether \fIservice\fP has been added\&. Returns 0 if true, 1
-otherwise\&.
+Повернути, чи було додано службу \fIслужба\fP\&. Повертає 0, якщо додано; 1,
+якщо не додано\&.
 .RE
 .PP
-[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-permanent\fP]
-[\fB\-\-policy\fP=\fIpolicy\fP] \fB\-\-list\-ports\fP
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIзона\fP] [\fB\-\-permanent\fP]
+[\fB\-\-policy\fP=\fIправило\fP] \fB\-\-list\-ports\fP
 .RS 4
-List ports added as a space separated list\&. A port is of the form
-\fIportid\fP[\-\fIportid\fP]/\fIprotocol\fP, it can be either a port and protocol pair
-or a port range with a protocol\&.
+Вивести список доданих портів у форматі списку відокремлених пробілами
+значень\&. Порт записують у формі
+\fIідентифікатор_порту\fP[\-\fIідентифікатор_порту\fP]/\fIпротокол\fP, запис може бути
+у формі пари порт\-протокол або діапазону портів з протоколом\&.
 .RE
 .PP
-[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-permanent\fP]
-[\fB\-\-policy\fP=\fIpolicy\fP] \fB\-\-add\-port\fP=\fIportid\fP[\-\fIportid\fP]/\fIprotocol\fP
-[\fB\-\-timeout\fP=\fItimeval\fP]
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIзона\fP] [\fB\-\-permanent\fP]
+[\fB\-\-policy\fP=\fIправило\fP]
+\fB\-\-add\-port\fP=\fIідентифікатор_порту\fP[\-\fIідентифікатор_порту\fP]/\fIпротокол\fP
+[\fB\-\-timeout\fP=\fIзначення_часу\fP]
 .RS 4
-Add the port\&. This option can be specified multiple times\&. If a timeout
-is supplied, the rule will be active for the specified amount of time and
-will be removed automatically afterwards\&.  \fItimeval\fP is either a number
-(of seconds) or number followed by one of characters \fIs\fP (seconds), \fIm\fP
-(minutes), \fIh\fP (hours), for example \fI20m\fP or \fI1h\fP\&.
+Додати порт\&. Цей параметр можна вказувати декілька разів в одній
+команді\&. Якщо вказано значення часу очікування, правило буде активним
+протягом вказаного періоду часу, а потім його буде автоматично
+вилучено\&. Значення \fIзначення_часу\fP можна вказати або як кількість
+(секунд) або як число, за яким вказано один із таких символів: \fIs\fP
+(секунди), \fIm\fP (хвилини), \fIh\fP (години), приклади: \fI20m\fP або \fI1h\fP\&.
 .sp
-The port can either be a single port number or a port range
-\fIportid\fP\-\fIportid\fP\&. The protocol can either be \fItcp\fP, \fIudp\fP, \fIsctp\fP or
-\fIdccp\fP\&.
-.sp
-Параметр \fB\-\-timeout\fP не можна поєднувати з параметром \fB\-\-permanent\fP\&.
-.RE
-.PP
-[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-permanent\fP]
-[\fB\-\-policy\fP=\fIpolicy\fP] \fB\-\-remove\-port\fP=\fIportid\fP[\-\fIportid\fP]/\fIprotocol\fP
-.RS 4
-Remove the port\&. This option can be specified multiple times\&.
-.RE
-.PP
-[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-permanent\fP]
-[\fB\-\-policy\fP=\fIpolicy\fP] \fB\-\-query\-port\fP=\fIportid\fP[\-\fIportid\fP]/\fIprotocol\fP
-.RS 4
-Return whether the port has been added\&. Returns 0 if true, 1 otherwise\&.
-.RE
-.PP
-[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-permanent\fP]
-[\fB\-\-policy\fP=\fIpolicy\fP] \fB\-\-list\-protocols\fP
-.RS 4
-List protocols added as a space separated list\&.
-.RE
-.PP
-[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-permanent\fP]
-[\fB\-\-policy\fP=\fIpolicy\fP] \fB\-\-add\-protocol\fP=\fIprotocol\fP
-[\fB\-\-timeout\fP=\fItimeval\fP]
-.RS 4
-Add the protocol\&. This option can be specified multiple times\&. If a
-timeout is supplied, the rule will be active for the specified amount of
-time and will be removed automatically afterwards\&.  \fItimeval\fP is either a
-number (of seconds) or number followed by one of characters \fIs\fP (seconds),
-\fIm\fP (minutes), \fIh\fP (hours), for example \fI20m\fP or \fI1h\fP\&.
-.sp
-The protocol can be any protocol supported by the system\&. Please have a
-look at \fI/etc/protocols\fP for supported protocols\&.
+Портом може бути або окремий номер порту, або діапазон портів
+\fIідентифікатор_порту\fP\-\fIідентифікатор_порту\fP\&. Протоколом може бути
+\fItcp\fP, \fIudp\fP, \fIsctp\fP або \fIdccp\fP\&.
 .sp
 Параметр \fB\-\-timeout\fP не можна поєднувати з параметром \fB\-\-permanent\fP\&.
 .RE
 .PP
-[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-permanent\fP]
-[\fB\-\-policy\fP=\fIpolicy\fP] \fB\-\-remove\-protocol\fP=\fIprotocol\fP
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIзона\fP] [\fB\-\-permanent\fP]
+[\fB\-\-policy\fP=\fIправило\fP]
+\fB\-\-remove\-port\fP=\fIідентифікатор_порту\fP[\-\fIідентифікатор_порту\fP]/\fIпротокол\fP
 .RS 4
-Remove the protocol\&. This option can be specified multiple times\&.
+Вилучити порт\&. Цей параметр можна вказувати декілька разів в одній
+команді\&.
 .RE
 .PP
-[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-permanent\fP]
-[\fB\-\-policy\fP=\fIpolicy\fP] \fB\-\-query\-protocol\fP=\fIprotocol\fP
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIзона\fP] [\fB\-\-permanent\fP]
+[\fB\-\-policy\fP=\fIправило\fP]
+\fB\-\-query\-port\fP=\fIідентифікатор_порту\fP[\-\fIідентифікатор_порту\fP]/\fIпротокол\fP
 .RS 4
-Return whether the protocol has been added\&. Returns 0 if true, 1
-otherwise\&.
+Повернути, чи було додано порт\&. Повертає 0, якщо додано; 1, якщо не
+додано\&.
 .RE
 .PP
-[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-permanent\fP]
-[\fB\-\-policy\fP=\fIpolicy\fP] \fB\-\-list\-source\-ports\fP
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIзона\fP] [\fB\-\-permanent\fP]
+[\fB\-\-policy\fP=\fIправило\fP] \fB\-\-list\-protocols\fP
 .RS 4
-List source ports added as a space separated list\&. A port is of the form
-\fIportid\fP[\-\fIportid\fP]/\fIprotocol\fP\&.
+Вивести список доданих протоколів як список відокремлених пробілами
+значень\&.
 .RE
 .PP
-[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-permanent\fP]
-[\fB\-\-policy\fP=\fIpolicy\fP]
-\fB\-\-add\-source\-port\fP=\fIportid\fP[\-\fIportid\fP]/\fIprotocol\fP
-[\fB\-\-timeout\fP=\fItimeval\fP]
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIзона\fP] [\fB\-\-permanent\fP]
+[\fB\-\-policy\fP=\fIправило\fP] \fB\-\-add\-protocol\fP=\fIпротокол\fP
+[\fB\-\-timeout\fP=\fIзначення_часу\fP]
 .RS 4
-Add the source port\&. This option can be specified multiple times\&. If a
-timeout is supplied, the rule will be active for the specified amount of
-time and will be removed automatically afterwards\&.  \fItimeval\fP is either a
-number (of seconds) or number followed by one of characters \fIs\fP (seconds),
-\fIm\fP (minutes), \fIh\fP (hours), for example \fI20m\fP or \fI1h\fP\&.
+Додати протокол\&. Цей параметр можна вказувати декілька разів в одній
+команді\&. Якщо вказано значення часу очікування, правило буде активним
+протягом вказаного періоду часу, а потім його буде автоматично
+вилучено\&. Значення \fIзначення_часу\fP можна вказати або як кількість
+(секунд) або як число, за яким вказано один із таких символів: \fIs\fP
+(секунди), \fIm\fP (хвилини), \fIh\fP (години), приклади: \fI20m\fP або \fI1h\fP\&.
 .sp
-The port can either be a single port number or a port range
-\fIportid\fP\-\fIportid\fP\&. The protocol can either be \fItcp\fP, \fIudp\fP, \fIsctp\fP or
-\fIdccp\fP\&.
-.sp
-Параметр \fB\-\-timeout\fP не можна поєднувати з параметром \fB\-\-permanent\fP\&.
-.RE
-.PP
-[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-permanent\fP]
-[\fB\-\-policy\fP=\fIpolicy\fP]
-\fB\-\-remove\-source\-port\fP=\fIportid\fP[\-\fIportid\fP]/\fIprotocol\fP
-.RS 4
-Remove the source port\&. This option can be specified multiple times\&.
-.RE
-.PP
-[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-permanent\fP]
-[\fB\-\-policy\fP=\fIpolicy\fP]
-\fB\-\-query\-source\-port\fP=\fIportid\fP[\-\fIportid\fP]/\fIprotocol\fP
-.RS 4
-Return whether the source port has been added\&. Returns 0 if true, 1
-otherwise\&.
-.RE
-.PP
-[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-permanent\fP]
-[\fB\-\-policy\fP=\fIpolicy\fP] \fB\-\-list\-icmp\-blocks\fP
-.RS 4
-List Internet Control Message Protocol (ICMP) type blocks added as a space
-separated list\&.
-.RE
-.PP
-[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-permanent\fP]
-[\fB\-\-policy\fP=\fIpolicy\fP] \fB\-\-add\-icmp\-block\fP=\fIicmptype\fP
-[\fB\-\-timeout\fP=\fItimeval\fP]
-.RS 4
-Add an ICMP block for \fIicmptype\fP\&. This option can be specified multiple
-times\&. If a timeout is supplied, the rule will be active for the specified
-amount of time and will be removed automatically afterwards\&.  \fItimeval\fP
-is either a number (of seconds) or number followed by one of characters \fIs\fP
-(seconds), \fIm\fP (minutes), \fIh\fP (hours), for example \fI20m\fP or \fI1h\fP\&.
-.sp
-The \fIicmptype\fP is the one of the icmp types firewalld supports\&. To get a
-listing of supported icmp types: \fBfirewall\-cmd \-\-get\-icmptypes\fP
+Протоколом може бути будь\-який протокол, підтримку якого передбачено у
+системі\&. Будь ласка, ознайомтеся із \fI/etc/protocols\fP, щоб отримати список
+підтримуваних протоколів\&.
 .sp
 Параметр \fB\-\-timeout\fP не можна поєднувати з параметром \fB\-\-permanent\fP\&.
 .RE
 .PP
-[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-permanent\fP]
-[\fB\-\-policy\fP=\fIpolicy\fP] \fB\-\-remove\-icmp\-block\fP=\fIicmptype\fP
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIзона\fP] [\fB\-\-permanent\fP]
+[\fB\-\-policy\fP=\fIправило\fP] \fB\-\-remove\-protocol\fP=\fIпротокол\fP
 .RS 4
-Remove the ICMP block for \fIicmptype\fP\&. This option can be specified
-multiple times\&.
+Вилучити протокол\&. Цей параметр можна вказувати декілька разів в одній
+команді\&.
 .RE
 .PP
-[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-permanent\fP]
-[\fB\-\-policy\fP=\fIpolicy\fP] \fB\-\-query\-icmp\-block\fP=\fIicmptype\fP
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIзона\fP] [\fB\-\-permanent\fP]
+[\fB\-\-policy\fP=\fIправило\fP] \fB\-\-query\-protocol\fP=\fIпротокол\fP
 .RS 4
-Return whether an ICMP block for \fIicmptype\fP has been added\&. Returns 0 if
-true, 1 otherwise\&.
+Повернути, чи було додано протокол\&. Повертає 0, якщо додано; 1, якщо не
+додано\&.
 .RE
 .PP
-[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-permanent\fP]
-[\fB\-\-policy\fP=\fIpolicy\fP] \fB\-\-list\-forward\-ports\fP
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIзона\fP] [\fB\-\-permanent\fP]
+[\fB\-\-policy\fP=\fIправило\fP] \fB\-\-list\-source\-ports\fP
 .RS 4
-List \fIIPv4\fP forward ports added as a space separated list\&.
+Вивести список доданих портів походження у форматі списку відокремлених
+пробілами значень\&. Порт записують у формі
+\fIідентифікатор_порту\fP[\-\fIідентифікатор_порту\fP]/\fIпротокол\fP\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIзона\fP] [\fB\-\-permanent\fP]
+[\fB\-\-policy\fP=\fIправило\fP]
+\fB\-\-add\-source\-port\fP=\fIідентифікатор_порту\fP[\-\fIідентифікатор_порту\fP]/\fIпротокол\fP
+[\fB\-\-timeout\fP=\fIзначення_часу\fP]
+.RS 4
+Додати порт походження\&. Цей параметр можна вказувати декілька разів в
+одній команді\&. Якщо вказано значення часу очікування, правило буде
+активним протягом вказаного періоду часу, а потім його буде автоматично
+вилучено\&. Значення \fIзначення_часу\fP можна вказати або як кількість
+(секунд) або як число, за яким вказано один із таких символів: \fIs\fP
+(секунди), \fIm\fP (хвилини), \fIh\fP (години), приклади: \fI20m\fP або \fI1h\fP\&.
 .sp
-For \fIIPv6\fP forward ports, please use the rich language\&.
+Портом може бути або окремий номер порту, або діапазон портів
+\fIідентифікатор_порту\fP\-\fIідентифікатор_порту\fP\&. Протоколом може бути
+\fItcp\fP, \fIudp\fP, \fIsctp\fP або \fIdccp\fP\&.
+.sp
+Параметр \fB\-\-timeout\fP не можна поєднувати з параметром \fB\-\-permanent\fP\&.
 .RE
 .PP
-[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-permanent\fP]
-[\fB\-\-policy\fP=\fIpolicy\fP]
-\fB\-\-add\-forward\-port\fP=port=\fIportid\fP[\-\fIportid\fP]:proto=\fIprotocol\fP[:toport=\fIportid\fP[\-\fIportid\fP]][:toaddr=\fIaddress\fP[/\fImask\fP]]
-[\fB\-\-timeout\fP=\fItimeval\fP]
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIзона\fP] [\fB\-\-permanent\fP]
+[\fB\-\-policy\fP=\fIправило\fP]
+\fB\-\-remove\-source\-port\fP=\fIідентифікатор_порту\fP[\-\fIідентифікатор_порту\fP]/\fIпротокол\fP
 .RS 4
-Add the \fIIPv4\fP forward port\&. This option can be specified multiple
-times\&. If a timeout is supplied, the rule will be active for the specified
-amount of time and will be removed automatically afterwards\&.  \fItimeval\fP
-is either a number (of seconds) or number followed by one of characters \fIs\fP
-(seconds), \fIm\fP (minutes), \fIh\fP (hours), for example \fI20m\fP or \fI1h\fP\&.
+Вилучити порт походження\&. Цей параметр можна вказувати декілька разів в
+одній команді\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIзона\fP] [\fB\-\-permanent\fP]
+[\fB\-\-policy\fP=\fIправило\fP]
+\fB\-\-query\-source\-port\fP=\fIідентифікатор_порту\fP[\-\fIідентифікатор_порту\fP]/\fIпротокол\fP
+.RS 4
+Повернути, чи було додано порт походження\&. Повертає 0, якщо додано; 1,
+якщо не додано\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIзона\fP] [\fB\-\-permanent\fP]
+[\fB\-\-policy\fP=\fIправило\fP] \fB\-\-list\-icmp\-blocks\fP
+.RS 4
+Вивести список доданих блоків типів Internet Control Message Protocol (ICMP)
+у форматі списку відокремлених пробілами значень\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIзона\fP] [\fB\-\-permanent\fP]
+[\fB\-\-policy\fP=\fIправило\fP] \fB\-\-add\-icmp\-block\fP=\fIтип_icmp\fP
+[\fB\-\-timeout\fP=\fIзначення_часу\fP]
+.RS 4
+Додати блок ICMP для типу \fIтип_icmp\fP\&. Цей параметр можна вказувати
+декілька разів в одній команді\&. Якщо вказано значення часу очікування,
+правило буде активним протягом вказаного періоду часу, а потім його буде
+автоматично вилучено\&. Значення \fIзначення_часу\fP можна вказати або як
+кількість (секунд) або як число, за яким вказано один із таких символів:
+\fIs\fP (секунди), \fIm\fP (хвилини), \fIh\fP (години), приклади: \fI20m\fP або \fI1h\fP\&.
 .sp
-The port can either be a single port number \fIportid\fP or a port range
-\fIportid\fP\-\fIportid\fP\&. The protocol can either be \fItcp\fP, \fIudp\fP, \fIsctp\fP or
-\fIdccp\fP\&. The destination address is a simple IP address\&.
+Значенням \fIтип_icmp\fP є один з типів icmp, підтримку яких передбачено у
+firewalld\&. Щоб отримати список підтримуваних типів icmp, скористайтеся
+командою \fBfirewall\-cmd \-\-get\-icmptypes\fP
+.sp
+Параметр \fB\-\-timeout\fP не можна поєднувати з параметром \fB\-\-permanent\fP\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIзона\fP] [\fB\-\-permanent\fP]
+[\fB\-\-policy\fP=\fIправило\fP] \fB\-\-remove\-icmp\-block\fP=\fIтип_icmp\fP
+.RS 4
+Вилучити блок ICMP для типу ICMP \fIтип_icmp\fP\&. Цей параметр можна вказувати
+декілька разів в одній команді\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIзона\fP] [\fB\-\-permanent\fP]
+[\fB\-\-policy\fP=\fIправило\fP] \fB\-\-query\-icmp\-block\fP=\fIтип_icmp\fP
+.RS 4
+Повернути, чи було додано блок ICMP для \fIтип_icmp\fP\&. Повертає 0, якщо
+додано; 1, якщо не додано\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIзона\fP] [\fB\-\-permanent\fP]
+[\fB\-\-policy\fP=\fIправило\fP] \fB\-\-list\-forward\-ports\fP
+.RS 4
+Вивести список доданих портів переспрямування \fIIPv4\fP як список
+відокремлених пробілами значень\&.
+.sp
+Для портів переспрямування \fIIPv6\fP, будь ласка, скористайтеся розширеним
+варіантом мови\&.
+.RE
+.PP
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIзона\fP] [\fB\-\-permanent\fP]
+[\fB\-\-policy\fP=\fIправило\fP]
+\fB\-\-add\-forward\-port\fP=port=\fIідентифікатор_порту\fP[\-\fIідентифікатор_порту\fP]:proto=\fIпротокол\fP[:toport=\fIідентифікатор_порту\fP[\-\fIідентифікатор_порту\fP]][:toaddr=\fIадреса\fP[/\fIмаска\fP]]
+[\fB\-\-timeout\fP=\fIзначення_часу\fP]
+.RS 4
+Додати порт переспрямування \fIIPv4\fP\&. Цей параметр можна вказувати декілька
+разів в одній команді\&. Якщо вказано значення часу очікування, правило буде
+активним протягом вказаного періоду часу, а потім його буде автоматично
+вилучено\&. Значення \fIзначення_часу\fP можна вказати або як кількість
+(секунд) або як число, за яким вказано один із таких символів: \fIs\fP
+(секунди), \fIm\fP (хвилини), \fIh\fP (години), приклади: \fI20m\fP або \fI1h\fP\&.
+.sp
+Портом може бути або окремий номер порту \fIідентифікатор_порту\fP, або
+діапазон портів \fIідентифікатор_порту\fP\-\fIідентифікатор_порту\fP\&. Протоколом
+може бути \fItcp\fP, \fIudp\fP, \fIsctp\fP або \fIdccp\fP\&. Адреса призначення є
+простою адресою IP\&.
 .sp
 Параметр \fB\-\-timeout\fP не можна поєднувати з параметром \fB\-\-permanent\fP\&.
 .sp
-For \fIIPv6\fP forward ports, please use the rich language\&.
+Для портів переспрямування \fIIPv6\fP, будь ласка, скористайтеся розширеним
+варіантом мови\&.
 .sp
-\fINote:\fP IP forwarding will be implicitly enabled if \fBtoaddr\fP is
-specified\&.
+\fIЗауваження:\fP буде неявними чином увімкнено переспрямовування IP, якщо
+вказано \fBtoaddr\fP\&.
 .RE
 .PP
-[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-permanent\fP]
-[\fB\-\-policy\fP=\fIpolicy\fP]
-\fB\-\-remove\-forward\-port\fP=port=\fIportid\fP[\-\fIportid\fP]:proto=\fIprotocol\fP[:toport=\fIportid\fP[\-\fIportid\fP]][:toaddr=\fIaddress\fP[/\fImask\fP]]
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIзона\fP] [\fB\-\-permanent\fP]
+[\fB\-\-policy\fP=\fIправило\fP]
+\fB\-\-remove\-forward\-port\fP=port=\fIідентифікатор_порту\fP[\-\fIідентифікатор_порту\fP]:proto=\fIпротокол\fP[:toport=\fIідентифікатор_порту\fP[\-\fIідентифікатор_порту\fP]][:toaddr=\fIадреса\fP[/\fIмаска\fP]]
 .RS 4
-Remove the \fIIPv4\fP forward port\&. This option can be specified multiple
-times\&.
+Вилучити порт переспрямування \fIIPv4\fP\&. Цей параметр можна вказувати
+декілька разів в одній команді\&.
 .sp
-For \fIIPv6\fP forward ports, please use the rich language\&.
+Для портів переспрямування \fIIPv6\fP, будь ласка, скористайтеся розширеним
+варіантом мови\&.
 .RE
 .PP
-[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-permanent\fP]
-[\fB\-\-policy\fP=\fIpolicy\fP]
-\fB\-\-query\-forward\-port\fP=port=\fIportid\fP[\-\fIportid\fP]:proto=\fIprotocol\fP[:toport=\fIportid\fP[\-\fIportid\fP]][:toaddr=\fIaddress\fP[/\fImask\fP]]
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIзона\fP] [\fB\-\-permanent\fP]
+[\fB\-\-policy\fP=\fIправило\fP]
+\fB\-\-query\-forward\-port\fP=port=\fIідентифікатор_порту\fP[\-\fIідентифікатор_порту\fP]:proto=\fIпротокол\fP[:toport=\fIідентифікатор_порту\fP[\-\fIідентифікатор_порту\fP]][:toaddr=\fIадреса\fP[/\fIмаска\fP]]
 .RS 4
-Return whether the \fIIPv4\fP forward port has been added\&. Returns 0 if true,
-1 otherwise\&.
+Повернути, чи було додано порт переспрямування \fIIPv4\fP\&. Повертає 0, якщо
+додано; 1, якщо не додано\&.
 .sp
-For \fIIPv6\fP forward ports, please use the rich language\&.
+Для портів переспрямування \fIIPv6\fP, будь ласка, скористайтеся розширеним
+варіантом мови\&.
 .RE
 .PP
-[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-permanent\fP]
-[\fB\-\-policy\fP=\fIpolicy\fP] \fB\-\-add\-masquerade\fP [\fB\-\-timeout\fP=\fItimeval\fP]
+[\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIзона\fP] [\fB\-\-permanent\fP]
+[\fB\-\-policy\fP=\fIправило\fP] \fB\-\-add\-masquerade\fP [\fB\-\-timeout\fP=\fIзначення_часу\fP]
 .RS 4
-Enable \fIIPv4\fP masquerade\&. If a timeout is supplied, masquerading will be
-active for the specified amount of time\&.  \fItimeval\fP is either a number
-(of seconds) or number followed by one of characters \fIs\fP (seconds), \fIm\fP
-(minutes), \fIh\fP (hours), for example \fI20m\fP or \fI1h\fP\&. Masquerading is
-useful if the machine is a router and machines connected over an interface
-in another zone should be able to use the first connection\&.
+Увімкнути приховування \fIIPv4\fP\&. Якщо вказано час очікування, приховування
+буде активним протягом вказаного періоду часу\&. Значенням \fIзначення_часу\fP
+є числом (секунд) або числом із одним з наступних символів: \fIs\fP (секунди),
+\fIm\fP (хвилини), \fIh\fP (години), наприклад, \fI20m\fP або \fI1h\fP\&. Приховування
+корисне, якщо комп'ютер є маршрутизатором, а комп'ютери у іншій зоні, які
+з'єднано через інтерфейс, повинні мати можливість скористатися першим
+з'єднанням\&.
 .sp
 Параметр \fB\-\-timeout\fP не можна поєднувати з параметром \fB\-\-permanent\fP\&.
 .sp
@@ -678,8 +704,8 @@ in another zone should be able to use the first connection\&.
 [\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIzone\fP] [\fB\-\-permanent\fP]
 [\fB\-\-policy\fP=\fIправило\fP] \fB\-\-remove\-masquerade\fP
 .RS 4
-Disable \fIIPv4\fP masquerade\&. If the masquerading was enabled with a
-timeout, it will be disabled also\&.
+Вимкнути приховування \fIIPv4\fP\&. Якщо приховування було увімкнено з часом
+очікування, його також буде вимкнено\&.
 .sp
 Для приховування \fIIPv6\fP, будь ласка, скористайтеся розширеним варіантом
 мови\&.
@@ -698,22 +724,23 @@ timeout, it will be disabled also\&.
 [\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIзона\fP] [\fB\-\-permanent\fP]
 [\fB\-\-policy\fP=\fIправило\fP] \fB\-\-list\-rich\-rules\fP
 .RS 4
-List rich language rules added as a newline separated list\&.
+Вивести список доданих правил розширеної мови у форматі списку відокремлених
+символами розриву рядків значень\&.
 .RE
 .PP
 [\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIзона\fP] [\fB\-\-permanent\fP]
 [\fB\-\-policy\fP=\fIправло\fP] \fB\-\-add\-rich\-rule\fP=\*(Aq\fIправило\fP\*(Aq
 [\fB\-\-timeout\fP=\fIзначення_часу\fP]
 .RS 4
-Add rich language rule \*(Aq\fIrule\fP\*(Aq\&. This option can be specified
-multiple times\&. If a timeout is supplied, the \fIrule\fP will be active for
-the specified amount of time and will be removed automatically
-afterwards\&.  \fItimeval\fP is either a number (of seconds) or number followed
-by one of characters \fIs\fP (seconds), \fIm\fP (minutes), \fIh\fP (hours), for
-example \fI20m\fP or \fI1h\fP\&.
+Додати правило розширеної мови «\fIправило\fP»\&. Цей параметр можна вказувати
+декілька разів в одній команді\&. Якщо вказано значення часу очікування,
+\fIправило\fP буде активним протягом вказаного періоду часу, а потім його буде
+автоматично вилучено\&. Значення \fIзначення_часу\fP можна вказати або як
+кількість (секунд) або як число, за яким вказано один із таких символів:
+\fIs\fP (секунди), \fIm\fP (хвилини), \fIh\fP (години), приклади: \fI20m\fP або \fI1h\fP\&.
 .sp
-For the rich language rule syntax, please have a look at
-\fBfirewalld.richlanguage\fP(5)\&.
+Щоб ознайомитися із синтаксисом розширеної мови, будь ласка, зверніться до
+сторінки підручника \fBfirewalld.richlanguage\fP(5)\&.
 .sp
 Параметр \fB\-\-timeout\fP не можна поєднувати з параметром \fB\-\-permanent\fP\&.
 .RE
@@ -721,27 +748,28 @@ For the rich language rule syntax, please have a look at
 [\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIзона\fP] [\fB\-\-permanent\fP]
 [\fB\-\-policy\fP=\fIправило\fP] \fB\-\-remove\-rich\-rule\fP=\*(Aq\fIправило\fP\*(Aq
 .RS 4
-Remove rich language rule \*(Aq\fIrule\fP\*(Aq\&. This option can be specified
-multiple times\&.
+Вилучити правило розширеної мови \*(Aq\fIправило\fP\*(Aq\&. Цей параметр можна
+вказувати декілька разів в одній команді\&.
 .sp
-For the rich language rule syntax, please have a look at
-\fBfirewalld.richlanguage\fP(5)\&.
+Щоб ознайомитися із синтаксисом розширеної мови, будь ласка, зверніться до
+сторінки підручника \fBfirewalld.richlanguage\fP(5)\&.
 .RE
 .PP
 [\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIзона\fP] [\fB\-\-permanent\fP]
 [\fB\-\-policy\fP=\fIправило\fP] \fB\-\-query\-rich\-rule\fP=\*(Aq\fIправило\fP\*(Aq
 .RS 4
-Return whether a rich language rule \*(Aq\fIrule\fP\*(Aq has been
-added\&. Returns 0 if true, 1 otherwise\&.
+Повернути, чи було додано правило розширеної мови «\fIправило\fP»\&. Повертає
+0, якщо додано; 1, якщо не додано\&.
 .sp
-For the rich language rule syntax, please have a look at
-\fBfirewalld.richlanguage\fP(5)\&.
+Щоб ознайомитися із синтаксисом розширеної мови, будь ласка, зверніться до
+сторінки підручника \fBfirewalld.richlanguage\fP(5)\&.
 .RE
 .SS "Параметри для пристосування зон та опитування зон"
 .PP
-Options in this section affect only one particular zone\&. If used with
-\fB\-\-zone\fP=\fIzone\fP option, they affect the specified zone\&. If the option is
-omitted, they affect default zone (see \fB\-\-get\-default\-zone\fP)\&.
+Параметри з цього розділу стосуються лише одної певної зони\&. Якщо їх
+використано разом із параметром B=\fIзона\fP, вони стосуватимуться вказаної
+зони\&. Якщо параметр не вказано, воно стосуватиметься типової зони
+(див. \fB\-\-get\-default\-zone\fP)\&.
 .PP
 [\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIзона\fP] \fB\-\-add\-icmp\-block\-inversion\fP
 .RS 4
@@ -755,29 +783,29 @@ omitted, they affect default zone (see \fB\-\-get\-default\-zone\fP)\&.
 .PP
 [\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIзона\fP] \fB\-\-query\-icmp\-block\-inversion\fP
 .RS 4
-Return whether ICMP block inversion is enabled\&. Returns 0 if true, 1
-otherwise\&.
+Повернути, чи було увімкнено інверсію блоків ICMP\&. Повертає 0, якщо
+додано; 1, якщо не додано\&.
 .RE
 .PP
 [\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIзона\fP] \fB\-\-add\-forward\fP
 .RS 4
-Enable intra zone forwarding\&.
+Увімкнути переспрямування всередині зони\&.
 .RE
 .PP
 [\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIзона\fP] \fB\-\-remove\-forward\fP
 .RS 4
-Disable intra zone forwarding\&.
+Вимкнути переспрямування всередині зони\&.
 .RE
 .PP
 [\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIзона\fP] \fB\-\-query\-forward\fP
 .RS 4
-Return whether intra zone forwarding is enabled\&. Returns 0 if true, 1
-otherwise\&.
+Повернути, чи було увімкнено переспрямування всередині зони\&. Повертає 0,
+якщо додано; 1, якщо не додано\&.
 .RE
 .SS "Параметри для пристосування правил та опитування правил"
 .PP
-Options in this section affect only one particular policy\&. It\*(Aqs
-required to specify \fB\-\-policy\fP=\fIpolicy\fP with these options\&.
+Параметри у цьому розділі стосуються лише одного окремого правила\&. Щоб
+скористатися цими параметрами, слід вказати \fB\-\-policy\fP=\fIправило\fP\&.
 .PP
 \fB\-\-permanent\fP \fB\-\-policy\fP=\fIправило\fP \fB\-\-get\-priority\fP
 .RS 4
@@ -786,197 +814,210 @@ required to specify \fB\-\-policy\fP=\fIpolicy\fP with these options\&.
 .PP
 \fB\-\-permanent\fP \fB\-\-policy\fP=\fIправило\fP \fB\-\-set\-priority\fP\fIпріоритетність\fP
 .RS 4
-Set the priority\&. The priority determines the relative ordering of
-policies\&. This is an integer value between \-32768 and 32767 where \-1 is
-the default value for new policies and 0 is reserved for internal use\&.
+Встановити пріоритетність\&. Пріоритетність визначає відносний порядок
+правил\&. Це ціле число від \-32768 до 32767, де типовим для нових правил є
+значення \-1, значення 0 зарезервовано для внутрішнього використання\&.
 .sp
-If a priority is < 0, then the policy\*(Aqs rules will execute before
-all rules in all zones\&.
+Якщо пріоритетність < 0, правило буде виконано до усіх правил в усіх
+зонах\&.
 .sp
-If a priority is > 0, then the policy\*(Aqs rules will execute after all
-rules in all zones\&.
+Якщо пріоритетність > 0, правило буде виконано після усіх правил в усіх
+зонах\&.
 .RE
 .PP
 [\fB\-\-permanent\fP] \fB\-\-policy\fP=\fIправило\fP \fB\-\-list\-ingress\-zones\fP
 .RS 4
-List ingress zones added as a space separated list\&.
+Вивести список доданих вхідних зон як список відокремлених пробілами
+значень\&.
 .RE
 .PP
 [\fB\-\-permanent\fP] \fB\-\-policy\fP=\fIправило\fP \fB\-\-add\-ingress\-zone\fP=\fIзона\fP
 .RS 4
-Add an ingress zone\&. This option can be specified multiple times\&.
+Додати вхідну зону\&. Цей параметр можна вказувати декілька разів у одній
+команді\&.
 .sp
-The ingress zone is one of the firewalld provided zones or one of the
-pseudo\-zones: HOST, ANY\&.
+Вхідною зоною є одна із зон, які надає firewalld, або одна з таких
+псевдозон: HOST, ANY\&.
 .sp
-HOST is used for traffic originating from the host machine, i\&.e\&. the
-host running firewalld\&.
+HOST використовують для даних, які походять з основного комп'ютера, тобто
+комп'ютера, на якому запущено firewalld\&.
 .sp
-ANY is used for traffic originating from any zone\&. This can be thought of
-as a wild card for zones\&. However it does not include traffic originating
-from the host machine \- use HOST for that\&.
+ANY використовують для даних з будь\-якої зони\&. Це універсальний замінник
+для зон\&. Втім, сюди не включено дані, що походять з основного комп'ютера —
+для цих даних слід використовувати HOST\&.
 .RE
 .PP
 [\fB\-\-permanent\fP] \fB\-\-policy\fP=\fIправило\fP \fB\-\-remove\-ingress\-zone\fP=\fIзона\fP
 .RS 4
-Remove an ingress zone\&. This option can be specified multiple times\&.
+Вилучити вхідну зону\&. Цей параметр можна вказувати декілька разів у одній
+команді\&.
 .RE
 .PP
 [\fB\-\-permanent\fP] \fB\-\-policy\fP=\fIправило\fP \fB\-\-query\-ingress\-zone\fP=\fIзона\fP
 .RS 4
-Return whether \fIzone\fP has been added\&. Returns 0 if true, 1 otherwise\&.
+Повернути, чи було додано зону \fIзона\fP\&. Повертає 0, якщо додано; 1, якщо
+не додано\&.
 .RE
 .PP
 [\fB\-\-permanent\fP] \fB\-\-policy\fP=\fIправило\fP \fB\-\-list\-egress\-zones\fP
 .RS 4
-List egress zones added as a space separated list\&.
+Вивести список доданих вихідних зон як список відокремлених пробілами
+значень\&.
 .RE
 .PP
 [\fB\-\-permanent\fP] \fB\-\-policy\fP=\fIправило\fP \fB\-\-add\-egress\-zone\fP=\fIзона\fP
 .RS 4
-Add an egress zone\&. This option can be specified multiple times\&.
+Додати вихідну зону\&. Цей параметр можна вказувати декілька разів у одній
+команді\&.
 .sp
-The egress zone is one of the firewalld provided zones or one of the
-pseudo\-zones: HOST, ANY\&.
+Вихідною зоною є одна із зон, які надає firewalld, або одна з таких
+псевдозон: HOST, ANY\&.
 .sp
-For clarification on HOST and ANY see option \fB\-\-add\-ingress\-zone\fP\&.
+Пояснення щодо HOST та ANY наведено в описів параметра
+\fB\-\-add\-ingress\-zone\fP\&.
 .RE
 .PP
 [\fB\-\-permanent\fP] \fB\-\-policy\fP=\fIправило\fP \fB\-\-remove\-egress\-zone\fP=\fIзона\fP
 .RS 4
-Remove an egress zone\&. This option can be specified multiple times\&.
+Вилучити вихідну зону\&. Цей параметр можна вказувати декілька разів у одній
+команді\&.
 .RE
 .PP
 [\fB\-\-permanent\fP] \fB\-\-policy\fP=\fIправило\fP \fB\-\-query\-egress\-zone\fP=\fIзона\fP
 .RS 4
-Return whether \fIzone\fP has been added\&. Returns 0 if true, 1 otherwise\&.
+Повернути, чи було додано зону \fIзона\fP\&. Повертає 0, якщо додано; 1, якщо
+не додано\&.
 .RE
 .SS "Параметри обробки прив'язки інтерфейсів"
 .PP
-Binding an interface to a zone means that this zone settings are used to
-restrict traffic via the interface\&.
+Прив'язка інтерфейсу до зони означає, що параметри цієї зони буде
+використано для обмеження обміну даними через інтерфейс\&.
 .PP
-Options in this section affect only one particular zone\&. If used with
-\fB\-\-zone\fP=\fIzone\fP option, they affect the zone \fIzone\fP\&. If the option is
-omitted, they affect default zone (see \fB\-\-get\-default\-zone\fP)\&.
+Параметри з цього розділу стосуються лише одної певної зони\& Якщо їх
+використано разом із параметром \fB\-\-zone\fP=\fIзона\fP, вони стосуватимуться
+вказаної зони \fIзона\fP\&. Якщо параметр не вказано, воно стосуватиметься
+типової зони (див. \fB\-\-get\-default\-zone\fP)\&.
 .PP
 Щоб отримати список попередньо визначених зон, скористайтеся командою
 \fBfirewall\-cmd \-\-get\-zones\fP\&.
 .PP
-An interface name is a string up to 16 characters long, that may not contain
-\fB\*(Aq \*(Aq\fP, \fB\*(Aq/\*(Aq\fP, \fB\*(Aq!\*(Aq\fP and \fB\*(Aq*\*(Aq\fP\&.
+Назвою інтерфейсу є рядок до 16 символів у довжину, який не може містити
+символів \fB\*(Aq \*(Aq\fP, \fB\*(Aq/\*(Aq\fP, \fB\*(Aq!\*(Aq\fP і \fB\*(Aq*\*(Aq\fP\&.
 .PP
 [\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIзона\fP] \fB\-\-list\-interfaces\fP
 .RS 4
-List interfaces that are bound to zone \fIzone\fP as a space separated
-list\&. If zone is omitted, default zone will be used\&.
+Вивести список інтерфейсів, які прив'язано до зони \fIзона\fP, у форматі списку
+відокремлених пробілами значень\&. Якщо зону пропущено, буде використано
+типову зону\&.
 .RE
 .PP
 [\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIзона\fP] \fB\-\-add\-interface\fP=\fIінтерфейс\fP
 .RS 4
-Bind interface \fIinterface\fP to zone \fIzone\fP\&. If zone is omitted, default
-zone will be used\&.
+Прив'язати інтерфейс \fIінтерфейс\fP до зони \fIзона\fP\&. Якщо зону не вказано,
+буде використано типову зону\&.
 .sp
-If the interface is under control of NetworkManager, it is at first
-connected to change the zone for the connection that is using the
-interface\&. If this fails, the zone binding is created in firewalld and the
-limitations below apply\&. For interfaces that are not under control of
-NetworkManager, firewalld tries to change the ZONE setting in the ifcfg
-file, if the file exists\&.
+Якщо інтерфейсом керує NetworkManager, з ним спочатку буде встановлено
+зв'язок для зміни зони для з'єднання, яке використовує інтерфейс\&. Якщо
+встановити зв'язок не вдасться, буде створено прив'язку зони у firewalld і
+матимуть місце описані нижче обмеження\&. Для інтерфейсів, якими не керує
+NetworkManager, firewalld спробує змінити параметр ZONE у файлі ifcfg, якщо
+такий файл існує\&.
 .sp
-As a end user you don\*(Aqt need this in most cases, because NetworkManager
-(or legacy network service) adds interfaces into zones automatically
-(according to \fBZONE=\fP option from ifcfg\-\fIinterface\fP file) if
-\fINM_CONTROLLED=no\fP is not set\&. You should do it only if there\*(Aqs no
-/etc/sysconfig/network\-scripts/ifcfg\-\fIinterface\fP file\&. If there is such
-file and you add interface to zone with this \fB\-\-add\-interface\fP option, make
-sure the zone is the same in both cases, otherwise the behaviour would be
-undefined\&. Please also have a look at the \fBfirewalld\fP(1)  man page in the
-\fIConcepts\fP section\&. For permanent association of interface with a zone,
-see also \*(AqHow to set or change a zone for a connection?\*(Aq in
-\fBfirewalld.zones\fP(5)\&.
+Вам, як кінцевому користувачеві, у більшості випадків це усе не знадобиться,
+оскільки NetworkManager (або застаріла служба мережі) додає інтерфейси до
+зон автоматично (відповідно до параметра \fBZONE=\fP з файла
+ifcfg\-\fIінтерфейс\fP), якщо не встановлено \fINM_CONTROLLED=no\fP\&. Вносити
+зміни слід, лише якщо не існує файла
+/etc/sysconfig/network\-scripts/ifcfg\-\fIінтерфейс\fP\&. Якщо такий файл існує і
+ви додаєте інтерфейс до зони за допомогою цього параметра
+\fB\-\-add\-interface\fP, переконайтеся, що зона є однаковою в обох випадках, щоб
+забезпечити стійку поведінку системи\&. Будь ласка, також ознайомтеся зі
+сторінкою підручника щодо \fBfirewalld\fP(1), зокрема розділом \fIОсновні
+поняття\fP\&. Щоб постійно прив'язати інтерфейс до зони, також ознайомтеся із
+розділом \*(AqЯк встановити або змінити зону для з'єднання?\*(Aq на сторінці
+підручника \fBfirewalld.zones\fP(5)\&.
 .RE
 .PP
 [\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIзона\fP] \fB\-\-change\-interface\fP=\fIінтерфейс\fP
 .RS 4
-If the interface is under control of NetworkManager, it is at first
-connected to change the zone for the connection that is using the
-interface\&. If this fails, the zone binding is created in firewalld and the
-limitations below apply\&. For interfaces that are not under control of
-NetworkManager, firewalld tries to change the ZONE setting in the ifcfg
-file, if the file exists\&.
+Якщо інтерфейсом керує NetworkManager, з ним спочатку буде встановлено
+зв'язок для зміни зони для з'єднання, яке використовує інтерфейс\&. Якщо
+встановити зв'язок не вдасться, буде створено прив'язку зони у firewalld і
+матимуть місце описані нижче обмеження\&. Для інтерфейсів, якими не керує
+NetworkManager, firewalld спробує змінити параметр ZONE у файлі ifcfg, якщо
+такий файл існує\&.
 .sp
-Change zone the interface \fIinterface\fP is bound to to zone
-\fIzone\fP\&. It\*(Aqs basically \fB\-\-remove\-interface\fP followed by
-\fB\-\-add\-interface\fP\&. If the interface has not been bound to a zone before,
-it behaves like \fB\-\-add\-interface\fP\&. If zone is omitted, default zone will
-be used\&.
+Змінити зону, до якої прив'язано інтерфейс \fIінтерфейс\fP, на зону
+\fIзона\fP\&. Це, насправді, \fB\-\-remove\-interface\fP з наступним
+\fB\-\-add\-interface\fP\&. Якщо інтерфейс ще не було прив'язано до зони, команда
+поводиться як \fB\-\-add\-interface\fP\&. Якщо не буде вказано зону, програма
+використає типову зону\&.
 .RE
 .PP
 [\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIзона\fP] \fB\-\-query\-interface\fP=\fIінтерфейс\fP
 .RS 4
-Query whether interface \fIinterface\fP is bound to zone \fIzone\fP\&. Returns 0
-if true, 1 otherwise\&.
+Опитати, чи прив'язано інтерфейс \fIінтерфейс\fP до зони \fIзона\fP\&. Повертає 0,
+якщо прив'язано; 1, якщо не прив'язано\&.
 .RE
 .PP
 [\fB\-\-permanent\fP] \fB\-\-remove\-interface\fP=\fIінтерфейс\fP
 .RS 4
-If the interface is under control of NetworkManager, it is at first
-connected to change the zone for the connection that is using the
-interface\&. If this fails, the zone binding is created in firewalld and the
-limitations below apply\&.
+Якщо інтерфейсом керує NetworkManager, програма спочатку встановить з ним
+зв'язок для зміни зони з'єднання, яке використовує інтерфейс\&. Якщо це не
+вдасться зробити, буде створено прив'язку до зони у firewalld і матимуть
+місце вказані нижче обмеження\&.
 .sp
-For the addion or change of interfaces that are not under control of
-NetworkManager: firewalld tries to change the ZONE setting in the ifcfg
-file, if an ifcfg file exists that is using the interface\&.
+Для додавання інтерфейсів або внесення змін до інтерфейсів, якими не керує
+NetworkManager, буде виконано таку дію: firewalld спробує змінити параметр
+ZONE у файлі ifcfg, якщо існує файл ifcfg, який використовує інтерфейс\&.
 .sp
-Only for the removal of interfaces that are not under control of
-NetworkManager: firewalld is not trying to change the ZONE setting in the
-ifcfg file\&. This is needed to make sure that an ifdown of the interface
-will not result in a reset of the zone setting to the default zone\&. Only
-the zone binding is then removed in firewalld then\&.
+Лише для вилучення інтерфейсів, якими не керує NetworkManager: firewalld не
+намагатиметься змінити параметр ZONE у файлі ifcfg\&. Так слід вчинити, щоб
+ifdown для інтерфейсу не привів до скидання параметра зони до типового\&. У
+цьому випадку буде лише вилучено прив'язку зони у firewalld\&.
 .sp
 Вилучити прив'язку інтерфейсу \fIінтерфейс\fP з зони, коди її було раніше
 додано\&.
 .RE
 .SS "Параметри для обробки прив'язки джерел"
 .PP
-Binding a source to a zone means that this zone settings will be used to
-restrict traffic from this source\&.
+Прив'язка походження до зони означає, що параметри цієї зони буде
+використано для обмеження обміну даними з цього походження\&.
 .PP
-A source address or address range is either an IP address or a network IP
-address with a mask for IPv4 or IPv6 or a MAC address or an ipset with the
-ipset: prefix\&. For IPv4, the mask can be a network mask or a plain
-number\&. For IPv6 the mask is a plain number\&. The use of host names is
-not supported\&.
+Адресою походження або діапазоном адрес походження є IP\-адреса або IP\-адреса
+мережі із маскою для IPv4 або IPv6 чи MAC\-адреса або набір ipset з префіксом
+«ipset:»\&. Для IPv4 мскою може бути маска мережі або просте число\&. Для
+IPv6 маскою є просте число\&. Підтримки назв вузлів не передбачено\&.
 .PP
-Options in this section affect only one particular zone\&. If used with
-\fB\-\-zone\fP=\fIzone\fP option, they affect the zone \fIzone\fP\&. If the option is
-omitted, they affect default zone (see \fB\-\-get\-default\-zone\fP)\&.
+Параметри з цього розділу стосуються лише одної певної зони\& Якщо їх
+використано разом із параметром \fB\-\-zone\fP=\fIзона\fP, вони стосуватимуться
+вказаної зони \fIзона\fP\&. Якщо параметр не вказано, воно стосуватиметься
+типової зони (див. \fB\-\-get\-default\-zone\fP)\&.
 .PP
-For a list of predefined zones use \fBfirewall\-cmd \fP\fB[\-\-permanent\fP]\fB
-\-\-get\-zones\fP\&.
+Щоб отримати список попередньо визначених зон, скористайтеся командою
+\fBfirewall\-cmd \fP\fB[\-\-permanent\fP]\fB \-\-get\-zones\fP\&.
 .PP
 [\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIзона\fP] \fB\-\-list\-sources\fP
 .RS 4
-List sources that are bound to zone \fIzone\fP as a space separated list\&. If
-zone is omitted, default zone will be used\&.
+Вивести список походжень, які прив'язано до зони \fIзона\fP, у форматі списку
+відокремлених пробілами значень\&. Якщо зону пропущено, буде використано
+типову зону\&.
 .RE
 .PP
 [\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIзона\fP]
 \fB\-\-add\-source\fP=\fIджерело\fP[/\fIмаска\fP]|\fIMAC\fP|ipset:\fIнабір_ip\fP
 .RS 4
-Bind the source to zone \fIzone\fP\&. If zone is omitted, default zone will be
-used\&.
+Прив'язати походження до зони \fIзона\fP\&. Якщо зону не вказано, буде
+використано типову зону\&.
 .RE
 .PP
 [\fB\-\-zone\fP=\fIзона\fP]
 \fB\-\-change\-source\fP=\fIджерело\fP[/\fIмаска\fP]|\fIMAC\fP|ipset:\fIнабір_ip\fP
 .RS 4
-Change zone the source is bound to to zone \fIzone\fP\&. It\*(Aqs basically
-\fB\-\-remove\-source\fP followed by \fB\-\-add\-source\fP\&. If the source has not been
-bound to a zone before, it behaves like \fB\-\-add\-source\fP\&. If zone is
-omitted, default zone will be used\&.
+Змінити зону, до якої прив'язано походження, на зону \fIзона\fP\&. Це,
+насправді, \fB\-\-remove\-source\fP з наступним \fB\-\-add\-source\fP\&. Якщо походження
+ще не було прив'язано до зони, команда поводиться як \fB\-\-add\-source\fP\&. Якщо
+не буде вказано зону, програма використає типову зону\&.
 .RE
 .PP
 [\fB\-\-permanent\fP] [\fB\-\-zone\fP=\fIзона\fP]
@@ -1001,9 +1042,10 @@ omitted, default zone will be used\&.
 \fB\-\-permanent\fP \fB\-\-new\-ipset\fP=\fIнабір_ip\fP \fB\-\-type\fP=\fIтип\fP
 [\fB\-\-family\fP=\fIinet\fP|\fIinet6\fP] [\fB\-\-option\fP=\fIключ\fP[=\fIзначення\fP]]
 .RS 4
-Add a new permanent and empty ipset with specifying the type and optional
-the family and options like \fItimeout\fP, \fIhashsize\fP and \fImaxelem\fP\&. For
-more information please have a look at \fBipset\fP(8)  man page\&.
+Додати новий постійний і порожній набір ip із визначенням типу і
+необов'язкового сімейства і параметрів, подібних до \fItimeout\fP, \fIhashsize\fP
+та \fImaxelem\fP\&. Щоб дізнатися більше, зверніться до сторінки підручника
+щодо \fBipset\fP(8)\&.
 .sp
 Набори ip мають складатися з літер і цифр і додатково можуть містити такі
 символи: \*(Aq\-\*(Aq\&.
@@ -1549,208 +1591,226 @@ NO_DEFAULTS\&.
 \fIкоманда\fP (\-A/\-D/\-I/\&.\&.\&.), \fIпараметр\fP (\-p/\-s/\-d/\-j/\&.\&.\&.) і
 \fIпризначення\fP (ACCEPT/DROP/REJECT/\&.\&.\&.)\&.
 .PP
-Direct options should be used only as a last resort when it\*(Aqs not
-possible to use for example \fB\-\-add\-service\fP=\fIservice\fP or
-\fB\-\-add\-rich\-rule\fP=\*(Aq\fIrule\fP\*(Aq\&.
+Параметрами безпосереднього керування слід користуватися лише як останнім
+виходом, якщо не вдається скористатися, наприклад,
+\fB\-\-add\-service\fP=\fIслужба\fP або \fB\-\-add\-rich\-rule\fP=\*(Aq\fIправило\fP\*(Aq\&.
 .PP
-\fBWarning\fP: Direct rules behavior is different depending on the value of
-\fIFirewallBackend\fP\&. See \fICAVEATS\fP in \fBfirewalld.direct\fP(5)\&.
+\fBПопередження\fP: поведінка правил є різною для різних значень
+\fIFirewallBackend\fP\&. Див. \fIЗАСТЕРЕЖЕННЯ\fP на сторінці підручника
+\fBfirewalld.direct\fP(5)\&.
 .PP
-The first argument of each option has to be \fIipv4\fP or \fIipv6\fP or
-\fIeb\fP\&. With \fIipv4\fP it will be for IPv4 (\fBiptables\fP(8)), with \fIipv6\fP for
-IPv6 (\fBip6tables\fP(8)) and with \fIeb\fP for ethernet bridges
-(\fBebtables\fP(8))\&.
+Першим аргументом кожного параметра має бути \fIipv4\fP, \fIipv6\fP або \fIeb\fP\&. З
+\fIipv4\fP це буде IPv4 (\fBiptables\fP(8)), з \fIipv6\fP — IPv6 (\fBip6tables\fP(8)), а
+з \fIeb\fP — ethernet\-містки (\fBebtables\fP(8))\&.
 .PP
 [\fB\-\-permanent\fP] \fB\-\-direct\fP \fB\-\-get\-all\-chains\fP
 .RS 4
-Get all chains added to all tables\&. This option concerns only chains
-previously added with \fB\-\-direct \-\-add\-chain\fP\&.
+Отримати усі ланцюжки, які додано до усіх таблиць\&. Цей параметр стосується
+лише ланцюжків, які раніше було додано за допомогою \fB\-\-direct
+\-\-add\-chain\fP\&.
 .RE
 .PP
 [\fB\-\-permanent\fP] \fB\-\-direct\fP \fB\-\-get\-chains\fP { \fIipv4\fP | \fIipv6\fP | \fIeb\fP }
 \fIтаблиця\fP
 .RS 4
-Get all chains added to table \fItable\fP as a space separated list\&. This
-option concerns only chains previously added with \fB\-\-direct \-\-add\-chain\fP\&.
+Отримати усі ланцюжки, які додано до таблиці \fIтаблиця\fP, у форматі списку
+відокремлених пробілами значень\&. Цей параметр стосується лише ланцюжків,
+які раніше було додано за допомогою \fB\-\-direct \-\-add\-chain\fP\&.
 .RE
 .PP
 [\fB\-\-permanent\fP] \fB\-\-direct\fP \fB\-\-add\-chain\fP { \fIipv4\fP | \fIipv6\fP | \fIeb\fP }
 \fIтаблиця\fP \fIланцюжок\fP
 .RS 4
-Add a new chain with name \fIchain\fP to table \fItable\fP\&. Make sure
-there\*(Aqs no other chain with this name already\&.
+Додати новий ланцюжок із назвою \fIланцюжок\fP до таблиці
+\fIтаблиця\fP\&. Переконайтеся, що там ще немає ланцюжка з такою самою
+назвою\&.
 .sp
-There already exist basic chains to use with direct options, for example
-\fIINPUT_direct\fP chain (see \fIiptables\-save | grep direct\fP output for all of
-them)\&. These chains are jumped into before chains for zones,
-i\&.e\&. every rule put into \fIINPUT_direct\fP will be checked before rules in
-zones\&.
+Базові ланцюжки, якими можна скористатися з параметрами безпосереднього
+керування, вже існують, наприклад, таким ланцюжком є \fIINPUT_direct\fP
+(див. результат виконання команди \fIiptables\-save | grep direct\fP, щоб
+отримати повний список)\&. Перехід за цими ланцюжками буде здійснено до
+ланцюжків зон, тобто буде виконано перевірку усіх правил, які закладено до
+\fIINPUT_direct\fP, до правил у зонах\&.
 .RE
 .PP
 [\fB\-\-permanent\fP] \fB\-\-direct\fP \fB\-\-remove\-chain\fP { \fIipv4\fP | \fIipv6\fP | \fIeb\fP }
 \fIтаблиця\fP \fIланцюжок\fP
 .RS 4
-Remove chain with name \fIchain\fP from table \fItable\fP\&. Only chains
-previously added with \fB\-\-direct \-\-add\-chain\fP can be removed this way\&.
+Вилучити ланцюжок із назвою \fIланцюжок\fP з таблиці \fIтаблиця\fP\&. У цей спосіб
+можна вилучити лише ланцюжки, які раніше було додано за допомогою \fB\-\-direct
+\-\-add\-chain\fP\&.
 .RE
 .PP
 [\fB\-\-permanent\fP] \fB\-\-direct\fP \fB\-\-query\-chain\fP { \fIipv4\fP | \fIipv6\fP | \fIeb\fP }
 \fIтаблиця\fP \fIланцюжок\fP
 .RS 4
-Return whether a chain with name \fIchain\fP exists in table
-\fItable\fP\&. Returns 0 if true, 1 otherwise\&. This option concerns only
-chains previously added with \fB\-\-direct \-\-add\-chain\fP\&.
+Повернути, чи існує ланцюжок із назвою \fIланцюжок\fP у таблиці
+\fIтаблиця\fP\&. Повертає 0, якщо існує; 1, якщо не існує\&. Цей параметр
+стосується лише ланцюжків, які раніше було додано за допомогою параметра
+\fB\-\-direct \-\-add\-chain\fP\&.
 .RE
 .PP
 [\fB\-\-permanent\fP] \fB\-\-direct\fP \fB\-\-get\-all\-rules\fP
 .RS 4
-Get all rules added to all chains in all tables as a newline separated list
-of the priority and arguments\&. This option concerns only rules previously
-added with \fB\-\-direct \-\-add\-rule\fP\&.
+Отримати усі правила, які додано до усіх ланцюжків в усіх таблицях у форматі
+списку відокремлених символами розривів рядків пріоритетностей та
+аргументів\&. Цей параметр стосується лише правил, які раніше було додано за
+допомогою \fB\-\-direct \-\-add\-rule\fP\&.
 .RE
 .PP
 [\fB\-\-permanent\fP] \fB\-\-direct\fP \fB\-\-get\-rules\fP { \fIipv4\fP | \fIipv6\fP | \fIeb\fP }
 \fIтаблиця\fP \fIланцюжок\fP
 .RS 4
-Get all rules added to chain \fIchain\fP in table \fItable\fP as a newline
-separated list of the priority and arguments\&. This option concerns only
-rules previously added with \fB\-\-direct \-\-add\-rule\fP\&.
+Отримати усі правила, які додано до ланцюжка \fIланцюжок\fP у таблиці
+\fIтаблиця\fP у форматі списку відокремлених символами розривів рядків
+пріоритетностей та аргументів\&. Цей параметр стосується лише правил, які
+раніше було додано за допомогою \fB\-\-direct \-\-add\-rule\fP\&.
 .RE
 .PP
 [\fB\-\-permanent\fP] \fB\-\-direct\fP \fB\-\-add\-rule\fP { \fIipv4\fP | \fIipv6\fP | \fIeb\fP }
 \fIтаблиця\fP \fIланцюжок\fP \fIпріоритетність\fP \fIаргументи\fP
 .RS 4
-Add a rule with the arguments \fIargs\fP to chain \fIchain\fP in table \fItable\fP
-with priority \fIpriority\fP\&.
+Додати правило із аргументами \fIаргументи\fP до ланцюжка \fIланцюжок\fP у таблиці
+\fIтаблиця\fP із пріоритетністю \fIпріоритетність\fP\&.
 .sp
-The \fIpriority\fP is used to order rules\&. Priority 0 means add rule on top
-of the chain, with a higher priority the rule will be added further
-down\&. Rules with the same priority are on the same level and the order of
-these rules is not fixed and may change\&. If you want to make sure that a
-rule will be added after another one, use a low priority for the first and a
-higher for the following\&.
+\fIПріоритетність\fP буде використано для упорядковування
+правил\&. Пріоритетність 0 означає додавання правила на початку ланцюжка, а
+правила з вищою пріоритетністю буде додано далі за списком\&. Правила із
+однаковою пріоритетністю перебувають на одному рівні, порядок цих правил не
+є фіксованим і може змінюватися\&. Якщо ви хочете забезпечення додавання
+правила після іншого правила, скористайтеся меншою пріоритетністю для
+першого і вищою пріоритетністю для наступних\&.
 .RE
 .PP
 [\fB\-\-permanent\fP] \fB\-\-direct\fP \fB\-\-remove\-rule\fP { \fIipv4\fP | \fIipv6\fP | \fIeb\fP }
 \fIтаблиця\fP \fIланцюжок\fP \fIпріоритетність\fP \fIаргументи\fP
 .RS 4
-Remove a rule with \fIpriority\fP and the arguments \fIargs\fP from chain \fIchain\fP
-in table \fItable\fP\&. Only rules previously added with \fB\-\-direct \-\-add\-rule\fP
-can be removed this way\&.
+Вилучити правило з пріоритетністю \fIпріоритетність\fP і аргументами
+\fIаргументи\fP з ланцюжка \fIланцюжок\fP у таблиці \fIтаблиця\fP\&. У цей спосіб
+можна вилучити лише ланцюжки, які раніше було додано за допомогою \fB\-\-direct
+\-\-add\-rule\fP\&.
 .RE
 .PP
 [\fB\-\-permanent\fP] \fB\-\-direct\fP \fB\-\-remove\-rules\fP { \fIipv4\fP | \fIipv6\fP | \fIeb\fP }
 \fIтаблиця\fP \fIланцюжок\fP
 .RS 4
-Remove all rules in the chain with name \fIchain\fP exists in table
-\fItable\fP\&. This option concerns only rules previously added with \fB\-\-direct
-\-\-add\-rule\fP in this chain\&.
+Вилучити усі правила у ланцюжку із назвою \fIланцюжок\fP у таблиці
+\fIтаблиця\fP\&. Цей параметр стосується лише правил, які раніше було додано у
+цьому ланцюжку за допомогою параметра \fB\-\-direct \-\-add\-rule\fP\&.
 .RE
 .PP
 [\fB\-\-permanent\fP] \fB\-\-direct\fP \fB\-\-query\-rule\fP { \fIipv4\fP | \fIipv6\fP | \fIeb\fP }
 \fIтаблиця\fP \fIланцюжок\fP \fIпріоритетність\fP \fIаргументи\fP
 .RS 4
-Return whether a rule with \fIpriority\fP and the arguments \fIargs\fP exists in
-chain \fIchain\fP in table \fItable\fP\&. Returns 0 if true, 1 otherwise\&. This
-option concerns only rules previously added with \fB\-\-direct \-\-add\-rule\fP\&.
+Повернути, чи існує правило із пріоритетністю \fIпріоритетність\fP і
+аргументами \fIаргументи\fP у ланцюжку \fIланцюжок\fP у таблиці
+\fIтаблиця\fP\&. Повертає 0, якщо існує; 1, якщо не існує\&. Цей параметр
+стосується лише правил, які раніше було додано за допомогою параметра
+\fB\-\-direct \-\-add\-rule\fP\&.
 .RE
 .PP
 \fB\-\-direct\fP \fB\-\-passthrough\fP { \fIipv4\fP | \fIipv6\fP | \fIeb\fP } \fIаргументи\fP
 .RS 4
-Pass a command through to the firewall\&.  \fIargs\fP can be all \fBiptables\fP,
-\fBip6tables\fP and \fBebtables\fP command line arguments\&. This command is
-untracked, which means that firewalld is not able to provide information
-about this command later on, also not a listing of the untracked
-passthoughs\&.
+Передати команду до брандмауера\&. Значенням \fIаргументи\fP можуть бути
+будь\-які аргументи командного рядка \fBiptables\fP, \fBip6tables\fP та
+\fBebtables\fP\&. Стеження за цією командою не відбуватиметься, тобто firewalld
+не зможе надати відомості щодо цієї команди, а також список невідстежуваних
+передавань даних\&.
 .RE
 .PP
 [\fB\-\-permanent\fP] \fB\-\-direct\fP \fB\-\-get\-all\-passthroughs\fP
 .RS 4
-Get all passthrough rules as a newline separated list of the ipv value and
-arguments\&.
+Отримати усі правила передавання у форматі списку відокремлених символами
+нового рядка значень ipv та аргументів\&.
 .RE
 .PP
 [\fB\-\-permanent\fP] \fB\-\-direct\fP \fB\-\-get\-passthroughs\fP { \fIipv4\fP | \fIipv6\fP |
 \fIeb\fP }
 .RS 4
-Get all passthrough rules for the ipv value as a newline separated list of
-the priority and arguments\&.
+Отримати усі правила передавання для значення ipv у форматі списку
+відокремлених символами розривів рядків пріоритетностей та аргументів\&.
 .RE
 .PP
 [\fB\-\-permanent\fP] \fB\-\-direct\fP \fB\-\-add\-passthrough\fP { \fIipv4\fP | \fIipv6\fP |
 \fIeb\fP } \fIаргументи\fP
 .RS 4
-Add a passthrough rule with the arguments \fIargs\fP for the ipv value\&.
+Додати правило передавання з аргументами \fIаргументи\fP для значення ipv\&.
 .RE
 .PP
 [\fB\-\-permanent\fP] \fB\-\-direct\fP \fB\-\-remove\-passthrough\fP { \fIipv4\fP | \fIipv6\fP |
 \fIeb\fP } \fIаргументи\fP
 .RS 4
-Remove a passthrough rule with the arguments \fIargs\fP for the ipv value\&.
+Вилучити правило передавання з аргументами \fIаргументи\fP для значення ipv\&.
 .RE
 .PP
 [\fB\-\-permanent\fP] \fB\-\-direct\fP \fB\-\-query\-passthrough\fP { \fIipv4\fP | \fIipv6\fP |
 \fIeb\fP } \fIаргументи\fP
 .RS 4
-Return whether a passthrough rule with the arguments \fIargs\fP exists for the
-ipv value\&. Returns 0 if true, 1 otherwise\&.
+Повернути, чи існує правило передавання з аргументами \fIаргументи\fP для
+значення ipv\&. Повертає 0, якщо існує; 1, якщо не існує\&.
 .RE
-.SS "Lockdown Options"
+.SS "Параметри блокування"
 .PP
-Local applications or services are able to change the firewall configuration
-if they are running as root (example: libvirt) or are authenticated using
-PolicyKit\&. With this feature administrators can lock the firewall
-configuration so that only applications on lockdown whitelist are able to
-request firewall changes\&.
+Локальні програми або служби можуть змінювати налаштування брандмауера, якщо
+їх запущено від імені користувача root (приклад: libvirt) або їм надано
+відповідні привілеї шляхом розпізнавання за допомогою PolicyKit\&. За
+допомогою цієї можливості адміністратори можуть заблокувати налаштування
+брандмауера, щоб запити щодо змін у брандмауері могли надсилати лише
+програми із «білого» списку блокування\&.
 .PP
-The lockdown access check limits D\-Bus methods that are changing firewall
-rules\&. Query, list and get methods are not limited\&.
+Перевірка блокування доступу обмежує методи D\-Bus, які можна використовувати
+для зміни правил\&. Методи опитування, виведення списку та отримання даних
+обмеженням не підлягають\&.
 .PP
-The lockdown feature is a very light version of user and application
-policies for firewalld and is turned off by default\&.
+Можливість блокування є дуже простою версією правил для користувачів і
+програм для firewalld\&. Типово, її вимкнено\&.
 .PP
 \fB\-\-lockdown\-on\fP
 .RS 4
-Enable lockdown\&. Be careful \- if firewall\-cmd is not on lockdown whitelist
-when you enable lockdown you won\*(Aqt be able to disable it again with
-firewall\-cmd, you would need to edit firewalld\&.conf\&.
+Увімкнути блокування\&. Будьте обережні: якщо firewall\-cmd не буде у
+«білому» списку блокування, коли ви увімкнете блокування, ви не зможете
+знову його вимкнути за допомогою firewall\-cmd — вам доведеться редагувати
+firewalld\&.conf\&.
 .sp
 Це зміна у динамічних і постійних налаштуваннях\&.
 .RE
 .PP
 \fB\-\-lockdown\-off\fP
 .RS 4
-Disable lockdown\&.
+Вимкнути блокування\&.
 .sp
 Це зміна у динамічних і постійних налаштуваннях\&.
 .RE
 .PP
 \fB\-\-query\-lockdown\fP
 .RS 4
-Query whether lockdown is enabled\&. Returns 0 if lockdown is enabled, 1
-otherwise\&.
+Надіслати запит щодо того, чи увімкнено блокування\&. Повертає 0, якщо
+блокування увімкнено; 1, якщо вимкнено\&.
 .RE
-.SS "Lockdown Whitelist Options"
+.SS "Параметри «білого» списку блокування"
 .PP
-The lockdown whitelist can contain \fIcommands\fP, \fIcontexts\fP, \fIusers\fP and
-\fIuser ids\fP\&.
+У «білому» списку блокування можуть міститися \fIкоманди\fP, \fIконтексти\fP,
+\fIкористувачі\fP і \fIідентифікатори користувачів\fP\&.
 .PP
-If a command entry on the whitelist ends with an asterisk \*(Aq*\*(Aq, then
-all command lines starting with the command will match\&. If the \*(Aq*\*(Aq
-is not there the absolute command inclusive arguments must match\&.
+Якщо запис команди у «білому» списку завершується зірочкою, \*(Aq*\*(Aq,
+відповідними вважатимуться усі рядки команд, які починаються із вказаної
+команди\&. Якщо у записі немає \*(Aq*\*(Aq, відповідність буде встановлено,
+лише якщо команда, разом із аргументами, точно збігається із вказаним
+записом\&.
 .PP
-Command paths for users are not always the same and depends on the users
-PATH\&. Some distributions symlink \fB/bin\fP to \fB/usr/bin\fP in which case it
-depends on the order they appear in the PATH environment variable\&.
+Шляхи до команд для різних користувачів можуть бути різними: вони залежать
+від значення змінної PATH користувача\&. У деяких дистрибутивах \fB/bin\fP є
+символічним посиланням на \fB/usr/bin\fP\&. У таких випадках усе залежатиме від
+порядку, у якому ці каталоги вказано у змінній середовища PATH\&.
 .PP
-The context is the security (SELinux) context of a running application or
-service\&. To get the context of a running application use \fBps \-e
+Контекстом є контекст захисту (SELinux) запущеної програми або служби\&. Для
+отримання контексту запущеної програми скористайтеся командою \fBps \-e
 \-\-context\fP\&.
 .PP
-\fBWarning:\fP If the context is unconfined, then this will open access for
-more than the desired application\&.
+\fBПопередження:\fP якщо контекст є необмеженим (unconfined), це може відкрити
+доступ до ресурсів, які перевищують лише саму бажану програму\&.
 .PP
-The lockdown whitelist entries are checked in the following order:
+Записи «білого» списку блокування буде оброблено у такому порядку:
 .RS 4
 1\&. \fIконтекст\fP
 .RE
@@ -1766,105 +1826,106 @@ The lockdown whitelist entries are checked in the following order:
 .PP
 [\fB\-\-permanent\fP] \fB\-\-list\-lockdown\-whitelist\-commands\fP
 .RS 4
-List all command lines that are on the whitelist\&.
+Вивести список усіх рядків команд, які перебувають у «білому» списку\&.
 .RE
 .PP
 [\fB\-\-permanent\fP] \fB\-\-add\-lockdown\-whitelist\-command\fP=\fIкоманда\fP
 .RS 4
-Add the \fIcommand\fP to the whitelist\&.
+Додати команду \fIкоманда\fP до «білого» списку\&.
 .RE
 .PP
 [\fB\-\-permanent\fP] \fB\-\-remove\-lockdown\-whitelist\-command\fP=\fIкоманда\fP
 .RS 4
-Remove the \fIcommand\fP from the whitelist\&.
+Вилучити команду \fIкоманда\fP з «білого» списку\&.
 .RE
 .PP
 [\fB\-\-permanent\fP] \fB\-\-query\-lockdown\-whitelist\-command\fP=\fIкоманда\fP
 .RS 4
-Query whether the \fIcommand\fP is on the whitelist\&. Returns 0 if true, 1
-otherwise\&.
+Визначити, чи є \fIкоманда\fP у «білому» списку\&. Повертає 0, якщо є; 1, якщо
+немає\&.
 .RE
 .PP
 [\fB\-\-permanent\fP] \fB\-\-list\-lockdown\-whitelist\-contexts\fP
 .RS 4
-List all contexts that are on the whitelist\&.
+Вивести список усіх контекстів, які перебувають у «білому» списку\&.
 .RE
 .PP
 [\fB\-\-permanent\fP] \fB\-\-add\-lockdown\-whitelist\-context\fP=\fIконтекст\fP
 .RS 4
-Add the context \fIcontext\fP to the whitelist\&.
+Додати контекст \fIконтекст\fP до «білого» списку\&.
 .RE
 .PP
 [\fB\-\-permanent\fP] \fB\-\-remove\-lockdown\-whitelist\-context\fP=\fIконтекст\fP
 .RS 4
-Remove the \fIcontext\fP from the whitelist\&.
+Вилучити контекст \fIконтекст\fP з «білого» списку\&.
 .RE
 .PP
 [\fB\-\-permanent\fP] \fB\-\-query\-lockdown\-whitelist\-context\fP=\fIконтекст\fP
 .RS 4
-Query whether the \fIcontext\fP is on the whitelist\&. Returns 0 if true, 1
-otherwise\&.
+Визначити, чи є \fIконтекст\fP у «білому» списку\&. Повертає 0, якщо є; 1, якщо
+немає\&.
 .RE
 .PP
 [\fB\-\-permanent\fP] \fB\-\-list\-lockdown\-whitelist\-uids\fP
 .RS 4
-List all user ids that are on the whitelist\&.
+Вивести список усіх ідентифікаторів користувачів, які перебувають у «білому»
+списку\&.
 .RE
 .PP
 [\fB\-\-permanent\fP] \fB\-\-add\-lockdown\-whitelist\-uid\fP=\fIuid\fP
 .RS 4
-Add the user id \fIuid\fP to the whitelist\&.
+Додати ідентифікатор користувача \fIuid\fP до «білого» списку\&.
 .RE
 .PP
 [\fB\-\-permanent\fP] \fB\-\-remove\-lockdown\-whitelist\-uid\fP=\fIuid\fP
 .RS 4
-Remove the user id \fIuid\fP from the whitelist\&.
+Вилучити ідентифікатор користувача \fIuid\fP з «білого» списку\&.
 .RE
 .PP
 [\fB\-\-permanent\fP] \fB\-\-query\-lockdown\-whitelist\-uid\fP=\fIuid\fP
 .RS 4
-Query whether the user id \fIuid\fP is on the whitelist\&. Returns 0 if true, 1
-otherwise\&.
+Визначити, чи є ідентифікатор користувача \fIuid\fP у «білому»
+списку\&. Повертає 0, якщо є; 1, якщо немає\&.
 .RE
 .PP
 [\fB\-\-permanent\fP] \fB\-\-list\-lockdown\-whitelist\-users\fP
 .RS 4
-List all user names that are on the whitelist\&.
+Вивести список усіх імена користувачів, які перебувають у «білому» списку\&.
 .RE
 .PP
 [\fB\-\-permanent\fP] \fB\-\-add\-lockdown\-whitelist\-user\fP=\fIкористувач\fP
 .RS 4
-Add the user name \fIuser\fP to the whitelist\&.
+Додати ім'я користувача \fIкористувач\fP до «білого» списку\&.
 .RE
 .PP
 [\fB\-\-permanent\fP] \fB\-\-remove\-lockdown\-whitelist\-user\fP=\fIкористувач\fP
 .RS 4
-Remove the user name \fIuser\fP from the whitelist\&.
+Вилучити ім'я користувача \fIкористувач\fP з «білого» списку\&.
 .RE
 .PP
 [\fB\-\-permanent\fP] \fB\-\-query\-lockdown\-whitelist\-user\fP=\fIкористувач\fP
 .RS 4
-Query whether the user name \fIuser\fP is on the whitelist\&. Returns 0 if
-true, 1 otherwise\&.
+Визначити, чи є ім'я користувача \fIкористувач\fP у «білому» списку\&. Повертає
+0, якщо є; 1, якщо немає\&.
 .RE
 .SS "Параметри паніки"
 .PP
 \fB\-\-panic\-on\fP
 .RS 4
-Enable panic mode\&. All incoming and outgoing packets are dropped, active
-connections will expire\&. Enable this only if there are serious problems
-with your network environment\&. For example if the machine is getting
-hacked in\&.
+Увімкнути режим паніки\&. Усі вхідні і вихідні пакети буде відкинуто, строк
+дії активних з'єднань завершено\&. Вмикайте, лише якщо у вашому середовищі
+мережі є серйозні проблеми\&. Наприклад, якщо відбувся злам комп'ютера\&.
 .sp
-This is a runtime only change\&.
+Цю зміну буде внесено лише до динамічних налаштувань\&.
 .RE
 .PP
 \fB\-\-panic\-off\fP
 .RS 4
-Disable panic mode\&. After disabling panic mode established connections
-might work again, if panic mode was enabled for a short period of time\&.
+Вимкнути режим паніки\&. Після вимикання режиму паніки можуть запрацювати
+встановлені з'єднання, якщо режим паніки було увімкнено протягом короткого
+періоду часу\&.
 .sp
-This is a runtime only change\&.
+Цю зміну буде внесено лише до динамічних налаштувань\&.
 .RE
 .PP
 \fB\-\-query\-panic\fP
@@ -1877,27 +1938,27 @@ This is a runtime only change\&.
 \m[blue]\fB\%http://fedoraproject.org/wiki/FirewallD\fP\m[]
 .SS "Приклад 1"
 .PP
-Enable http service in default zone\&. This is runtime only change,
-i\&.e\&. effective until restart\&.
+Увімкнути службу http у типовій зоні\&. Це зміна лише у динамічних
+налаштуваннях, тобто вона працюватиме лише до перезапуску\&.
 .PP
 firewall\-cmd \-\-add\-service=http
 .sp
 .SS "Приклад 2"
 .PP
-Enable port 443/tcp immediately and permanently in default zone\&. To make
-the change effective immediately and also after restart we need two
-commands\&. The first command makes the change in runtime configuration,
-i\&.e\&. makes it effective immediately, until restart\&. The second command
-makes the change in permanent configuration, i\&.e\&. makes it effective
-after restart\&.
+Увімкнути порт 443/tcp негайно і постійно у типовій зоні\&. Щоб зміна набула
+чинності негайно, а також після перезапуску, вам потрібні будуть дві
+команди\&. Перша команда внесе зміни до динамічних налаштувань, тобто
+змінить поведінку негайно, аж до перезапуску\&. Друга команда внесе зміни до
+постійних налаштувань, тобто зробить зміни чинними після перезапуску\&.
 .PP
 firewall\-cmd \-\-add\-port=443/tcp firewall\-cmd \-\-permanent \-\-add\-port=443/tcp
 .sp
 .SH "КОДИ ЗАВЕРШЕННЯ"
 .PP
-On success 0 is returned\&. On failure the output is red colored and exit
-code is either 2 in case of wrong command\-line option usage or one of the
-following error codes in other cases:
+Якщо дію буде виконано успішно, програма поверне код 0\&. Якщо станеться
+помилка, виведені дані буде розфарбовано у червоний колір, а станом виходу
+буде 2, якщо буде виявлено помилки у рядку команди, або один із вказаних
+нижче кодів помилок в інших випадках:
 .TS
 allbox tab(:);
 lB rB.
@@ -2414,9 +2475,9 @@ T}
 .TE
 .sp 1
 .PP
-Note that return codes of \fB\-\-query\-*\fP options are special: Successful
-queries return 0, unsuccessful ones return 1 unless an error occurred in
-which case the table above applies\&.
+Зауважте, що коди повернення параметрів \fB\-\-query\-*\fP є особливими: успішне
+виконання запитів даватиме код 0, неуспішне — код 1\&. Якщо станеться
+помилка, буде повернуто код за наведеною вище таблицею\&.
 .SH "ДИВ. ТАКОЖ"
 \fBfirewall\-applet\fP(1), \fBfirewalld\fP(1), \fBfirewall\-cmd\fP(1),
 \fBfirewall\-config\fP(1), \fBfirewalld.conf\fP(5), \fBfirewalld.direct\fP(5),
