@@ -1,0 +1,2343 @@
+# SOME DESCRIPTIVE TITLE
+# Copyright (C) YEAR FSF
+# This file is distributed under the same license as the BIND9 documentation package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: BIND9 documentation 1.0\n"
+"Report-Msgid-Bugs-To: trans-uk@lists.fedoraproject.org\n"
+"POT-Creation-Date: 2022-05-25 09:12+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. type: TH
+#: ./dig.1:18
+#, no-wrap
+msgid "DIG"
+msgstr ""
+
+#. type: TH
+#: ./dig.1:18
+#, no-wrap
+msgid "2014-02-19"
+msgstr ""
+
+#. type: TH
+#: ./dig.1:18 ./host.1:18 ./nslookup.1:18
+#, no-wrap
+msgid "ISC"
+msgstr ""
+
+#. type: TH
+#: ./dig.1:18 ./host.1:18 ./nslookup.1:18
+#, no-wrap
+msgid "BIND9"
+msgstr ""
+
+#.  -----------------------------------------------------------------
+#.  * MAIN CONTENT STARTS HERE *
+#.  -----------------------------------------------------------------
+#. type: SH
+#: ./dig.1:36 ./host.1:36 ./nslookup.1:36
+#, no-wrap
+msgid "NAME"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:38
+msgid "dig - DNS lookup utility"
+msgstr ""
+
+#. type: SH
+#: ./dig.1:38 ./host.1:38 ./nslookup.1:38
+#, no-wrap
+msgid "SYNOPSIS"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:41
+msgid ""
+"B<dig> [@server] [B<-b\\ >I<address>] [B<-c\\ >I<class>] [B<-f\\ "
+">I<filename>] [B<-k\\ >I<filename>] [B<-m>] [B<-p\\ >I<port#>] [B<-q\\ "
+">I<name>] [B<-t\\ >I<type>] [B<-v>] [B<-x\\ >I<addr>] [B<-y\\ "
+">I<[hmac:]>I<name:key>] [[B<-4>] | [B<-6>]] [name] [type] [class] "
+"[queryopt...]"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:43
+msgid "B<dig> [B<-h>]"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:45
+msgid "B<dig> [global-queryopt...] [query...]"
+msgstr ""
+
+#. type: SH
+#: ./dig.1:45 ./host.1:41 ./nslookup.1:41
+#, no-wrap
+msgid "DESCRIPTION"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:52
+msgid ""
+"B<dig> is a flexible tool for interrogating DNS name servers\\&. It performs "
+"DNS lookups and displays the answers that are returned from the name "
+"server(s) that were queried\\&. Most DNS administrators use B<dig> to "
+"troubleshoot DNS problems because of its flexibility, ease of use and "
+"clarity of output\\&. Other lookup tools tend to have less functionality "
+"than B<dig>\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:60
+msgid ""
+"Although B<dig> is normally used with command-line arguments, it also has a "
+"batch mode of operation for reading lookup requests from a file\\&. A brief "
+"summary of its command-line arguments and options is printed when the B<-h> "
+"option is given\\&. Unlike earlier versions, the BIND 9 implementation of "
+"B<dig> allows multiple lookups to be issued from the command line\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:67
+msgid ""
+"Unless it is told to query a specific name server, B<dig> will try each of "
+"the servers listed in /etc/resolv\\&.conf\\&. If no usable server addresses "
+"are found, B<dig> will send the query to the local host\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:71
+msgid ""
+"When no command line arguments or options are given, B<dig> will perform an "
+"NS query for \"\\&.\" (the root)\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:78
+msgid ""
+"It is possible to set per-user defaults for B<dig> via "
+"${HOME}/\\&.digrc\\&. This file is read and any options in it are applied "
+"before the command line arguments\\&. The B<-r> option disables this "
+"feature, for scripts that need predictable behaviour\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:86
+msgid ""
+"The IN and CH class names overlap with the IN and CH top level domain "
+"names\\&. Either use the B<-t> and B<-c> options to specify the type and "
+"class, use the B<-q> the specify the domain name, or use \"IN\\&.\" and "
+"\"CH\\&.\" when looking up these top level domains\\&."
+msgstr ""
+
+#. type: SH
+#: ./dig.1:86
+#, no-wrap
+msgid "SIMPLE USAGE"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:91
+msgid "A typical invocation of B<dig> looks like:"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:93
+#, no-wrap
+msgid " dig @server name type \n"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:95
+msgid "where:"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:97
+msgid "B<server>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:103
+msgid ""
+"is the name or IP address of the name server to query\\&. This can be an "
+"IPv4 address in dotted-decimal notation or an IPv6 address in "
+"colon-delimited notation\\&. When the supplied I<server> argument is a "
+"hostname, B<dig> resolves that name before querying that name server\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:116
+msgid ""
+"If no I<server> argument is provided, B<dig> consults /etc/resolv\\&.conf; "
+"if an address is found there, it queries the name server at that "
+"address\\&. If either of the B<-4> or B<-6> options are in use, then only "
+"addresses for the corresponding transport will be tried\\&. If no usable "
+"addresses are found, B<dig> will send the query to the local host\\&. The "
+"reply from the name server that responds is displayed\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:119
+msgid "B<name>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:121
+msgid "is the name of the resource record that is to be looked up\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:124
+msgid "B<type>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:132
+msgid ""
+"indicates what type of query is required \\(em ANY, A, MX, SIG, etc\\&.  "
+"I<type> can be any valid query type\\&. If no I<type> argument is supplied, "
+"B<dig> will perform a lookup for an A record\\&."
+msgstr ""
+
+#. type: SH
+#: ./dig.1:133 ./host.1:57
+#, no-wrap
+msgid "OPTIONS"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:136 ./host.1:60
+msgid "-4"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:138
+msgid "Use IPv4 only\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:141 ./host.1:67
+msgid "-6"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:143
+msgid "Use IPv6 only\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:146
+msgid "-b I<address>I<[#port]>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:150
+msgid ""
+"Set the source IP address of the query\\&. The I<address> must be a valid "
+"address on one of the host\\*(Aqs network interfaces, or "
+"\"0\\&.0\\&.0\\&.0\" or \"::\"\\&. An optional port may be specified by "
+"appending \"#E<lt>portE<gt>\""
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:153 ./host.1:84
+msgid "-c I<class>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:157
+msgid ""
+"Set the query class\\&. The default I<class> is IN; other classes are HS for "
+"Hesiod records or CH for Chaosnet records\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:160
+msgid "-f I<file>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:167
+msgid ""
+"Batch mode: B<dig> reads a list of lookup requests to process from the given "
+"I<file>\\&. Each line in the file should be organized in the same way they "
+"would be presented as queries to B<dig> using the command-line interface\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:170 ./host.1:105
+msgid "-i"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:172
+msgid ""
+"Do reverse IPv6 lookups using the obsolete RFC 1886 IP6\\&.INT domain, which "
+"is no longer in use\\&. Obsolete bit string label queries (RFC 2874) are not "
+"attempted\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:175
+msgid "-k I<keyfile>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:184
+msgid ""
+"Sign queries using TSIG using a key read from the given file\\&. Key files "
+"can be generated using B<tsig-keygen>(8)\\&. When using TSIG authentication "
+"with B<dig>, the name server that is queried needs to know the key and "
+"algorithm that is being used\\&. In BIND, this is done by providing "
+"appropriate B<key> and B<server> statements in named\\&.conf\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:187
+msgid "-m"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:189
+msgid "Enable memory usage debugging\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:192 ./host.1:136
+msgid "-p I<port>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:194
+msgid ""
+"Send the query to a non-standard port on the server, instead of the default "
+"port 53\\&. This option would be used to test a name server that has been "
+"configured to listen for queries on a non-standard port number\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:197
+msgid "-q I<name>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:201
+msgid ""
+"The domain name to query\\&. This is useful to distinguish the I<name> from "
+"other arguments\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:204 ./host.1:141
+msgid "-r"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:207
+msgid ""
+"Do not read options from ${HOME}/\\&.digrc\\&. This is useful for scripts "
+"that need predictable behaviour\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:210 ./host.1:168
+msgid "-t I<type>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:218
+msgid ""
+"The resource record type to query\\&. It can be any valid query type\\&. If "
+"it is a resource record type supported in BIND 9, it can be given by the "
+"type mnemonic (such as \"NS\" or \"AAAA\")\\&. The default query type is "
+"\"A\", unless the B<-x> option is supplied to indicate a reverse "
+"lookup\\&. A zone transfer can be requested by specifying a type of "
+"AXFR\\&. When an incremental zone transfer (IXFR) is required, set the "
+"I<type> to ixfr=N\\&. The incremental zone transfer will contain the changes "
+"made to the zone since the serial number in the zone\\*(Aqs SOA record was "
+"I<N>\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:220
+msgid ""
+"All resource record types can be expressed as \"TYPEnn\", where \"nn\" is "
+"the number of the type\\&. If the resource record type is not supported in "
+"BIND 9, the result will be displayed as described in RFC 3597\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:223
+msgid "-u"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:225
+msgid "Print query times in microseconds instead of milliseconds\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:228 ./host.1:208
+msgid "-v"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:230 ./host.1:220
+msgid "Print the version number and exit\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:233
+msgid "-x I<addr>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:250
+msgid ""
+"Simplified reverse lookups, for mapping addresses to names\\&. The I<addr> "
+"is an IPv4 address in dotted-decimal notation, or a colon-delimited IPv6 "
+"address\\&. When the B<-x> is used, there is no need to provide the I<name>, "
+"I<class> and I<type> arguments\\&.  B<dig> automatically performs a lookup "
+"for a name like 94\\&.2\\&.0\\&.192\\&.in-addr\\&.arpa and sets the query "
+"type and class to PTR and IN respectively\\&. IPv6 addresses are looked up "
+"using nibble format under the IP6\\&.ARPA domain (but see also the B<-i> "
+"option)\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:253
+msgid "-y I<[hmac:]>I<keyname:secret>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:272
+msgid ""
+"Sign queries using TSIG with the given authentication key\\&.  I<keyname> is "
+"the name of the key, and I<secret> is the base64 encoded shared secret\\&.  "
+"I<hmac> is the name of the key algorithm; valid choices are hmac-md5, "
+"hmac-sha1, hmac-sha224, hmac-sha256, hmac-sha384, or hmac-sha512\\&. If "
+"I<hmac> is not specified, the default is hmac-md5 or if MD5 was disabled "
+"hmac-sha256\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:282
+msgid ""
+"NOTE: You should use the B<-k> option and avoid the B<-y> option, because "
+"with B<-y> the shared secret is supplied as a command line argument in clear "
+"text\\&. This may be visible in the output from B<ps>(1)  or in a history "
+"file maintained by the user\\*(Aqs shell\\&."
+msgstr ""
+
+#. type: SH
+#: ./dig.1:283
+#, no-wrap
+msgid "QUERY OPTIONS"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:287
+msgid ""
+"B<dig> provides a number of query options which affect the way in which "
+"lookups are made and the results displayed\\&. Some of these set or reset "
+"flag bits in the query header, some determine which sections of the answer "
+"get printed, and others determine the timeout and retry strategies\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:295
+msgid ""
+"Each query option is identified by a keyword preceded by a plus sign "
+"(+)\\&. Some keywords set or reset an option\\&. These may be preceded by "
+"the string no to negate the meaning of that keyword\\&. Other keywords "
+"assign values to options like the timeout interval\\&. They have the form "
+"B<+keyword=value>\\&. Keywords may be abbreviated, provided the abbreviation "
+"is unambiguous; for example, +cd is equivalent to +cdflag\\&. The query "
+"options are:"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:297
+msgid "B<+[no]aaflag>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:300
+msgid "A synonym for I<+[no]aaonly>\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:303
+msgid "B<+[no]aaonly>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:305
+msgid "Sets the \"aa\" flag in the query\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:308
+msgid "B<+[no]additional>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:310
+msgid ""
+"Display [do not display] the additional section of a reply\\&. The default "
+"is to display it\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:313
+msgid "B<+[no]adflag>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:315
+msgid ""
+"Set [do not set] the AD (authentic data) bit in the query\\&. This requests "
+"the server to return whether all of the answer and authority sections have "
+"all been validated as secure according to the security policy of the "
+"server\\&. AD=1 indicates that all records have been validated as secure and "
+"the answer is not from a OPT-OUT range\\&. AD=0 indicate that some part of "
+"the answer was insecure or not validated\\&. This bit is set by default\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:318
+msgid "B<+[no]all>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:320
+msgid "Set or clear all display flags\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:323
+msgid "B<+[no]answer>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:325
+msgid ""
+"Display [do not display] the answer section of a reply\\&. The default is to "
+"display it\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:328
+msgid "B<+[no]authority>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:330
+msgid ""
+"Display [do not display] the authority section of a reply\\&. The default is "
+"to display it\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:333
+msgid "B<+[no]badcookie>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:335
+msgid ""
+"Retry lookup with the new server cookie if a BADCOOKIE response is "
+"received\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:338
+msgid "B<+[no]besteffort>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:340
+msgid ""
+"Attempt to display the contents of messages which are malformed\\&. The "
+"default is to not display malformed answers\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:343
+msgid "B<+bufsize=B>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:353
+msgid ""
+"This option sets the UDP message buffer size advertised using EDNS0 to I<B> "
+"bytes\\&. The maximum and minimum sizes of this buffer are 65535 and 0, "
+"respectively\\&.  +bufsize=0 disables EDNS (use +bufsize=0 +edns to send a "
+"EDNS messages with a advertised size of 0 bytes)\\&.  +bufsize restores the "
+"default buffer size\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:356
+msgid "B<+[no]cdflag>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:358
+msgid ""
+"Set [do not set] the CD (checking disabled) bit in the query\\&. This "
+"requests the server to not perform DNSSEC validation of responses\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:361
+msgid "B<+[no]class>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:363
+msgid "Display [do not display] the CLASS when printing the record\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:366
+msgid "B<+[no]cmd>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:370
+msgid ""
+"Toggles the printing of the initial comment in the output, identifying the "
+"version of B<dig> and the query options that have been applied\\&. This "
+"option always has global effect; it cannot be set globally and then "
+"overridden on a per-lookup basis\\&. The default is to print this "
+"comment\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:373
+msgid "B<+[no]comments>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:375
+msgid ""
+"Toggles the display of some comment lines in the output, containing "
+"information about the packet header and OPT pseudosection, and the names of "
+"the response section\\&. The default is to print these comments\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:381
+msgid ""
+"Other types of comments in the output are not affected by this option, but "
+"can be controlled using other command line switches\\&. These include "
+"B<+[no]cmd>, B<+[no]question>, B<+[no]stats>, and B<+[no]rrcomments>\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:384
+msgid "B<+[no]cookie>B<[=####]>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:387
+msgid ""
+"Send a COOKIE EDNS option, with optional value\\&. Replaying a COOKIE from a "
+"previous response will allow the server to identify a previous "
+"client\\&. The default is B<+cookie>\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:390
+msgid ""
+"B<+cookie> is also set when +trace is set to better emulate the default "
+"queries from a nameserver\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:393
+msgid "B<+[no]crypto>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:395
+msgid ""
+"Toggle the display of cryptographic fields in DNSSEC records\\&. The "
+"contents of these field are unnecessary to debug most DNSSEC validation "
+"failures and removing them makes it easier to see the common "
+"failures\\&. The default is to display the fields\\&. When omitted they are "
+"replaced by the string \"[omitted]\" or in the DNSKEY case the key id is "
+"displayed as the replacement, e\\&.g\\&. \"[ key id = value ]\"\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:398
+msgid "B<+[no]defname>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:401
+msgid "Deprecated, treated as a synonym for I<+[no]search>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:404
+msgid "B<+[no]dnssec>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:406
+msgid ""
+"Requests DNSSEC records be sent by setting the DNSSEC OK bit (DO) in the OPT "
+"record in the additional section of the query\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:409
+msgid "B<+domain=somename>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:417
+msgid ""
+"Set the search list to contain the single domain I<somename>, as if "
+"specified in a B<domain> directive in /etc/resolv\\&.conf, and enable search "
+"list processing as if the I<+search> option were given\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:420
+msgid "B<+dscp=value>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:422
+msgid ""
+"Set the DSCP code point to be used when sending the query\\&. Valid DSCP "
+"code points are in the range [0\\&.\\&.63]\\&. By default no code point is "
+"explicitly set\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:425
+msgid "B<+[no]edns[=#]>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:429
+msgid ""
+"Specify the EDNS version to query with\\&. Valid values are 0 to "
+"255\\&. Setting the EDNS version will cause a EDNS query to be sent\\&.  "
+"B<+noedns> clears the remembered EDNS version\\&. EDNS is set to 0 by "
+"default\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:432
+msgid "B<+[no]ednsflags[=#]>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:434
+msgid ""
+"Set the must-be-zero EDNS flags bits (Z bits) to the specified "
+"value\\&. Decimal, hex and octal encodings are accepted\\&. Setting a named "
+"flag (e\\&.g\\&. DO) will silently be ignored\\&. By default, no Z bits are "
+"set\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:437
+msgid "B<+[no]ednsnegotiation>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:439
+msgid ""
+"Enable / disable EDNS version negotiation\\&. By default EDNS version "
+"negotiation is enabled\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:442
+msgid "B<+[no]ednsopt[=code[:value]]>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:455
+msgid ""
+"Specify EDNS option with code point B<code> and optionally payload of "
+"B<value> as a hexadecimal string\\&.  B<code> can be either an EDNS option "
+"name (for example, NSID or ECS), or an arbitrary numeric value\\&.  "
+"B<+noednsopt> clears the EDNS options to be sent\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:458
+msgid "B<+[no]expire>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:460
+msgid "Send an EDNS Expire option\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:463
+msgid "B<+[no]fail>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:465
+msgid ""
+"Do not try the next server if you receive a SERVFAIL\\&. The default is to "
+"not try the next server which is the reverse of normal stub resolver "
+"behavior\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:468
+msgid "B<+[no]header-only>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:470
+msgid ""
+"Send a query with a DNS header without a question section\\&. The default is "
+"to add a question section\\&. The query type and query name are ignored when "
+"this is set\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:473
+msgid "B<+[no]identify>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:477
+msgid ""
+"Show [or do not show] the IP address and port number that supplied the "
+"answer when the I<+short> option is enabled\\&. If short form answers are "
+"requested, the default is not to show the source address and port number of "
+"the server that provided the answer\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:480
+msgid "B<+[no]idnin>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:482
+msgid ""
+"Process [do not process] IDN domain names on input\\&. This requires IDN "
+"SUPPORT to have been enabled at compile time\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:484
+msgid ""
+"The default is to process IDN input when standard output is a tty\\&. The "
+"IDN processing on input is disabled when dig output is redirected to files, "
+"pipes, and other non-tty file descriptors\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:487
+msgid "B<+[no]idnout>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:489
+msgid ""
+"Convert [do not convert] puny code on output\\&. This requires IDN SUPPORT "
+"to have been enabled at compile time\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:491
+msgid ""
+"The default is to process puny code on output when standard output is a "
+"tty\\&. The puny code processing on output is disabled when dig output is "
+"redirected to files, pipes, and other non-tty file descriptors\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:494
+msgid "B<+[no]ignore>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:496
+msgid ""
+"Ignore truncation in UDP responses instead of retrying with TCP\\&. By "
+"default, TCP retries are performed\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:499
+msgid "B<+[no]keepopen>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:502
+msgid ""
+"Keep the TCP socket open between queries and reuse it rather than creating a "
+"new TCP socket for each lookup\\&. The default is B<+nokeepopen>\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:505
+msgid "B<+[no]mapped>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:508
+msgid ""
+"Allow mapped IPv4 over IPv6 addresses to be used\\&. The default is "
+"B<+mapped>\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:511
+msgid "B<+[no]multiline>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:515
+msgid ""
+"Print records like the SOA records in a verbose multi-line format with "
+"human-readable comments\\&. The default is to print each record on a single "
+"line, to facilitate machine parsing of the B<dig> output\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:518
+msgid "B<+ndots=D>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:533
+msgid ""
+"Set the number of dots that have to appear in I<name> to I<D> for it to be "
+"considered absolute\\&. The default value is that defined using the ndots "
+"statement in /etc/resolv\\&.conf, or 1 if no ndots statement is "
+"present\\&. Names with fewer dots are interpreted as relative names and will "
+"be searched for in the domains listed in the B<search> or B<domain> "
+"directive in /etc/resolv\\&.conf if B<+search> is set\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:536
+msgid "B<+[no]nsid>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:538
+msgid "Include an EDNS name server ID request when sending a query\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:541
+msgid "B<+[no]nssearch>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:545
+msgid ""
+"When this option is set, B<dig> attempts to find the authoritative name "
+"servers for the zone containing the name being looked up and display the SOA "
+"record that each name server has for the zone\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:548
+msgid "B<+[no]onesoa>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:550
+msgid ""
+"Print only one (starting) SOA record when performing an AXFR\\&. The default "
+"is to print both the starting and ending SOA records\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:553
+msgid "B<+[no]opcode=value>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:555
+msgid ""
+"Set [restore] the DNS message opcode to the specified value\\&. The default "
+"value is QUERY (0)\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:558
+msgid "B<+[no]qr>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:560
+msgid ""
+"Toggles the display of the query message as it is sent\\&. By default, the "
+"query is not printed\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:563
+msgid "B<+[no]question>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:565
+msgid ""
+"Toggles the display of the question section of a query when an answer is "
+"returned\\&. The default is to print the question section as a comment\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:568
+msgid "B<+[no]rdflag>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:571
+msgid "A synonym for I<+[no]recurse>\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:574
+msgid "B<+[no]recurse>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:582
+msgid ""
+"Toggle the setting of the RD (recursion desired) bit in the query\\&. This "
+"bit is set by default, which means B<dig> normally sends recursive "
+"queries\\&. Recursion is automatically disabled when using the I<+nssearch> "
+"option, and when using I<+trace> except for an initial recursive query to "
+"get the list of root servers\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:585
+msgid "B<+retry=T>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:590
+msgid ""
+"Sets the number of times to retry UDP queries to server to I<T> instead of "
+"the default, 2\\&. Unlike I<+tries>, this does not include the initial "
+"query\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:593
+msgid "B<+[no]rrcomments>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:595
+msgid ""
+"Toggle the display of per-record comments in the output (for example, "
+"human-readable key information about DNSKEY records)\\&. The default is not "
+"to print record comments unless multiline mode is active\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:598
+msgid "B<+[no]search>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:602
+msgid ""
+"Use [do not use] the search list defined by the searchlist or domain "
+"directive in resolv\\&.conf (if any)\\&. The search list is not used by "
+"default\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:608
+msgid ""
+"\\*(Aqndots\\*(Aq from resolv\\&.conf (default 1) which may be overridden by "
+"I<+ndots> determines if the name will be treated as relative or not and "
+"hence whether a search is eventually performed or not\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:611
+msgid "B<+[no]short>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:613
+msgid ""
+"Provide a terse answer\\&. The default is to print the answer in a verbose "
+"form\\&. This option always has global effect; it cannot be set globally and "
+"then overridden on a per-lookup basis\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:616
+msgid "B<+[no]showsearch>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:618
+msgid "Perform [do not perform] a search showing intermediate results\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:621
+msgid "B<+[no]sigchase>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:625
+msgid ""
+"Chase DNSSEC signature chains\\&. Requires dig be compiled with "
+"-DDIG_SIGCHASE\\&. This feature is deprecated\\&. Use B<delv> instead\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:628
+msgid "B<+split=W>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:638
+msgid ""
+"Split long hex- or base64-formatted fields in resource records into chunks "
+"of I<W> characters (where I<W> is rounded up to the nearest multiple of "
+"4)\\&.  I<+nosplit> or I<+split=0> causes fields not to be split at "
+"all\\&. The default is 56 characters, or 44 characters when multiline mode "
+"is active\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:641
+msgid "B<+[no]stats>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:643
+msgid ""
+"Toggles the printing of statistics: when the query was made, the size of the "
+"reply and so on\\&. The default behavior is to print the query statistics as "
+"a comment after each lookup\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:646
+msgid "B<+[no]subnet=addr[/prefix-length]>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:648
+msgid ""
+"Send (don\\*(Aqt send) an EDNS Client Subnet option with the specified IP "
+"address or network prefix\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:654
+msgid ""
+"B<dig +subnet=0\\&.0\\&.0\\&.0/0>, or simply B<dig +subnet=0> for short, "
+"sends an EDNS CLIENT-SUBNET option with an empty address and a source "
+"prefix-length of zero, which signals a resolver that the client\\*(Aqs "
+"address information must I<not> be used when resolving this query\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:657
+msgid "B<+[no]tcp>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:663
+msgid ""
+"Use [do not use] TCP when querying name servers\\&. The default behavior is "
+"to use UDP unless a type any or ixfr=N query is requested, in which case the "
+"default is TCP\\&. AXFR queries always use TCP\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:666
+msgid "B<+timeout=T>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:672
+msgid ""
+"Sets the timeout for a query to I<T> seconds\\&. The default timeout is 5 "
+"seconds\\&. An attempt to set I<T> to less than 1 will result in a query "
+"timeout of 1 second being applied\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:675
+msgid "B<+[no]topdown>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:679
+msgid ""
+"When chasing DNSSEC signature chains perform a top-down "
+"validation\\&. Requires dig be compiled with -DDIG_SIGCHASE\\&. This feature "
+"is deprecated\\&. Use B<delv> instead\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:682
+msgid "B<+[no]trace>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:686
+msgid ""
+"Toggle tracing of the delegation path from the root name servers for the "
+"name being looked up\\&. Tracing is disabled by default\\&. When tracing is "
+"enabled, B<dig> makes iterative queries to resolve the name being looked "
+"up\\&. It will follow referrals from the root servers, showing the answer "
+"from each server that was used to resolve the lookup\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:688
+msgid ""
+"If @server is also specified, it affects only the initial query for the root "
+"zone name servers\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:691
+msgid ""
+"B<+dnssec> is also set when +trace is set to better emulate the default "
+"queries from a nameserver\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:694
+msgid "B<+tries=T>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:700
+msgid ""
+"Sets the number of times to try UDP queries to server to I<T> instead of the "
+"default, 3\\&. If I<T> is less than or equal to zero, the number of tries is "
+"silently rounded up to 1\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:703
+msgid "B<+trusted-key=####>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:706
+msgid ""
+"Specifies a file containing trusted keys to be used with "
+"B<+sigchase>\\&. Each DNSKEY record must be on its own line\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:714
+msgid ""
+"If not specified, B<dig> will look for /etc/trusted-key\\&.key then "
+"trusted-key\\&.key in the current directory\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:718
+msgid ""
+"Requires dig be compiled with -DDIG_SIGCHASE\\&. This feature is "
+"deprecated\\&. Use B<delv> instead\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:721
+msgid "B<+[no]ttlid>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:723
+msgid "Display [do not display] the TTL when printing the record\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:726
+msgid "B<+[no]ttlunits>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:728
+msgid ""
+"Display [do not display] the TTL in friendly human-readable time units of "
+"\"s\", \"m\", \"h\", \"d\", and \"w\", representing seconds, minutes, hours, "
+"days and weeks\\&. Implies +ttlid\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:731
+msgid "B<+[no]unknownformat>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:733
+msgid ""
+"Print all RDATA in unknown RR type presentation format (RFC 3597)\\&. The "
+"default is to print RDATA for known types in the type\\*(Aqs presentation "
+"format\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:736
+msgid "B<+[no]vc>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:740
+msgid ""
+"Use [do not use] TCP when querying name servers\\&. This alternate syntax to "
+"I<+[no]tcp> is provided for backwards compatibility\\&. The \"vc\" stands "
+"for \"virtual circuit\"\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:743
+msgid "B<+[no]zflag>"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:745
+msgid ""
+"Set [do not set] the last unassigned DNS header flag in a DNS query\\&. This "
+"flag is off by default\\&."
+msgstr ""
+
+#. type: SH
+#: ./dig.1:746
+#, no-wrap
+msgid "MULTIPLE QUERIES"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:753
+msgid ""
+"The BIND 9 implementation of B<dig > supports specifying multiple queries on "
+"the command line (in addition to supporting the B<-f> batch file "
+"option)\\&. Each of those queries can be supplied with its own set of flags, "
+"options and query options\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:757
+msgid ""
+"In this case, each I<query> argument represent an individual query in the "
+"command-line syntax described above\\&. Each consists of any of the standard "
+"options and flags, the name to be looked up, an optional query type and "
+"class and any query options that should be applied to that query\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:761
+msgid ""
+"A global set of query options, which should be applied to all queries, can "
+"also be supplied\\&. These global query options must precede the first tuple "
+"of name, class, type, options, flags, and query options supplied on the "
+"command line\\&. Any global query options (except the B<+[no]cmd> option) "
+"can be overridden by a query-specific set of query options\\&. For example:"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:763
+msgid "dig +qr www\\&.isc\\&.org any -x 127\\&.0\\&.0\\&.1 isc\\&.org ns +noqr"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:778
+msgid ""
+"shows how B<dig> could be used from the command line to make three lookups: "
+"an ANY query for www\\&.isc\\&.org, a reverse lookup of 127\\&.0\\&.0\\&.1 "
+"and a query for the NS records of isc\\&.org\\&. A global query option of "
+"I<+qr> is applied, so that B<dig> shows the initial query it made for each "
+"lookup\\&. The final query has a local query option of I<+noqr> which means "
+"that B<dig> will not print the initial query when it looks up the NS records "
+"for isc\\&.org\\&."
+msgstr ""
+
+#. type: SH
+#: ./dig.1:778 ./host.1:248 ./nslookup.1:265 ./nslookup.1:276
+#, no-wrap
+msgid "IDN SUPPORT"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:791
+msgid ""
+"If B<dig> has been built with IDN (internationalized domain name) support, "
+"it can accept and display non-ASCII domain names\\&.  B<dig> appropriately "
+"converts character encoding of domain name before sending a request to DNS "
+"server or displaying a reply from the server\\&. If you\\*(Aqd like to turn "
+"off the IDN support for some reason, use parameters I<+noidnin> and "
+"I<+noidnout> or define the B<IDN_DISABLE> environment variable\\&."
+msgstr ""
+
+#. type: SH
+#: ./dig.1:791
+#, no-wrap
+msgid "RETURN CODES"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:795
+msgid "B<Dig> return codes are:"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:797
+msgid "0"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:799
+msgid "Everything went well, including things like NXDOMAIN\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:802
+msgid "1"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:804
+msgid "Usage error\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:807
+msgid "8"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:809
+msgid "Could not open batch file\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:812
+msgid "9"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:814
+msgid "No reply from server\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:817
+msgid "10"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:819
+msgid "Internal error\\&."
+msgstr ""
+
+#. type: SH
+#: ./dig.1:820 ./host.1:259 ./nslookup.1:287
+#, no-wrap
+msgid "FILES"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:823 ./host.1:262 ./nslookup.1:290
+msgid "/etc/resolv\\&.conf"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:825
+msgid "${HOME}/\\&.digrc"
+msgstr ""
+
+#. type: SH
+#: ./dig.1:825 ./host.1:262 ./nslookup.1:290
+#, no-wrap
+msgid "SEE ALSO"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:832
+msgid "B<delv>(1), B<host>(1), B<named>(8), B<dnssec-keygen>(8), RFC 1035\\&."
+msgstr ""
+
+#. type: SH
+#: ./dig.1:832
+#, no-wrap
+msgid "BUGS"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:835
+msgid "There are probably too many query options\\&."
+msgstr ""
+
+#. type: SH
+#: ./dig.1:835 ./host.1:266 ./nslookup.1:295
+#, no-wrap
+msgid "AUTHOR"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:838 ./host.1:269 ./nslookup.1:298
+msgid "B<Internet Systems Consortium, Inc\\&.>"
+msgstr ""
+
+#. type: SH
+#: ./dig.1:838 ./host.1:269 ./nslookup.1:298
+#, no-wrap
+msgid "COPYRIGHT"
+msgstr ""
+
+#. type: Plain text
+#: ./dig.1:841
+msgid ""
+"Copyright \\(co 2000-2011, 2013-2022 Internet Systems Consortium, "
+"Inc. (\"ISC\")"
+msgstr ""
+
+#. type: TH
+#: ./host.1:18
+#, no-wrap
+msgid "HOST"
+msgstr ""
+
+#. type: TH
+#: ./host.1:18
+#, no-wrap
+msgid "2009-01-20"
+msgstr ""
+
+#. type: Plain text
+#: ./host.1:38
+msgid "host - DNS lookup utility"
+msgstr ""
+
+#. type: Plain text
+#: ./host.1:41
+msgid ""
+"B<host> [B<-aCdlnrsTUwv>] [B<-c\\ >I<class>] [B<-N\\ >I<ndots>] [B<-p\\ "
+">I<port>] [B<-R\\ >I<number>] [B<-t\\ >I<type>] [B<-W\\ >I<wait>] [B<-m\\ "
+">I<flag>] [[B<-4>] | [B<-6>]] [B<-v>] [B<-V>] {name} [server]"
+msgstr ""
+
+#. type: Plain text
+#: ./host.1:47
+msgid ""
+"B<host> is a simple utility for performing DNS lookups\\&. It is normally "
+"used to convert names to IP addresses and vice versa\\&. When no arguments "
+"or options are given, B<host> prints a short summary of its command line "
+"arguments and options\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./host.1:57
+msgid ""
+"I<name> is the domain name that is to be looked up\\&. It can also be a "
+"dotted-decimal IPv4 address or a colon-delimited IPv6 address, in which case "
+"B<host> will by default perform a reverse lookup for that address\\&.  "
+"I<server> is an optional argument which is either the name or IP address of "
+"the name server that B<host> should query instead of the server or servers "
+"listed in /etc/resolv\\&.conf\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./host.1:64
+msgid "Use IPv4 only for query transport\\&. See also the B<-6> option\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./host.1:71
+msgid "Use IPv6 only for query transport\\&. See also the B<-4> option\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./host.1:74
+msgid "-a"
+msgstr ""
+
+#. type: Plain text
+#: ./host.1:81
+msgid ""
+"\"All\"\\&. The B<-a> option is normally equivalent to B<-v -t "
+">B<ANY>\\&. It also affects the behaviour of the B<-l> list zone option\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./host.1:86
+msgid ""
+"Query class: This can be used to lookup HS (Hesiod) or CH (Chaosnet) class "
+"resource records\\&. The default class is IN (Internet)\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./host.1:89
+msgid "-C"
+msgstr ""
+
+#. type: Plain text
+#: ./host.1:95
+msgid ""
+"Check consistency: B<host> will query the SOA records for zone I<name> from "
+"all the listed authoritative name servers for that zone\\&. The list of name "
+"servers is defined by the NS records that are found for the zone\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./host.1:98
+msgid "-d"
+msgstr ""
+
+#. type: Plain text
+#: ./host.1:102
+msgid "Print debugging traces\\&. Equivalent to the B<-v> verbose option\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./host.1:107
+msgid ""
+"Obsolete\\&. Use the IP6\\&.INT domain for reverse lookups of IPv6 addresses "
+"as defined in RFC1886 and deprecated in RFC4159\\&. The default is to use "
+"IP6\\&.ARPA as specified in RFC3596\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./host.1:110
+msgid "-l"
+msgstr ""
+
+#. type: Plain text
+#: ./host.1:116
+msgid ""
+"List zone: The B<host> command performs a zone transfer of zone I<name> and "
+"prints out the NS, PTR and address records (A/AAAA)\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./host.1:120
+msgid "Together, the B<-l -a> options print all records in the zone\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./host.1:123
+msgid "-N I<ndots>"
+msgstr ""
+
+#. type: Plain text
+#: ./host.1:133
+msgid ""
+"The number of dots that have to be in I<name> for it to be considered "
+"absolute\\&. The default value is that defined using the ndots statement in "
+"/etc/resolv\\&.conf, or 1 if no ndots statement is present\\&. Names with "
+"fewer dots are interpreted as relative names and will be searched for in the "
+"domains listed in the B<search> or B<domain> directive in "
+"/etc/resolv\\&.conf\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./host.1:138
+msgid "Specify the port on the server to query\\&. The default is 53\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./host.1:148
+msgid ""
+"Non-recursive query: Setting this option clears the RD (recursion desired) "
+"bit in the query\\&. This should mean that the name server receiving the "
+"query will not attempt to resolve I<name>\\&. The B<-r> option enables "
+"B<host> to mimic the behavior of a name server by making non-recursive "
+"queries and expecting to receive answers to those queries that can be "
+"referrals to other name servers\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./host.1:151
+msgid "-R I<number>"
+msgstr ""
+
+#. type: Plain text
+#: ./host.1:158
+msgid ""
+"Number of retries for UDP queries: If I<number> is negative or zero, the "
+"number of retries will default to 1\\&. The default value is 1, or the value "
+"of the I<attempts> option in /etc/resolv\\&.conf, if set\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./host.1:161
+msgid "-s"
+msgstr ""
+
+#. type: Plain text
+#: ./host.1:165
+msgid ""
+"Do I<not> send the query to the next nameserver if any server responds with "
+"a SERVFAIL response, which is the reverse of normal stub resolver "
+"behavior\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./host.1:172
+msgid ""
+"Query type: The I<type> argument can be any recognized query type: CNAME, "
+"NS, SOA, TXT, DNSKEY, AXFR, etc\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./host.1:182
+msgid ""
+"When no query type is specified, B<host> automatically selects an "
+"appropriate query type\\&. By default, it looks for A, AAAA, and MX "
+"records\\&. If the B<-C> option is given, queries will be made for SOA "
+"records\\&. If I<name> is a dotted-decimal IPv4 address or colon-delimited "
+"IPv6 address, B<host> will query for PTR records\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./host.1:185
+msgid ""
+"If a query type of IXFR is chosen the starting serial number can be "
+"specified by appending an equal followed by the starting serial number (like "
+"B<-t >B<IXFR=12345678>)\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./host.1:188
+msgid "-T, -U"
+msgstr ""
+
+#. type: Plain text
+#: ./host.1:195
+msgid ""
+"TCP/UDP: By default, B<host> uses UDP when making queries\\&. The B<-T> "
+"option makes it use a TCP connection when querying the name server\\&. TCP "
+"will be automatically selected for queries that require it, such as zone "
+"transfer (AXFR) requests\\&. Type ANY queries default to TCP but can be "
+"forced to UDP initially using B<-U>\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./host.1:198
+msgid "-m I<flag>"
+msgstr ""
+
+#. type: Plain text
+#: ./host.1:205
+msgid ""
+"Memory usage debugging: the flag can be I<record>, I<usage>, or "
+"I<trace>\\&. You can specify the B<-m> option more than once to set multiple "
+"flags\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./host.1:215
+msgid ""
+"Verbose output\\&. Equivalent to the B<-d> debug option\\&. Verbose output "
+"can also be enabled by setting the I<debug> option in "
+"/etc/resolv\\&.conf\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./host.1:218
+msgid "-V"
+msgstr ""
+
+#. type: Plain text
+#: ./host.1:223
+msgid "-w"
+msgstr ""
+
+#. type: Plain text
+#: ./host.1:227
+msgid ""
+"Wait forever: The query timeout is set to the maximum possible\\&. See also "
+"the B<-W> option\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./host.1:230
+msgid "-W I<wait>"
+msgstr ""
+
+#. type: Plain text
+#: ./host.1:236
+msgid ""
+"Timeout: Wait for up to I<wait> seconds for a reply\\&. If I<wait> is less "
+"than one, the wait interval is set to one second\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./host.1:243
+msgid ""
+"By default, B<host> will wait for 5 seconds for UDP responses and 10 seconds "
+"for TCP connections\\&. These defaults can be overridden by the I<timeout> "
+"option in /etc/resolv\\&.conf\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./host.1:247
+msgid "See also the B<-w> option\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./host.1:259
+msgid ""
+"If B<host> has been built with IDN (internationalized domain name) support, "
+"it can accept and display non-ASCII domain names\\&.  B<host> appropriately "
+"converts character encoding of domain name before sending a request to DNS "
+"server or displaying a reply from the server\\&. If you\\*(Aqd like to turn "
+"off the IDN support for some reason, define the B<IDN_DISABLE> environment "
+"variable\\&. The IDN support is disabled if the variable is set when B<host> "
+"runs\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./host.1:266
+msgid "B<dig>(1), B<named>(8)\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./host.1:272
+msgid ""
+"Copyright \\(co 2000-2002, 2004, 2005, 2007-2009, 2014-2022 Internet Systems "
+"Consortium, Inc. (\"ISC\")"
+msgstr ""
+
+#. type: TH
+#: ./nslookup.1:18
+#, no-wrap
+msgid "NSLOOKUP"
+msgstr ""
+
+#. type: TH
+#: ./nslookup.1:18
+#, no-wrap
+msgid "2014-01-24"
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:38
+msgid "nslookup - query Internet name servers interactively"
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:41
+msgid "B<nslookup> [B<-option>] [name\\ |\\ -] [server]"
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:47
+msgid ""
+"B<Nslookup> is a program to query Internet domain name servers\\&.  "
+"B<Nslookup> has two modes: interactive and non-interactive\\&. Interactive "
+"mode allows the user to query name servers for information about various "
+"hosts and domains or to print a list of hosts in a "
+"domain\\&. Non-interactive mode is used to print just the name and requested "
+"information for a host or domain\\&."
+msgstr ""
+
+#. type: SH
+#: ./nslookup.1:47
+#, no-wrap
+msgid "ARGUMENTS"
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:50
+msgid "Interactive mode is entered in the following cases:"
+msgstr ""
+
+#. type: IP
+#: ./nslookup.1:53
+#, no-wrap
+msgid "  1."
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:55
+msgid "when no arguments are given (the default name server will be used)"
+msgstr ""
+
+#. type: IP
+#: ./nslookup.1:59
+#, no-wrap
+msgid "  2."
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:61
+msgid ""
+"when the first argument is a hyphen (-) and the second argument is the host "
+"name or Internet address of a name server\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:64
+msgid ""
+"Non-interactive mode is used when the name or Internet address of the host "
+"to be looked up is given as the first argument\\&. The optional second "
+"argument specifies the host name or address of a name server\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:66
+msgid ""
+"Options can also be specified on the command line if they precede the "
+"arguments and are prefixed with a hyphen\\&. For example, to change the "
+"default query type to host information, and the initial timeout to 10 "
+"seconds, type:"
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:69
+msgid "nslookup -query=hinfo -timeout=10"
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:76
+msgid ""
+"The B<-version> option causes B<nslookup> to print the version number and "
+"immediately exits\\&."
+msgstr ""
+
+#. type: SH
+#: ./nslookup.1:76
+#, no-wrap
+msgid "INTERACTIVE COMMANDS"
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:79
+msgid "B<host> [server]"
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:81
+msgid ""
+"Look up information for host using the current default server or using "
+"server, if specified\\&. If host is an Internet address and the query type "
+"is A or PTR, the name of the host is returned\\&. If host is a name and does "
+"not have a trailing period, the search list is used to qualify the name\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:83
+msgid "To look up a host not in the current domain, append a period to the name\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:86
+msgid "B<server> I<domain>"
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:90
+msgid "B<lserver> I<domain>"
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:98
+msgid ""
+"Change the default server to I<domain>; B<lserver> uses the initial server "
+"to look up information about I<domain>, while B<server> uses the current "
+"default server\\&. If an authoritative answer can\\*(Aqt be found, the names "
+"of servers that might have the answer are returned\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:101
+msgid "B<root>"
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:103 ./nslookup.1:108 ./nslookup.1:113 ./nslookup.1:118
+#: ./nslookup.1:123 ./nslookup.1:128
+msgid "not implemented"
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:106
+msgid "B<finger>"
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:111
+msgid "B<ls>"
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:116
+msgid "B<view>"
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:121
+msgid "B<help>"
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:126
+msgid "B<?>"
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:131
+msgid "B<exit>"
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:133
+msgid "Exits the program\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:136
+msgid "B<set> I<keyword>I<[=value]>"
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:138
+msgid ""
+"This command is used to change state information that affects the "
+"lookups\\&. Valid keywords are:"
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:140
+msgid "B<all>"
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:143
+msgid ""
+"Prints the current values of the frequently used options to "
+"B<set>\\&. Information about the current default server and host is also "
+"printed\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:146
+msgid "B<class=>I<value>"
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:148
+msgid "Change the query class to one of:"
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:150
+msgid "B<IN>"
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:152
+msgid "the Internet class"
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:155
+msgid "B<CH>"
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:157
+msgid "the Chaos class"
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:160
+msgid "B<HS>"
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:162
+msgid "the Hesiod class"
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:165
+msgid "B<ANY>"
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:167
+msgid "wildcard"
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:170
+msgid "The class specifies the protocol group of the information\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:172
+msgid "(Default = IN; abbreviation = cl)"
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:175
+msgid "I<[no]>B<debug>"
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:177
+msgid ""
+"Turn on or off the display of the full response packet and any intermediate "
+"response packets when searching\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:180
+msgid "(Default = nodebug; abbreviation = [no]deb)"
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:183
+msgid "I<[no]>B<d2>"
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:185
+msgid ""
+"Turn debugging mode on or off\\&. This displays more about what nslookup is "
+"doing\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:187
+msgid "(Default = nod2)"
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:190
+msgid "B<domain=>I<name>"
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:193
+msgid "Sets the search list to I<name>\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:196
+msgid "I<[no]>B<search>"
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:198
+msgid ""
+"If the lookup request contains at least one period but doesn\\*(Aqt end with "
+"a trailing period, append the domain names in the domain search list to the "
+"request until an answer is received\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:200
+msgid "(Default = search)"
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:203
+msgid "B<port=>I<value>"
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:206
+msgid "Change the default TCP/UDP name server port to I<value>\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:208
+msgid "(Default = 53; abbreviation = po)"
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:211
+msgid "B<querytype=>I<value>"
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:215
+msgid "B<type=>I<value>"
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:217
+msgid "Change the type of the information query\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:219
+msgid "(Default = A and then AAAA; abbreviations = q, ty)"
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:222
+msgid ""
+"B<Note:> It is only possible to specify one query type, only the default "
+"behavior looks up both when an alternative is not specified\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:225
+msgid "I<[no]>B<recurse>"
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:227
+msgid ""
+"Tell the name server to query other servers if it does not have the "
+"information\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:229
+msgid "(Default = recurse; abbreviation = [no]rec)"
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:232
+msgid "B<ndots=>I<number>"
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:234
+msgid ""
+"Set the number of dots (label separators) in a domain that will disable "
+"searching\\&. Absolute names always stop searching\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:237
+msgid "B<retry=>I<number>"
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:239
+msgid "Set the number of retries to number\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:242
+msgid "B<timeout=>I<number>"
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:244
+msgid ""
+"Change the initial timeout interval for waiting for a reply to number "
+"seconds\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:247
+msgid "I<[no]>B<vc>"
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:249
+msgid "Always use a virtual circuit when sending requests to the server\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:251
+msgid "(Default = novc)"
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:254
+msgid "I<[no]>B<fail>"
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:256
+msgid ""
+"Try the next nameserver if a nameserver responds with SERVFAIL or a referral "
+"(nofail) or terminate query (fail) on such a response\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:258
+msgid "(Default = nofail)"
+msgstr ""
+
+#. type: SH
+#: ./nslookup.1:261
+#, no-wrap
+msgid "RETURN VALUES"
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:265
+msgid ""
+"B<nslookup> returns with an exit status of 1 if any query failed, and 0 "
+"otherwise\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:276
+msgid ""
+"If B<nslookup> has been built with IDN (internationalized domain name) "
+"support, it can accept and display non-ASCII domain names\\&.  B<nslookup> "
+"appropriately converts character encoding of domain name before sending a "
+"request to DNS server or displaying a reply from the server\\&. If "
+"you\\*(Aqd like to turn off the IDN support for some reason, define the "
+"B<IDN_DISABLE> environment variable\\&. The IDN support is disabled if the "
+"variable is set when B<nslookup> runs or when the standard output is not a "
+"tty\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:287
+msgid ""
+"If B<nslookup> has been built with IDN (internationalized domain name) "
+"support, it can accept and display non-ASCII domain names\\&.  B<nslookup> "
+"appropriately converts character encoding of domain name before sending a "
+"request to DNS server or displaying a reply from the server\\&. If "
+"you\\*(Aqd like to turn off the IDN support for some reason, define the "
+"B<IDN_DISABLE> environment variable\\&. The IDN support is disabled if the "
+"variable is set when B<nslookup> runs\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:295
+msgid "B<dig>(1), B<host>(1), B<named>(8)\\&."
+msgstr ""
+
+#. type: Plain text
+#: ./nslookup.1:301
+msgid ""
+"Copyright \\(co 2004-2007, 2010, 2013-2022 Internet Systems Consortium, "
+"Inc. (\"ISC\")"
+msgstr ""

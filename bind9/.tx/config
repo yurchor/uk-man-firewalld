@@ -1,0 +1,8 @@
+[main]
+host = https://www.transifex.com
+
+[ukrainian-man-translations.bind9-man-pages]
+file_filter = <lang>.po
+source_file = bind9.pot
+source_lang = en
+type = PO
