@@ -6,16 +6,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Firewalld documentation 1.0\n"
 "Report-Msgid-Bugs-To: trans-uk@lists.fedoraproject.org\n"
-"POT-Creation-Date: 2022-05-22 09:27+0300\n"
-"PO-Revision-Date: 2022-05-23 15:16+0300\n"
+"POT-Creation-Date: 2022-05-23 16:02+0300\n"
+"PO-Revision-Date: 2022-05-23 22:29+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<"
+"=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Lokalize 20.12.0\n"
 
 #. type: TH
@@ -36,11 +36,8 @@ msgstr "firewalld 1.1.999"
 msgid "firewall-cmd"
 msgstr "firewall-cmd"
 
-#.  -----------------------------------------------------------------
-#.  * MAIN CONTENT STARTS HERE *
-#.  -----------------------------------------------------------------
 #. type: SH
-#: firewall-cmd.1:28 firewalld.1:28
+#: firewall-cmd.1:28 firewalld.1:28 getfacl.1:26 setfacl.1:25
 #, no-wrap
 msgid "NAME"
 msgstr "НАЗВА"
@@ -51,7 +48,7 @@ msgid "firewall-cmd - firewalld command line client"
 msgstr "firewall-cmd — клієнт командного рядка firewalld"
 
 #. type: SH
-#: firewall-cmd.1:30 firewalld.1:30
+#: firewall-cmd.1:30 firewalld.1:30 getfacl.1:28 setfacl.1:27
 #, no-wrap
 msgid "SYNOPSIS"
 msgstr "КОРОТКИЙ ОПИС"
@@ -62,7 +59,7 @@ msgid "B<firewall-cmd> [OPTIONS...]"
 msgstr "B<firewall-cmd> [ПАРАМЕТРИ...]"
 
 #. type: SH
-#: firewall-cmd.1:33 firewalld.1:33
+#: firewall-cmd.1:33 firewalld.1:33 getfacl.1:36 setfacl.1:35
 #, no-wrap
 msgid "DESCRIPTION"
 msgstr "ОПИС"
@@ -89,7 +86,7 @@ msgstr ""
 "постійних налаштуваннях\\&."
 
 #. type: SH
-#: firewall-cmd.1:38 firewalld.1:36
+#: firewall-cmd.1:38 firewalld.1:36 getfacl.1:104 setfacl.1:88
 #, no-wrap
 msgid "OPTIONS"
 msgstr "ПАРАМЕТРИ"
@@ -431,7 +428,8 @@ msgid ""
 "I<zone3>\n"
 "  sources: I<source2> \\&.\\&.\n"
 "\t      \n"
-"If there are no interfaces or sources bound to the zone, the corresponding line will be omitted\\&.\n"
+"If there are no interfaces or sources bound to the zone, the corresponding"
+" line will be omitted\\&.\n"
 msgstr ""
 "I<зона>\n"
 "  interfaces: I<інтерфейс1> I<інтерфейс2> \\&.\\&.\n"
@@ -441,7 +439,8 @@ msgstr ""
 "I<зона3>\n"
 "  sources: I<походження2> \\&.\\&.\n"
 "\t      \n"
-"Якщо з зоною не пов'язано жодних інтерфейсів або походжень, відповідний рядок буде пропущено\\&.\n"
+"Якщо з зоною не пов'язано жодних інтерфейсів або походжень, відповідний рядок"
+" буде пропущено\\&.\n"
 
 #. type: Plain text
 #: firewall-cmd.1:173
@@ -4278,7 +4277,7 @@ msgid "Returns 0 if panic mode is enabled, 1 otherwise\\&."
 msgstr "Повертає 0, якщо увімкнено режим паніки, і 1, якщо ні\\&."
 
 #. type: SH
-#: firewall-cmd.1:1927
+#: firewall-cmd.1:1927 setfacl.1:268
 #, no-wrap
 msgid "EXAMPLES"
 msgstr "ПРИКЛАДИ"
@@ -5436,7 +5435,7 @@ msgstr ""
 "помилка, буде повернуто код за наведеною вище таблицею\\&."
 
 #. type: SH
-#: firewall-cmd.1:2468 firewalld.1:159
+#: firewall-cmd.1:2468 firewalld.1:159 getfacl.1:171 setfacl.1:316
 #, no-wrap
 msgid "SEE ALSO"
 msgstr "ДИВ. ТАКОЖ"
@@ -5870,8 +5869,10 @@ msgstr "У firewalld передбачено підтримку двох ката
 #. type: SS
 #: firewalld.1:132
 #, no-wrap
-msgid "Default/Fallback configuration in I</usr/lib/firewalld>R< (--default-config)>"
-msgstr "Типові/Резервні налаштування у I</usr/lib/firewalld>R< (--default-config)>"
+msgid ""
+"Default/Fallback configuration in I</usr/lib/firewalld>R< (--default-config)>"
+msgstr ""
+"Типові/Резервні налаштування у I</usr/lib/firewalld>R< (--default-config)>"
 
 #. type: Plain text
 #: firewalld.1:140
@@ -5892,7 +5893,9 @@ msgstr ""
 #: firewalld.1:140
 #, no-wrap
 msgid "System configuration settings in I</etc/firewalld>R< (--system-config)>"
-msgstr "Загальносистемні параметри налаштувань в I</etc/firewalld>R< (--system-config)>"
+msgstr ""
+"Загальносистемні параметри налаштувань в I</etc/firewalld>R<"
+" (--system-config)>"
 
 #. type: Plain text
 #: firewalld.1:143
@@ -5959,6 +5962,1105 @@ msgstr ""
 "скористатися B<firewall-cmd --reload>\\&. Усі динамічні параметри "
 "налаштувань буде відновлено\\&. Постійні налаштування буде змінено "
 "відповідно до параметрів, які визначено у файлах налаштувань\\&."
+
+#. type: TH
+#: getfacl.1:25
+#, no-wrap
+msgid "GETFACL"
+msgstr "GETFACL"
+
+#. type: TH
+#: getfacl.1:25 setfacl.1:24
+#, no-wrap
+msgid "ACL File Utilities"
+msgstr "Програми для роботи з файлами ACL"
+
+#. type: TH
+#: getfacl.1:25 setfacl.1:24
+#, no-wrap
+msgid "May 2000"
+msgstr "травень 2000 року"
+
+#. type: TH
+#: getfacl.1:25 setfacl.1:24
+#, no-wrap
+msgid "Access Control Lists"
+msgstr "Списки керування доступом"
+
+#. type: Plain text
+#: getfacl.1:28
+msgid "getfacl - get file access control lists"
+msgstr "getfacl — отримання списків керування доступом"
+
+#. type: Plain text
+#: getfacl.1:32
+msgid "B<getfacl> [-aceEsRLPtpndvh] file ..."
+msgstr "B<getfacl> [-aceEsRLPtpndvh] файл ..."
+
+#. type: Plain text
+#: getfacl.1:35
+msgid "B<getfacl> [-aceEsRLPtpndvh] -"
+msgstr "B<getfacl> [-aceEsRLPtpndvh] -"
+
+#. type: Plain text
+#: getfacl.1:40
+msgid ""
+"For each file, getfacl displays the file name, owner, the group, and the "
+"Access Control List (ACL). If a directory has a default ACL, getfacl also "
+"displays the default ACL. Non-directories cannot have default ACLs."
+msgstr ""
+"Для кожного файла getfacl виводить назву файла, власника, групу та список"
+" керування доступом (ACL). Якщо у каталогу є типовий ACL, getfacl також"
+" виводити типовий ACL. Об'єкти, які не є каталогами, не можуть мати типових"
+" ACL."
+
+#. type: Plain text
+#: getfacl.1:44
+msgid ""
+"If getfacl is used on a file system that does not support ACLs, getfacl "
+"displays the access permissions defined by the traditional file mode "
+"permission bits."
+msgstr ""
+"Якщо getfacl використано у файловій системі, у якій не передбачено підтримки"
+" ACL, getfacl виведе права доступу, які визначено традиційними бітами режиму"
+" доступу до файлів."
+
+#. type: Plain text
+#: getfacl.1:46
+msgid "The output format of getfacl is as follows:"
+msgstr "Формат виведення даних getfacl є таким:"
+
+#. type: Plain text
+#: getfacl.1:64
+#, no-wrap
+msgid ""
+" 1:  # file: somedir/\n"
+" 2:  # owner: lisa\n"
+" 3:  # group: staff\n"
+" 4:  # flags: -s-\n"
+" 5:  user::rwx\n"
+" 6:  user:joe:rwx               #effective:r-x\n"
+" 7:  group::rwx                 #effective:r-x\n"
+" 8:  group:cool:r-x\n"
+" 9:  mask::r-x\n"
+"10:  other::r-x\n"
+"11:  default:user::rwx\n"
+"12:  default:user:joe:rwx       #effective:r-x\n"
+"13:  default:group::r-x\n"
+"14:  default:mask::r-x\n"
+"15:  default:other::---\n"
+msgstr ""
+" 1:  # file: somedir/\n"
+" 2:  # owner: lisa\n"
+" 3:  # group: staff\n"
+" 4:  # flags: -s-\n"
+" 5:  user::rwx\n"
+" 6:  user:joe:rwx               #effective:r-x\n"
+" 7:  group::rwx                 #effective:r-x\n"
+" 8:  group:cool:r-x\n"
+" 9:  mask::r-x\n"
+"10:  other::r-x\n"
+"11:  default:user::rwx\n"
+"12:  default:user:joe:rwx       #effective:r-x\n"
+"13:  default:group::r-x\n"
+"14:  default:mask::r-x\n"
+"15:  default:other::---\n"
+
+#. type: Plain text
+#: getfacl.1:70
+msgid "Lines 1--3 indicate the file name, owner, and owning group."
+msgstr "Рядки 1--3 показують назву файла, власника та групу-власника."
+
+#. type: Plain text
+#: getfacl.1:76
+msgid ""
+"Line 4 indicates the setuid (s), setgid (s), and sticky (t) bits: either the "
+"letter representing the bit, or else a dash (-). This line is included if "
+"any of those bits is set and left out otherwise, so it will not be shown for "
+"most files. (See CONFORMANCE TO POSIX 1003.1e DRAFT STANDARD\\~17 below.)"
+msgstr ""
+"Рядок 4 показує біти setuid (s), setgid (s) та липкі біти (t): або літерою,"
+" яка представляє біт, або дефісом (-). Цей рядок буде включено, якщо"
+" встановлено якийсь з цих бітів. Його не буде показано, якщо це не так, тому"
+" його не буде показано для більшості файлів. (Див. «СУМІСНІСТЬ ІЗ ЧЕРНЕТКОЮ"
+" СТАНДАРТУ POSIX 1003.1e \\~17» нижче.)"
+
+#. type: Plain text
+#: getfacl.1:86
+msgid ""
+"Lines 5, 7 and 10 correspond to the user, group and other fields of the file "
+"mode permission bits. These three are called the base ACL entries. Lines 6 "
+"and 8 are named user and named group entries. Line 9 is the effective rights "
+"mask. This entry limits the effective rights granted to all groups and to "
+"named users. (The file owner and others permissions are not affected by the "
+"effective rights mask; all other entries are.)  Lines 11--15 display the "
+"default ACL associated with this directory. Directories may have a default "
+"ACL. Regular files never have a default ACL."
+msgstr ""
+"Рядки 5, 7 і 10 є записами користувача, групи та інших полів бітів режиму"
+" доступу до файлів. Ці три записи називають базовими записами ACL. Рядки 6 і"
+" 8 називають записами іменованого користувача та іменованої групи. У рядку 9"
+" буде показано ефективну маску прав. Це запис обмежує ефективні права, які"
+" надано усім групам та іменованим користувачам. (На власника файла та інші"
+" права доступу не впливає ефективна маска прав; але вона впливає на усі інші"
+" записи.) У рядках 11--15 буде показано типовий ACL, який пов'язано із цим"
+" каталогом. Каталоги можуть мати типовий ACL. Звичайні файли ніколи не мають"
+" типового ACL."
+
+#. type: Plain text
+#: getfacl.1:90
+msgid ""
+"The default behavior for getfacl is to display both the ACL and the default "
+"ACL, and to include an effective rights comment for lines where the rights "
+"of the entry differ from the effective rights."
+msgstr ""
+"Типовою поведінкою getfacl є показ ACL і типового ACL, а також включення"
+" коментаря щодо справжніх прав доступу для рядків, де права доступу запису"
+" відрізняються від справжніх прав доступу."
+
+#. type: Plain text
+#: getfacl.1:94
+msgid ""
+"If output is to a terminal, the effective rights comment is aligned to "
+"column 40. Otherwise, a single tab character separates the ACL entry and the "
+"effective rights comment."
+msgstr ""
+"Якщо виведення даних відбувається до термінала, коментар щодо справжніх прав"
+" доступу буде вирівняно за позицією 40. В інших випадках запис ACL і коментар"
+" щодо справжніх прав доступу буде відокремлено символом табуляції."
+
+#. type: Plain text
+#: getfacl.1:97
+msgid ""
+"The ACL listings of multiple files are separated by blank lines.  The output "
+"of getfacl can also be used as input to setfacl."
+msgstr ""
+"Записи у списках ACL для декількох файлів буде відокремлено порожніми"
+" рядками. Дані, які виведено getfacl можна використовувати як вхідні дані"
+" setfacl."
+
+#. type: SS
+#: getfacl.1:98 setfacl.1:82
+#, no-wrap
+msgid "PERMISSIONS"
+msgstr "ПРАВА ДОСТУПУ"
+
+#. type: Plain text
+#: getfacl.1:103
+msgid ""
+"Process with search access to a file (i.e., processes with read access to "
+"the containing directory of a file) are also granted read access to the "
+"file's ACLs.  This is analogous to the permissions required for accessing "
+"the file mode."
+msgstr ""
+"Процесам із доступом до пошуку файла (тобто процесам, які мають доступ до"
+" читання вмісту каталогу, у якому зберігається файл) також буде надано доступ"
+" до читання ACL файла. Це аналог прав доступу, які потрібні для визначення"
+" режиму доступу до файла."
+
+#. type: TP
+#: getfacl.1:105
+#, no-wrap
+msgid "I<-a, --access>"
+msgstr "I<-a, --access>"
+
+#. type: Plain text
+#: getfacl.1:108
+msgid "Display the file access control list."
+msgstr "Вивести список керування доступом до файлів."
+
+#. type: TP
+#: getfacl.1:108 setfacl.1:104
+#, no-wrap
+msgid "I<-d, --default>"
+msgstr "I<-d, --default>"
+
+#. type: Plain text
+#: getfacl.1:111
+msgid "Display the default access control list."
+msgstr "Вивести типовий список керування доступом."
+
+#. type: TP
+#: getfacl.1:111
+#, no-wrap
+msgid "I<-c, --omit-header>"
+msgstr "I<-c, --omit-header>"
+
+#. type: Plain text
+#: getfacl.1:114
+msgid ""
+"Do not display the comment header (the first three lines of each file's "
+"output)."
+msgstr ""
+"Не показувати заголовок-коментар (перші три рядки виведених даних для кожного"
+" з файлів)."
+
+#. type: TP
+#: getfacl.1:114
+#, no-wrap
+msgid "I<-e, --all-effective>"
+msgstr "I<-e, --all-effective>"
+
+#. type: Plain text
+#: getfacl.1:117
+msgid ""
+"Print all effective rights comments, even if identical to the rights defined "
+"by the ACL entry."
+msgstr ""
+"Вивести усі коментарі щодо справжніх прав доступу, навіть якщо ці права"
+" доступу збігаються із правами доступу, які визначено записом ACL."
+
+#. type: TP
+#: getfacl.1:117
+#, no-wrap
+msgid "I<-E, --no-effective>"
+msgstr "I<-E, --no-effective>"
+
+#. type: Plain text
+#: getfacl.1:120
+msgid "Do not print effective rights comments."
+msgstr "Не виводити коментарів щодо реальних прав."
+
+#. type: TP
+#: getfacl.1:120
+#, no-wrap
+msgid "I<-s, --skip-base>"
+msgstr "I<-s, --skip-base>"
+
+#. type: Plain text
+#: getfacl.1:123
+msgid "Skip files that only have the base ACL entries (owner, group, others)."
+msgstr ""
+"Пропустити файли, які мають лише базові записи ACL (власник, група, інші)."
+
+#. type: TP
+#: getfacl.1:123 setfacl.1:120
+#, no-wrap
+msgid "I<-R, --recursive>"
+msgstr "I<-R, --recursive>"
+
+#. type: Plain text
+#: getfacl.1:126
+msgid "List the ACLs of all files and directories recursively."
+msgstr "Вивести список ACL для усіх файлів і каталогів рекурсивно."
+
+#. type: TP
+#: getfacl.1:126 setfacl.1:123
+#, no-wrap
+msgid "I<-L, --logical>"
+msgstr "I<-L, --logical>"
+
+#. type: Plain text
+#: getfacl.1:131
+msgid ""
+"Logical walk, follow symbolic links to directories. The default behavior is "
+"to follow symbolic link arguments, and skip symbolic links encountered in "
+"subdirectories.  Only effective in combination with -R."
+msgstr ""
+"Логічний обхід з переходом за символічними посиланнями на каталоги. Типовою"
+" поведінкою є перехід за аргументами символічних посилань і пропускання"
+" символічних посилань у підкаталогах. Працює лише у поєднанні з -R."
+
+#. type: TP
+#: getfacl.1:131 setfacl.1:129
+#, no-wrap
+msgid "I<-P, --physical>"
+msgstr "I<-P, --physical>"
+
+#. type: Plain text
+#: getfacl.1:136
+msgid ""
+"Physical walk, do not follow symbolic links to directories. This also skips "
+"symbolic link arguments.  Only effective in combination with -R."
+msgstr ""
+"Фізичний обхід без переходу за символічними посиланнями на каталоги. У"
+" результаті також буде пропущено аргументи символічних посилань. Працює лише"
+" у поєднанні з -R."
+
+#. type: TP
+#: getfacl.1:136
+#, no-wrap
+msgid "I<-t, --tabular>"
+msgstr "I<-t, --tabular>"
+
+#. type: Plain text
+#: getfacl.1:139
+msgid ""
+"Use an alternative tabular output format. The ACL and the default ACL are "
+"displayed side by side. Permissions that are ineffective due to the ACL mask "
+"entry are displayed capitalized. The entry tag names for the ACL_USER_OBJ "
+"and ACL_GROUP_OBJ entries are also displayed in capital letters, which helps "
+"in spotting those entries."
+msgstr ""
+"Використати альтернативний табличний формат виведення даних. ACL і типовий"
+" ACL буде показано поруч. Права доступу, які не діють через запис маски ACL,"
+" буде показано великими літерами. Назви міток запису для записів ACL_USER_OBJ"
+" і ACL_GROUP_OBJ також буде показано великими літерами. Це допоможе у"
+" виявленні цих записів."
+
+#. type: TP
+#: getfacl.1:139
+#, no-wrap
+msgid "I<-p, --absolute-names>"
+msgstr "I<-p, --absolute-names>"
+
+#. type: Plain text
+#: getfacl.1:143
+msgid ""
+"Do not strip leading slash characters (`/'). The default behavior is to "
+"strip leading slash characters."
+msgstr ""
+"Не вилучати початкові символи похилої риски («/»). Типовою поведінкою є"
+" вилучення початкових символів похилої риски."
+
+#. type: TP
+#: getfacl.1:143
+#, no-wrap
+msgid "I<-n, --numeric>"
+msgstr "I<-n, --numeric>"
+
+#. type: Plain text
+#: getfacl.1:146
+msgid "List numeric user and group IDs"
+msgstr "Вивести список числових ідентифікаторів користувачів і груп."
+
+#. type: TP
+#: getfacl.1:146 setfacl.1:135
+#, no-wrap
+msgid "I<-v, --version>"
+msgstr "I<-v, --version>"
+
+#. type: Plain text
+#: getfacl.1:149
+msgid "Print the version of getfacl and exit."
+msgstr "Вивести дані щодо версії getfacl і вийти."
+
+#. type: TP
+#: getfacl.1:149 setfacl.1:138
+#, no-wrap
+msgid "I<-h, --help>"
+msgstr "I<-h, --help>"
+
+#. type: Plain text
+#: getfacl.1:152 setfacl.1:141
+msgid "Print help explaining the command line options."
+msgstr "Вивести довідку із поясненням щодо параметрів командного рядка."
+
+#. type: TP
+#: getfacl.1:152 setfacl.1:141
+#, no-wrap
+msgid "I<-->"
+msgstr "I<-->"
+
+#. type: Plain text
+#: getfacl.1:155
+msgid ""
+"End of command line options. All remaining parameters are interpreted as "
+"file names, even if they start with a dash character."
+msgstr ""
+"Кінець параметрів командного рядка. Решта параметрів вважатиметься назвами"
+" файлів, навіть якщо вони починаються із символу дефіса."
+
+#. type: TP
+#: getfacl.1:155 setfacl.1:144
+#, no-wrap
+msgid "I<->"
+msgstr "I<->"
+
+#. type: Plain text
+#: getfacl.1:158
+msgid ""
+"If the file name parameter is a single dash character, getfacl reads a list "
+"of files from standard input."
+msgstr ""
+"Якщо параметр назви файла є одинарним символом дефіса, getfacl читає список"
+" файлів зі стандартного джерела вхідних даних."
+
+#. type: SH
+#: getfacl.1:159 setfacl.1:304
+#, no-wrap
+msgid "CONFORMANCE TO POSIX 1003.1e DRAFT STANDARD 17"
+msgstr "СУМІСНІСТЬ ІЗ ЧЕРНЕТКОЮ СТАНДАРТУ POSIX 1003.1e 17"
+
+#. type: Plain text
+#: getfacl.1:166
+msgid ""
+"If the environment variable POSIXLY_CORRECT is defined, the default behavior "
+"of getfacl changes in the following ways: Unless otherwise specified, only "
+"the ACL is printed. The default ACL is only printed if the I<-d> option is "
+"given. If no command line parameter is given, I<getfacl> behaves as if it "
+"was invoked as ``getfacl -''.  No flags comments indicating the setuid, "
+"setgit, and sticky bits are generated."
+msgstr ""
+"Якщо визначено змінну середовища POSIXLY_CORRECT, типову поведінку getfacl"
+" буде змінено таким чином: якщо не вказано інакше, буде виведено лише дані"
+" ACL. Типовий ACL буде виведено, лише якщо вказано параметр I<-d>. Якщо"
+" параметрів командного рядка не вказано, I<getfacl> поводитиметься так, наче"
+" програму викликано як ``getfacl -''. Коментарів із прапорцями із даними щодо"
+" бітів setuid, setgit та липкого біта виведено не буде."
+
+#. type: SH
+#: getfacl.1:166 setfacl.1:310
+#, no-wrap
+msgid "AUTHOR"
+msgstr "АВТОР"
+
+#. type: Plain text
+#: getfacl.1:169 setfacl.1:313
+msgid "Andreas Gruenbacher, E<lt>I<a.gruenbacher@bestbits.at>E<gt>."
+msgstr "Andreas Gruenbacher, E<lt>I<a.gruenbacher@bestbits.at>E<gt>."
+
+#. type: Plain text
+#: getfacl.1:171
+msgid "Please send your bug reports and comments to the above address."
+msgstr ""
+"Будь ласка, надсилайте ваші звіти про вади та коментарі на вказану вище"
+" адресу."
+
+#
+#
+#
+#
+#
+#.  Access Control Lists manual pages
+#.  (C) 2000 Andreas Gruenbacher, <a.gruenbacher@bestbits.at>
+#.  This is free documentation; you can redistribute it and/or
+#.  modify it under the terms of the GNU General Public License as
+#.  published by the Free Software Foundation; either version 2 of
+#.  the License, or (at your option) any later version.
+#.  The GNU General Public License's references to "object code"
+#.  and "executables" are to be interpreted as the output of any
+#.  document formatting or typesetting system, including
+#.  intermediate and printed output.
+#.  This manual is distributed in the hope that it will be useful,
+#.  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#.  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#.  GNU General Public License for more details.
+#.  You should have received a copy of the GNU General Public
+#.  License along with this manual.  If not, see
+#.  <http://www.gnu.org/licenses/>.
+#. type: Plain text
+#: setfacl.1:24
+msgid "B<setfacl>(1), B<acl>(5)"
+msgstr "B<setfacl>(1), B<acl>(5)"
+
+#. type: TH
+#: setfacl.1:24
+#, no-wrap
+msgid "SETFACL"
+msgstr "SETFACL"
+
+#. type: Plain text
+#: setfacl.1:27
+msgid "setfacl - set file access control lists"
+msgstr "setfacl — встановлення списків керування доступом до файлів"
+
+#. type: Plain text
+#: setfacl.1:31
+msgid "B<setfacl> [-bkndRLPvh] [{-m|-x} acl_spec] [{-M|-X} acl_file] file ..."
+msgstr ""
+"B<setfacl> [-bkndRLPvh] [{-m|-x} специфікація_acl] [{-M|-X} файл_acl] файл ..."
+
+#. type: Plain text
+#: setfacl.1:34
+msgid "B<setfacl> --restore=file"
+msgstr "B<setfacl> --restore=файл"
+
+#. type: Plain text
+#: setfacl.1:39
+msgid ""
+"This utility sets Access Control Lists (ACLs) of files and directories.  On "
+"the command line, a sequence of commands is followed by a sequence of files "
+"(which in turn can be followed by another sequence of commands, ...)."
+msgstr ""
+"Ця допоміжна програма встановлює списки керування доступом (Access Control"
+" Lists або ACL) для файлів і каталогів. У рядку команди за послідовністю"
+" команд має бути вказано послідовність файлів (за якою можна також вказати ще"
+" одну послідовність команд тощо)."
+
+#. type: Plain text
+#: setfacl.1:51
+msgid ""
+"The I<-m> and I<-x> options expect an ACL on the command line. Multiple ACL "
+"entries are separated by comma characters (`,'). The I<-M> and I<-X> options "
+"read an ACL from a file or from standard input. The ACL entry format is "
+"described in Section ACL ENTRIES."
+msgstr ""
+"Параметрам I<-m> і I<-x> слід передати ACL у рядку команди. Якщо вказано"
+" декілька ACL, записи слід відокремлювати комами («,»). Використання"
+" параметрів I<-M> і I<-X> призведе до читання ACL з файла або стандартного"
+" джерела вхідних даних. Формат запису ACL описано у розділі «ЗАПИСИ ACL»."
+
+#. type: Plain text
+#: setfacl.1:57
+msgid ""
+"The I<--set> and I<--set-file> options set the ACL of a file or a directory. "
+"The previous ACL is replaced.  ACL entries for this operation must include "
+"permissions."
+msgstr ""
+"Параметри I<--set> і I<--set-file> встановлюють ACL файла або каталогу."
+" Попередній ACL буде замінено. Записи ACL для цієї дії мають включати права"
+" доступу."
+
+#. type: Plain text
+#: setfacl.1:62
+msgid ""
+"The I<-m (--modify)> and I<-M (--modify-file)> options modify the ACL of a "
+"file or directory.  ACL entries for this operation must include permissions."
+msgstr ""
+"Параметри I<-m (--modify)> і I<-M (--modify-file)> вносять зміни до ACL файла"
+" або каталогу. Записи ACL для цієї дії мають включати права доступу."
+
+#. type: Plain text
+#: setfacl.1:69
+msgid ""
+"The I<-x (--remove)> and I<-X (--remove-file)> options remove ACL entries. "
+"It is not an error to remove an entry which does not exist.  Only ACL "
+"entries without the I<perms> field are accepted as parameters, unless "
+"POSIXLY_CORRECT is defined."
+msgstr ""
+"Використання параметрів I<-x (--remove)> і I<-X (--remove-file)> призведе до"
+" вилучення записів ACL. Вилучення запису, якого не існує, не вважається"
+" помилкою. Як параметри, приймаються лише записи ACL без поля I<права_доступу"
+">, якщо не визначено POSIXLY_CORRECT."
+
+#. type: Plain text
+#: setfacl.1:77
+msgid ""
+"When reading from files using the I<-M> and I<-X> options, setfacl accepts "
+"the output getfacl produces.  There is at most one ACL entry per line. After "
+"a Pound sign (`#'), everything up to the end of the line is treated as a "
+"comment."
+msgstr ""
+"При читанні даних з файлів, якщо використано параметри I<-M> і I<-X>, setfacl"
+" приймає дані, які виведено програмою getfacl. Кількість записів ACL у одному"
+" рядку має не перевищувати одного. Усі дані після символу решітки («#»), аж"
+" до кінця рядка, вважатимуться коментарем."
+
+#. type: Plain text
+#: setfacl.1:81
+msgid ""
+"If setfacl is used on a file system which does not support ACLs, setfacl "
+"operates on the file mode permission bits. If the ACL does not fit "
+"completely in the permission bits, setfacl modifies the file mode permission "
+"bits to reflect the ACL as closely as possible, writes an error message to "
+"standard error, and returns with an exit status greater than 0."
+msgstr ""
+"Якщо setfacl буде використано для файлової системи, у якій не передбачено"
+" підтримки ACL, setfacl працюватиме з бітами режиму доступу до файлів. Якщо"
+" повної відповідності ACL бітам прав доступу не вдасться встановити, setfacl"
+" видозмінить біти режиму доступу до файлів так, щоб відтворити ACL якомога"
+" точніше, запише повідомлення про помилку до стандартного виведення помилок і"
+" поверне код виходу, який перевищуватиме 0."
+
+#. type: Plain text
+#: setfacl.1:87
+msgid ""
+"The file owner and processes capable of CAP_FOWNER are granted the right to "
+"modify ACLs of a file. This is analogous to the permissions required for "
+"accessing the file mode. (On current Linux systems, root is the only user "
+"with the CAP_FOWNER capability.)"
+msgstr ""
+"Власнику файла і процесам із можливістю CAP_FOWNER буде надано права для"
+" внесення змін до ACL файла. Це аналогічно до прав доступу, які потрібні для"
+" доступу до даних щодо режиму доступу до файла. (У поточних системах Linux"
+" єдиним користувачем, який має доступ до можливості CAP_FOWNER, є root.)"
+
+#. type: TP
+#: setfacl.1:89
+#, no-wrap
+msgid "I<-b, --remove-all>"
+msgstr "I<-b, --remove-all>"
+
+#. type: Plain text
+#: setfacl.1:92
+msgid ""
+"Remove all extended ACL entries. The base ACL entries of the owner, group "
+"and others are retained."
+msgstr ""
+"Вилучити усі розширені записи ACL. Лишаться лише базові записи ACL щодо"
+" власника, груп та інших користувачів."
+
+#. type: TP
+#: setfacl.1:92
+#, no-wrap
+msgid "I<-k, --remove-default>"
+msgstr "I<-k, --remove-default>"
+
+#. type: Plain text
+#: setfacl.1:95
+msgid ""
+"Remove the Default ACL. If no Default ACL exists, no warnings are issued."
+msgstr ""
+"Вилучити типовий ACL. Якщо типового ACL не існує, програма не виводитиме"
+" попереджень."
+
+#. type: TP
+#: setfacl.1:95
+#, no-wrap
+msgid "I<-n, --no-mask>"
+msgstr "I<-n, --no-mask>"
+
+#. type: Plain text
+#: setfacl.1:100
+msgid ""
+"Do not recalculate the effective rights mask. The default behavior of "
+"setfacl is to recalculate the ACL mask entry, unless a mask entry was "
+"explicitly given.  The mask entry is set to the union of all permissions of "
+"the owning group, and all named user and group entries. (These are exactly "
+"the entries affected by the mask entry)."
+msgstr ""
+"Не переобчислювати маску справжніх прав. Типовою поведінкою setfacl є"
+" переобчислення запису маски ACL, якщо не вказано явним чином запис маски."
+" Запис маски буде встановлено як об'єднання усіх прав доступу групи-власника"
+" і усіх іменованих записів користувачів і груп. (Це саме ті записи, на які"
+" впливає запис маски)."
+
+#. type: TP
+#: setfacl.1:100
+#, no-wrap
+msgid "I<--mask>"
+msgstr "I<--mask>"
+
+#. type: Plain text
+#: setfacl.1:104
+msgid ""
+"Do recalculate the effective rights mask, even if an ACL mask entry was "
+"explicitly given. (See the I<-n >option.)"
+msgstr ""
+"Переобчислити маску справжніх прав доступу, навіть якщо запис маски ACL було"
+" задано явно. (Див. параметр I<-n>.)"
+
+#. type: Plain text
+#: setfacl.1:109
+msgid ""
+"All operations apply to the Default ACL. Regular ACL entries in the input "
+"set are promoted to Default ACL entries. Default ACL entries in the input "
+"set are discarded. (A warning is issued if that happens)."
+msgstr ""
+"Усі дії буде застосовано до типового ACL. Звичайні записи ACL у вхідному"
+" наборі даних буде розширено до типових записів ACL. Записи типових ACL у"
+" вхідному наборі даних буде відкинуто. (Якщо таке трапиться, буде виведено"
+" попередження.)"
+
+#. type: TP
+#: setfacl.1:109
+#, no-wrap
+msgid "I<--restore=file>"
+msgstr "I<--restore=файл>"
+
+#. type: Plain text
+#: setfacl.1:117
+msgid ""
+"Restore a permission backup created by `getfacl -R' or similar. All "
+"permissions of a complete directory subtree are restored using this "
+"mechanism. If the input contains owner comments or group comments, setfacl "
+"attempts to restore the owner and owning group. If the input contains flags "
+"comments (which define the setuid, setgid, and sticky bits), setfacl sets "
+"those three bits accordingly; otherwise, it clears them. This option cannot "
+"be mixed with other options except `--test'."
+msgstr ""
+"Відновити резервну копію прав доступу, яку створено «getfacl -R» або подібною"
+" командою. Усі права доступу повного піддерева каталогів буде відновлено за"
+" допомогою цього механізму. Якщо вхідні дані містять коментарі щодо власника"
+" або коментарі щодо групи, setfacl спробує відновити дані щодо"
+" користувача-власника і групи-власника. Якщо у вхідних даних містяться"
+" коментарі щодо прапорців (яків визначають біти setuid, setgid і липкий біт),"
+" setfacl встановить значення цих трьох бітів за коментарями. Якщо таких"
+" коментарів виявлено не буде, біти буде очищено. Цей параметр не можна"
+" використовувати у поєднанні з іншими параметрами, окрім параметра «--test»."
+
+#. type: TP
+#: setfacl.1:117
+#, no-wrap
+msgid "I<--test>"
+msgstr "I<--test>"
+
+#. type: Plain text
+#: setfacl.1:120
+msgid ""
+"Test mode. Instead of changing the ACLs of any files, the resulting ACLs are "
+"listed."
+msgstr ""
+"Режим тестування. Замість внесення змін до ACL якихось файлів, буде просто"
+" виведено список ACL результатів можливого виконання команди."
+
+#. type: Plain text
+#: setfacl.1:123
+msgid ""
+"Apply operations to all files and directories recursively. This option "
+"cannot be mixed with `--restore'."
+msgstr ""
+"Застосувати дії до усіх файлів та каталогів рекурсивно. Цей параметр не можна"
+" поєднувати з параметром «--restore»."
+
+#. type: Plain text
+#: setfacl.1:129
+msgid ""
+"Logical walk, follow symbolic links to directories. The default behavior is "
+"to follow symbolic link arguments, and skip symbolic links encountered in "
+"subdirectories.  Only effective in combination with -R.  This option cannot "
+"be mixed with `--restore'."
+msgstr ""
+"Логічний обхід з переходом за символічними посиланнями на каталоги. Типовою"
+" поведінкою є перехід за аргументами символічних посилань і пропускання"
+" символічних посилань у підкаталогах. Працює лише у поєднанні з -R. Цей"
+" параметр не можна поєднувати з параметром «--restore»."
+
+#. type: Plain text
+#: setfacl.1:135
+msgid ""
+"Physical walk, do not follow symbolic links to directories.  This also skips "
+"symbolic link arguments.  Only effective in combination with -R.  This "
+"option cannot be mixed with `--restore'."
+msgstr ""
+"Фізичний обхід без переходу за символічними посиланнями на каталоги. У"
+" результаті також буде пропущено аргументи символічних посилань. Працює лише"
+" у поєднанні з -R. Цей параметр не можна поєднувати з параметром «--restore»."
+
+#. type: Plain text
+#: setfacl.1:138
+msgid "Print the version of setfacl and exit."
+msgstr "Вивести дані щодо версії setfacl і завершити роботу."
+
+#. type: Plain text
+#: setfacl.1:144
+msgid ""
+"End of command line options. All remaining parameters are interpreted as "
+"file names, even if they start with a dash."
+msgstr ""
+"Кінець параметрів командного рядка. Решта параметрів вважатиметься назвами"
+" файлів, навіть якщо вони починаються із символу дефіса."
+
+#. type: Plain text
+#: setfacl.1:147
+msgid ""
+"If the file name parameter is a single dash, setfacl reads a list of files "
+"from standard input."
+msgstr ""
+"Якщо параметр назви файла є одинарним символом дефіса, setfacl читає список"
+" файлів зі стандартного джерела вхідних даних."
+
+#. type: SS
+#: setfacl.1:148
+#, no-wrap
+msgid "ACL ENTRIES"
+msgstr "ЗАПИСИ ACL"
+
+#. type: Plain text
+#: setfacl.1:151
+msgid ""
+"The setfacl utility recognizes the following ACL entry formats (blanks "
+"inserted for clarity):"
+msgstr ""
+"У програмі setfacl передбачено розпізнавання таких форматів записів ACL"
+" (пробіли вставлено для зручності):"
+
+#. type: TP
+#: setfacl.1:153
+#, no-wrap
+msgid "[d[efault]:] [u[ser]:]I<uid >[:I<perms>]"
+msgstr "[d[efault]:] [u[ser]:]I<uid >[:I<права_доступу>]"
+
+#. type: Plain text
+#: setfacl.1:159
+msgid ""
+"Permissions of a named user. Permissions of the file owner if I<uid> is "
+"empty."
+msgstr ""
+"Права доступу іменованого користувача. Права доступу власника файла, якщо I<"
+"uid> є порожнім."
+
+#. type: TP
+#: setfacl.1:160
+#, no-wrap
+msgid "[d[efault]:] g[roup]:I<gid >[:I<perms>]"
+msgstr "[d[efault]:] g[roup]:I<gid >[:I<права_доступу>]"
+
+#. type: Plain text
+#: setfacl.1:166
+msgid ""
+"Permissions of a named group. Permissions of the owning group if I<gid> is "
+"empty."
+msgstr ""
+"Права доступу іменованої групи. Права доступу групи-власника, якщо I<gid> є"
+" порожнім."
+
+#. type: TP
+#: setfacl.1:167
+#, no-wrap
+msgid "[d[efault]:] m[ask][:] [:I<perms>]"
+msgstr "[d[efault]:] m[ask][:] [:I<права_доступу>]"
+
+#. type: Plain text
+#: setfacl.1:171
+msgid "Effective rights mask"
+msgstr "Справжня маска прав"
+
+#. type: TP
+#: setfacl.1:172
+#, no-wrap
+msgid "[d[efault]:] o[ther][:] [:I<perms>]"
+msgstr "[d[efault]:] o[ther][:] [:I<права_доступу>]"
+
+#. type: Plain text
+#: setfacl.1:176
+msgid "Permissions of others."
+msgstr "Права доступу інших."
+
+#. type: Plain text
+#: setfacl.1:178
+msgid ""
+"Whitespace between delimiter characters and non-delimiter characters is "
+"ignored."
+msgstr ""
+"Пробіли між символами-роздільниками і символами, які не є роздільниками, буде"
+" проігноровано."
+
+#. type: Plain text
+#: setfacl.1:188
+msgid ""
+"Proper ACL entries including permissions are used in modify and set "
+"operations. (options I<-m>, I<-M>, I<--set> and I<--set-file>).  Entries "
+"without the I<perms> field are used for I<deletion> of entries (options I<-"
+"x> and I<-X>)."
+msgstr ""
+"Належні записи ACL, включно з правами доступу, буде використано у діях зі"
+" зміни та встановлення прав доступу (параметри I<-m>, I<-M>, I<--set> і I<"
+"--set-file>). Записи без поля I<права_доступу> буде використано для I<"
+"вилучення> записів (параметри I<-x> і I<-X>)."
+
+#. type: Plain text
+#: setfacl.1:200
+msgid ""
+"For I<uid> and I<gid> you can specify either a name or a number.  Character "
+"literals may be specified with a backslash followed by the 3-digit octal "
+"digits corresponding to the ASCII code for the character (e.g., I<\\e101> "
+"for 'A').  If the name contains a literal backslash followed by 3 digits, "
+"the backslash must be escaped (i.e., I<\\e\\e>)."
+msgstr ""
+"Для I<uid> і I<gid> ви можете вказати назву або число. Символьні літерали"
+" можна вказувати за допомогою символу зворотної похилої риски із наступним"
+" 3-цифровим вісімковим значенням, яке відповідають коду ASCII символу"
+" (наприклад, I<\\e101> — це «A»). Якщо у назві міститься сам символ зворотної"
+" похилої риски із трьома наступними цифрами, символ зворотної похилої риски"
+" слід екранувати (тобто, I<\\e\\e>)."
+
+#. type: Plain text
+#: setfacl.1:229
+msgid ""
+"The I<perms> field is a combination of characters that indicate the read "
+"I<(r)>, write I<(w)>, execute I<(x)> permissions.  Dash characters in the "
+"I<perms> field I<(-)> are ignored.  The character I<X> stands for the "
+"execute permission if the file is a directory or already has execute "
+"permission for some user.  Alternatively, the I<perms> field can define the "
+"permissions numerically, as a bit-wise combination of read I<(4)>, write "
+"I<(2)>, and execute I<(1)>.  Zero I<perms> fields or I<perms> fields that "
+"only consist of dashes indicate no permissions."
+msgstr ""
+"Поле I<права_доступу> є комбінацією символів, які позначають права доступу до"
+" читання I<(r)>, записування I<(w)>, виконання I<(x)>. Символи дефіса у полі"
+" I<права_доступу>, I<(-)>, буде проігноровано. Символ I<X> позначає права"
+" доступу для виконання, якщо файл є каталогом або вже має права доступу для"
+" виконання для іншого користувача. Крім того, у полі I<права_доступу> права"
+" доступу можна визначати у числовій формі, як побітове поєднання значень"
+" читання I<(4)>, записування I<(2)> та виконання I<(1)>. Нульове значення у"
+" полі I<права_доступу> або поля I<права_доступу>, що складаються лише з"
+" дефісів, означають те, що відповідних прав доступу немає."
+
+#. type: SS
+#: setfacl.1:230
+#, no-wrap
+msgid "AUTOMATICALLY CREATED ENTRIES"
+msgstr "ЗАПИСИ, ЯКІ СТВОРЕНО АВТОМАТИЧНО"
+
+#. type: Plain text
+#: setfacl.1:234
+msgid ""
+"Initially, files and directories contain only the three base ACL entries for "
+"the owner, the group, and others. There are some rules that need to be "
+"satisfied in order for an ACL to be valid:"
+msgstr ""
+"Спочатку, записи файлів і каталогів містять лише три базових записи ACL щодо"
+" власника, групи та доступу інших користувачів. Передбачено певні правила,"
+" які має бути виконано, щоб запис ACL був коректним:"
+
+#. type: IP
+#: setfacl.1:234 setfacl.1:237 setfacl.1:240 setfacl.1:243 setfacl.1:249
+#: setfacl.1:257 setfacl.1:260
+#, no-wrap
+msgid "*"
+msgstr "*"
+
+#. type: Plain text
+#: setfacl.1:237
+msgid ""
+"The three base entries cannot be removed. There must be exactly one entry of "
+"each of these base entry types."
+msgstr ""
+"Три базових записи не можна вилучати. Має бути точно один запис для кожного з"
+" цих базових типів записів."
+
+#. type: Plain text
+#: setfacl.1:240
+msgid ""
+"Whenever an ACL contains named user entries or named group objects, it must "
+"also contain an effective rights mask."
+msgstr ""
+"Якщо ACL містить іменовані записи користувачів або іменовані об'єкти груп,"
+" він також має містити маску справжніх прав доступу."
+
+#. type: Plain text
+#: setfacl.1:243
+msgid ""
+"Whenever an ACL contains any Default ACL entries, the three Default ACL base "
+"entries (default owner, default group, and default others) must also exist."
+msgstr ""
+"Якщо ACL містить записи типового ACL, також мають існувати три базових записи"
+" ACL (права для типового власника, типової групи та інших користувачів)."
+
+#. type: Plain text
+#: setfacl.1:246
+msgid ""
+"Whenever a Default ACL contains named user entries or named group objects, "
+"it must also contain a default effective rights mask."
+msgstr ""
+"Якщо типовий ACL містить іменовані записи користувачів або іменовані об'єкти"
+" груп, він також має містити типову маску справжніх прав доступу."
+
+#. type: Plain text
+#: setfacl.1:249
+msgid ""
+"To help the user ensure these rules, setfacl creates entries from existing "
+"entries under the following conditions:"
+msgstr ""
+"Щоб допомогти користувачеві у виконанні цих правил, setfacl створює записи на"
+" основі наявних записів за таких умов:"
+
+#. type: Plain text
+#: setfacl.1:257
+msgid ""
+"If an ACL contains named user or named group entries, and no mask entry "
+"exists, a mask entry containing the same permissions as the group entry is "
+"created. Unless the I<-n> option is given, the permissions of the mask entry "
+"are further adjusted to include the union of all permissions affected by the "
+"mask entry. (See the I<-n> option description)."
+msgstr ""
+"Якщо ACL містить іменовані записи користувача або іменовані записи груп, і"
+" немає запису маски, буде створено запис маски, що міститиме ті самі права"
+" доступу, що і запис групи. Якщо не вказано параметр I<-n>, права доступу"
+" запису маски буде скориговано так, щоб включити об'єднання усіх прав"
+" доступу, яких стосується запис маски. Див. опис параметра I<-n>."
+
+#. type: Plain text
+#: setfacl.1:260
+msgid ""
+"If a Default ACL entry is created, and the Default ACL contains no owner, "
+"owning group, or others entry, a copy of the ACL owner, owning group, or "
+"others entry is added to the Default ACL."
+msgstr ""
+"Якщо буде створено запис типового ACL, і типовий ACL не містить прав доступу"
+" для власника, групи власника та інших користувачів, до типового ACL буде"
+" додано запис власника ACL, групи власника ACL або запис інших користувачів"
+" ACL."
+
+#. type: Plain text
+#: setfacl.1:267
+msgid ""
+"If a Default ACL contains named user entries or named group entries, and no "
+"mask entry exists, a mask entry containing the same permissions as the "
+"default Default ACL's group entry is added. Unless the I<-n> option is "
+"given, the permissions of the mask entry are further adjusted to include the "
+"union of all permissions affected by the mask entry. (See the I<-n> option "
+"description)."
+msgstr ""
+"Якщо типовий ACL містить іменовані записи користувача або іменовані записи"
+" груп, і немає запису маски, буде додано запис маски, що міститиме ті самі"
+" права доступу, що і типовий запис групи типового ACL. Якщо не вказано"
+" параметр I<-n>, права доступу запису маски буде скориговано так, щоб"
+" включити об'єднання усіх прав доступу, яких стосується запис маски. Див."
+" опис параметра I<-n>."
+
+#. type: Plain text
+#: setfacl.1:271
+msgid "Granting an additional user read access"
+msgstr "Надання додаткових прав доступу до читання користувачем"
+
+#. type: Plain text
+#: setfacl.1:274
+msgid "setfacl -m u:lisa:r file"
+msgstr "setfacl -m u:lisa:r файл"
+
+#. type: Plain text
+#: setfacl.1:278
+msgid ""
+"Revoking write access from all groups and all named users (using the "
+"effective rights mask)"
+msgstr ""
+"Відкликання доступу до запису для усіх груп і усіх іменованих користувачів"
+" (за допомогою маски справжніх прав)"
+
+#. type: Plain text
+#: setfacl.1:281
+msgid "setfacl -m m::rx file"
+msgstr "setfacl -m m::rx файл"
+
+#. type: Plain text
+#: setfacl.1:285
+msgid "Removing a named group entry from a file's ACL"
+msgstr "Вилучення іменованого запису групи з ACL файла"
+
+#. type: Plain text
+#: setfacl.1:288
+msgid "setfacl -x g:staff file"
+msgstr "setfacl -x g:staff файл"
+
+#. type: Plain text
+#: setfacl.1:292
+msgid "Copying the ACL of one file to another"
+msgstr "Копіювання ACL одного файла до іншого"
+
+#. type: Plain text
+#: setfacl.1:295
+msgid "getfacl file1 | setfacl --set-file=- file2"
+msgstr "getfacl файл1 | setfacl --set-file=- файл2"
+
+#. type: Plain text
+#: setfacl.1:299
+msgid "Copying the access ACL into the Default ACL"
+msgstr "Копіювання ACL доступу до типового ACL"
+
+#. type: Plain text
+#: setfacl.1:302
+msgid "getfacl --access dir | setfacl -d -M- dir"
+msgstr "getfacl --access каталог | setfacl -d -M- каталог"
+
+#. type: Plain text
+#: setfacl.1:310
+msgid ""
+"If the environment variable POSIXLY_CORRECT is defined, the default behavior "
+"of setfacl changes as follows: All non-standard options are disabled.  The "
+"``default:'' prefix is disabled.  The I<-x> and I<-X> options also accept "
+"permission fields (and ignore them)."
+msgstr ""
+"Якщо визначено змінну середовища POSIXLY_CORRECT, типову поведінку setfacl"
+" буде змінено таким чином: усі нестандартні параметри буде вимкнено. Префікс"
+" ``default:'' буде вимкнено. Параметри I<-x> і I<-X> прийматимуть поля прав"
+" доступу (і ігноруватимуть їх)."
+
+#. type: Plain text
+#: setfacl.1:316
+msgid ""
+"Please send your bug reports, suggested features and comments to the above "
+"address."
+msgstr ""
+"Будь ласка, надсилайте ваші звіти про вади, пропозиції можливостей та"
+" коментарі на вказану вище адресу."
+
+#. type: Plain text
+#: setfacl.1:317
+msgid "B<getfacl>(1), B<chmod>(1), B<umask>(1), B<acl>(5)"
+msgstr "B<getfacl>(1), B<chmod>(1), B<umask>(1), B<acl>(5)"
 
 #~ msgid "Prints a short help text and exists\\&."
 #~ msgstr "Виводить коротку текстову довідку і завершує роботу\\&."
