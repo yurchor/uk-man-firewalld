@@ -19,7 +19,7 @@
 .\" This file was generated with po4a. Translate the source file.
 .\"
 .\"*******************************************************************
-.TH ВУЗОЛ 1 "20 січня 2009 року" ISC BIND9
+.TH HOST 1 "20 січня 2009 року" ISC BIND9
 .\" -----------------------------------------------------------------
 .\" * Define some portability stuff
 .\" -----------------------------------------------------------------
@@ -41,146 +41,158 @@
 host — допоміжна програма для пошуку DNS
 .SH "КОРОТКИЙ ОПИС"
 .HP \w'\fBhost\fR\ 'u
-\fBhost\fP [\fB\-aCdlnrsTUwv\fP] [\fB\-c\ \fP\fIclass\fP] [\fB\-N\ \fP\fIndots\fP] [\fB\-p\ \fP\fIport\fP] [\fB\-R\ \fP\fInumber\fP] [\fB\-t\ \fP\fItype\fP] [\fB\-W\ \fP\fIwait\fP] [\fB\-m\ \fP\fIflag\fP] [[\fB\-4\fP] | [\fB\-6\fP]] [\fB\-v\fP] [\fB\-V\fP] {name} [server]
+\fBhost\fP [\fB\-aCdlnrsTUwv\fP] [\fB\-c\ \fP\fIклас\fP] [\fB\-N\ \fP\fIкількість_крапок\fP]
+[\fB\-p\ \fP\fIпорт\fP] [\fB\-R\ \fP\fIчисло\fP] [\fB\-t\ \fP\fIтип\fP] [\fB\-W\ \fP\fIочікування\fP]
+[\fB\-m\ \fP\fIпрапорець\fP] [[\fB\-4\fP] | [\fB\-6\fP]] [\fB\-v\fP] [\fB\-V\fP] {назва} [сервер]
 .SH ОПИС
 .PP
-\fBhost\fP is a simple utility for performing DNS lookups\&. It is normally
-used to convert names to IP addresses and vice versa\&. When no arguments or
-options are given, \fBhost\fP prints a short summary of its command line
-arguments and options\&.
+\fBhost\fP — проста допоміжна програма для виконання пошуків у DNS\&. Зазвичай,
+нею користуються для перетворення назв на IP\-адреси, і навпаки\&. Якщо
+програмі не буде передано аргументів або параметрів, \fBhost\fP виводить
+коротке резюме щодо аргументів і параметрів командного рядка\&.
 .PP
-\fIname\fP is the domain name that is to be looked up\&. It can also be a
-dotted\-decimal IPv4 address or a colon\-delimited IPv6 address, in which case
-\fBhost\fP will by default perform a reverse lookup for that address\&.
-\fIserver\fP is an optional argument which is either the name or IP address of
-the name server that \fBhost\fP should query instead of the server or servers
-listed in /etc/resolv\&.conf\&.
+Значенням \fIназва\fP має бути назва домену, пошук якої слід виконати\&. Ним
+також може бути IPv4\-адреса із розділених крапками десяткових блоків або
+IPv6\-адреса із розділених двокрапками блоків. У цьому випадку \fBhost\fP типово
+виконуватиме зворотний пошук для цієї адреси\&. Значенням \fIсервер\fP є
+необов'язковий аргумент, яким є назва або IP\-адреса сервера назв, який
+\fBhost\fP має опитати замість сервера або серверів зі списку у файлі
+/etc/resolv\&.conf\&.
 .SH ПАРАМЕТРИ
 .PP
 \-4
 .RS 4
-Use IPv4 only for query transport\&. See also the \fB\-6\fP option\&.
+Використати IPv4 лише для обміну даними щодо запиту\&. Див. також параметр
+\fB\-6\fP\&.
 .RE
 .PP
 \-6
 .RS 4
-Use IPv6 only for query transport\&. See also the \fB\-4\fP option\&.
+Використати IPv6 лише для обміну даними щодо запиту\&. Див. також параметр
+\fB\-4\fP\&.
 .RE
 .PP
 \-a
 .RS 4
-"All"\&. The \fB\-a\fP option is normally equivalent to \fB\-v \-t \fP\fBANY\fP\&. It
-also affects the behaviour of the \fB\-l\fP list zone option\&.
+«Усі»\&. Параметр \fB\-a\fP, зазвичай, еквівалентний до \fB\-v \-t \fP\fBANY\fP\&. Також
+впливає на поведінку параметра списку зон \fB\-l\fP\&.
 .RE
 .PP
 \-c \fIклас\fP
 .RS 4
-Query class: This can be used to lookup HS (Hesiod) or CH (Chaosnet) class
-resource records\&. The default class is IN (Internet)\&.
+Клас запиту: цим можна скористатися для пошуку записів ресурсів класу HS
+(Hesiod) або CH (Chaosnet)\&. Типовим класом є IN (Internet)\&.
 .RE
 .PP
 \-C
 .RS 4
-Check consistency: \fBhost\fP will query the SOA records for zone \fIname\fP from
-all the listed authoritative name servers for that zone\&. The list of name
-servers is defined by the NS records that are found for the zone\&.
+Перевірити узгодженість: \fBhost\fP виконає запит щодо записів SOA для зони
+\fIназва\fP з усіх уповноважених серверів назв зі списку для цієї
+зони\&. Список серверів назв визначається за записами NS, які буде знайдено
+для зони\&.
 .RE
 .PP
 \-d
 .RS 4
-Print debugging traces\&. Equivalent to the \fB\-v\fP verbose option\&.
+Вивести діагностичне трасування\&. Те саме, що і параметр докладності
+\fB\-v\fP\&.
 .RE
 .PP
 \-i
 .RS 4
-Obsolete\&. Use the IP6\&.INT domain for reverse lookups of IPv6 addresses
-as defined in RFC1886 and deprecated in RFC4159\&. The default is to use
-IP6\&.ARPA as specified in RFC3596\&.
+Застарілий\&. Скористайтеся доменом IP6\&.INT для зворотного пошуку адрес
+IPv6, як їх визначено у RFC1886\&. Такий пошук визнано застарілим у
+RFC4159\&. Типовим є використання IP6\&.ARPA, як це визначено у RFC3596\&.
 .RE
 .PP
 \-l
 .RS 4
-List zone: The \fBhost\fP command performs a zone transfer of zone \fIname\fP and
-prints out the NS, PTR and address records (A/AAAA)\&.
+Вивести список зони: команда \fBhost\fP виконує передавання зон зони \fIназва\fP і
+виводить NS, PTR і записи адрес (A/AAAA)\&.
 .sp
-Together, the \fB\-l \-a\fP options print all records in the zone\&.
+Разом, параметри \fB\-l \-a\fP призводять до виведення усіх записів у зоні\&.
 .RE
 .PP
-\-N \fIкількість_точок\fP
+\-N \fIкількість_крапок\fP
 .RS 4
-The number of dots that have to be in \fIname\fP for it to be considered
-absolute\&. The default value is that defined using the ndots statement in
-/etc/resolv\&.conf, or 1 if no ndots statement is present\&. Names with
-fewer dots are interpreted as relative names and will be searched for in the
-domains listed in the \fBsearch\fP or \fBdomain\fP directive in
-/etc/resolv\&.conf\&.
+Кількість крапок, які мають бути у назві \fIназва\fP, щоб її можна було
+розглядати як абсолютну\&. Типовим значенням є значення, яке визначено
+інструкцією ndots в /etc/resolv\&.conf, або 1, якщо інструкції ndots у цьому
+файлі немає\&. Назви із меншою кількістю точок вважатимуться відносними
+назвами\&. Ці назви буде використано для пошуку у доменах зі списку в
+інструкції \fBsearch\fP або \fBdomain\fP у файлі /etc/resolv\&.conf\&.
 .RE
 .PP
 \-p \fIпорт\fP
 .RS 4
-Specify the port on the server to query\&. The default is 53\&.
+Вказати порт на сервері для запиту\&. Типовим є 53\&.
 .RE
 .PP
 \-r
 .RS 4
-Non\-recursive query: Setting this option clears the RD (recursion desired)
-bit in the query\&. This should mean that the name server receiving the
-query will not attempt to resolve \fIname\fP\&. The \fB\-r\fP option enables
-\fBhost\fP to mimic the behavior of a name server by making non\-recursive
-queries and expecting to receive answers to those queries that can be
-referrals to other name servers\&.
+Нерекурсивний запит: встановлення цього параметра знімає біт RD (recursion
+desired або «бажана рекурсія») у запиті\&. Це має означати, що сервер назв,
+що отримає запит, не намагатиметься визначити адресу назви
+\fIназва\fP\&. Параметр \fB\-r\fP уможливлює для \fBhost\fP імітацію поведінки сервера
+назв шляхом створення нерекурсивних запитів та очікування отримання
+відповідей на ці запити, які можуть бути спрямуваннями на інші сервери
+назв\&.
 .RE
 .PP
 \-R \fIчисло\fP
 .RS 4
-Number of retries for UDP queries: If \fInumber\fP is negative or zero, the
-number of retries will default to 1\&. The default value is 1, or the value
-of the \fIattempts\fP option in /etc/resolv\&.conf, if set\&.
+Кількість повторних спроб для запитів UDP: якщо \fIчисло\fP є від'ємним або
+нульовим, типовою кількістю повторних спроб є 1\&. Типовим є значення 1 або
+значення параметра \fIattempts\fP у файлі /etc/resolv\&.conf, якщо його
+встановлено\&.
 .RE
 .PP
 \-s
 .RS 4
-Do \fInot\fP send the query to the next nameserver if any server responds with
-a SERVFAIL response, which is the reverse of normal stub resolver
-behavior\&.
+\fIНе\fP надсилати запит до наступного сервера назв, якщо якийсь сервер
+відповідає SERVFAIL, тобто обернена поведінка щодо звичайної поведінки
+фіктивного засобу визначення адрес\&.
 .RE
 .PP
 \-t \fIтип\fP
 .RS 4
-Query type: The \fItype\fP argument can be any recognized query type: CNAME,
-NS, SOA, TXT, DNSKEY, AXFR, etc\&.
+Тип запиту: аргумент \fIтип\fP може бути будь\-яким розпізнаваним типом запиту:
+CNAME, NS, SOA, TXT, DNSKEY, AXFR тощо\&.
 .sp
-When no query type is specified, \fBhost\fP automatically selects an
-appropriate query type\&. By default, it looks for A, AAAA, and MX
-records\&. If the \fB\-C\fP option is given, queries will be made for SOA
-records\&. If \fIname\fP is a dotted\-decimal IPv4 address or colon\-delimited
-IPv6 address, \fBhost\fP will query for PTR records\&.
+Якщо тип запиту не вказано, \fBhost\fP автоматично вибере відповідний тип
+запиту\&. Типово, програма шукатиме записи A, AAAA і MX\&. Якщо задано
+параметр \fB\-C\fP, буде виконано запити щодо записів SOA\&. Якщо назвою
+\fIназва\fP є адреса IPv4 із відокремленими крапками блоками або адреса IPv6 із
+відокремленими двокрапками блоками, \fBhost\fP виконає запит щодо записів
+PTR\&.
 .sp
-If a query type of IXFR is chosen the starting serial number can be
-specified by appending an equal followed by the starting serial number (like
-\fB\-t \fP\fBIXFR=12345678\fP)\&.
+Якщо вибрано тип запиту IXFR, початковий серійний номер можна вказати
+дописуванням знаку «дорівнює» з наступним початковим серійним номером
+(приклад: \fB\-t \fP\fBIXFR=12345678\fP)\&.
 .RE
 .PP
 \-T, \-U
 .RS 4
-TCP/UDP: By default, \fBhost\fP uses UDP when making queries\&. The \fB\-T\fP
-option makes it use a TCP connection when querying the name server\&. TCP
-will be automatically selected for queries that require it, such as zone
-transfer (AXFR) requests\&. Type ANY queries default to TCP but can be
-forced to UDP initially using \fB\-U\fP\&.
+TCP/UDP: типово, \fBhost\fP використовує UDP при виконанні запитів\&. Параметр
+\fB\-T\fP наказує програмі використати з'єднання TCP при опитуванні сервера
+назв\&. TCP буде автоматично вибрано для запитів, які його потребують,
+зокрема запитів щодо перенесення зори (AXFR)\&. Типовим для запитів ANY є
+TCP, але можна від початку примусово визначити для них UDP за допомогою
+параметра \fB\-U\fP\&.
 .RE
 .PP
 \-m \fIпрапорець\fP
 .RS 4
-Memory usage debugging: the flag can be \fIrecord\fP, \fIusage\fP, or
-\fItrace\fP\&. You can specify the \fB\-m\fP option more than once to set multiple
-flags\&.
+Діагностика щодо використання пам'яті: прапорцем може бути \fIrecord\fP,
+\fIusage\fP або \fItrace\fP\&. Ви можете вказати параметр \fB\-m\fP декілька разів,
+щоб встановити декілька прапорців\&.
 .RE
 .PP
 \-v
 .RS 4
-Verbose output\&. Equivalent to the \fB\-d\fP debug option\&. Verbose output can
-also be enabled by setting the \fIdebug\fP option in /etc/resolv\&.conf\&.
+Докладний режим виведення\&. Те саме, що і параметр діагностики
+\fB\-d\fP\&. Докладне виведення також можна увімкнути встановленням параметра
+\fIdebug\fP у файлі /etc/resolv\&.conf\&.
 .RE
 .PP
 \-V
@@ -190,30 +202,32 @@ also be enabled by setting the \fIdebug\fP option in /etc/resolv\&.conf\&.
 .PP
 \-w
 .RS 4
-Wait forever: The query timeout is set to the maximum possible\&. See also
-the \fB\-W\fP option\&.
+Очікувати без обмежень: час очікування на запит буде встановлено у
+максимальне можливе значення\&. Див. також параметр \fB\-W\fP\&.
 .RE
 .PP
 \-W \fIочікування\fP
 .RS 4
-Timeout: Wait for up to \fIwait\fP seconds for a reply\&. If \fIwait\fP is less
-than one, the wait interval is set to one second\&.
+Час очікування: очікувати на відповідь, аж до \fIочікування\fP секунд\&. Якщо
+значення \fIочікування\fP є меншим за одиницю, інтервал очікування буде
+встановлено у одну секунду\&.
 .sp
-By default, \fBhost\fP will wait for 5 seconds for UDP responses and 10 seconds
-for TCP connections\&. These defaults can be overridden by the \fItimeout\fP
-option in /etc/resolv\&.conf\&.
+Типово, \fBhost\fP чекатиме 5 секунд на відповіді UDP і 10 секунд на з'єднання
+TCP\&. Ці типові значення може бути перевизначено за допомогою параметра
+\fItimeout\fP у файлі /etc/resolv\&.conf\&.
 .sp
-See also the \fB\-w\fP option\&.
+Див. також параметр \fB\-w\fP\&.
 .RE
 .SH "ПІДТРИМКА IDN"
 .PP
-If \fBhost\fP has been built with IDN (internationalized domain name) support,
-it can accept and display non\-ASCII domain names\&.  \fBhost\fP appropriately
-converts character encoding of domain name before sending a request to DNS
-server or displaying a reply from the server\&. If you\*(Aqd like to turn
-off the IDN support for some reason, define the \fBIDN_DISABLE\fP environment
-variable\&. The IDN support is disabled if the variable is set when \fBhost\fP
-runs\&.
+Якщо \fBhost\fP було зібрано з підтримкою IDN (internationalized domain name
+або інтернаціоналізованих назв доменів), програма може приймати або
+показувати назви доменів, що містять символи поза ASCII\&. \fBhost\fP
+відповідним чином перетворює кодування символів назви домену до надсилання
+запиту до сервера DNS або показу відповіді від сервера\&. Якщо з певної
+причини ви хочете вимкнути підтримку IDN, визначте змінну середовища
+\fBIDN_DISABLE\fP\&. Підтримку IDN буде вимкнено, якщо значення змінної
+встановлено на момент запуску \fBhost\fP\&.
 .SH ФАЙЛИ
 .PP
 /etc/resolv\&.conf

@@ -41,47 +41,50 @@
 dig — допоміжна програма для пошуку DNS
 .SH "КОРОТКИЙ ОПИС"
 .HP \w'\fBdig\fR\ 'u
-\fBdig\fP [@server] [\fB\-b\ \fP\fIaddress\fP] [\fB\-c\ \fP\fIclass\fP] [\fB\-f\ \fP\fIfilename\fP]
-[\fB\-k\ \fP\fIfilename\fP] [\fB\-m\fP] [\fB\-p\ \fP\fIport#\fP] [\fB\-q\ \fP\fIname\fP] [\fB\-t\ \fP\fItype\fP] [\fB\-v\fP] [\fB\-x\ \fP\fIaddr\fP] [\fB\-y\ \fP\fI[hmac:]\fP\fIname:key\fP] [[\fB\-4\fP] |
-[\fB\-6\fP]] [name] [type] [class] [queryopt...]
+\fBdig\fP [@сервер] [\fB\-b\ \fP\fIадреса\fP] [\fB\-c\ \fP\fIклас\fP] [\fB\-f\ \fP\fIназва_файла\fP]
+[\fB\-k\ \fP\fIназва_файла\fP] [\fB\-m\fP] [\fB\-p\ \fP\fIномер_порту\fP] [\fB\-q\ \fP\fIназва\fP]
+[\fB\-t\ \fP\fIтип\fP] [\fB\-v\fP] [\fB\-x\ \fP\fIадреса\fP] [\fB\-y\ \fP\fI[hmac:]\fP\fIназва:ключ\fP]
+[[\fB\-4\fP] | [\fB\-6\fP]] [назва] [тип] [клас] [параметри_запиту...]
 .HP \w'\fBdig\fR\ 'u
 \fBdig\fP [\fB\-h\fP]
 .HP \w'\fBdig\fR\ 'u
-\fBdig\fP [global\-queryopt...] [query...]
+\fBdig\fP [параметр_загального_запиту...] [запит...]
 .SH ОПИС
 .PP
-\fBdig\fP is a flexible tool for interrogating DNS name servers\&. It performs
-DNS lookups and displays the answers that are returned from the name
-server(s) that were queried\&. Most DNS administrators use \fBdig\fP to
-troubleshoot DNS problems because of its flexibility, ease of use and
-clarity of output\&. Other lookup tools tend to have less functionality than
-\fBdig\fP\&.
+\fBdig\fP — гнучкий інструмент для опитування серверів назв DNS\&. Він виконує
+пошуки у DNS і показує відповіді, які повернуто серверами назв, які було
+опитано\&. Більшість адміністраторів DNS використовують \fBdig\fP для
+діагностики проблем із DNS через гнучкість програми, простоту у користуванні
+та ясність виведених даних\&. Інші інструменти пошуку, зазвичай, мають вужчі
+функціональні можливості, ніж \fBdig\fP\&.
 .PP
-Although \fBdig\fP is normally used with command\-line arguments, it also has a
-batch mode of operation for reading lookup requests from a file\&. A brief
-summary of its command\-line arguments and options is printed when the \fB\-h\fP
-option is given\&. Unlike earlier versions, the BIND 9 implementation of
-\fBdig\fP allows multiple lookups to be issued from the command line\&.
+Хоча, зазвичай, \fBdig\fP використовують із аргументами командного рядка, у
+програмі також передбачено пакетний режим роботи із читанням запитів щодо
+пошуку з файла\&. Коротке резюме щодо аргументів командного рядка та
+параметрів буде виведено у відповідь на команду з параметром \fB\-h\fP\&. На
+відміну від ранніх версій, реалізація \fBdig\fP у BIND 9 уможливлює одночасне
+надсилання декількох запитів щодо пошуку з одного рядка команди\&.
 .PP
-Unless it is told to query a specific name server, \fBdig\fP will try each of
-the servers listed in /etc/resolv\&.conf\&. If no usable server addresses
-are found, \fBdig\fP will send the query to the local host\&.
+Якщо програмі не наказано опитати певний сервер назв, \fBdig\fP спробує опитати
+усі сервери зі списку в /etc/resolv\&.conf\&. Якщо не буде знайдено
+придатних адрес серверів, \fBdig\fP надішле запит локальній основній системі\&.
 .PP
-When no command line arguments or options are given, \fBdig\fP will perform an
-NS query for "\&." (the root)\&.
+Якщо програмі не буде передано жодних аргументів командного рядка, \fBdig\fP
+виконуватиме запит до сервера назв щодо «\&.» (кореня)\&.
 .PP
-It is possible to set per\-user defaults for \fBdig\fP via
-${HOME}/\&.digrc\&. This file is read and any options in it are applied
-before the command line arguments\&. The \fB\-r\fP option disables this feature,
-for scripts that need predictable behaviour\&.
+Окремі для користувача типові налаштування для \fBdig\fP можна вказати за
+допомогою файла ${HOME}/\&.digrc\&. Дані з цього файла та усі вказані у
+ньому значення параметрів буде прочитано до читання аргументів командного
+рядка\&. Параметр \fB\-r\fP вимикає цю можливість для скриптів, поведінка яких
+має бути незалежною від налаштувань у системі\&.
 .PP
-The IN and CH class names overlap with the IN and CH top level domain
-names\&. Either use the \fB\-t\fP and \fB\-c\fP options to specify the type and
-class, use the \fB\-q\fP the specify the domain name, or use "IN\&." and "CH\&."
-when looking up these top level domains\&.
+Назви класів IN і CH перекриваються із назвами доменів верхнього рівня IN та
+CH\&. Слід використовувати або параметри \fB\-t\fP і \fB\-c\fP для визначення типу і
+класу, або параметр \fB\-q\fP для визначення назви домену, або «IN\&.» і «CH\&.»
+при пошуку цих доменів верхнього рівня\&.
 .SH "ПРОСТЕ КОРИСТУВАННЯ"
 .PP
-A typical invocation of \fBdig\fP looks like:
+Типовий виклик \fBdig\fP виглядає так:
 .sp
  dig @сервер назва тип
 .sp
@@ -89,17 +92,18 @@ A typical invocation of \fBdig\fP looks like:
 .PP
 \fBсервер\fP
 .RS 4
-is the name or IP address of the name server to query\&. This can be an IPv4
-address in dotted\-decimal notation or an IPv6 address in colon\-delimited
-notation\&. When the supplied \fIserver\fP argument is a hostname, \fBdig\fP
-resolves that name before querying that name server\&.
+є назвою або IP\-адресою сервера назв, який слід опитати\&. Це може бути
+адреса IPv4 у форматі блоків, які відокремлено крапками, або адреса IPv6 у
+форматі блоків, які відокремлено двокрапками\&. Якщо вказаним аргументом
+\fIсервер\fP є назва вузла, \fBdig\fP визначає адресу за назвою до надсилання
+запиту до сервера назв\&.
 .sp
-If no \fIserver\fP argument is provided, \fBdig\fP consults /etc/resolv\&.conf; if
-an address is found there, it queries the name server at that address\&. If
-either of the \fB\-4\fP or \fB\-6\fP options are in use, then only addresses for the
-corresponding transport will be tried\&. If no usable addresses are found,
-\fBdig\fP will send the query to the local host\&. The reply from the name
-server that responds is displayed\&.
+Якщо аргумент \fIсервер\fP не вказано, \fBdig\fP звертається до
+/etc/resolv\&.conf\&. Якщо адресу буде там знайдено, програма виконає
+опитування сервера назв із вказаною адресою\&. Якщо вказано параметр \fB\-4\fP
+або \fB\-6\fP, буде використано лише адреси для відповідного протоколу\&. Якщо
+придатних до використання адрес не буде знайдено, \fBdig\fP надішле запит до
+локального вузла\&. Буде показано відповідь від сервера назв\&.
 .RE
 .PP
 \fBназва\fP
@@ -109,9 +113,9 @@ server that responds is displayed\&.
 .PP
 \fBтип\fP
 .RS 4
-indicates what type of query is required \(em ANY, A, MX, SIG, etc\&.
-\fItype\fP can be any valid query type\&. If no \fItype\fP argument is supplied,
-\fBdig\fP will perform a lookup for an A record\&.
+визначає, який тип запиту потрібен — ANY, A, MX, SIG тощо\&. Значенням
+\fIтип\fP може бути будь\-який коректний тип запиту\&. Якщо не вказано аргумент
+\fIтип\fP, \fBdig\fP виконає пошук для запису A\&.
 .RE
 .SH ПАРАМЕТРИ
 .PP
@@ -127,38 +131,41 @@ indicates what type of query is required \(em ANY, A, MX, SIG, etc\&.
 .PP
 \-b \fIадреса\fP\fI[#порт]\fP
 .RS 4
-Set the source IP address of the query\&. The \fIaddress\fP must be a valid
-address on one of the host\*(Aqs network interfaces, or "0\&.0\&.0\&.0" or
-"::"\&. An optional port may be specified by appending "#<port>"
+Встановити початкову IP\-адресу запиту\&. Значенням \fIадреса\fP має бути
+коректна адреса на одному з інтерфейсів мережі вузла, або «0\&.0\&.0\&.0»,
+або «::»\&. Необов'язковий порт може бути вказано додаванням
+«#<порт>».
 .RE
 .PP
 \-c \fIклас\fP
 .RS 4
-Set the query class\&. The default \fIclass\fP is IN; other classes are HS for
-Hesiod records or CH for Chaosnet records\&.
+Встановити клас запиту\&. Типовим значенням \fIклас\fP є IN; іншими класами є
+HS для записів Hesiod та CH для записів Chaosnet\&.
 .RE
 .PP
 \-f \fIфайл\fP
 .RS 4
-Batch mode: \fBdig\fP reads a list of lookup requests to process from the given
-\fIfile\fP\&. Each line in the file should be organized in the same way they
-would be presented as queries to \fBdig\fP using the command\-line interface\&.
+Пакетний режим: \fBdig\fP читає список запитів щодо пошуку для обробки з
+заданого файла \fIфайл\fP\&. Кожен із рядків у файлі має бути записано у тому
+самому форматі, який би вони мали у запитах до \fBdig\fP в інтерфейсі
+командного рядка\&.
 .RE
 .PP
 \-i
 .RS 4
-Do reverse IPv6 lookups using the obsolete RFC 1886 IP6\&.INT domain, which
-is no longer in use\&. Obsolete bit string label queries (RFC 2874) are not
-attempted\&.
+Виконувати обернені пошуки IPv6 за допомогою застарілого домену IP6\&.INT з
+RFC 1886, яким вже не користуються\&. Спроб виконати застарілі запити щодо
+бітової рядкової мітки (RFC 2874) виконано не буде\&.
 .RE
 .PP
 \-k \fIфайл_ключа\fP
 .RS 4
-Sign queries using TSIG using a key read from the given file\&. Key files
-can be generated using \fBtsig\-keygen\fP(8)\&. When using TSIG authentication
-with \fBdig\fP, the name server that is queried needs to know the key and
-algorithm that is being used\&. In BIND, this is done by providing
-appropriate \fBkey\fP and \fBserver\fP statements in named\&.conf\&.
+Підписати запити за допомогою TSIG з ключем, який прочитано з вказаного
+файла\&. Файли ключів можна створити за допомогою \fBtsig\-keygen\fP(8)\&. При
+використанні розпізнавання TSIG за допомогою \fBdig\fP сервер назв, опитування
+якого виконуватиметься, потребує даних щодо використаного ключа і алгоритму
+його обчислення\&. У BIND завдання з надання цих даних буде виконано
+наданням відповідних інструкцій \fBkey\fP і \fBserver\fP у named\&.conf\&.
 .RE
 .PP
 \-m
@@ -168,42 +175,45 @@ appropriate \fBkey\fP and \fBserver\fP statements in named\&.conf\&.
 .PP
 \-p \fIпорт\fP
 .RS 4
-Send the query to a non\-standard port on the server, instead of the default
-port 53\&. This option would be used to test a name server that has been
-configured to listen for queries on a non\-standard port number\&.
+Надіслати запит до нестандартного порту на сервері, замість типового порту
+53\&. Цим параметром можна скористатися для перевірки того, чи працює сервер
+назв, який було налаштовано на очікування запитів, на порту із нестандартним
+номером\&.
 .RE
 .PP
 \-q \fIназва\fP
 .RS 4
-The domain name to query\&. This is useful to distinguish the \fIname\fP from
-other arguments\&.
+Назва домену, куди слід надіслати запит\&. Корисно для відокремлення
+\fIназви\fP від інших аргументів\&.
 .RE
 .PP
 \-r
 .RS 4
-Do not read options from ${HOME}/\&.digrc\&. This is useful for scripts that
-need predictable behaviour\&.
+Не читати параметри з ${HOME}/\&.digrc\&. Корисно для скриптів, де слід
+забезпечувати незалежну від налаштувань системи поведінку\&.
 .RE
 .PP
 \-t \fIтип\fP
 .RS 4
-The resource record type to query\&. It can be any valid query type\&. If it
-is a resource record type supported in BIND 9, it can be given by the type
-mnemonic (such as "NS" or "AAAA")\&. The default query type is "A", unless
-the \fB\-x\fP option is supplied to indicate a reverse lookup\&. A zone transfer
-can be requested by specifying a type of AXFR\&. When an incremental zone
-transfer (IXFR) is required, set the \fItype\fP to ixfr=N\&. The incremental
-zone transfer will contain the changes made to the zone since the serial
-number in the zone\*(Aqs SOA record was \fIN\fP\&.
+Тип записів ресурсу, опитування щодо якого слід виконати\&. Це може бути
+будь\-який коректний тип запиту\&. Якщо це тип запису ресурсу, підтримку
+якого передбачено у BIND 9, його можна вказати за допомогою мнемонічного
+запису (наприклад, «NS» або «AAAA»)\&. Стандартним типом запису є «A», якщо
+не вказано параметр \fB\-x\fP для визначення зворотного пошуку\&. Можна
+надіслати запит щодо перенесення зон, вказавши тип AXFR\&. Якщо надіслано
+запит щодо нарощувального перенесення зон (IXFR), встановіть для запису
+\fIтип\fP значення ixfr=N\&. Нарощувальне перенесення зон міститиме зміни,
+внесені до зони з моменту, коли серійним номером у записі зони SOA був
+\fIN\fP\&.
 .sp
-All resource record types can be expressed as "TYPEnn", where "nn" is the
-number of the type\&. If the resource record type is not supported in BIND
-9, the result will be displayed as described in RFC 3597\&.
+Усі типи записів ресурсів можна виразити як «TYPEnn», де «nn» є номером
+типу\&. Якщо підтримки типу запису ресурсів у BIND 9 не передбачено,
+результат буде виведено так, як описано у RFC 3597\&.
 .RE
 .PP
 \-u
 .RS 4
-Print query times in microseconds instead of milliseconds\&.
+Вивести дані щодо часу у мікросекундах, а не мілісекундах\&.
 .RE
 .PP
 \-v
@@ -213,43 +223,47 @@ Print query times in microseconds instead of milliseconds\&.
 .PP
 \-x \fIадреса\fP
 .RS 4
-Simplified reverse lookups, for mapping addresses to names\&. The \fIaddr\fP is
-an IPv4 address in dotted\-decimal notation, or a colon\-delimited IPv6
-address\&. When the \fB\-x\fP is used, there is no need to provide the \fIname\fP,
-\fIclass\fP and \fItype\fP arguments\&.  \fBdig\fP automatically performs a lookup
-for a name like 94\&.2\&.0\&.192\&.in\-addr\&.arpa and sets the query type
-and class to PTR and IN respectively\&. IPv6 addresses are looked up using
-nibble format under the IP6\&.ARPA domain (but see also the \fB\-i\fP option)\&.
+Спрощений зворотний пошук для відображення адрес на назви\&. Значенням
+\fIадреса\fP є адреса IPv4 з відокремлених крапками блоків або адреса IPv6 з
+відокремлених двокрапками блоків\&. Якщо використано \fB\-x\fP, немає потреби у
+надання аргументів \fIназва\fP, \fIклас\fP і \fIтип\fP\&. \fBdig\fP автоматично виконає
+пошук назв, подібних до 94\&.2\&.0\&.192\&.in\-addr\&.arpa, і встановить тип
+і клас запиту у значення PTR і IN, відповідно\&. Пошук адрес IPv6 буде
+виконано з використанням скороченого формату у домені IP6\&.ARPA (втім,
+див. також параметр \fB\-i\fP)\&.
 .RE
 .PP
 \-y \fI[hmac:]\fP\fIназва_ключа:пароль\fP
 .RS 4
-Sign queries using TSIG with the given authentication key\&.  \fIkeyname\fP is
-the name of the key, and \fIsecret\fP is the base64 encoded shared secret\&.
-\fIhmac\fP is the name of the key algorithm; valid choices are hmac\-md5,
-hmac\-sha1, hmac\-sha224, hmac\-sha256, hmac\-sha384, or hmac\-sha512\&. If
-\fIhmac\fP is not specified, the default is hmac\-md5 or if MD5 was disabled
-hmac\-sha256\&.
+Підписати запити за допомогою TSIG і вказаного ключа
+розпізнавання\&. Значенням \fIназва_ключа\fP має бути назва ключа, а значенням
+\fIпароль\fP має бути закодований за допомогою base64 запис пароля\&. Значенням
+\fIhmac\fP має бути назва алгоритму шифрування\&. Коректними варіантами є
+hmac\-md5, hmac\-sha1, hmac\-sha224, hmac\-sha256, hmac\-sha384 та
+hmac\-sha512\&. Якщо \fIhmac\fP не вказано, типовим значенням є hmac\-md5 або,
+якщо MD5 було вимкнено, hmac\-sha256\&.
 .sp
-NOTE: You should use the \fB\-k\fP option and avoid the \fB\-y\fP option, because
-with \fB\-y\fP the shared secret is supplied as a command line argument in clear
-text\&. This may be visible in the output from \fBps\fP(1)  or in a history
-file maintained by the user\*(Aqs shell\&.
+Зауваження: вам слід скористатися параметром \fB\-k\fP і уникати параметра
+\fB\-y\fP, оскільки при використанні \fB\-y\fP пароль слід надавати в аргументі
+командного рядка без шифрування\&. Пароль можна буде побачити у виведенні
+команди \fBps\fP(1) або файлі журналу командної оболонки користувача\&.
 .RE
 .SH "ПАРАМЕТРИ ЗАПИТУ"
 .PP
-\fBdig\fP provides a number of query options which affect the way in which
-lookups are made and the results displayed\&. Some of these set or reset
-flag bits in the query header, some determine which sections of the answer
-get printed, and others determine the timeout and retry strategies\&.
+У \fBdig\fP передбачено доволі багато параметрів запитів, які впливають на
+спосіб виконання пошуків і показу результатів\&. Деякі з параметрів
+встановлюють або знімають біти прапорців у заголовку запиту, деякі
+визначають, які розділи відповіді буде виведено, а інші визначають стратегії
+очікування та виконання повторних спроб\&.
 .PP
-Each query option is identified by a keyword preceded by a plus sign
-(+)\&. Some keywords set or reset an option\&. These may be preceded by the
-string no to negate the meaning of that keyword\&. Other keywords assign
-values to options like the timeout interval\&. They have the form
-\fB+keyword=value\fP\&. Keywords may be abbreviated, provided the abbreviation
-is unambiguous; for example, +cd is equivalent to +cdflag\&. The query
-options are:
+Кожен параметр запиту визначається ключовим словом, перед яким слід вказати
+знак «плюс» (+)\&. Деякі ключові слова встановлюють або скасовують
+використання параметра\&. До ключових слів може бути дописано рядок «no» для
+заперечення значення ключового слова\&. Інші ключові слова встановлюють
+значення для параметрів, подібних до часу очікування\&. Їх записують у формі
+\fB+ключове слово=значення\fP\&. Можна скористатися скороченнями від ключових
+слів, якщо скорочення є однозначним; наприклад, +cd є тим самим, що і
++cdflag\&. Параметрами запитів є такі:
 .PP
 \fB+[no]aaflag\fP
 .RS 4
@@ -258,23 +272,24 @@ options are:
 .PP
 \fB+[no]aaonly\fP
 .RS 4
-Sets the "aa" flag in the query\&.
+Встановлює прапорець «aa» у запиті\&.
 .RE
 .PP
 \fB+[no]additional\fP
 .RS 4
-Display [do not display] the additional section of a reply\&. The default is
-to display it\&.
+Вивести [не виводити] додатковий розділ відповіді\&. Типово, розділ буде
+виведено\&.
 .RE
 .PP
 \fB+[no]adflag\fP
 .RS 4
-Set [do not set] the AD (authentic data) bit in the query\&. This requests
-the server to return whether all of the answer and authority sections have
-all been validated as secure according to the security policy of the
-server\&. AD=1 indicates that all records have been validated as secure and
-the answer is not from a OPT\-OUT range\&. AD=0 indicate that some part of
-the answer was insecure or not validated\&. This bit is set by default\&.
+Встановити [скасувати встановлення] біта AD (автентичні дані) у запиті\&. За
+допомогою цього біта можна наказати серверу повернути дані щодо того, чи у
+сі розділи відповіді і служби уповноваження пройшли перевірку захисту за
+правилами безпеки сервера\&. AD=1 вказує на те, що усі записи пройшли
+перевірку як безпечні, а відповідь не потрапляє у діапазон OPT\-OUT\&. AD=0
+вказує на те, що якась з частин відповіді не пройшла перевірки\&. Типово,
+цей біт буде встановлено\&.
 .RE
 .PP
 \fB+[no]all\fP
@@ -284,258 +299,270 @@ the answer was insecure or not validated\&. This bit is set by default\&.
 .PP
 \fB+[no]answer\fP
 .RS 4
-Display [do not display] the answer section of a reply\&. The default is to
-display it\&.
+Вивести [не виводити] розділ відповіді\&. Типово, розділ буде виведено\&.
 .RE
 .PP
 \fB+[no]authority\fP
 .RS 4
-Display [do not display] the authority section of a reply\&. The default is
-to display it\&.
+Вивести [не виводити] розділ служби уповноваження\&. Типово, розділ буде
+виведено\&.
 .RE
 .PP
 \fB+[no]badcookie\fP
 .RS 4
-Retry lookup with the new server cookie if a BADCOOKIE response is
-received\&.
+Виконати повторну спробу пошуку із новою кукою сервера, якщо буде отримано
+відповідь BADCOOKIE\&.
 .RE
 .PP
 \fB+[no]besteffort\fP
 .RS 4
-Attempt to display the contents of messages which are malformed\&. The
-default is to not display malformed answers\&.
+Спробувати вивести вміст повідомлень із помилковим форматуванням\&. Типово,
+програма не виводитиме відповідей із помилковим форматуванням\&.
 .RE
 .PP
 \fB+bufsize=B\fP
 .RS 4
-This option sets the UDP message buffer size advertised using EDNS0 to \fIB\fP
-bytes\&. The maximum and minimum sizes of this buffer are 65535 and 0,
-respectively\&.  +bufsize=0 disables EDNS (use +bufsize=0 +edns to send a
-EDNS messages with a advertised size of 0 bytes)\&.  +bufsize restores the
-default buffer size\&.
+Цей параметр встановлює для розміру буфера повідомлень UDP, про який буде
+оголошено за допомогою EDNS0, значення \fIB\fP байтів\&. Максимальним і
+мінімальним розмірами цього буфера є 65535 і 0, відповідно\&. +bufsize=0
+вимикає EDNS (скористайтеся +bufsize=0 +edns для надсилання повідомлень EDNS
+з оголошеним розміром у 0 байтів)\&. +bufsize відновлює типовий розмір
+буфера\&.
 .RE
 .PP
 \fB+[no]cdflag\fP
 .RS 4
-Set [do not set] the CD (checking disabled) bit in the query\&. This
-requests the server to not perform DNSSEC validation of responses\&.
+Встановити [скасувати встановлення] біта CD (перевірку вимкнено) у
+запиті\&. За допомогою цього біта можна наказати серверу не виконувати
+перевірку DNSSEC відповідей\&.
 .RE
 .PP
 \fB+[no]class\fP
 .RS 4
-Display [do not display] the CLASS when printing the record\&.
+Вивести [не виводити] CLASS при виведенні запису\&.
 .RE
 .PP
 \fB+[no]cmd\fP
 .RS 4
-Toggles the printing of the initial comment in the output, identifying the
-version of \fBdig\fP and the query options that have been applied\&. This
-option always has global effect; it cannot be set globally and then
-overridden on a per\-lookup basis\&. The default is to print this comment\&.
+Вмикає або вимикає виведення початкового коментаря, який вказує на версію
+\fBdig\fP і параметри запиту, які було використано\&. Використання цього
+параметра завжди має загальні наслідки; його не можна встановити на
+загальному рівні, а потім перевизначити для окремого запиту\&. Типовим є
+виведення цього коментаря\&.
 .RE
 .PP
 \fB+[no]comments\fP
 .RS 4
-Toggles the display of some comment lines in the output, containing
-information about the packet header and OPT pseudosection, and the names of
-the response section\&. The default is to print these comments\&.
+Вмикає або вимикає показ деяких рядків коментарів у виведених даних; зокрема
+коментарів із відомостями щодо заголовка пакета та псевдорозділу OPT, а
+також назв розділів відповіді\&. Типовим є виведення цих коментарів\&.
 .sp
-Other types of comments in the output are not affected by this option, but
-can be controlled using other command line switches\&. These include
-\fB+[no]cmd\fP, \fB+[no]question\fP, \fB+[no]stats\fP, and \fB+[no]rrcomments\fP\&.
+Цей параметр не впливає на виведення інших типів коментарів, але ними можна
+керувати за допомогою інших перемикачів командного рядка\&. Це стосується,
+зокрема, \fB+[no]cmd\fP, \fB+[no]question\fP, \fB+[no]stats\fP і
+\fB+[no]rrcomments\fP\&.
 .RE
 .PP
 \fB+[no]cookie\fP\fB[=####]\fP
 .RS 4
-Send a COOKIE EDNS option, with optional value\&. Replaying a COOKIE from a
-previous response will allow the server to identify a previous client\&. The
-default is \fB+cookie\fP\&.
+Надіслати параметр COOKIE EDNS із необов'язковим значенням\&. Відтворення
+COOKIE з попередньої відповіді надасть змогу серверу ідентифікувати
+попередній клієнт\&. Типовим є варіант \fB+cookie\fP\&.
 .sp
-\fB+cookie\fP is also set when +trace is set to better emulate the default
-queries from a nameserver\&.
+\fB+cookie\fP також буде встановлено, якщо встановлено +trace, щоб краще
+імітувати типові запити від сервера назв\&.
 .RE
 .PP
 \fB+[no]crypto\fP
 .RS 4
-Toggle the display of cryptographic fields in DNSSEC records\&. The contents
-of these field are unnecessary to debug most DNSSEC validation failures and
-removing them makes it easier to see the common failures\&. The default is
-to display the fields\&. When omitted they are replaced by the string
-"[omitted]" or in the DNSKEY case the key id is displayed as the
-replacement, e\&.g\&. "[ key id = value ]"\&.
+Увімкнути або вимкнути виведення криптографічних полів у записах
+DNSSEC\&. Вміст цих полів не є необхідним для діагностики більшості помилок
+із перевірками DNSSEC, і їхнє вилучення спрощує виявлення типових
+помилок\&. Типовим є виведення цих полів\&. Якщо їх пропустити, вміст буде
+замінено рядком «[omitted]» або, у випадку DNSKEY, ідентифікатором ключа,
+наприклад, «[ ідентифікатор ключа = значення ]»\&.
 .RE
 .PP
 \fB+[no]defname\fP
 .RS 4
-Deprecated, treated as a synonym for \fI+[no]search\fP
+Застарілий, вважається синонімом \fI+[no]search\fP
 .RE
 .PP
 \fB+[no]dnssec\fP
 .RS 4
-Requests DNSSEC records be sent by setting the DNSSEC OK bit (DO) in the OPT
-record in the additional section of the query\&.
+Надіслати запит щодо надсилання записів DNSSEC встановленням біта DNSSEC OK
+(DO) у записі OPT у додатковому розділі запиту\&.
 .RE
 .PP
 \fB+domain=якась_назва\fP
 .RS 4
-Set the search list to contain the single domain \fIsomename\fP, as if
-specified in a \fBdomain\fP directive in /etc/resolv\&.conf, and enable search
-list processing as if the \fI+search\fP option were given\&.
+Встановити, що список пошуку має містити єдиний домен \fIякась_назва\fP, так,
+наче його вказано у інструкції \fBdomain\fP у файлі /etc/resolv\&.conf, і
+увімкнути обробку списку пошуку так, наче вказано параметр \fI+search\fP\&.
 .RE
 .PP
 \fB+dscp=значення\fP
 .RS 4
-Set the DSCP code point to be used when sending the query\&. Valid DSCP code
-points are in the range [0\&.\&.63]\&. By default no code point is
-explicitly set\&.
+Встановити кодову точку DSCP, якою слід скористатися при надсиланні
+запиту\&. Коректні кодові точки DSCP належать діапазону
+[0\&.\&.63]\&. Типово, програма не встановлює явним чином жодної кодової
+точки\&.
 .RE
 .PP
 \fB+[no]edns[=#]\fP
 .RS 4
-Specify the EDNS version to query with\&. Valid values are 0 to
-255\&. Setting the EDNS version will cause a EDNS query to be sent\&.
-\fB+noedns\fP clears the remembered EDNS version\&. EDNS is set to 0 by
-default\&.
+Вказати версію EDNS для надсилання запиту\&. Коректними є значення від 0 до
+255\&. Встановлення версії EDNS призведе до надсилання запиту
+EDNS\&. Використання \fB+noedns\fP призведе до вилучення раніше збереженої
+версії EDNS\&. Типовим значенням EDNS є 0\&.
 .RE
 .PP
 \fB+[no]ednsflags[=#]\fP
 .RS 4
-Set the must\-be\-zero EDNS flags bits (Z bits) to the specified
-value\&. Decimal, hex and octal encodings are accepted\&. Setting a named
-flag (e\&.g\&. DO) will silently be ignored\&. By default, no Z bits are
-set\&.
+Встановити для бітів прапорців must\-be\-zero EDNS (Z\-біти) вказане
+значення\&. Значення може бути закодовано у десятковому, шістнадцятковому та
+вісімковому форматах\&. Встановлення прапорця іменування (наприклад, DO)
+буде без повідомлень проігноровано\&. Типово, Z\-біти не встановлено\&.
 .RE
 .PP
 \fB+[no]ednsnegotiation\fP
 .RS 4
-Enable / disable EDNS version negotiation\&. By default EDNS version
-negotiation is enabled\&.
+Увімкнути або вимкнути узгодження версії EDNS\&. Типово, узгодження версії
+EDNS увімкнено\&.
 .RE
 .PP
 \fB+[no]ednsopt[=код[:значення]]\fP
 .RS 4
-Specify EDNS option with code point \fBcode\fP and optionally payload of
-\fBvalue\fP as a hexadecimal string\&.  \fBcode\fP can be either an EDNS option
-name (for example, NSID or ECS), or an arbitrary numeric value\&.
-\fB+noednsopt\fP clears the EDNS options to be sent\&.
+Вказати параметр EDNS із кодовою точкою \fBкод\fP і, необов'язково, вміст
+\fBзначення\fP у форматі шістнадцяткового рядка\&. Значенням \fBкод\fP може бути
+або назва параметра EDNS (наприклад, NSID або ECS), або довільне числове
+значення\&. Використання \fB+noednsopt\fP вилучає параметри EDNS, які має бути
+надіслано\&.
 .RE
 .PP
 \fB+[no]expire\fP
 .RS 4
-Send an EDNS Expire option\&.
+Надіслати параметр Expire EDNS\&.
 .RE
 .PP
 \fB+[no]fail\fP
 .RS 4
-Do not try the next server if you receive a SERVFAIL\&. The default is to
-not try the next server which is the reverse of normal stub resolver
-behavior\&.
+Не намагатися скористатися наступним сервером, якщо отримано
+SERVFAIL\&. Типово, програма не намагатиметься скористатися наступним
+сервером, що є оберненою щодо звичайної поведінки фіктивного засобу
+визначення адрес\&.
 .RE
 .PP
 \fB+[no]header\-only\fP
 .RS 4
-Send a query with a DNS header without a question section\&. The default is
-to add a question section\&. The query type and query name are ignored when
-this is set\&.
+Надіслати запит із заголовком DNS без розділу питання\&. Типовим є додавання
+розділу питання\&. Якщо встановлено, тип запиту і назву запиту буде
+проігноровано\&.
 .RE
 .PP
 \fB+[no]identify\fP
 .RS 4
-Show [or do not show] the IP address and port number that supplied the
-answer when the \fI+short\fP option is enabled\&. If short form answers are
-requested, the default is not to show the source address and port number of
-the server that provided the answer\&.
+Вивести [або не виводити] IP\-адресу і номер порту, з яких надано відповідь,
+якщо увімкнено параметр \fI+short\fP\&. Якщо надіслано запит на відповіді у
+короткій формі, типово, програма не виводитиме початкової адреси та номера
+порту сервера, який надав відповідь\&.
 .RE
 .PP
 \fB+[no]idnin\fP
 .RS 4
-Process [do not process] IDN domain names on input\&. This requires IDN
-SUPPORT to have been enabled at compile time\&.
+Обробляти [не обробляти] назви доменів IDN на вході\&. Потребує вмикання IDN
+SUPPORT під час збирання програми\&.
 .sp
-The default is to process IDN input when standard output is a tty\&. The IDN
-processing on input is disabled when dig output is redirected to files,
-pipes, and other non\-tty file descriptors\&.
+Типовою є обробка входу IDN, якщо стандартне виведення відбувається на
+термінал\&. Обробку IDN на вході буде вимкнено, якщо виведення dig
+переспрямовано до файлів, каналів та інших дескрипторів файлів, які не
+пов'язано із терміналами\&.
 .RE
 .PP
 \fB+[no]idnout\fP
 .RS 4
-Convert [do not convert] puny code on output\&. This requires IDN SUPPORT to
-have been enabled at compile time\&.
+Перетворити [не перетворювати] виведені дані з використанням
+punycode\&. Потребує вмикання IDN SUPPORT під час збирання програми\&.
 .sp
-The default is to process puny code on output when standard output is a
-tty\&. The puny code processing on output is disabled when dig output is
-redirected to files, pipes, and other non\-tty file descriptors\&.
+Типовою є обробка з використанням punicode, якщо стандартне виведення
+відбувається на термінал\&. Обробку з використанням punicode при виведенні
+буде вимкнено, якщо виведення dig переспрямовано до файлів, каналів та інших
+дескрипторів файлів, які не пов'язано із терміналами\&.
 .RE
 .PP
 \fB+[no]ignore\fP
 .RS 4
-Ignore truncation in UDP responses instead of retrying with TCP\&. By
-default, TCP retries are performed\&.
+Ігнорувати обрізання у відповідях UDP, замість виконання повторних спроб з
+використанням TCP\&. Типово, буде виконано повторні спроби з TCP\&.
 .RE
 .PP
 \fB+[no]keepopen\fP
 .RS 4
-Keep the TCP socket open between queries and reuse it rather than creating a
-new TCP socket for each lookup\&. The default is \fB+nokeepopen\fP\&.
+Тримати сокет TCP відкритим між запитами і повторно використовувати його,
+замість створення нового сокета TCP для кожного пошуку\&. Типовим варіантом
+є \fB+nokeepopen\fP\&.
 .RE
 .PP
 \fB+[no]mapped\fP
 .RS 4
-Allow mapped IPv4 over IPv6 addresses to be used\&. The default is
-\fB+mapped\fP\&.
+Дозволити використання відображення адрес IPv4 на IPv6\&. Типовим варіантом
+є \fB+mapped\fP\&.
 .RE
 .PP
 \fB+[no]multiline\fP
 .RS 4
-Print records like the SOA records in a verbose multi\-line format with
-human\-readable comments\&. The default is to print each record on a single
-line, to facilitate machine parsing of the \fBdig\fP output\&.
+Виводити записи, подібні до записів SOA, у докладному багаторядковому
+форматі зі зручними для читання коментарями\&. Типовим є виведення кожного
+запису в окремому рядку, для полегшення комп'ютерної обробки виведених
+\fBdig\fP даних\&.
 .RE
 .PP
 \fB+ndots=D\fP
 .RS 4
-Set the number of dots that have to appear in \fIname\fP to \fID\fP for it to be
-considered absolute\&. The default value is that defined using the ndots
-statement in /etc/resolv\&.conf, or 1 if no ndots statement is
-present\&. Names with fewer dots are interpreted as relative names and will
-be searched for in the domains listed in the \fBsearch\fP or \fBdomain\fP
-directive in /etc/resolv\&.conf if \fB+search\fP is set\&.
+Встановити для кількості крапок у назві \fIназва\fP значення \fID\fP, щоб її можна
+було розглядати як абсолютну\& Типовим значенням є значення, яке визначено
+інструкцією ndots в /etc/resolv\&.conf, або 1, якщо інструкції ndots у цьому
+файлі немає\&. Назви із меншою кількістю точок вважатимуться відносними
+назвами\&. Ці назви буде використано для пошуку у доменах зі списку в
+інструкції \fBsearch\fP або \fBdomain\fP у файлі /etc/resolv\&.conf, якщо
+встановлено \fB+search\fP\&.
 .RE
 .PP
 \fB+[no]nsid\fP
 .RS 4
-Include an EDNS name server ID request when sending a query\&.
+Включити запит щодо ідентифікатора сервера назв EDNS при надсиланні
+запиту\&.
 .RE
 .PP
 \fB+[no]nssearch\fP
 .RS 4
-When this option is set, \fBdig\fP attempts to find the authoritative name
-servers for the zone containing the name being looked up and display the SOA
-record that each name server has for the zone\&.
+Якщо встановлено цей параметр, \fBdig\fP спробує знайти уповноважені сервери
+назв для зони, що містить назву, пошук якої виконується, і виведе запис SOA,
+який має кожне сервер назв для зони\&.
 .RE
 .PP
 \fB+[no]onesoa\fP
 .RS 4
-Print only one (starting) SOA record when performing an AXFR\&. The default
-is to print both the starting and ending SOA records\&.
+Вивести лише один (початковий) запис SOA при виконанні AXFR\&. Типово,
+програма виведе і початковий, і кінцевий записи SOA\&.
 .RE
 .PP
 \fB+[no]opcode=значення\fP
 .RS 4
-Set [restore] the DNS message opcode to the specified value\&. The default
-value is QUERY (0)\&.
+Встановити [відновити] для коду дії повідомлення DNS вказане
+значення\&. Типовим значенням є QUERY (0)\&.
 .RE
 .PP
 \fB+[no]qr\fP
 .RS 4
-Toggles the display of the query message as it is sent\&. By default, the
-query is not printed\&.
+Увімкнути або вимкнути виведення повідомлення запиту так, як його було
+надіслано\&. Типово, запит не буде виведено\&.
 .RE
 .PP
 \fB+[no]question\fP
 .RS 4
-Toggles the display of the question section of a query when an answer is
-returned\&. The default is to print the question section as a comment\&.
+Вмикає або вимикає виведення розділу питання запиту, якщо повернуто
+відповідь\&. Типово, розділ питання буде виведено як коментар\&.
 .RE
 .PP
 \fB+[no]rdflag\fP
@@ -545,207 +572,215 @@ returned\&. The default is to print the question section as a comment\&.
 .PP
 \fB+[no]recurse\fP
 .RS 4
-Toggle the setting of the RD (recursion desired) bit in the query\&. This
-bit is set by default, which means \fBdig\fP normally sends recursive
-queries\&. Recursion is automatically disabled when using the \fI+nssearch\fP
-option, and when using \fI+trace\fP except for an initial recursive query to
-get the list of root servers\&.
+Увімкнути або вимкнути встановлення біта RD (бажана рекурсія) у
+запиті\&. Типово, це біт встановлено, що означає, що \fBdig\fP надсилатиме
+рекурсивні запити\&. Рекурсію буде автоматично вимкнено, якщо використано
+параметр \fI+nssearch\fP і при використанні \fI+trace\fP, окрім початкового
+рекурсивного запиту для отримання списку кореневих серверів\&.
 .RE
 .PP
 \fB+retry=T\fP
 .RS 4
-Sets the number of times to retry UDP queries to server to \fIT\fP instead of
-the default, 2\&. Unlike \fI+tries\fP, this does not include the initial
-query\&.
+Встановити для кількості повторних спроб запитів UDP до сервера значення
+\fIT\fP, замість типового, 2\&. На відміну від \fI+tries\fP, початковий запит
+включено не буде\&.
 .RE
 .PP
 \fB+[no]rrcomments\fP
 .RS 4
-Toggle the display of per\-record comments in the output (for example,
-human\-readable key information about DNSKEY records)\&. The default is not
-to print record comments unless multiline mode is active\&.
+Увімкнути або вимкнути виведення коментарів для окремих записів (наприклад,
+зручних для читання відомостей щодо ключа для записів DNSKEY)\&. Типово,
+якщо не увімкнено багаторядковий режим, виведення коментарів до записів не
+відбуватиметься\&.
 .RE
 .PP
 \fB+[no]search\fP
 .RS 4
-Use [do not use] the search list defined by the searchlist or domain
-directive in resolv\&.conf (if any)\&. The search list is not used by
-default\&.
+Використати [не використовувати] список пошуку, який визначено інструкцією
+searchlist або domain у resolv\&.conf (якщо такі існують)\&. Типово, список
+пошуку використано не буде\&.
 .sp
-\*(Aqndots\*(Aq from resolv\&.conf (default 1) which may be overridden by
-\fI+ndots\fP determines if the name will be treated as relative or not and
-hence whether a search is eventually performed or not\&.
+\*(Aqndots\*(Aq з resolv\&.conf (типове значення — 1), яке можна
+перевизначити за допомогою \fI+ndots\fP, визначає, чи вважатиметься назва
+відносною, а отже, чи буде врешті виконано пошук\&.
 .RE
 .PP
 \fB+[no]short\fP
 .RS 4
-Provide a terse answer\&. The default is to print the answer in a verbose
-form\&. This option always has global effect; it cannot be set globally and
-then overridden on a per\-lookup basis\&.
+Надати коротку відповідь\&. Типовим є виведення відповіді у докладній
+формі\&. Цей параметр завжди працює на загальному рівні; не можна встановити
+його на загальному рівні, а потім перевизначити для окремого пошуку\&.
 .RE
 .PP
 \fB+[no]showsearch\fP
 .RS 4
-Perform [do not perform] a search showing intermediate results\&.
+Виконати [не виконувати] пошук із показом проміжних результатів\&.
 .RE
 .PP
 \fB+[no]sigchase\fP
 .RS 4
-Chase DNSSEC signature chains\&. Requires dig be compiled with
-\-DDIG_SIGCHASE\&. This feature is deprecated\&. Use \fBdelv\fP instead\&.
+Переходити ланцюжками підписів DNSSEC\&. Потребує збирання dig з
+\-DDIG_SIGCHASE\&. Ця можливість вважається застарілою\&. Користуйтеся
+замість неї \fBdelv\fP\&.
 .RE
 .PP
 \fB+split=W\fP
 .RS 4
-Split long hex\- or base64\-formatted fields in resource records into chunks
-of \fIW\fP characters (where \fIW\fP is rounded up to the nearest multiple of
-4)\&.  \fI+nosplit\fP or \fI+split=0\fP causes fields not to be split at
-all\&. The default is 56 characters, or 44 characters when multiline mode is
-active\&.
+Поділити довгі шістнадцяткові поля або поля у форматі base64 у записах
+ресурсів на фрагменти у \fIW\fP символів (де \fIW\fP буде округлено вгору до
+найближчого кратного до 4 цілого числа)\&.  \fI+nosplit\fP або \fI+split=0\fP
+призведе до того, що поля не ділитимуться взагалі\&. Типовим є значення у 56
+символів або 44 символи, якщо увімкнено багаторядковий режим\&.
 .RE
 .PP
 \fB+[no]stats\fP
 .RS 4
-Toggles the printing of statistics: when the query was made, the size of the
-reply and so on\&. The default behavior is to print the query statistics as
-a comment after each lookup\&.
+Увімкнути або вимкнути виведення статистичних даних: при виконанні запиту,
+розміру відповіді тощо\&. Типовим є виведення статистики запиту у форматі
+коментаря після кожного пошуку\&.
 .RE
 .PP
 \fB+[no]subnet=адреса[/довжина\-префікса]\fP
 .RS 4
-Send (don\*(Aqt send) an EDNS Client Subnet option with the specified IP
-address or network prefix\&.
+Надіслати (не надсилати) параметр підмережі клієнта EDNS із вказаною
+IP\-адресою і префіксом мережі\&.
 .sp
-\fBdig +subnet=0\&.0\&.0\&.0/0\fP, or simply \fBdig +subnet=0\fP for short, sends
-an EDNS CLIENT\-SUBNET option with an empty address and a source
-prefix\-length of zero, which signals a resolver that the client\*(Aqs
-address information must \fInot\fP be used when resolving this query\&.
+\fBdig +subnet=0\&.0\&.0\&.0/0\fP або просто \fBdig +subnet=0\fP надсилає параметр
+EDNS CLIENT\-SUBNET із порожньою адресою і нульовою довжиною префікса
+джерела, що сигналізує засобу пошуку, що \fIне\fP слід користуватися даними
+щодо адреси клієнта при обробці цього запиту\&.
 .RE
 .PP
 \fB+[no]tcp\fP
 .RS 4
-Use [do not use] TCP when querying name servers\&. The default behavior is
-to use UDP unless a type any or ixfr=N query is requested, in which case the
-default is TCP\&. AXFR queries always use TCP\&.
+Використати [не використовувати] TCP при опитуванні серверів назв\&. Типовою
+поведінкою є використання UDP, якщо не використано запит типу any або
+ixfr=N, для яких типовим є TCP\&. Для запитів AXFR завжди використовують
+TCP\&.
 .RE
 .PP
 \fB+timeout=T\fP
 .RS 4
-Sets the timeout for a query to \fIT\fP seconds\&. The default timeout is 5
-seconds\&. An attempt to set \fIT\fP to less than 1 will result in a query
-timeout of 1 second being applied\&.
+Встановити для часу очікування на результати запиту значення у \fIT\fP
+секунд\&. Типовим є час очікування у 5 секунд\&. Спроби встановити для \fIT\fP
+значення, яке є меншим за 1, призведуть до встановлення часу очікування на
+результати запиту в 1 секунду\&.
 .RE
 .PP
 \fB+[no]topdown\fP
 .RS 4
-When chasing DNSSEC signature chains perform a top\-down
-validation\&. Requires dig be compiled with \-DDIG_SIGCHASE\&. This feature
-is deprecated\&. Use \fBdelv\fP instead\&.
+При переході ланцюжками підписів DNSSEC виконувати перевірку
+згори\-вниз\&. Потребує збирання dig з \-DDIG_SIGCHASE\&. Ця можливість
+вважається застарілою\&. Користуйтеся замість неї \fBdelv\fP\&.
 .RE
 .PP
 \fB+[no]trace\fP
 .RS 4
-Toggle tracing of the delegation path from the root name servers for the
-name being looked up\&. Tracing is disabled by default\&. When tracing is
-enabled, \fBdig\fP makes iterative queries to resolve the name being looked
-up\&. It will follow referrals from the root servers, showing the answer
-from each server that was used to resolve the lookup\&.
+Увімкнути або вимкнути трасування шляху делегування від кореневих серверів
+назв для назви, пошук якої виконується\&. Типово, трасування
+вимкнено\&. Якщо трасування увімкнено, \fBdig\fP виконуватиме ітеративні запити
+для назви, пошук даних якої виконується\&. Програма йтиме за спрямуваннями
+від кореневих серверів, виводячи дані кожного сервера, який було використано
+для виконання пошуку\&.
 .sp
-If @server is also specified, it affects only the initial query for the root
-zone name servers\&.
+Якщо також вказано @сервер, стосуватиметься лише початкового запису щодо
+серверів назв кореневої зони\&.
 .sp
-\fB+dnssec\fP is also set when +trace is set to better emulate the default
-queries from a nameserver\&.
+\fB+dnssec\fP також буде встановлено, якщо встановлено +trace, щоб краще
+імітувати типові запити від сервера назв\&.
 .RE
 .PP
 \fB+tries=T\fP
 .RS 4
-Sets the number of times to try UDP queries to server to \fIT\fP instead of the
-default, 3\&. If \fIT\fP is less than or equal to zero, the number of tries is
-silently rounded up to 1\&.
+Встановити для кількості повторних спроб запитів UDP до сервера значення
+\fIT\fP, замість типового, 3\&. Якщо значення \fIT\fP є меншим за нуль або рівним
+нулеві, кількість спроб без повідомлень буде змінено на 1\&.
 .RE
 .PP
 \fB+trusted\-key=####\fP
 .RS 4
-Specifies a file containing trusted keys to be used with
-\fB+sigchase\fP\&. Each DNSKEY record must be on its own line\&.
+Визначає файл, який містить довірені ключів, які слід використовувати з
+\fB+sigchase\fP\&. Кожен запис DNSKEY має бути вказано у власному рядку\&.
 .sp
-If not specified, \fBdig\fP will look for /etc/trusted\-key\&.key then
-trusted\-key\&.key in the current directory\&.
+Якщо не вказано, \fBdig\fP шукатиме /etc/trusted\-key\&.key, а потім
+trusted\-key\&.key у поточному каталозі\&.
 .sp
-Requires dig be compiled with \-DDIG_SIGCHASE\&. This feature is
-deprecated\&. Use \fBdelv\fP instead\&.
+Потребує збирання dig з \-DDIG_SIGCHASE\&. Ця можливість вважається
+застарілою\&. Користуйтеся замість неї \fBdelv\fP\&.
 .RE
 .PP
 \fB+[no]ttlid\fP
 .RS 4
-Display [do not display] the TTL when printing the record\&.
+Вивести [не виводити] TTL при виведенні запису\&.
 .RE
 .PP
 \fB+[no]ttlunits\fP
 .RS 4
-Display [do not display] the TTL in friendly human\-readable time units of
-"s", "m", "h", "d", and "w", representing seconds, minutes, hours, days and
-weeks\&. Implies +ttlid\&.
+Вивести [не виводити] TTL у зручному для читанні форматі одиниць часу з «s»,
+«m», «h», «d» і «w» на позначення секунд, хвилин, годин, днів і
+тижнів\&. Неявно задає +ttlid\&.
 .RE
 .PP
 \fB+[no]unknownformat\fP
 .RS 4
-Print all RDATA in unknown RR type presentation format (RFC 3597)\&. The
-default is to print RDATA for known types in the type\*(Aqs presentation
-format\&.
+Вивести усі RDATA у форматі представлення невідомого типу RR (RFC
+3597)\&. Типовим є виведення RDATA для відомих типів у форматі представлення
+відповідного типу\&.
 .RE
 .PP
 \fB+[no]vc\fP
 .RS 4
-Use [do not use] TCP when querying name servers\&. This alternate syntax to
-\fI+[no]tcp\fP is provided for backwards compatibility\&. The "vc" stands for
-"virtual circuit"\&.
+Використати [не використовувати] TCP при опитуванні серверів назв\&. Цей
+альтернативний до \fI+[no]tcp\fP синтаксис реалізовано для забезпечення
+зворотної сумісності\&. Тут «vc» є абревіатурою від «virtual circuit»
+(«віртуальний цикл»)\&.
 .RE
 .PP
 \fB+[no]zflag\fP
 .RS 4
-Set [do not set] the last unassigned DNS header flag in a DNS query\&. This
-flag is off by default\&.
+Встановити [не встановлювати] прапорець останнього непризначеного заголовка
+DNS у запиті DNS\&. Типово, цей прапорець вимкнено\&.
 .RE
 .SH "КРАТНІ ЗАПИТИ"
 .PP
-The BIND 9 implementation of \fBdig \fP supports specifying multiple queries on
-the command line (in addition to supporting the \fB\-f\fP batch file
-option)\&. Each of those queries can be supplied with its own set of flags,
-options and query options\&.
+У реалізації BIND 9 у \fBdig\fP передбачено підтримку задання декількох запитів
+у одному рядку команди (на додачу до підтримки параметра файла пакетної
+обробки, \fB\-f\fP)\&. Кожен із запитів може бути надано із власним набором
+прапорців та параметрів запиту\&.
 .PP
-In this case, each \fIquery\fP argument represent an individual query in the
-command\-line syntax described above\&. Each consists of any of the standard
-options and flags, the name to be looked up, an optional query type and
-class and any query options that should be applied to that query\&.
+У цьому випадку, кожен аргумент \fIзапит\fP відповідає окремому запиту у
+синтаксисів рядка команди, описаному вище\&. Кожен складається з будь\-яких
+стандартних параметрів і прапорців, назви, для якої відбувається пошук,
+необов'язкового типу та класу запиту та будь\-яких параметрів, які має бути
+застосовано до запиту\&.
 .PP
-A global set of query options, which should be applied to all queries, can
-also be supplied\&. These global query options must precede the first tuple
-of name, class, type, options, flags, and query options supplied on the
-command line\&. Any global query options (except the \fB+[no]cmd\fP option) can
-be overridden by a query\-specific set of query options\&. For example:
+Також може бути вказано загальний набір параметрів запиту, який слід
+застосувати до усіх запитів\&. Ці загальні параметри слід вказати перед
+першим кортежем з назви, класу, типу, параметрів, прапорців та параметрів
+запиту у рядку команди\&. Усі загальні параметри запиту (окрім параметра
+\fB+[no]cmd\fP) може бути перевизначено набором параметрів запиту на рівні
+окремого запиту\&. Приклад:
 .sp
 dig +qr www\&.isc\&.org any \-x 127\&.0\&.0\&.1 isc\&.org ns +noqr
 .sp
-shows how \fBdig\fP could be used from the command line to make three lookups:
-an ANY query for www\&.isc\&.org, a reverse lookup of 127\&.0\&.0\&.1 and a
-query for the NS records of isc\&.org\&. A global query option of \fI+qr\fP is
-applied, so that \fBdig\fP shows the initial query it made for each
-lookup\&. The final query has a local query option of \fI+noqr\fP which means
-that \fBdig\fP will not print the initial query when it looks up the NS records
-for isc\&.org\&.
+показує, як можна скористатися \fBdig\fP з командного рядка для виконання трьох
+пошуків: запиту ANY для www\&.isc\&.org, зворотного пошуку 127\&.0\&.0\&.1 і
+запиту щодо записів NS для isc\&.org\&. Застосовано параметр запиту \fI+qr\fP,
+отже, \fBdig\fP виведе початковий запит для кожного пошуку\&. Для останнього
+запиту використано параметр локального запиту \fI+noqr\fP, що означає, що
+\fBdig\fP не виводитиме початковий запит при пошуку записів NS для isc\&.org\&.
 .SH "ПІДТРИМКА IDN"
 .PP
-If \fBdig\fP has been built with IDN (internationalized domain name) support,
-it can accept and display non\-ASCII domain names\&.  \fBdig\fP appropriately
-converts character encoding of domain name before sending a request to DNS
-server or displaying a reply from the server\&. If you\*(Aqd like to turn
-off the IDN support for some reason, use parameters \fI+noidnin\fP and
-\fI+noidnout\fP or define the \fBIDN_DISABLE\fP environment variable\&.
+Якщо \fBdig\fP було зібрано із підтримкою IDN (internationalized domain name
+або міжнародних назв доменів), програма може приймати і виводити назви
+доменів, які містять символи поза ASCII\&. \fBdig\fP належним чином виконує
+перетворення кодувань назв доменів до надсилання запитів до серверів DNS або
+виведення відповідей від серверів\&. Якщо з якоїсь причини ви хочете
+вимкнути підтримку IDN, скористайтеся параметрами \fI+noidnin\fP і \fI+noidnout\fP
+або визначте змінну середовища \fBIDN_DISABLE\fP\&.
 .SH "ПОВЕРНУТІ КОДИ"
 .PP
-\fBDig\fP return codes are:
+Коди повернення \fBdig\fP є такими:
 .PP
 0
 .RS 4

@@ -38,60 +38,62 @@
 .\" * MAIN CONTENT STARTS HERE *
 .\" -----------------------------------------------------------------
 .SH НАЗВА
-nslookup \- query Internet name servers interactively
+nslookup — інтерактивне опитування серверів назв інтернету
 .SH "КОРОТКИЙ ОПИС"
 .HP \w'\fBnslookup\fR\ 'u
 \fBnslookup\fP [\fB\-параметр\fP] [назва\ |\ \-] [сервер]
 .SH ОПИС
 .PP
-\fBNslookup\fP is a program to query Internet domain name servers\&.
-\fBNslookup\fP has two modes: interactive and non\-interactive\&. Interactive
-mode allows the user to query name servers for information about various
-hosts and domains or to print a list of hosts in a domain\&. Non\-interactive
-mode is used to print just the name and requested information for a host or
-domain\&.
+\fBNslookup\fP — програма для опитування серверів назв доменів
+інтернету\&. \fBNslookup\fP працює у двох режимах: інтерактивному і
+неінтерактивному\&. В інтерактивному режимі користувач може надсилати запити
+на сервери назв щодо відомостей про різноманітні вузли і домени або наказати
+програмі вивести список вузлів у домені\&. У неінтерактивному режимі
+програмою можна скористатися для виведення назви і потрібних відомостей щодо
+вузла або домену\&.
 .SH АРГУМЕНТ
 .PP
-Interactive mode is entered in the following cases:
+Програма входить до інтерактивного режиму у таких випадках:
 .sp
 .RS 4
 .sp -1
 .IP "  1." 4.2
-when no arguments are given (the default name server will be used)
+якщо аргумент не задано (буде використано типовий сервер назв)
 .RE
 .sp
 .RS 4
 .sp -1
 .IP "  2." 4.2
-when the first argument is a hyphen (\-) and the second argument is the host
-name or Internet address of a name server\&.
+якщо першим аргументом є дефіс (\-), другим аргументом є назва вузла або
+інтернет\-адреса сервера назв\&.
 .RE
 .PP
-Non\-interactive mode is used when the name or Internet address of the host
-to be looked up is given as the first argument\&. The optional second
-argument specifies the host name or address of a name server\&.
+Неінтерактивний режим використовують, коли назву або інтернет\-адресу вузла,
+пошук якого відбувається, задано як перший аргумент\&. Необов'язковий другий
+аргумент вказує назву або адресу вузла сервера назв\&.
 .PP
-Options can also be specified on the command line if they precede the
-arguments and are prefixed with a hyphen\&. For example, to change the
-default query type to host information, and the initial timeout to 10
-seconds, type:
+Можна також вказати параметри командного рядка: їх слід розташовувати перед
+аргументами і додавати перед ними дефіс\&. Наприклад, щоб змінити
+стандартний тип запиту на отримання даних щодо вузла та встановити
+початковий час очікування на дані у 10 секунд, введіть таку команду:
 .sp
 .RS 4
 nslookup \-query=hinfo \-timeout=10
 .sp
 .PP
-The \fB\-version\fP option causes \fBnslookup\fP to print the version number and
-immediately exits\&.
+Використання параметра \fB\-version\fP призведе до виведення \fBnslookup\fP номера
+версії і негайного завершення роботи програми після цього\&.
 .SH "ІНТЕРАКТИВНІ КОМАНДИ"
 .PP
 \fBhost\fP [сервер]
 .RS 4
-Look up information for host using the current default server or using
-server, if specified\&. If host is an Internet address and the query type is
-A or PTR, the name of the host is returned\&. If host is a name and does not
-have a trailing period, the search list is used to qualify the name\&.
+Шукати відомості щодо вузла за допомогою поточного типового сервера або за
+допомогою вказаного сервера\&. Якщо вузол є інтернет\-адресою і типом запиту
+є A або PTR, буде повернуто назву вузла\&. Якщо вузол вказано за назвою без
+кінцевої крапки, для кваліфікації назви буде використано список пошуку\&.
 .sp
-To look up a host not in the current domain, append a period to the name\&.
+Для пошуку вузла, який не перебуває у поточному домені, допишіть крапку до
+назви\&.
 .RE
 .PP
 \fBserver\fP \fIдомен\fP
@@ -100,10 +102,11 @@ To look up a host not in the current domain, append a period to the name\&.
 .PP
 \fBlserver\fP \fIдомен\fP
 .RS 4
-Change the default server to \fIdomain\fP; \fBlserver\fP uses the initial server
-to look up information about \fIdomain\fP, while \fBserver\fP uses the current
-default server\&. If an authoritative answer can\*(Aqt be found, the names
-of servers that might have the answer are returned\&.
+Змінити типовий сервер на \fIдомен\fP; варіант \fBlserver\fP призведе до
+використання початкового сервера для пошуку відомостей щодо \fIдомену\fP, а
+варіант \fBserver\fP — до використання поточного типового сервера\&. Якщо не
+вдасться знайти уповноваженої відповіді, буде повернуто назви серверів, які
+можуть мати відповідь\&.
 .RE
 .PP
 \fBroot\fP
@@ -143,33 +146,33 @@ of servers that might have the answer are returned\&.
 .PP
 \fBset\fP \fIключове_слово\fP\fI[=значення]\fP
 .RS 4
-This command is used to change state information that affects the
-lookups\&. Valid keywords are:
+Цю команду використовують для зміни даних щодо стану, які впливають на
+пошук\&. Коректні ключові слова:
 .PP
 \fBall\fP
 .RS 4
-Prints the current values of the frequently used options to
-\fBset\fP\&. Information about the current default server and host is also
-printed\&.
+Вивести поточні значення часто використовуваних параметрів до
+\fBset\fP\&. Також буде виведено відомості щодо поточного типового сервера і
+вузла\&.
 .RE
 .PP
 \fBclass=\fP\fIзначення\fP
 .RS 4
-Change the query class to one of:
+Змінити клас запиту на один з таких:
 .PP
 \fBIN\fP
 .RS 4
-the Internet class
+клас Internet
 .RE
 .PP
 \fBCH\fP
 .RS 4
-the Chaos class
+клас Chaos
 .RE
 .PP
 \fBHS\fP
 .RS 4
-the Hesiod class
+клас Hesiod
 .RE
 .PP
 \fBANY\fP
@@ -177,46 +180,46 @@ the Hesiod class
 wildcard
 .RE
 .sp
-The class specifies the protocol group of the information\&.
+Клас визначає групу протоколів для даних\&.
 .sp
-(Default = IN; abbreviation = cl)
+(Типове значення = IN; скорочення = cl)
 .RE
 .PP
 \fI[no]\fP\fBdebug\fP
 .RS 4
-Turn on or off the display of the full response packet and any intermediate
-response packets when searching\&.
+Увімкнути або вимкнути показ повного пакета відповіді та усіх проміжних
+пакетів відповіді при пошуку\&.
 .sp
-(Default = nodebug; abbreviation = [no]deb)
+(Типове значення = nodebug; скорочення = [no]deb)
 .RE
 .PP
 \fI[no]\fP\fBd2\fP
 .RS 4
-Turn debugging mode on or off\&. This displays more about what nslookup is
-doing\&.
+Увімкнути або вимкнути режим діагностики\&. Так можна увімкнути показ
+додаткових даних щодо дій nslookup\&.
 .sp
 (Типове значення = nod2)
 .RE
 .PP
 \fBdomain=\fP\fIназва\fP
 .RS 4
-Sets the search list to \fIname\fP\&.
+Встановити список пошуку у значення \fIназва\fP\&.
 .RE
 .PP
 \fI[no]\fP\fBsearch\fP
 .RS 4
-If the lookup request contains at least one period but doesn\*(Aqt end with
-a trailing period, append the domain names in the domain search list to the
-request until an answer is received\&.
+Якщо запит щодо пошуку містить принаймні одну крапку, але не завершується
+крапкою, дописувати назви доменів зі списку пошуку доменів до запиту, аж
+доки не буде отримано відповіді\&.
 .sp
 (Типове значення = search)
 .RE
 .PP
 \fBport=\fP\fIзначення\fP
 .RS 4
-Change the default TCP/UDP name server port to \fIvalue\fP\&.
+Змінити типовий порт сервера назв TCP/UDP на порт із номером \fIзначення\fP\&.
 .sp
-(Default = 53; abbreviation = po)
+(Типове значення = 53; скорочення = po)
 .RE
 .PP
 \fBquerytype=\fP\fIзначення\fP
@@ -227,48 +230,46 @@ Change the default TCP/UDP name server port to \fIvalue\fP\&.
 .RS 4
 Змінити тип інформаційного запиту\&.
 .sp
-(Default = A and then AAAA; abbreviations = q, ty)
+(Типове значення = A, а потім AAAA; скорочення = q, ty)
 .sp
-\fBNote:\fP It is only possible to specify one query type, only the default
-behavior looks up both when an alternative is not specified\&.
+\fBЗауваження:\fP можна вказувати лише один тип запиту, лише типова поведінка
+призводить до пошуку за обома, якщо не вказано альтернативу\&.
 .RE
 .PP
 \fI[no]\fP\fBrecurse\fP
 .RS 4
-Tell the name server to query other servers if it does not have the
-information\&.
+Наказати серверу назв опитати інші сервери, якщо на ньому немає даних\&.
 .sp
-(Default = recurse; abbreviation = [no]rec)
+(Типове значення = recurse; скорочення = [no]rec)
 .RE
 .PP
-\fBndots=\fP\fIчисло\fP
+\fBndots=\fP\fIкількість\fP
 .RS 4
-Set the number of dots (label separators) in a domain that will disable
-searching\&. Absolute names always stop searching\&.
+Встановити кількість крапок (роздільників міток) у домені, яка вимикає
+пошук\&. Для абсолютних назв пошук припиняється завжди\&.
 .RE
 .PP
 \fBretry=\fP\fIчисло\fP
 .RS 4
-Set the number of retries to number\&.
+Встановити кількість повторних спроб\&.
 .RE
 .PP
 \fBtimeout=\fP\fIчисло\fP
 .RS 4
-Change the initial timeout interval for waiting for a reply to number
-seconds\&.
+Змінити початковий час очікування на відповідь у секундах\&.
 .RE
 .PP
 \fI[no]\fP\fBvc\fP
 .RS 4
-Always use a virtual circuit when sending requests to the server\&.
+Завжди використовувати віртуальне коло при надсиланні запитів на сервер\&.
 .sp
 (Типове значення = novc)
 .RE
 .PP
 \fI[no]\fP\fBfail\fP
 .RS 4
-Try the next nameserver if a nameserver responds with SERVFAIL or a referral
-(nofail) or terminate query (fail) on such a response\&.
+Спробувати наступний сервер назв, якщо сервер назв відповідає SERVFAIL,
+спрямуванням (nofail) або перериванням запиту (fail) при такій відповіді\&.
 .sp
 (Типове значення = nofail)
 .RE
@@ -276,26 +277,29 @@ Try the next nameserver if a nameserver responds with SERVFAIL or a referral
 .RE
 .SH "ПОВЕРНЕНІ ЗНАЧЕННЯ"
 .PP
-\fBnslookup\fP returns with an exit status of 1 if any query failed, and 0
-otherwise\&.
+\fBnslookup\fP повертає керування зі станом виходу 1, якщо сталася якась
+помилка запиту, і станом виходу 0 в інших випадках\&.
 .SH "ПІДТРИМКА IDN"
 .PP
-If \fBnslookup\fP has been built with IDN (internationalized domain name)
-support, it can accept and display non\-ASCII domain names\&.  \fBnslookup\fP
-appropriately converts character encoding of domain name before sending a
-request to DNS server or displaying a reply from the server\&. If you\*(Aqd
-like to turn off the IDN support for some reason, define the \fBIDN_DISABLE\fP
-environment variable\&. The IDN support is disabled if the variable is set
-when \fBnslookup\fP runs or when the standard output is not a tty\&.
+Якщо \fBnslookup\fP було зібрано з підтримкою IDN (internationalized domain
+name або інтернаціоналізованих назв доменів), програма може приймати або
+показувати назви доменів, що містять символи поза ASCII\&. \fBnslookup\fP
+відповідним чином перетворює кодування символів назви домену до надсилання
+запиту до сервера DNS або показу відповіді від сервера\&. Якщо з певної
+причини ви хочете вимкнути підтримку IDN, визначте змінну середовища
+\fBIDN_DISABLE\fP\&. Підтримку IDN буде вимкнено, якщо значення змінної
+встановлено на момент запуску \fBnslookup\fP, або якщо стандартним виведенням
+не є термінал (tty)\&.
 .SH "ПІДТРИМКА IDN"
 .PP
-If \fBnslookup\fP has been built with IDN (internationalized domain name)
-support, it can accept and display non\-ASCII domain names\&.  \fBnslookup\fP
-appropriately converts character encoding of domain name before sending a
-request to DNS server or displaying a reply from the server\&. If you\*(Aqd
-like to turn off the IDN support for some reason, define the \fBIDN_DISABLE\fP
-environment variable\&. The IDN support is disabled if the variable is set
-when \fBnslookup\fP runs\&.
+Якщо \fBnslookup\fP було зібрано з підтримкою IDN (internationalized domain
+name або інтернаціоналізованих назв доменів), програма може приймати або
+показувати назви доменів, що містять символи поза ASCII\&. \fBnslookup\fP
+відповідним чином перетворює кодування символів назви домену до надсилання
+запиту до сервера DNS або показу відповіді від сервера\&. Якщо з певної
+причини ви хочете вимкнути підтримку IDN, визначте змінну середовища
+\fBIDN_DISABLE\fP\&. Підтримку IDN буде вимкнено, якщо значення змінної
+встановлено на момент запуску \fBnslookup\fP\&.
 .SH ФАЙЛИ
 .PP
 /etc/resolv\&.conf
