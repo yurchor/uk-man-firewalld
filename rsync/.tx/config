@@ -1,0 +1,8 @@
+[main]
+host = https://www.transifex.com
+
+[ukrainian-man-translations.rsync-man-pages]
+file_filter = <lang>.po
+source_file = rsync.pot
+source_lang = en
+type = PO
