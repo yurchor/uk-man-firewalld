@@ -72,16 +72,18 @@ Rsync знаходить файли, які має бути передано, з
 може використовувати будь\-яку прозору віддалену оболонку, включно із ssh та
 rsh
 .IP o
-does not require super\-user privileges
+не потребує привілеїв надкористувача
 .IP o
-pipelining of file transfers to minimize latency costs
+канальне передавання файлів для мінімізації латентності
 .IP o
-support for anonymous or authenticated rsync daemons (ideal for mirroring)
+підтримка анонімних фонових служб та служб із розпізнаванням rsync (ідеально
+для створення дзеркал)
 .P
 .SH ЗАГАЛЬНЕ
 .P
-Rsync copies files either to or from a remote host, or locally on the
-current host (it does not support copying files between two remote hosts).
+Rsync копіює файли на віддалений вузол або з віддаленого вузла чи локально
+на поточному вузлі (підтримки копіювання файлів між двома віддаленими
+вузлами не передбачено).
 .P
 There are two different ways for rsync to contact a remote system: using a
 remote\-shell program as the transport (such as ssh or rsh) or contacting an

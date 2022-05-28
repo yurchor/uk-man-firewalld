@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: rsync documentation 1.0\n"
 "Report-Msgid-Bugs-To: trans-uk@lists.fedoraproject.org\n"
 "POT-Creation-Date: 2022-05-27 15:22+0300\n"
-"PO-Revision-Date: 2022-05-27 20:10+0300\n"
+"PO-Revision-Date: 2022-05-28 08:56+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "Language: uk\n"
@@ -227,18 +227,20 @@ msgstr ""
 #. type: Plain text
 #: ./rsync.1:65
 msgid "does not require super-user privileges"
-msgstr ""
+msgstr "не потребує привілеїв надкористувача"
 
 #. type: Plain text
 #: ./rsync.1:67
 msgid "pipelining of file transfers to minimize latency costs"
-msgstr ""
+msgstr "канальне передавання файлів для мінімізації латентності"
 
 #. type: Plain text
 #: ./rsync.1:69
 msgid ""
 "support for anonymous or authenticated rsync daemons (ideal for mirroring)"
 msgstr ""
+"підтримка анонімних фонових служб та служб із розпізнаванням rsync (ідеально"
+" для створення дзеркал)"
 
 #. type: SH
 #: ./rsync.1:70
@@ -252,6 +254,9 @@ msgid ""
 "Rsync copies files either to or from a remote host, or locally on the current"
 " host (it does not support copying files between two remote hosts)."
 msgstr ""
+"Rsync копіює файли на віддалений вузол або з віддаленого вузла чи локально на"
+" поточному вузлі (підтримки копіювання файлів між двома віддаленими вузлами"
+" не передбачено)."
 
 #. type: Plain text
 #: ./rsync.1:84
@@ -266,6 +271,17 @@ msgid ""
 " RSYNC-DAEMON FEATURES VIA A REMOTE-SHELL CONNECTION section for an exception"
 " to this latter rule)."
 msgstr ""
+"Передбачено два різних способи зв'язку rsync із віддаленою системою: за"
+" допомогою каналу передавання даних програми віддаленої оболонки (зокрема ssh"
+" або rsh), або за допомогою встановлення зв'язку із фоновою службою rsync"
+" безпосередньо за допомогою TCP. Канал передавання даних віддаленої оболонки"
+" буде використано, якщо у записах шляхів джерела і призначення міститься"
+" двокрапка-роздільник (:) після специфікації вузла. Зв'язок із фоновою"
+" службою rsync безпосередньо відбувається, коли у записах шляхів джерела і"
+" призначення міститься роздільник — подвійна двокрапка (::) після"
+" специфікації вузла, або вказано адресу rsync:// (див. також розділ"
+" ВИКОРИСТАННЯ МОЖЛИВОСТЕЙ ФОНОВОЇ СЛУЖБИ RSYNC ЗА ДОПОМОГОЮ З'ЄДНАННЯ"
+" ВІДДАЛЕНОЇ ОБОЛОНКИ за виключенням цього останнього правила)."
 
 #. type: Plain text
 #: ./rsync.1:87
@@ -273,6 +289,8 @@ msgid ""
 "As a special case, if a single source arg is specified without a destination,"
 " the files are listed in an output format similar to \"B<ls\\ -l>\"."
 msgstr ""
+"Окремим випадком, визначення лише аргументу джерела, без призначення. У цьому"
+" випадку буде виведено список файлів у форматі, подібному до «B<ls\\ -l>»."
 
 #. type: Plain text
 #: ./rsync.1:90
@@ -280,6 +298,9 @@ msgid ""
 "As expected, if neither the source or destination path specify a remote host,"
 " the copy occurs locally (see also the B<--list-only> option)."
 msgstr ""
+"Як і слід очікувати, якщо ні шлях джерела, ні шлях призначення не вказують на"
+" віддалений вузол, копіювання виконуватиметься локально (див. також параметр"
+" B<--list-only>)."
 
 #. type: Plain text
 #: ./rsync.1:94
@@ -289,6 +310,10 @@ msgid ""
 " server, but a server can be either a daemon or a remote-shell spawned"
 " process."
 msgstr ""
+"У rsync локальним боком є клієнт, а віддаленим боком — сервер. Не слід"
+" плутати сервер із фоновою службою rsync. Фонова служба завжди є сервером,"
+" але сервер може бути як фоновою службою, так і породженим віддаленою"
+" оболонкою процесом."
 
 #. type: SH
 #: ./rsync.1:95
@@ -299,7 +324,7 @@ msgstr "НАЛАШТУВАННЯ"
 #. type: Plain text
 #: ./rsync.1:98
 msgid "See the file README.md for installation instructions."
-msgstr ""
+msgstr "Див. файл README.md, де наведено настанови щодо встановлення."
 
 #. type: Plain text
 #: ./rsync.1:104
@@ -310,6 +335,12 @@ msgid ""
 " its communications, but it may have been configured to use a different"
 " remote shell by default, such as rsh or remsh."
 msgstr ""
+"Після встановлення ви можете скористатися rsync на будь-якому комп'ютері, до"
+" якого ви маєте доступ за допомогою віддаленої оболонки (а також комп'ютері,"
+" до якого ви можете отримати доступ за допомогою протоколу режиму фонової"
+" служби rsync). Для віддаленого передавання даних у сучасній версії rsync"
+" буде використано ssh для обміну даними, але можна налаштувати типове"
+" використання іншої віддаленої оболонки, зокрема rsh або remsh."
 
 #. type: Plain text
 #: ./rsync.1:107
