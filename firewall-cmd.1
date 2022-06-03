@@ -223,7 +223,7 @@ Print information about the zone
 [\fB\-\-permanent\fR] \fB\-\-list\-all\-zones\fR
 .RS 4
 List everything added for or enabled in all zones\&. The output format is:
-.RS 4
+.sp
 \fIzone1\fR
   interfaces: \fIinterface1\fR \&.\&.
   sources: \fIsource1\fR \&.\&.
@@ -239,6 +239,7 @@ List everything added for or enabled in all zones\&. The output format is:
         \&.\&.
 \&.\&.
               
+.sp
 .RE
 .PP
 \fB\-\-permanent\fR \fB\-\-new\-zone\fR=\fIzone\fR
@@ -830,7 +831,7 @@ with these options\&.
 Get the priority\&.
 .RE
 .PP
-\fB\-\-permanent\fR \fB\-\-policy\fR=\fIpolicy\fR \fB\-\-set\-priority\fR\fIpriority\fR
+\fB\-\-permanent\fR \fB\-\-policy\fR=\fIpolicy\fR \fB\-\-set\-priority\fR=\fIpriority\fR
 .RS 4
 Set the priority\&. The priority determines the relative ordering of policies\&. This is an integer value between \-32768 and 32767 where \-1 is the default value for new policies and 0 is reserved for internal use\&.
 .sp
@@ -971,7 +972,7 @@ is bound to zone
 .RS 4
 If the interface is under control of NetworkManager, it is at first connected to change the zone for the connection that is using the interface\&. If this fails, the zone binding is created in firewalld and the limitations below apply\&.
 .sp
-For the addion or change of interfaces that are not under control of NetworkManager: firewalld tries to change the ZONE setting in the ifcfg file, if an ifcfg file exists that is using the interface\&.
+For the addition or change of interfaces that are not under control of NetworkManager: firewalld tries to change the ZONE setting in the ifcfg file, if an ifcfg file exists that is using the interface\&.
 .sp
 Only for the removal of interfaces that are not under control of NetworkManager: firewalld is not trying to change the ZONE setting in the ifcfg file\&. This is needed to make sure that an ifdown of the interface will not result in a reset of the zone setting to the default zone\&. Only the zone binding is then removed in firewalld then\&.
 .sp
