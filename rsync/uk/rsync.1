@@ -4094,20 +4094,20 @@ rsync вибирає між виконанням простого порівня
 вказано «назва_каталогу/») і усе у каталозі (наче було вказано
 «\fBназва_каталогу/**\fP»). Таку поведінку було додано у версії 2.6.7.
 .P
-Note that, when using the \fB\-\-recursive\fP (\fB\-r\fP) option (which is implied by
-\fB\-a\fP), every subdir component of every path is visited left to right, with
-each directory having a chance for exclusion before its content.  In this
-way include/exclude patterns are applied recursively to the pathname of each
-node in the filesystem's tree (those inside the transfer).  The exclude
-patterns short\-circuit the directory traversal stage as rsync finds the
-files to send.
+Зауважте, що при використанні параметра \fB\-\-recursive\fP (\fB\-r\fP) (який
+встановлюється неявним чином \fB\-a\fP), будь\-який компонент підкаталогу
+будь\-якого шляху буде оброблено зліва праворуч, кожен каталог може бути
+виключено до його вмісту. У цей спосіб взірці включення/виключення буде
+застосовано рекурсивно до назви шляху кожного вузла в ієрархії файлової
+системи (всередині каталогу передавання). Взірці виключення замикають
+обробку на стадії обходу, коли rsync шукає файли для надсилання.
 .P
-For instance, to include "\fB/foo/bar/baz\fP", the directories "\fB/foo\fP" and
-"\fB/foo/bar\fP" must not be excluded.  Excluding one of those parent
-directories prevents the examination of its content, cutting off rsync's
-recursion into those paths and rendering the include for "\fB/foo/bar/baz\fP"
-ineffectual (since rsync can't match something it never sees in the cut\-off
-section of the directory hierarchy).
+Наприклад, щоб було включено «\fB/щось/десь/тут\fP», каталоги «\fB/щось\fP» і
+«\fB/щось/десь\fP» має бути не виключено. Виключення одного з цих батьківських
+каталогів забороняє вивчення її вмісту, обрізаючи рекурсію rsync у цих
+шляхах і усуваючи включення «\fB/щось/десь/тут\fP» (оскільки у rsync не
+встановлюється відповідність і програма ніколи не заглядатиме до обрізаної
+гілки в ієрархії каталогів).
 .P
 Концепція виключення шляхів є частково важливою при використанні кінцевого
 правила «\fB*\fP». Наприклад, це не працюватиме:
@@ -4120,20 +4120,21 @@ section of the directory hierarchy).
 .fi
 .RE
 .P
-This fails because the parent directory "some" is excluded by the '\fB*\fP'
-rule, so rsync never visits any of the files in the "some" or "some/path"
-directories.  One solution is to ask for all directories in the hierarchy to
-be included by using a single rule: "\fB+\ */\fP" (put it somewhere before the
-"\fB\-\ *\fP" rule), and perhaps use the \fB\-\-prune\-empty\-dirs\fP option.  Another
-solution is to add specific include rules for all the parent dirs that need
-to be visited.  For instance, this set of rules works fine:
+Це не працюватиме, оскільки батьківський каталог «якийсь» буде виключено
+правилом «\fB*\fP», отже rsync ніколи не бачитиме файлів у каталогах «якийсь»
+та «якийсь/шлях». Одним із вирішень цієї проблеми є включення усіх каталогів
+в ієрархії за допомогою єдиного правила включення: «\fB+\ */\fP» (розташуйте
+його десь до правила «\fB\-\ *\fP»), і, можливо, скористайтеся параметром
+\fB\-\-prune\-empty\-dirs\fP. Іншим рішенням є додавання специфічних правил
+включення для усіх батьківських каталогів, які слід обробити. Наприклад, цей
+набір правил працює:
 .RS 4
 .P
 .nf
-+ /some/
-+ /some/path/
-+ /some/path/this\-file\-is\-found
-+ /file\-also\-included
++ /якийсь/
++ /якийсь/шлях/
++ /якийсь/шлях/цей\-файл\-знайдено
++ /також\-включений\-файл
 \- *
 .fi
 .RE
@@ -4148,77 +4149,84 @@ to be visited.  For instance, this set of rules works fine:
 .IP o
 «\fB\-\ щось/\fP» виключить будь\-який каталог із назвою «щось»
 .IP o
-"\fB\-\ /foo/*/bar\fP" would exclude any file named bar which is at two levels
-below a directory named foo in the transfer\-root directory
+«\fB\-\ /щось/*/десь\fP» виключить будь\-який файл із назвою «десь», який
+перебуває на два рівні нижче каталогу із назвою «щось» у кореневому каталозі
+передавання
 .IP o
-"\fB\-\ /foo/**/bar\fP" would exclude any file named bar two or more levels
-below a directory named foo in the transfer\-root directory
+«\fB\-\ /щось/**/десь\fP» виключить будь\-який файл із назвою «десь», який
+перебуває на два рівні або більше рівнів нижче каталогу із назвою «щось» у
+кореневому каталозі передавання
 .IP o
-The combination of "\fB+\ */\fP", "\fB+\ *.c\fP", and "\fB\-\ *\fP" would include all
-directories and C source files but nothing else (see also the
-\fB\-\-prune\-empty\-dirs\fP option)
+Поєднання «\fB+\ */\fP», «\fB+\ *.c\fP» і «\fB\-\ *\fP» включить усі каталоги і усі
+файли початкового коду C, але ніяких інших об'єктів (див. також параметр
+\fB\-\-prune\-empty\-dirs\fP)
 .IP o
-The combination of "\fB+\ foo/\fP", "\fB+\ foo/bar.c\fP", and "\fB\-\ *\fP" would
-include only the foo directory and foo/bar.c (the foo directory must be
-explicitly included or it would be excluded by the "\fB*\fP")
+Комбінація «\fB+\ щось/\fP», «\fB+\ щось/десь.c\fP» і «\fB\-\ *\fP» призведе до
+включення лише каталогу «щось» і «щось/десь.c» (каталог «щось» має бути
+явним чином включено, інакше його будеи виключено правилом «\fB*\fP»)
 .P
-The following modifiers are accepted after a "\fB+\fP" or "\fB\-\fP":
+Після «\fB+\fP» або «\fB\-\fP» можна використовувати такі модифікатори:
 .P
 .IP o
-A \fB/\fP specifies that the include/exclude rule should be matched against the
-absolute pathname of the current item.  For example, "\fB\-/\ /etc/passwd\fP"
-would exclude the passwd file any time the transfer was sending files from
-the "/etc" directory, and "\-/ subdir/foo" would always exclude "foo" when it
-is in a dir named "subdir", even if "foo" is at the root of the current
-transfer.
+\fB/\fP вказує, що правило включення/виключення слід застосовувати до
+абсолютного шляху поточного запису. Наприклад, «\fB\-/\ /etc/passwd\fP»
+виключить файл passwd, коли під час передавання надсилатимуться з каталогу
+«/etc», а «\-/ підкаталог/щось» завжди виключає «щось», коли цей об'єкт
+перебуває у каталозі із назвою «підкаталог», навіть якщо «щось» перебуває у
+кореневому каталозі поточного передавання.
 .IP o
-A \fB!\fP specifies that the include/exclude should take effect if the pattern
-fails to match.  For instance, "\fB\-!\ */\fP" would exclude all
-non\-directories.
+\fB!\fP вказує, що включення/виключення має відбутися, якщо взірець не
+відповідатиме знайденому файлу. Наприклад, «\fB\-!\ */\fP» призведе до
+виключення усіх об'єктів, які не є каталогами.
 .IP o
-A \fBC\fP is used to indicate that all the global CVS\-exclude rules should be
-inserted as excludes in place of the "\-C".  No arg should follow.
+\fBC\fP використовують для позначення того, що усі загальні правила виключення
+CVS має бути вставлено як виключення на місце «\-C». Аргументів після
+вказувати не можна.
 .IP o
-An \fBs\fP is used to indicate that the rule applies to the sending side.  When
-a rule affects the sending side, it prevents files from being transferred.
-The default is for a rule to affect both sides unless \fB\-\-delete\-excluded\fP
-was specified, in which case default rules become sender\-side only.  See
-also the hide (H) and show (S) rules, which are an alternate way to specify
-sending\-side includes/excludes.
+\fBs\fP використовують для позначення того, що правило слід застосовувати на
+боці надсилання. Якщо правило стосується боку надсилання, воно запобігає
+передаванню файлів. Типово, правило стосуватиметься обох кінців з'єднання,
+якщо не вказано \fB\-\-delete\-excluded\fP. Якщо ж цей параметр вказано, типові
+правила стосуватимуться лише відправника. Див. також правила приховування
+(H) і показу (S), які є альтернативним способом вказати включення/виключення
+на боці відправника.
 .IP o
-An \fBr\fP is used to indicate that the rule applies to the receiving side.
-When a rule affects the receiving side, it prevents files from being
-deleted.  See the \fBs\fP modifier for more info.  See also the protect (P) and
-risk (R) rules, which are an alternate way to specify receiver\-side
-includes/excludes.
+\fBr\fP використовують для позначення того, що правило застосовується до кінця
+отримувача. Якщо правило стосується кінця отримання, воно забороняє
+вилучення файлів. Див. модифікатор \fBs\fP, щоб дізнатися більше. Див. також
+правила захисту (P) і ризику (R), які є альтернативним способом вказати
+включення/виключення на боці отримувача.
 .IP o
-A \fBp\fP indicates that a rule is perishable, meaning that it is ignored in
-directories that are being deleted.  For instance, the \fB\-\-cvs\-exclude\fP
-(\fB\-C\fP) option's default rules that exclude things like "CVS" and "\fB*.o\fP"
-are marked as perishable, and will not prevent a directory that was removed
-on the source from being deleted on the destination.
+\fBp\fP вказує, що правило є тимчасовим, що означає, що його буде проігноровано
+у каталогах, які вилучаються. Наприклад, типові правила параметра
+\fB\-\-cvs\-exclude\fP (\fB\-C\fP), які виключають об'єкти, подібні до «CVS» і
+«\fB*.o\fP» буде позначено як тимчасове, і воно не запобігатиме від вилучення
+каталогу, який вилучено у джерелі, на боці призначення.
 .IP o
-An \fBx\fP indicates that a rule affects xattr names in xattr copy/delete
-operations (and is thus ignored when matching file/dir names).  If no
-xattr\-matching rules are specified, a default xattr filtering rule is used
-(see the \fB\-\-xattrs\fP option).
+\fBx\fP вказує, що правило стосується назв xattr у діях з копіювання/вилучення
+(і таким чином його буде проігноровано при встановленні відповідності назв
+файлів/каталогів). Якщо правил із встановленням відповідності за xattr не
+вказано, буде використано типове правило фільтрування за xattr
+(див. параметр \fB\-\-xattrs\fP).
 .P
-.SH "MERGE\-FILE FILTER RULES"
+.SH "ПРАВИЛА ФІЛЬТРУВАННЯ ІЗ ОБ'ЄДНАННЯМ ФАЙЛІВ"
 .P
-You can merge whole files into your filter rules by specifying either a
-merge (.) or a dir\-merge (:) filter rule (as introduced in the FILTER RULES
-section above).
+Ви можете об'єднати з вашими правилами фільтрування цілі файли, якщо вкажете
+правило фільтрування об'єднання (.) або об'єднання каталогів (:) (як їх
+представлено у розділі ПРАВИЛА ФІЛЬТРУВАННЯ вище).
 .P
-There are two kinds of merged files\ \-\- single\-instance ('.') and
-per\-directory (':').  A single\-instance merge file is read one time, and its
-rules are incorporated into the filter list in the place of the "." rule.
-For per\-directory merge files, rsync will scan every directory that it
-traverses for the named file, merging its contents when the file exists into
-the current list of inherited rules.  These per\-directory rule files must be
-created on the sending side because it is the sending side that is being
-scanned for the available files to transfer.  These rule files may also need
-to be transferred to the receiving side if you want them to affect what
-files don't get deleted (see PER\-DIRECTORY RULES AND DELETE below).
+Існує два типи об'єднаних файлів\ \-\- для окремих екземплярів («.») і для
+окремих каталогів («:»). Файл об'єднання для окремих екземплярів буде
+прочитано один раз, а його правила буде вбудовано до списку фільтрування
+замість правила «.». Для файлів об'єднання для окремих каталогів rsync,
+шукаючи іменований файл, виконуватиме сканування кожного каталогу,
+об'єднуючи вміст файла, якщо файл існує у поточному списку успадкованих
+правил. Ці файли правил для окремих каталогів має бути створено на боці
+відправника, оскільки сканування щодо доступних для передавання файлів
+виконуватиметься на боці відправника. Ці файли правил можуть потребувати
+передавання на бік отримувача, якщо ви хочете, щоб вони впливали на те, які
+файли не слід вилучати (див. ОКРЕМІ ДЛЯ КАТАЛОГІВ ПРАВИЛА І ВИЛУЧЕННЯ
+нижче).
 .P
 Декілька прикладів:
 .RS 4
@@ -4232,57 +4240,63 @@ dir\-merge,n\- .non\-inherited\-per\-dir\-excludes
 .fi
 .RE
 .P
-The following modifiers are accepted after a merge or dir\-merge rule:
+Приймаються такі модифікатори після правила об'єднання або об'єднання
+каталогів:
 .P
 .IP o
-A \fB\-\fP specifies that the file should consist of only exclude patterns, with
-no other rule\-parsing except for in\-file comments.
+\fB\-\fP вказує, що файл складається лише зі взірців виключення; без іншої
+обробки правил, окрім коментарів у файлі.
 .IP o
-A \fB+\fP specifies that the file should consist of only include patterns, with
-no other rule\-parsing except for in\-file comments.
+\fB+\fP вказує, що файл складається лише зі взірців включення; без іншої
+обробки правил, окрім коментарів у файлі.
 .IP o
-A \fBC\fP is a way to specify that the file should be read in a CVS\-compatible
-manner.  This turns on 'n', 'w', and '\-', but also allows the list\-clearing
-token (!) to be specified.  If no filename is provided, ".cvsignore" is
-assumed.
+\fBC\fP є способом вказати, що файл має бути прочитано у спосіб, сумісний із
+CVS. Вмикає «n», «w» і «\-», але також уможливлює визначення мітки
+спорожнення списку (!). Якщо не вказано назви файла, буде використано назву
+«.cvsignore».
 .IP o
-A \fBe\fP will exclude the merge\-file name from the transfer; e.g.
-"dir\-merge,e \&.rules" is like "dir\-merge .rules" and "\- .rules".
+\fBe\fP виключить назву файла об'єднання зі списку передавання; наприклад,
+«dir\-merge,e \&.rules» є тим самим, що і «dir\-merge .rules» і «\- .rules».
 .IP o
-An \fBn\fP specifies that the rules are not inherited by subdirectories.
+\fBn\fP визначає, що правила не успадковуються підкаталогами.
 .IP o
-A \fBw\fP specifies that the rules are word\-split on whitespace instead of the
-normal line\-splitting.  This also turns off comments.  Note: the space that
-separates the prefix from the rule is treated specially, so "\- foo + bar" is
-parsed as two rules (assuming that prefix\-parsing wasn't also disabled).
+\fBw\fP вказує, що правила слід розділяти на слова за пробілами, а не звичайним
+поділом за рядками. Також вимикає коментарі. Зауваження: пробіл, який
+відокремлює префікс від правила, буде оброблено особливим чином, отже «\-
+щось + десь» буде оброблено як два правила (припускаємо, що не було також
+вимкнено обробку префіксів).
 .IP o
-You may also specify any of the modifiers for the "+" or "\-" rules (above)
-in order to have the rules that are read in from the file default to having
-that modifier set (except for the \fB!\fP modifier, which would not be
-useful).  For instance, "merge,\-/ .excl" would treat the contents of .excl
-as absolute\-path excludes, while "dir\-merge,s .filt" and ":sC" would each
-make all their per\-directory rules apply only on the sending side.  If the
-merge rule specifies sides to affect (via the \fBs\fP or \fBr\fP modifier or
-both), then the rules in the file must not specify sides (via a modifier or
-a rule prefix such as \fBhide\fP).
+Ви також можете вказати будь\-які модифікатори для правил «+» або «\-» (вище),
+щоб усі правила, які буде прочитано з файла, типово мали встановлений
+модифікатор (окрім модифікатора \fB!\fP, який не матиме сенсу). Наприклад,
+«merge,\-/ .excl» наказує обробляти вміст .excl, як виключення за абсолютними
+шляхами, а «dir\-merge,s .filt» і «:sC» кожне призведуть до застосування
+їхніх правил для окремих каталогів на боці відправника. Якщо правила
+об'єднання вказують кінці передавання, яких вони стосуються (за допомогою
+модифікатора \fBs\fP або \fBr\fP чи обох модифікаторів), правила у файлі не
+повинні містити визначення кінця передавання (за допомогою модифікатора або
+префікса правил, зокрема \fBhide\fP).
 .P
-Per\-directory rules are inherited in all subdirectories of the directory
-where the merge\-file was found unless the 'n' modifier was used.  Each
-subdirectory's rules are prefixed to the inherited per\-directory rules from
-its parents, which gives the newest rules a higher priority than the
-inherited rules.  The entire set of dir\-merge rules are grouped together in
-the spot where the merge\-file was specified, so it is possible to override
-dir\-merge rules via a rule that got specified earlier in the list of global
-rules.  When the list\-clearing rule ("!") is read from a per\-directory file,
-it only clears the inherited rules for the current merge file.
+Правила для окремих каталогів успадковуються в усіх підкаталогах каталогу,
+де було знайдено файл об'єднання, якщо не було використано модифікатор
+«n». Правила для окремих підкаталогів буде дописано до успадкованих правил
+для окремих каталогів з його батьківських каталогів, що дає найновішим
+правилам вищий пріоритет за успадковані правила. Увесь набір правила
+об'єднання каталогів буде згруповано у місці, Де було вказано файли
+об'єднання, тому можна перевизначити правила об'єднання каталогів за
+допомогою правила, яке вказано раніше у списку загальних правил. Якщо з
+файла для окремих каталогів буде прочитано правило спорожнення списку («!»),
+воно спорожнюватиме лише успадковані правила для поточного файла об'єднання.
 .P
-Another way to prevent a single rule from a dir\-merge file from being
-inherited is to anchor it with a leading slash.  Anchored rules in a
-per\-directory merge\-file are relative to the merge\-file's directory, so a
-pattern "/foo" would only match the file "foo" in the directory where the
-dir\-merge filter file was found.
+Іншим способом запобігти успадкуванню окремого правила з файла об'єднання
+каталогів є його прив'язування за допомогою початкового символу похилої
+риски. Прив'язані правила у файлів об'єднання для окремих каталогів є
+відносними до каталогу файла об'єднання, тому взірець «/щось» відповідатиме
+лише файлу «щось» у каталозі, де буде знайдено файл фільтрування об'єднання
+каталогів.
 .P
-Here's an example filter file which you'd specify via \fB\-\-filter=".\ file":\fP
+Ось приклад файла фільтрування, який можна вказати за допомогою
+\fB\-\-filter=".\ file":\fP
 .RS 4
 .P
 .nf
@@ -4291,20 +4305,22 @@ merge /home/user/.global\-filter
 dir\-merge .rules
 + *.[ch]
 \- *.o
-\- foo*
+\- щось*
 .fi
 .RE
 .P
-This will merge the contents of the /home/user/.global\-filter file at the
-start of the list and also turns the ".rules" filename into a per\-directory
-filter file.  All rules read in prior to the start of the directory scan
-follow the global anchoring rules (i.e. a leading slash matches at the root
-of the transfer).
+У результаті на початок списку буде внесено вміст файла
+/home/user/.global\-filter, а також визначено назву файла «.rules» для файла
+фільтрування для окремих каталогів. Усі правила, які буде прочитано перед
+початком сканування каталогів, підлягатимуть загальним правилам прив'язки
+(тобто початковий символ похилої риски відповідатиме кореневому каталогу
+передавання даних).
 .P
-If a per\-directory merge\-file is specified with a path that is a parent
-directory of the first transfer directory, rsync will scan all the parent
-dirs from that starting point to the transfer directory for the indicated
-per\-directory file.  For instance, here is a common filter (see \fB\-F\fP):
+Якщо вказано файл об'єднання для окремих каталогів із шляхом, який є
+батьківським шляхом першого каталогу передавання, rsync буде сканувати усі
+батьківські каталоги з початкової точки для передавання каталогу для
+вказаного файла окремих каталогів. Наприклад, ось типове фільтрування
+(див. \fB\-F\fP):
 .RS 4
 .P
 .nf
@@ -4312,135 +4328,144 @@ per\-directory file.  For instance, here is a common filter (see \fB\-F\fP):
 .fi
 .RE
 .P
-That rule tells rsync to scan for the file .rsync\-filter in all directories
-from the root down through the parent directory of the transfer prior to the
-start of the normal directory scan of the file in the directories that are
-sent as a part of the transfer. (Note: for an rsync daemon, the root is
-always the same as the module's "path".)
+Це правило наказує rsync сканувати файл .rsync\-filter в усіх каталогах від
+кореневого через батьківський каталог передавання до початку звичайного
+сканування каталогів файла у каталогах, які буде надіслано як частину
+передавання. (Зауваження: для фонової служби rsync кореневим каталогом
+завжди буде той самий каталог, що і «шлях» модуля.)
 .P
-Some examples of this pre\-scanning for per\-directory files:
+Декілька прикладів цього попереднього сканування для файлів окремих
+каталогів:
 .RS 4
 .P
 .nf
-rsync \-avF /src/path/ /dest/dir
-rsync \-av \-\-filter=': ../../.rsync\-filter' /src/path/ /dest/dir
-rsync \-av \-\-filter=': .rsync\-filter' /src/path/ /dest/dir
+rsync \-avF /джерело/шлях/ /призначення/каталог
+rsync \-av \-\-filter=': ../../.rsync\-filter' /джерело/шлях/ /призначення/каталог
+rsync \-av \-\-filter=': .rsync\-filter' /джерело/шлях/ /призначення/каталог
 .fi
 .RE
 .P
-The first two commands above will look for ".rsync\-filter" in "/" and "/src"
-before the normal scan begins looking for the file in "/src/path" and its
-subdirectories.  The last command avoids the parent\-dir scan and only looks
-for the ".rsync\-filter" files in each directory that is a part of the
-transfer.
+Перші дві команди вище призведуть до пошуку «.rsync\-filter» у «/» і «/src»
+перед початком звичайного сканування. Буде виконано пошук файла у
+«/джерело/шлях» і його підкаталогах. Остання команда призведе до уникання
+сканування батьківського каталогу і дасть пошук файлів «.rsync\-filter» лише
+у кожному каталозі, який є частиною передавання.
 .P
-If you want to include the contents of a ".cvsignore" in your patterns, you
-should use the rule ":C", which creates a dir\-merge of the .cvsignore file,
-but parsed in a CVS\-compatible manner.  You can use this to affect where the
-\fB\-\-cvs\-exclude\fP (\fB\-C\fP) option's inclusion of the per\-directory
-\&.cvsignore file gets placed into your rules by putting the ":C" wherever
-you like in your filter rules.  Without this, rsync would add the dir\-merge
-rule for the .cvsignore file at the end of all your other rules (giving it a
-lower priority than your command\-line rules).  For example:
+Якщо ви хочете включити вміст «.cvsignore» до ваших взірців, вам слід
+скористатися правилом «:C», яке створює об'єднання каталогів файла
+\&.cvsignore, але із обробкою у сумісний із CVS спосіб. Ви можете скористатися
+цим для того, щоб вплинути на те, де відбуватиметься включення параметра
+\fB\-\-cvs\-exclude\fP (\fB\-C\fP) файла \&.cvsignore для окремих каталогів до ваших
+правил, за допомогою розташування «:C» там, де ви хочете розмістити ваші
+правила фільтрування. Без цього, rsync додаватиме правило об'єднання
+каталогів для файла .cvsignore наприкінці усіх ваших інших правил (що
+надаватиме йому нижчої пріоритетності за правила у рядку команди). Приклад:
 .RS 4
 .P
 .nf
 cat <<EOT | rsync \-avC \-\-filter='. \-' a/ b
-+ foo.o
++ щось.o
 :C
 \- *.old
 EOT
-rsync \-avC \-\-include=foo.o \-f :C \-\-exclude='*.old' a/ b
+rsync \-avC \-\-include=щось.o \-f :C \-\-exclude='*.old' a/ b
 .fi
 .RE
 .P
-Both of the above rsync commands are identical.  Each one will merge all the
-per\-directory .cvsignore rules in the middle of the list rather than at the
-end.  This allows their dir\-specific rules to supersede the rules that
-follow the :C instead of being subservient to all your rules.  To affect the
-other CVS exclude rules (i.e. the default list of exclusions, the contents
-of $HOME/.cvsignore, and the value of $CVSIGNORE) you should omit the \fB\-C\fP
-command\-line option and instead insert a "\-C" rule into your filter rules;
-e.g.  "\fB\-\-filter=\-C\fP".
+Обидві наведені вище команди rsync є тотожними. Кожна з них об'єднуватиме
+усі правила .cvsignore для окремих каталогів всередині списку, а не у його
+кінці. Це надає змогу його правилам для окремих каталогів мати вищий
+пріоритет за правила, які описано після :C, а не бути перевизначеними усіма
+вашими правилами. Щоб вплинути на інші правила виключення CVS (тобто типовий
+список виключень, вміст $HOME/.cvsignore та значення $CVSIGNORE), вам слід
+уникати використання параметра командного рядка \fB\-C\fP, а замість цього
+вставити правило «\-C» до ваших правил фільтрування; наприклад,
+«\fB\-\-filter=\-C\fP».
 .P
-.SH "LIST\-CLEARING FILTER RULE"
+.SH "ПРАВИЛО ФІЛЬТРУВАННЯ СПОРОЖНЕННЯ СПИСКУ"
 .P
-You can clear the current include/exclude list by using the "!" filter rule
-(as introduced in the FILTER RULES section above).  The "current" list is
-either the global list of rules (if the rule is encountered while parsing
-the filter options) or a set of per\-directory rules (which are inherited in
-their own sub\-list, so a subdirectory can use this to clear out the parent's
-rules).
+Ви можете спорожнити поточний список включення/виключення за допомогою
+правила фільтрування «!» (як про це згадано у розділі ПРАВИЛА ФІЛЬТРУВАННЯ
+вище). «Поточним» вважається список, який є або загальним списком правил
+(якщо правило було виявлено під час обробки параметрів фільтрування), або
+набір правил для окремих каталогів (які успадковуються у своєму власному
+підписку, отже, на рівні підкаталогу цим можна скористатися для спорожнення
+правил батьківського каталогу).
 .P
 .SH "ПРИВ'ЯЗКА ВЗІРЦІВ ВКЛЮЧЕННЯ/ВИКЛЮЧЕННЯ"
 .P
-As mentioned earlier, global include/exclude patterns are anchored at the
-"root of the transfer" (as opposed to per\-directory patterns, which are
-anchored at the merge\-file's directory).  If you think of the transfer as a
-subtree of names that are being sent from sender to receiver, the
-transfer\-root is where the tree starts to be duplicated in the destination
-directory.  This root governs where patterns that start with a / match.
+Як вже згадувалося раніше, загальні взірці включення/виключення буде
+прив'язано до «кореневого каталогу передавання» (на відміну від взірців
+окремих каталогів, які прив'язано до каталогу файла об'єднання). Якщо
+розглядати передавання, які підієрархію назв, які буде надіслано від
+відправника до отримувача, кореневим каталогом передавання є каталог, де
+починається ієрархія, яку слід здублювати у каталозі призначення. Цей
+кореневий каталог керує тим, де встановлюватиметься відповідність взірців,
+які починаються з /.
 .P
-Because the matching is relative to the transfer\-root, changing the trailing
-slash on a source path or changing your use of the \fB\-\-relative\fP option
-affects the path you need to use in your matching (in addition to changing
-how much of the file tree is duplicated on the destination host).  The
-following examples demonstrate this.
+Оскільки відповідність є відносною до кореневого каталогу передавання, зміна
+кінцевого символу похилої риски у шляху джерела або зміна вашого
+використання параметра \fB\-\-relative\fP впливає на шлях, яким вам слід
+скористатися у вашій відповідності (на додачу до зміни того, наскільки
+ієрархію файлів буде здубльовано на вузлі призначення). Це демонструють
+наведені нижче приклади.
 .P
-Let's say that we want to match two source files, one with an absolute path
-of "/home/me/foo/bar", and one with a path of "/home/you/bar/baz".  Here is
-how the various command choices differ for a 2\-source transfer:
+Припустімо, що ви хочете встановити відповідність двох файлів джерела,
+одного із абсолютним шляхом «/home/я/щось/десь», і одного зі шляхом
+«/home/ви/десь/тут». Ось, як відрізняються різні варіанти команди для
+передавання із 2 джерелами:
 .RS 4
 .P
 .nf
-Example cmd: rsync \-a /home/me /home/you /dest
-+/\- pattern: /me/foo/bar
-+/\- pattern: /you/bar/baz
-Target file: /dest/me/foo/bar
-Target file: /dest/you/bar/baz
+Приклад команди: rsync \-a /home/я /home/ви /призначення
++/\- pattern: /я/щось/десь
++/\- pattern: /ви/десь/тут
+Файл цілі: /призначення/я/щось/десь
+Файл цілі: /призначення/ви/десь/тут
 .fi
 .RE
 .RS 4
 .P
 .nf
-Example cmd: rsync \-a /home/me/ /home/you/ /dest
-+/\- pattern: /foo/bar               (note missing "me")
-+/\- pattern: /bar/baz               (note missing "you")
-Target file: /dest/foo/bar
-Target file: /dest/bar/baz
+Приклад команди: rsync \-a /home/я/ /home/ви/ /призначення
++/\- pattern: /щось/десь               (зауважте пропущене «я»)
++/\- pattern: /десь/тут                (зауважте пропущене «ви»)
+Файл цілі: /призначення/щось/десь
+Файл цілі: /призначення/десь/тут
 .fi
 .RE
 .RS 4
 .P
 .nf
-Example cmd: rsync \-a \-\-relative /home/me/ /home/you /dest
-+/\- pattern: /home/me/foo/bar       (note full path)
-+/\- pattern: /home/you/bar/baz      (ditto)
-Target file: /dest/home/me/foo/bar
-Target file: /dest/home/you/bar/baz
+Приклад команди: rsync \-a \-\-relative /home/я/ /home/ви /призначення
++/\- pattern: /home/я/щось/десь       (зауважте повний шлях)
++/\- pattern: /home/ви/десь/тут       (те саме)
+Файл цілі: /призначення/home/я/щось/десь
+Файл цілі: /призначення/home/ви/десь/тут
 .fi
 .RE
 .RS 4
 .P
 .nf
-Example cmd: cd /home; rsync \-a \-\-relative me/foo you/ /dest
-+/\- pattern: /me/foo/bar      (starts at specified path)
-+/\- pattern: /you/bar/baz     (ditto)
-Target file: /dest/me/foo/bar
-Target file: /dest/you/bar/baz
+Приклад команди: cd /home; rsync \-a \-\-relative я/щось ви/ /призначення
++/\- pattern: /я/щось/десь      (починається з вказаного шляху)
++/\- pattern: /ви/десь/тут      (те саме)
+Файл цілі: /призначення/я/щось/десь
+Файл цілі: /призначення/ви/десь/тут
 .fi
 .RE
 .P
-The easiest way to see what name you should filter is to just look at the
-output when using \fB\-\-verbose\fP and put a / in front of the name (use the
-\fB\-\-dry\-run\fP option if you're not yet ready to copy any files).
+Найпростішим способом перегляду, яку назву вам слід фільтрувати, є проста
+обробка виведення при використанні \fB\-\-verbose\fP і додавання / перед назвою
+(скористайтеся параметром \fB\-\-dry\-run\fP, якщо ви не готові до копіювання
+якихось файлів).
 .P
 .SH "ПРАВИЛА ДЛЯ ОКРЕМИХ КАТАЛОГІВ ТА ВИЛУЧЕННЯ"
 .P
-Without a delete option, per\-directory rules are only relevant on the
-sending side, so you can feel free to exclude the merge files themselves
-without affecting the transfer.  To make this easy, the 'e' modifier adds
-this exclude for you, as seen in these two equivalent commands:
+Без параметра вилучення правила для окремих каталогів є дієвими лише на боці
+відправника, ви можете виключити самі файли об'єднання без впливу на
+передавання. Щоб спростити це, це виключення додає модифікатор «e», як це
+можна бачити у цих двох тотожних командах:
 .RS 4
 .P
 .nf
@@ -4449,12 +4474,13 @@ rsync \-av \-\-filter=':e .excl' вузол:джерело/каталог /пр�
 .fi
 .RE
 .P
-However, if you want to do a delete on the receiving side AND you want some
-files to be excluded from being deleted, you'll need to be sure that the
-receiving side knows what files to exclude.  The easiest way is to include
-the per\-directory merge files in the transfer and use \fB\-\-delete\-after\fP,
-because this ensures that the receiving side gets all the same exclude rules
-as the sending side before it tries to delete anything:
+Втім, якщо ви хочете виконати вилучення на боці отримання І ви хочете
+виключити якісь файли зі списку вилучення, вам потрібно бути певними, що на
+боці отримання було відомо, які файли слід виключити. Найпростішим способом
+є включення файлів об'єднання окремих каталогів у передаванні і використання
+\fB\-\-delete\-after\fP, оскільки це забезпечує те, що кінець отримання отримає ті
+самі правила виключення, що маємо на боці відправника, перш ніж буде
+зроблено спробу щось вилучити:
 .RS 4
 .P
 .nf
@@ -4462,11 +4488,11 @@ rsync \-avF \-\-delete\-after вузол:джерело/каталог /приз
 .fi
 .RE
 .P
-However, if the merge files are not a part of the transfer, you'll need to
-either specify some global exclude rules (i.e. specified on the command
-line), or you'll need to maintain your own per\-directory merge files on the
-receiving side.  An example of the first is this (assume that the remote
-\&.rules files exclude themselves):
+Втім, якщо файли об'єднання не є частиною передавання даних, вам слід або
+вказати якісь загальні правила виключення (тобто правила, які вказано у
+рядку команди), або вам доведеться супроводжувати ваші власні файли
+об'єднання окремих каталогів на боці отримання. Прикладом першого є таке
+(припускаємо, що віддалені файли .rules виключають самі себе):
 .RS 4
 .P
 .nf
@@ -4475,17 +4501,17 @@ rsync \-av \-\-filter=': .rules' \-\-filter='. /my/extra.rules'
 .fi
 .RE
 .P
-In the above example the extra.rules file can affect both sides of the
-transfer, but (on the sending side) the rules are subservient to the rules
-merged from the .rules files because they were specified after the
-per\-directory merge rule.
+У наведеному вище прикладі файл extra.rules може стосуватися обох боків
+передавання, але (на боці відправника) правила є підлеглими щодо правил, які
+об'єднано з файлів .rules, оскільки їх було вказано після правила об'єднання
+окремих каталогів.
 .P
-In one final example, the remote side is excluding the .rsync\-filter files
-from the transfer, but we want to use our own .rsync\-filter files to control
-what gets deleted on the receiving side.  To do this we must specifically
-exclude the per\-directory merge files (so that they don't get deleted) and
-then put rules into the local files to control what else should not get
-deleted.  Like one of these commands:
+В останньому прикладі віддалений бік виключає файли .rsync\-filter з
+передавання, але ми хочемо скористатися нашими власними файлами
+\&.rsync\-filter для керування тим, що буде вилучено на боці отримання. Щоб
+зробити це, ми маємо спеціально виключити файли об'єднання окремих каталогів
+(отже, їх не буде вилучено), а потім записати правила до локальних файлів
+для керування тим, що ще не має бути вилучено. Як одна з цих команд:
 .RS 4
 .P
 .nf
@@ -4497,26 +4523,27 @@ rsync \-avFF \-\-delete вузол:джерело/каталог /признач
 .P
 .SH "ПАКЕТНИЙ РЕЖИМ"
 .P
-Batch mode can be used to apply the same set of updates to many identical
-systems.  Suppose one has a tree which is replicated on a number of hosts.
-Now suppose some changes have been made to this source tree and those
-changes need to be propagated to the other hosts.  In order to do this using
-batch mode, rsync is run with the write\-batch option to apply the changes
-made to the source tree to one of the destination trees.  The write\-batch
-option causes the rsync client to store in a "batch file" all the
-information needed to repeat this operation against other, identical
-destination trees.
+Пакетним режимом можна скористатися для застосування того самого набору
+оновлень до багатьох тотожних систем. Припустімо, що маємо ієрархію, яка
+відтворюється на значній кількості вузлів. Тепер, припустімо, що до ієрархії
+джерела було внесено якісь зміни, і ці зміни має бути поширено на інші
+вузли. Для того, щоб виконати це завдання за допомогою пакетного режиму,
+rsync запускають із параметром пакетного запису для застосування змін, які
+внесено до ієрархії джерела, до ієрархій призначення. Параметр пакетного
+запису (write\-batch) наказує клієнту rsync зберігати у «пакетному файлі» усі
+дані, які потрібні для повторення цих дій із іншими, тотожними, ієрархіями
+призначення.
 .P
-Generating the batch file once saves having to perform the file status,
-checksum, and data block generation more than once when updating multiple
-destination trees.  Multicast transport protocols can be used to transfer
-the batch update files in parallel to many hosts at once, instead of sending
-the same data to every host individually.
+Одноразове створення пакетного файла заощаджує час на перевірку стану
+файлів, контрольних сум та створення блоку даних при оновленні декількох
+ієрархій призначення. Можна використати протоколи трансляції даних для
+паралельного одночасного передавання файлів пакетного оновлення на багато
+вузлів, замість надсилання тих самих даних кожному вузлу окремо.
 .P
-To apply the recorded changes to another destination tree, run rsync with
-the read\-batch option, specifying the name of the same batch file, and the
-destination tree.  Rsync updates the destination tree using the information
-stored in the batch file.
+Щоб застосувати записані зміни до іншої ієрархії призначення, запустіть
+rsync із параметром пакетного читання (read\-batch), вказавши назву того
+самого пакетного файла і ієрархію призначення. Rsync оновить ієрархію
+призначення на основі відомостей, які збережено у пакетному файлі.
 .P
 For your convenience, a script file is also created when the write\-batch
 option is used: it will be named the same as the batch file with ".sh"
@@ -4551,12 +4578,14 @@ directory /bdest/dir.  The differences between the two examples reveals some
 of the flexibility you have in how you deal with batches:
 .P
 .IP o
-The first example shows that the initial copy doesn't have to be local\ \-\-
-you can push or pull data to/from a remote host using either the
-remote\-shell syntax or rsync daemon syntax, as desired.
+Перший приклад показує, що початкове копіювання не має бути обов'язково
+локальним\ \-\- ви можете, за потреби, записати або отримати дані до/з
+віддаленого вузла за допомогою або синтаксису віддаленої оболонки, або
+синтаксису фонової служби rsync.
 .IP o
-The first example uses the created "foo.sh" file to get the right rsync
-options when running the read\-batch command on the remote host.
+У першому прикладі використано створений файл «щось.sh» для отримання
+належних параметрів rsync при запуску команди пакетного читання на
+віддаленому вузлі.
 .IP o
 The second example reads the batch data via standard input so that the batch
 file doesn't need to be copied to the remote machine first.  This example
@@ -4603,8 +4632,8 @@ desired.  A normal user can ignore this detail and just use the shell script
 as an easy way to run the appropriate \fB\-\-read\-batch\fP command for the
 batched data.
 .P
-The original batch mode in rsync was based on "rsync+", but the latest
-version uses a new implementation.
+Початкова версія пакетного режиму у rsync було засновано на «rsync+», але у
+найсвіжішій версії використано нову реалізацію.
 .P
 .SH "СИМВОЛІЧНІ ПОСИЛАННЯ"
 .P
