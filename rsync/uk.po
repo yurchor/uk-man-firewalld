@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: rsync documentation 1.0\n"
 "Report-Msgid-Bugs-To: trans-uk@lists.fedoraproject.org\n"
 "POT-Creation-Date: 2022-05-27 15:22+0300\n"
-"PO-Revision-Date: 2022-06-08 20:53+0300\n"
+"PO-Revision-Date: 2022-06-09 18:50+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "Language: uk\n"
@@ -11054,6 +11054,15 @@ msgid ""
 " destination path.  This is useful when the destination tree path on the"
 " current host differs from the one used to create the batch file."
 msgstr ""
+"Для зручності, при використання параметра write-batch буде також створено"
+" файл скрипту: його назвою буде назва пакетного файла із суфіксом «.sh». Цей"
+" файл скрипту містить рядок команди, який може бути використано для оновлення"
+" ієрархії призначення з використанням пов'язаного пакетного файла. Його можна"
+" буде виконати за допомогою оболонки Борна (або подібної до оболонки Борна),"
+" якщо потрібно, передавши шлях до альтернативної ієрархії призначення, яку"
+" згодом буде використано замість початкового шляху призначення. Це корисно,"
+" якщо шлях до ієрархії призначення на поточному вузлі відрізняється від"
+" шляху, який було використано для створення пакетного файла."
 
 #. type: Plain text
 #: ./rsync.1:4338
@@ -11090,6 +11099,12 @@ msgid ""
 " into the directory /bdest/dir.  The differences between the two examples"
 " reveals some of the flexibility you have in how you deal with batches:"
 msgstr ""
+"У цих прикладах rsync буде використано для оновлення /aпризначення/каталог/ з"
+" /джерело/каталог/, а відомості для повторення цієї дії буде збережено у"
+" «щось» і «щось.sh». Після цього, вузол «remote» буде оновлено, а пакетні"
+" дані буде записано до каталогу /bпризначення/каталог. Відмінності між двома"
+" прикладами показують певну гнучкість, якою ви можете скористатися при роботі"
+" із пакетними завданнями:"
 
 #. type: Plain text
 #: ./rsync.1:4364
@@ -11123,6 +11138,14 @@ msgid ""
 " (just be sure that no other option is trying to use standard input, such as"
 " the B<--exclude-from=-> option)."
 msgstr ""
+"У другому прикладі буде виконано читання пакетних даних зі стандартного"
+" джерела введення, тому пакетний файл не потрібно спочатку копіювати на"
+" віддалений комп'ютер. У цьому прикладі ми уникли використання скрипту"
+" «щось.sh», оскільки для його роботи потрібен змінений параметр B<"
+"--read-batch>, але ви можете редагувати файл скрипту, якщо потрібно, щоб"
+" скористатися ним (просто слід переконатися, що ніякі інші параметри не"
+" використовують стандартне джерело вхідних даних, зокрема параметра B<"
+"--exclude-from=->)."
 
 #. type: Plain text
 #: ./rsync.1:4376
@@ -11145,6 +11168,19 @@ msgid ""
 " partially updated state.  In that case, rsync can be used in its regular"
 " (non-batch) mode of operation to fix up the destination tree."
 msgstr ""
+"Для використання параметра read-batch ієрархія призначення, яка підлягає"
+" оновленню, має бути тотожною до ієрархії призначення, яку було використано"
+" для створення набору файлів для пакетного оновлення. Якщо буде виявлено"
+" відмінність між ієрархіями призначення, оновлення може бути відкинуто із"
+" попередженням (якщо файл виявиться вже актуальним) або може бути виконано"
+" спробу оновлення файлів, і, якщо файл не пройде перевірки, оновлення буде"
+" відкинуто із повідомленням про помилку. Це означає, що повторний запуск дії"
+" read-batch, якщо роботу команди було перервано, має бути безпечним. Якщо ви"
+" хочете виконати пакетне оновлення примусово, незалежно від розміру і дати"
+" файла, скористайтеся параметром B<-I> (при читанні пакетного файла). Якщо"
+" станеться помилка, ієрархія призначення, ймовірно, перебуватиме у частково"
+" оновленому стані. У цьому випадку rsync можна скористатися у звичайному (не"
+" пакетному) режимі роботи для виправлення ієрархії каталогів призначення."
 
 #. type: Plain text
 #: ./rsync.1:4397
@@ -11157,6 +11193,14 @@ msgid ""
 " batch files changed format in version 2.6.3, so mixing versions older than"
 " that with newer versions will not work.)"
 msgstr ""
+"Версія rsync, яку використано в усіх призначеннях, має бути принаймні такою"
+" самою новою, як версія, яку використано для створення пакетного файла. Rsync"
+" завершить роботу зі повідомленням про помилку, якщо версія протоколу у"
+" пакетному файлі є надто новою для обробки пакетного читання у rsync. Див."
+" також параметр B<--protocol>, щоб дізнатися більше про створення пакетних"
+" файлів rsync, які будуть придатними для обробки у застарілих версіях rsync."
+" (Зауважте, що формат пакетних файлів було змінено у версії 2.6.3, тому суміш"
+" версії, старішої за цю версію, і новішої версії не працюватиме.)"
 
 #. type: Plain text
 #: ./rsync.1:4405
@@ -11168,6 +11212,13 @@ msgid ""
 " dropped, and the B<--filter> / B<--include> / B<--exclude> options are not"
 " needed unless one of the B<--delete> options is specified."
 msgstr ""
+"При читанні пакетного файла rsync примусово встановлюватиме значення певних"
+" параметрів так, щоб вони збігалися із даними у пакетному файлів, якщо ви не"
+" встановили для них того самого значення, що і у команді пакетного запису."
+" Інші параметри може бути (і має бути) змінено. Наприклад, зміни B<"
+"--write-batch> у B<--read-batch>, B<--files-from> буде відкинуто, а у"
+" параметрах B<--filter> / B<--include> / B<--exclude> не буде потреби, якщо"
+" не вказано один з параметрів B<--delete>."
 
 #. type: Plain text
 #: ./rsync.1:4412
@@ -11179,6 +11230,13 @@ msgid ""
 " can ignore this detail and just use the shell script as an easy way to run"
 " the appropriate B<--read-batch> command for the batched data."
 msgstr ""
+"Код, який створює файл BATCH.sh, перетворює будь-які параметри"
+" фільтрування/включення/виключення до єдиного списку, який буде дописано, як"
+" проміжний документ, до файла скрипту оболонки.  Досвідчений користувач може"
+" скористатися цим для внесення змін до списку виключення, якщо потрібно"
+" внести зміни у те, що вилучатиме B<--delete>. Звичайний користувач може"
+" ігнорувати це і просто скористатися скриптом оболонки, як простим способом"
+" запустити відповідну команду B<--read-batch> для пакетних даних."
 
 #. type: Plain text
 #: ./rsync.1:4415
@@ -11201,6 +11259,8 @@ msgid ""
 "Three basic behaviors are possible when rsync encounters a symbolic link in"
 " the source directory."
 msgstr ""
+"Коли rsync виявляє символічне посилання у каталозі джерела, програма може"
+" діяти за одним із трьох базових сценаріїв."
 
 #. type: Plain text
 #: ./rsync.1:4423
@@ -11208,6 +11268,8 @@ msgid ""
 "By default, symbolic links are not transferred at all.  A message \"skipping"
 " non-regular\" file is emitted for any symlinks that exist."
 msgstr ""
+"Типово, символічні посилання взагалі не переносять. Буде видано повідомлення"
+" «пропускаємо незвичайний файл» для усіх виявлених символічних посилань."
 
 #. type: Plain text
 #: ./rsync.1:4428
@@ -11217,6 +11279,11 @@ msgid ""
 " the same target on the destination.  Note that B<--archive> implies B<"
 "--links>."
 msgstr ""
+"Якщо вказано параметр B<--links>, символічні посилання буде додано до"
+" передавання (замість звичайного ігнорування із повідомленням про це), і"
+" типовою поведінкою буде відтворення символічних посилань із тією ж самою"
+" прив'язкою на боці призначення. Зауважте, що B<--archive> неявним чином"
+" встановлює B<--links>."
 
 #. type: Plain text
 #: ./rsync.1:4431
@@ -11239,6 +11306,15 @@ msgid ""
 " the receiver.  (Note that you must specify or imply B<--links> for B<"
 "--safe-links> to have any effect.)"
 msgstr ""
+"Крім того, rsync може розрізняти «безпечні» і «небезпечні» символічні"
+" посилання. Прикладом того, де це може бути використано, є дзеркало вебсайта,"
+" де потрібно виключити можливість копіювання з модуля rsync символічних"
+" посилань на B</etc/passwd> до відкритого розділу сайта. Використання B<"
+"--copy-unsafe-links> накаже програмі скопіювати усі посилання як файли, на"
+" які вони вказують, до призначення. Використання B<--safe-links> наказує"
+" програмі пропускати на боці отримувача небезпечні посилання. (Зауважте, що"
+" вам слід вказати явним або неявним чином B<--links>, щоб спрацював параметр"
+" B<--safe-links>.)"
 
 #. type: Plain text
 #: ./rsync.1:4444
@@ -11247,6 +11323,9 @@ msgid ""
 " with B</>), empty, or if they contain enough \"..\" components to ascend"
 " from the top of the transfer."
 msgstr ""
+"Символічні посилання вважаються небезпечними, якщо вони є абсолютними"
+" символічними посиланнями (починаються з B</>), є порожніми або містять"
+" достатньо компонентів «..», щоб вийти за верхній каталог передавання даних."
 
 #. type: Plain text
 #: ./rsync.1:4448
@@ -11255,6 +11334,10 @@ msgid ""
 " order of precedence, so if your combination of options isn't mentioned, use"
 " the first line that is a complete subset of your options:"
 msgstr ""
+"Нижче наведено резюме щодо того, як програма обробляє параметри символічних"
+" посилань. Список упорядковано за пріоритетністю, отже, якщо вашого поєднання"
+" параметрів не зазначено, скористайтеся першим рядком, який є повною"
+" підмножиною ваших параметрів:"
 
 #. type: IP
 #: ./rsync.1:4449
@@ -11268,6 +11351,9 @@ msgid ""
 "Turn all symlinks into normal files and directories (leaving no symlinks in"
 " the transfer for any other options to affect)."
 msgstr ""
+"Перетворити усі символічні посилання на звичайні файли і каталоги (не лишаючи"
+" у передаванні символічних посилань для обробки будь-якими іншими"
+" параметрами)."
 
 #. type: IP
 #: ./rsync.1:4452
@@ -11281,6 +11367,8 @@ msgid ""
 "Turn just symlinks to directories into real directories, leaving all other"
 " symlinks to be handled as described below."
 msgstr ""
+"Перетворити символічні посилання на каталоги на справжні каталоги, передаючи"
+" усі ніші символічні посилання для обробки в описані нижче способи."
 
 #. type: IP
 #: ./rsync.1:4455
@@ -11314,6 +11402,8 @@ msgid ""
 "The receiver skips creating unsafe symlinks found in the transfer and creates"
 " the safe ones."
 msgstr ""
+"Отримувач пропускає створення небезпечні символічні посилання, знайдені у"
+" списку передавання, і створює безпечні символічні посиання."
 
 #. type: IP
 #: ./rsync.1:4464
@@ -11343,6 +11433,10 @@ msgid ""
 " already exists on the receiving side.  See that option's section for a"
 " warning."
 msgstr ""
+"Зауважте, що параметр B<--keep-dirlinks> не впливає на символічні посилання у"
+" передаванні, але впливає на те, як rsync обробляє символічне посилання на"
+" каталог, який вже є на боці отримання. Попередження наведено у розділі щодо"
+" цього параметра."
 
 #. type: SH
 #: ./rsync.1:4474
@@ -11357,6 +11451,11 @@ msgid ""
 " The one that seems to cause the most confusion is \"protocol version"
 " mismatch\\ -- is your shell clean?\"."
 msgstr ""
+"Rsync, врешті, виводить повідомлення про помилки, які можуть здаватися дещо"
+" загадковими. Одним з таких повідомлень, яке призводить до найбільших"
+" непорозумінь, є «protocol version"
+" mismatch\\ -- is your shell clean?» («невідповідність версій протоколів — чи"
+" штатно працює ваша командна оболонка?»."
 
 #. type: Plain text
 #: ./rsync.1:4483
@@ -11366,6 +11465,11 @@ msgid ""
 " its transport.  The way to diagnose this problem is to run your remote shell"
 " like this:"
 msgstr ""
+"Причиною появи цього повідомлення, зазвичай, є те, що ваші скрипти запуску"
+" або засоби віддаленої оболонки виводять до потоку даних, який rsync"
+" використовує для передавання, небажані повідомлення. Спосіб, у який можна"
+" діагностувати таку проблему, полягає у запуску вашої віддаленої оболонки ось"
+" так:"
 
 #. type: Plain text
 #: ./rsync.1:4487
@@ -11383,6 +11487,13 @@ msgid ""
 " incorrectly configured shell startup scripts (such as .cshrc or .profile)"
 " that contain output statements for non-interactive logins."
 msgstr ""
+"з наступним вивченням out.dat. Якщо усе працює як слід, out.dat має бути"
+" файлом нульового розміру. Якщо ви отримуєте від rsync повідомлення, яке"
+" описано вище, ймовірно, out.dat міститиме якийсь текст або дані. Ознайомтеся"
+" із вмістом файла і спробуйте розібратися, звідки взялися ці дані."
+" Найпоширенішою причиною є помилки у налаштуваннях скриптів запуску командної"
+" оболонки (зокрема .cshrc або .profile), зокрема наявність інструкцій"
+" виведення даних для неінтерактивного входу до системи."
 
 #. type: Plain text
 #: ./rsync.1:4500
@@ -11391,6 +11502,9 @@ msgid ""
 " B<-vv> option.  At this level of verbosity rsync will show why each"
 " individual file is included or excluded."
 msgstr ""
+"Якщо у вас виникають проблеми із діагностикою взірців фільтрування, спробуйте"
+" вказати параметр B<-vv>. На відповідному рівні докладності rsync покаже вам,"
+" чому було включено чи виключено кожен з файлів."
 
 #. type: SH
 #: ./rsync.1:4501
@@ -11532,6 +11646,8 @@ msgid ""
 "The CVSIGNORE environment variable supplements any ignore patterns in"
 " \\&.cvsignore files.  See the B<--cvs-exclude> option for more details."
 msgstr ""
+"Змінна середовища CVSIGNORE доповнює усі взірці ігнорування у файлах"
+" \\&.cvsignore. Див. параметр B<--cvs-exclude>, щоб дізнатися більше."
 
 #. type: IP
 #: ./rsync.1:4557
@@ -11545,6 +11661,8 @@ msgid ""
 "Specify a default B<--iconv> setting using this environment variable. First"
 " supported in 3.0.0."
 msgstr ""
+"За допомогою цієї змінної середовища можна вказати типове значення для"
+" параметра B<--iconv>. Підтримку вперше реалізовано у версії 3.0.0."
 
 #. type: IP
 #: ./rsync.1:4560
@@ -11561,6 +11679,11 @@ msgid ""
 " default. When this environment variable is set to a non-zero value, it"
 " supersedes the B<RSYNC_PROTECT_ARGS> variable."
 msgstr ""
+"Вкажіть значення «1», якщо ви хочете, щоб параметр B<--old-args> було типово"
+" увімкнено, значення «2» (або більше), якщо хочете, щоб його було увімкнено у"
+" стані повторення параметра, або значення «0», щоб забезпечити типове"
+" вимикання параметра. Якщо для цієї змінної середовища встановлено ненульове"
+" значення, вона матиме вищий пріоритет за змінну B<RSYNC_PROTECT_ARGS>."
 
 #. type: Plain text
 #: ./rsync.1:4569
@@ -11568,6 +11691,8 @@ msgid ""
 "This variable is ignored if B<--old-args>, B<--no-old-args>, or B<"
 "--protect-args> is specified on the command line."
 msgstr ""
+"Цю змінну буде проігноровано, якщо у рядку команди буде вказано B<--old-args"
+">, B<--no-old-args> або B<--protect-args>."
 
 #. type: Plain text
 #: ./rsync.1:4571
@@ -11587,6 +11712,9 @@ msgid ""
 " be enabled by default, or a zero value to make sure that it is disabled by"
 " default."
 msgstr ""
+"Вкажіть ненульове числове значення, якщо ви хочете, щоб типово було увімкнено"
+" параметр B<--protect-args>, або нульове значення, якщо ви хочете бути певні,"
+" що типово цей параметр вимкнено."
 
 #. type: Plain text
 #: ./rsync.1:4578
@@ -11594,6 +11722,8 @@ msgid ""
 "This variable is ignored if B<--protect-args>, B<--no-protect-args>, or B<"
 "--old-args> is specified on the command line."
 msgstr ""
+"Цю змінну буде проігноровано, якщо у рядку команди буде вказано B<"
+"--protect-args>, B<--no-protect-args> або B<--old-args>."
 
 #. type: Plain text
 #: ./rsync.1:4581
@@ -11618,6 +11748,10 @@ msgid ""
 " the transport for rsync.  Command line options are permitted after the"
 " command name, just as in the B<--rsh> (B<-e>) option."
 msgstr ""
+"За допомогою цієї змінної середовища ви можете перевизначити типову командну"
+" оболонку, яку буде використано як засіб передавання даних для rsync. Після"
+" назви команди можна вказати параметри командного рядка, так само, як в"
+" аргументі параметра B<--rsh> (B<-e>)."
 
 #. type: IP
 #: ./rsync.1:4585
@@ -11632,6 +11766,9 @@ msgid ""
 " web proxy when connecting to an rsync daemon.  You should set B<RSYNC_PROXY>"
 " to a hostname:port pair."
 msgstr ""
+"За допомогою цієї змінної середовища ви можете переспрямувати ваш клієнт"
+" rsync на використання проксі-сервера при встановленні з'єднання з фоновою"
+" службою rsync. Значенням B<RSYNC_PROXY> має бути пара «назва_вузла:порт»."
 
 #. type: IP
 #: ./rsync.1:4589
@@ -11647,6 +11784,11 @@ msgid ""
 "not> supply a password to a remote shell transport such as ssh (consult its"
 " documentation for how to do that)."
 msgstr ""
+"За допомогою цієї змінної середовища ви можете встановити пароль для"
+" з'єднання із B<фоновою службою> rsync, де не передбачено запиту щодо пароля."
+" Зауважте, що так B<не можна> надати пароль для передавання даних віддаленою"
+" командною оболонкою, зокрема ssh (ознайомтеся із документацією щодо того, як"
+" це зробити)."
 
 #. type: IP
 #: ./rsync.1:4594
@@ -11661,6 +11803,11 @@ msgid ""
 " username sent to an rsync daemon.  If neither is set, the username defaults"
 " to \"nobody\".  If both are set, B<USER> takes precedence."
 msgstr ""
+"Змінною середовища USER або LOGNAME можна скористатися для визначення"
+" типового імені користувача, яке буде надіслано до фонової служби rsync. Якщо"
+" не буде встановлено значення жодної з цих змінних, типовим значення імені"
+" користувача буде «nobody». Якщо встановлено значення обох змінних, вищий"
+" пріоритет матиме B<USER>."
 
 #. type: IP
 #: ./rsync.1:4598
@@ -11675,6 +11822,10 @@ msgid ""
 " transfer without implying that partial transfers be enabled.  See the B<"
 "--partial-dir> option for full details."
 msgstr ""
+"Ця змінна середовища вказує каталог, яким слід скористатися для передавання"
+" B<--partial> без неявного визначення того, що увімкнено часткові"
+" передавання. Див. опис параметра B<"
+"--partial-dir>, щоб дізнатися більше."
 
 #. type: IP
 #: ./rsync.1:4602
@@ -11690,6 +11841,11 @@ msgid ""
 " names.  Use the command B<rsync\\ --version> to see the available"
 " compression names.  See the B<--compress> option for full details."
 msgstr ""
+"За допомогою цієї змінної середовища ви можете налаштувати узгодження"
+" алгоритму стискання, вказавши альтернативний порядок або звужений список"
+" назв алгоритмів. Скористайтеся командою B<rsync\\ --version>, щоб"
+" переглянути список доступних алгоритмів стискання. Див. опис параметра B<"
+"--compress>, щоб дізнатися більше."
 
 #. type: IP
 #: ./rsync.1:4607
@@ -11705,6 +11861,11 @@ msgid ""
 " names.  Use the command B<rsync\\ --version> to see the available checksum"
 " names.  See the B<--checksum-choice> option for full details."
 msgstr ""
+"За допомогою цієї змінної середовища ви можете налаштувати узгодження"
+" алгоритму обчислення контрольної суми, вказавши альтернативний порядок або"
+" звужений список назв алгоритмів. Скористайтеся командою B<rsync\\ --version"
+">, щоб переглянути список доступних алгоритмів обчислення контрольної суми."
+" Див. опис параметра B<--checksum-choice>, щоб дізнатися більше."
 
 #. type: IP
 #: ./rsync.1:4612
@@ -11735,6 +11896,11 @@ msgid ""
 " daemon connection.  This allows a script such as B<rsync-ssl> to be able to"
 " know the port number that the user specified on the command line."
 msgstr ""
+"Rsync не читає цю змінну середовища, але, замість цього, її буде встановлено"
+" у підлеглих середовищах, якщо rsync запускає віддалену командну оболонку у"
+" поєднанні із з'єднанням із фоновою службою. Змінна надає змогу скрипту,"
+" зокрема B<rsync-ssl>, дізнатися про номер порту, який користувач вказав у"
+" рядку команди."
 
 #. type: IP
 #: ./rsync.1:4621
@@ -11875,6 +12041,13 @@ msgid ""
 " directory of the rsync distribution has an example script named rrsync (for"
 " restricted rsync)  that can be used with a restricted ssh login."
 msgstr ""
+"Параметри B<--server> і B<--sender> використано на внутрішньому рівні rsync."
+" Потреби у їхньому введенні користувачем, за звичайних обставин, ніколи не"
+" повинно виникнути. У певних сценаріях вони можуть бути важливим, зокрема при"
+" налаштовуванні облікового запису, лише від імені якого може бути запущено"
+" команду rsync. Наприклад, у каталозі support дистрибутива rsync є приклад"
+" скрипту із назвою rrsync (скорочення від «restricted rsync» або «обмежений"
+" rsync»), яким можна скористатися із обмеженим обліковим записом ssh."
 
 #. type: SH
 #: ./rsync.1:4668

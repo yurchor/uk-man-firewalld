@@ -4545,14 +4545,15 @@ rsync із параметром пакетного читання (read\-batch),
 самого пакетного файла і ієрархію призначення. Rsync оновить ієрархію
 призначення на основі відомостей, які збережено у пакетному файлі.
 .P
-For your convenience, a script file is also created when the write\-batch
-option is used: it will be named the same as the batch file with ".sh"
-appended.  This script file contains a command\-line suitable for updating a
-destination tree using the associated batch file.  It can be executed using
-a Bourne (or Bourne\-like) shell, optionally passing in an alternate
-destination tree pathname which is then used instead of the original
-destination path.  This is useful when the destination tree path on the
-current host differs from the one used to create the batch file.
+Для зручності, при використання параметра write\-batch буде також створено
+файл скрипту: його назвою буде назва пакетного файла із суфіксом «.sh». Цей
+файл скрипту містить рядок команди, який може бути використано для оновлення
+ієрархії призначення з використанням пов'язаного пакетного файла. Його можна
+буде виконати за допомогою оболонки Борна (або подібної до оболонки Борна),
+якщо потрібно, передавши шлях до альтернативної ієрархії призначення, яку
+згодом буде використано замість початкового шляху призначення. Це корисно,
+якщо шлях до ієрархії призначення на поточному вузлі відрізняється від
+шляху, який було використано для створення пакетного файла.
 .P
 Приклади:
 .RS 4
@@ -4571,11 +4572,12 @@ $ ssh remote rsync \-\-read\-batch=\- \-a /bпризначення/катало�
 .fi
 .RE
 .P
-In these examples, rsync is used to update /adest/dir/ from /source/dir/ and
-the information to repeat this operation is stored in "foo" and "foo.sh".
-The host "remote" is then updated with the batched data going into the
-directory /bdest/dir.  The differences between the two examples reveals some
-of the flexibility you have in how you deal with batches:
+У цих прикладах rsync буде використано для оновлення /aпризначення/каталог/
+з /джерело/каталог/, а відомості для повторення цієї дії буде збережено у
+«щось» і «щось.sh». Після цього, вузол «remote» буде оновлено, а пакетні
+дані буде записано до каталогу /bпризначення/каталог. Відмінності між двома
+прикладами показують певну гнучкість, якою ви можете скористатися при роботі
+із пакетними завданнями:
 .P
 .IP o
 Перший приклад показує, що початкове копіювання не має бути обов'язково
@@ -4587,94 +4589,104 @@ of the flexibility you have in how you deal with batches:
 належних параметрів rsync при запуску команди пакетного читання на
 віддаленому вузлі.
 .IP o
-The second example reads the batch data via standard input so that the batch
-file doesn't need to be copied to the remote machine first.  This example
-avoids the foo.sh script because it needed to use a modified \fB\-\-read\-batch\fP
-option, but you could edit the script file if you wished to make use of it
-(just be sure that no other option is trying to use standard input, such as
-the \fB\-\-exclude\-from=\-\fP option).
+У другому прикладі буде виконано читання пакетних даних зі стандартного
+джерела введення, тому пакетний файл не потрібно спочатку копіювати на
+віддалений комп'ютер. У цьому прикладі ми уникли використання скрипту
+«щось.sh», оскільки для його роботи потрібен змінений параметр
+\fB\-\-read\-batch\fP, але ви можете редагувати файл скрипту, якщо потрібно, щоб
+скористатися ним (просто слід переконатися, що ніякі інші параметри не
+використовують стандартне джерело вхідних даних, зокрема параметра
+\fB\-\-exclude\-from=\-\fP).
 .P
 Застереження:
 .P
-The read\-batch option expects the destination tree that it is updating to be
-identical to the destination tree that was used to create the batch update
-fileset.  When a difference between the destination trees is encountered the
-update might be discarded with a warning (if the file appears to be
-up\-to\-date already) or the file\-update may be attempted and then, if the
-file fails to verify, the update discarded with an error.  This means that
-it should be safe to re\-run a read\-batch operation if the command got
-interrupted.  If you wish to force the batched\-update to always be attempted
-regardless of the file's size and date, use the \fB\-I\fP option (when reading
-the batch).  If an error occurs, the destination tree will probably be in a
-partially updated state.  In that case, rsync can be used in its regular
-(non\-batch) mode of operation to fix up the destination tree.
+Для використання параметра read\-batch ієрархія призначення, яка підлягає
+оновленню, має бути тотожною до ієрархії призначення, яку було використано
+для створення набору файлів для пакетного оновлення. Якщо буде виявлено
+відмінність між ієрархіями призначення, оновлення може бути відкинуто із
+попередженням (якщо файл виявиться вже актуальним) або може бути виконано
+спробу оновлення файлів, і, якщо файл не пройде перевірки, оновлення буде
+відкинуто із повідомленням про помилку. Це означає, що повторний запуск дії
+read\-batch, якщо роботу команди було перервано, має бути безпечним. Якщо ви
+хочете виконати пакетне оновлення примусово, незалежно від розміру і дати
+файла, скористайтеся параметром \fB\-I\fP (при читанні пакетного файла). Якщо
+станеться помилка, ієрархія призначення, ймовірно, перебуватиме у частково
+оновленому стані. У цьому випадку rsync можна скористатися у звичайному (не
+пакетному) режимі роботи для виправлення ієрархії каталогів призначення.
 .P
-The rsync version used on all destinations must be at least as new as the
-one used to generate the batch file.  Rsync will die with an error if the
-protocol version in the batch file is too new for the batch\-reading rsync to
-handle.  See also the \fB\-\-protocol\fP option for a way to have the creating
-rsync generate a batch file that an older rsync can understand.  (Note that
-batch files changed format in version 2.6.3, so mixing versions older than
-that with newer versions will not work.)
+Версія rsync, яку використано в усіх призначеннях, має бути принаймні такою
+самою новою, як версія, яку використано для створення пакетного файла. Rsync
+завершить роботу зі повідомленням про помилку, якщо версія протоколу у
+пакетному файлі є надто новою для обробки пакетного читання у
+rsync. Див. також параметр \fB\-\-protocol\fP, щоб дізнатися більше про створення
+пакетних файлів rsync, які будуть придатними для обробки у застарілих
+версіях rsync. (Зауважте, що формат пакетних файлів було змінено у версії
+2.6.3, тому суміш версії, старішої за цю версію, і новішої версії не
+працюватиме.)
 .P
-When reading a batch file, rsync will force the value of certain options to
-match the data in the batch file if you didn't set them to the same as the
-batch\-writing command.  Other options can (and should) be changed.  For
-instance \fB\-\-write\-batch\fP changes to \fB\-\-read\-batch\fP, \fB\-\-files\-from\fP is
-dropped, and the \fB\-\-filter\fP / \fB\-\-include\fP / \fB\-\-exclude\fP options are not
-needed unless one of the \fB\-\-delete\fP options is specified.
+При читанні пакетного файла rsync примусово встановлюватиме значення певних
+параметрів так, щоб вони збігалися із даними у пакетному файлів, якщо ви не
+встановили для них того самого значення, що і у команді пакетного
+запису. Інші параметри може бути (і має бути) змінено. Наприклад, зміни
+\fB\-\-write\-batch\fP у \fB\-\-read\-batch\fP, \fB\-\-files\-from\fP буде відкинуто, а у
+параметрах \fB\-\-filter\fP / \fB\-\-include\fP / \fB\-\-exclude\fP не буде потреби, якщо
+не вказано один з параметрів \fB\-\-delete\fP.
 .P
-The code that creates the BATCH.sh file transforms any
-filter/include/exclude options into a single list that is appended as a
-"here" document to the shell script file.  An advanced user can use this to
-modify the exclude list if a change in what gets deleted by \fB\-\-delete\fP is
-desired.  A normal user can ignore this detail and just use the shell script
-as an easy way to run the appropriate \fB\-\-read\-batch\fP command for the
-batched data.
+Код, який створює файл BATCH.sh, перетворює будь\-які параметри
+фільтрування/включення/виключення до єдиного списку, який буде дописано, як
+проміжний документ, до файла скрипту оболонки.  Досвідчений користувач може
+скористатися цим для внесення змін до списку виключення, якщо потрібно
+внести зміни у те, що вилучатиме \fB\-\-delete\fP. Звичайний користувач може
+ігнорувати це і просто скористатися скриптом оболонки, як простим способом
+запустити відповідну команду \fB\-\-read\-batch\fP для пакетних даних.
 .P
 Початкова версія пакетного режиму у rsync було засновано на «rsync+», але у
 найсвіжішій версії використано нову реалізацію.
 .P
 .SH "СИМВОЛІЧНІ ПОСИЛАННЯ"
 .P
-Three basic behaviors are possible when rsync encounters a symbolic link in
-the source directory.
+Коли rsync виявляє символічне посилання у каталозі джерела, програма може
+діяти за одним із трьох базових сценаріїв.
 .P
-By default, symbolic links are not transferred at all.  A message "skipping
-non\-regular" file is emitted for any symlinks that exist.
+Типово, символічні посилання взагалі не переносять. Буде видано повідомлення
+«пропускаємо незвичайний файл» для усіх виявлених символічних посилань.
 .P
-If \fB\-\-links\fP is specified, then symlinks are added to the transfer (instead
-of being noisily ignored), and the default handling is to recreate them with
-the same target on the destination.  Note that \fB\-\-archive\fP implies
-\fB\-\-links\fP.
+Якщо вказано параметр \fB\-\-links\fP, символічні посилання буде додано до
+передавання (замість звичайного ігнорування із повідомленням про це), і
+типовою поведінкою буде відтворення символічних посилань із тією ж самою
+прив'язкою на боці призначення. Зауважте, що \fB\-\-archive\fP неявним чином
+встановлює \fB\-\-links\fP.
 .P
 Якщо вказано \fB\-\-copy\-links\fP, символічні посилання буде «згорнуто»
 копіюванням того, на що вони посилаються, а не самого символічного
 посилання.
 .P
-Rsync can also distinguish "safe" and "unsafe" symbolic links.  An example
-where this might be used is a web site mirror that wishes to ensure that the
-rsync module that is copied does not include symbolic links to
-\fB/etc/passwd\fP in the public section of the site.  Using
-\fB\-\-copy\-unsafe\-links\fP will cause any links to be copied as the file they
-point to on the destination.  Using \fB\-\-safe\-links\fP will cause unsafe links
-to be omitted by the receiver.  (Note that you must specify or imply
-\fB\-\-links\fP for \fB\-\-safe\-links\fP to have any effect.)
+Крім того, rsync може розрізняти «безпечні» і «небезпечні» символічні
+посилання. Прикладом того, де це може бути використано, є дзеркало вебсайта,
+де потрібно виключити можливість копіювання з модуля rsync символічних
+посилань на \fB/etc/passwd\fP до відкритого розділу сайта. Використання
+\fB\-\-copy\-unsafe\-links\fP накаже програмі скопіювати усі посилання як файли, на
+які вони вказують, до призначення. Використання \fB\-\-safe\-links\fP наказує
+програмі пропускати на боці отримувача небезпечні посилання. (Зауважте, що
+вам слід вказати явним або неявним чином \fB\-\-links\fP, щоб спрацював параметр
+\fB\-\-safe\-links\fP.)
 .P
-Symbolic links are considered unsafe if they are absolute symlinks (start
-with \fB/\fP), empty, or if they contain enough ".." components to ascend from
-the top of the transfer.
+Символічні посилання вважаються небезпечними, якщо вони є абсолютними
+символічними посиланнями (починаються з \fB/\fP), є порожніми або містять
+достатньо компонентів «..», щоб вийти за верхній каталог передавання даних.
 .P
-Here's a summary of how the symlink options are interpreted.  The list is in
-order of precedence, so if your combination of options isn't mentioned, use
-the first line that is a complete subset of your options:
+Нижче наведено резюме щодо того, як програма обробляє параметри символічних
+посилань. Список упорядковано за пріоритетністю, отже, якщо вашого поєднання
+параметрів не зазначено, скористайтеся першим рядком, який є повною
+підмножиною ваших параметрів:
 .P
 .IP \fB\-\-copy\-links\fP
-Turn all symlinks into normal files and directories (leaving no symlinks in
-the transfer for any other options to affect).
+Перетворити усі символічні посилання на звичайні файли і каталоги (не
+лишаючи у передаванні символічних посилань для обробки будь\-якими іншими
+параметрами).
 .IP \fB\-\-copy\-dirlinks\fP
-Turn just symlinks to directories into real directories, leaving all other
-symlinks to be handled as described below.
+Перетворити символічні посилання на каталоги на справжні каталоги, передаючи
+усі ніші символічні посилання для обробки в описані нижче способи.
 .IP \fB\-\-links\ \-\-copy\-unsafe\-links\fP
 Перетворити усі небезпечні символічні посилання на файли і створити усі
 безпечні символічні посилання.
@@ -4682,29 +4694,32 @@ symlinks to be handled as described below.
 Перетворити усі небезпечні символічні посилання на файли і з повідомленнями
 пропустити усі безпечні символічні посилання.
 .IP \fB\-\-links\ \-\-safe\-links\fP
-The receiver skips creating unsafe symlinks found in the transfer and
-creates the safe ones.
+Отримувач пропускає створення небезпечні символічні посилання, знайдені у
+списку передавання, і створює безпечні символічні посиання.
 .IP \fB\-\-links\fP
 Створити усі символічні посилання.
 .P
 Щоб дізнатися про роботу \fB\-\-munge\-links\fP, див. обговорення у розділі цього
 параметра.
 .P
-Note that the \fB\-\-keep\-dirlinks\fP option does not effect symlinks in the
-transfer but instead affects how rsync treats a symlink to a directory that
-already exists on the receiving side.  See that option's section for a
-warning.
+Зауважте, що параметр \fB\-\-keep\-dirlinks\fP не впливає на символічні посилання
+у передаванні, але впливає на те, як rsync обробляє символічне посилання на
+каталог, який вже є на боці отримання. Попередження наведено у розділі щодо
+цього параметра.
 .P
 .SH ДІАГНОСТИКА
 .P
-Rsync occasionally produces error messages that may seem a little cryptic.
-The one that seems to cause the most confusion is "protocol version
-mismatch\ \-\- is your shell clean?".
+Rsync, врешті, виводить повідомлення про помилки, які можуть здаватися дещо
+загадковими. Одним з таких повідомлень, яке призводить до найбільших
+непорозумінь, є «protocol version mismatch\ \-\- is your shell clean?»
+(«невідповідність версій протоколів — чи штатно працює ваша командна
+оболонка?».
 .P
-This message is usually caused by your startup scripts or remote shell
-facility producing unwanted garbage on the stream that rsync is using for
-its transport.  The way to diagnose this problem is to run your remote shell
-like this:
+Причиною появи цього повідомлення, зазвичай, є те, що ваші скрипти запуску
+або засоби віддаленої оболонки виводять до потоку даних, який rsync
+використовує для передавання, небажані повідомлення. Спосіб, у який можна
+діагностувати таку проблему, полягає у запуску вашої віддаленої оболонки ось
+так:
 .RS 4
 .P
 .nf
@@ -4712,16 +4727,17 @@ ssh remotehost /bin/true > out.dat
 .fi
 .RE
 .P
-then look at out.dat.  If everything is working correctly then out.dat
-should be a zero length file.  If you are getting the above error from rsync
-then you will probably find that out.dat contains some text or data.  Look
-at the contents and try to work out what is producing it.  The most common
-cause is incorrectly configured shell startup scripts (such as .cshrc or
-\&.profile) that contain output statements for non\-interactive logins.
+з наступним вивченням out.dat. Якщо усе працює як слід, out.dat має бути
+файлом нульового розміру. Якщо ви отримуєте від rsync повідомлення, яке
+описано вище, ймовірно, out.dat міститиме якийсь текст або дані. Ознайомтеся
+із вмістом файла і спробуйте розібратися, звідки взялися ці
+дані. Найпоширенішою причиною є помилки у налаштуваннях скриптів запуску
+командної оболонки (зокрема .cshrc або .profile), зокрема наявність
+інструкцій виведення даних для неінтерактивного входу до системи.
 .P
-If you are having trouble debugging filter patterns, then try specifying the
-\fB\-vv\fP option.  At this level of verbosity rsync will show why each
-individual file is included or excluded.
+Якщо у вас виникають проблеми із діагностикою взірців фільтрування,
+спробуйте вказати параметр \fB\-vv\fP. На відповідному рівні докладності rsync
+покаже вам, чому було включено чи виключено кожен з файлів.
 .P
 .SH "ЗНАЧЕННЯ ВИХОДУ"
 .P
@@ -4778,72 +4794,79 @@ individual file is included or excluded.
 .SH "ЗМІННІ СЕРЕДОВИЩА"
 .P
 .IP \fBCVSIGNORE\fP
-The CVSIGNORE environment variable supplements any ignore patterns in
-\&.cvsignore files.  See the \fB\-\-cvs\-exclude\fP option for more details.
+Змінна середовища CVSIGNORE доповнює усі взірці ігнорування у файлах
+\&.cvsignore. Див. параметр \fB\-\-cvs\-exclude\fP, щоб дізнатися більше.
 .IP \fBRSYNC_ICONV\fP
-Specify a default \fB\-\-iconv\fP setting using this environment variable. First
-supported in 3.0.0.
+За допомогою цієї змінної середовища можна вказати типове значення для
+параметра \fB\-\-iconv\fP. Підтримку вперше реалізовано у версії 3.0.0.
 .IP \fBRSYNC_OLD_ARGS\fP
-Specify a "1" if you want the \fB\-\-old\-args\fP option to be enabled by default,
-a "2" (or more) if you want it to be enabled in the repeated\-option state,
-or a "0" to make sure that it is disabled by default. When this environment
-variable is set to a non\-zero value, it supersedes the \fBRSYNC_PROTECT_ARGS\fP
-variable.
+Вкажіть значення «1», якщо ви хочете, щоб параметр \fB\-\-old\-args\fP було типово
+увімкнено, значення «2» (або більше), якщо хочете, щоб його було увімкнено у
+стані повторення параметра, або значення «0», щоб забезпечити типове
+вимикання параметра. Якщо для цієї змінної середовища встановлено ненульове
+значення, вона матиме вищий пріоритет за змінну \fBRSYNC_PROTECT_ARGS\fP.
 .IP
-This variable is ignored if \fB\-\-old\-args\fP, \fB\-\-no\-old\-args\fP, or
-\fB\-\-protect\-args\fP is specified on the command line.
+Цю змінну буде проігноровано, якщо у рядку команди буде вказано
+\fB\-\-old\-args\fP, \fB\-\-no\-old\-args\fP або \fB\-\-protect\-args\fP.
 .IP
 Вперше реалізовано підтримку у 3.2.4.
 .IP \fBRSYNC_PROTECT_ARGS\fP
-Specify a non\-zero numeric value if you want the \fB\-\-protect\-args\fP option to
-be enabled by default, or a zero value to make sure that it is disabled by
-default.
+Вкажіть ненульове числове значення, якщо ви хочете, щоб типово було
+увімкнено параметр \fB\-\-protect\-args\fP, або нульове значення, якщо ви хочете
+бути певні, що типово цей параметр вимкнено.
 .IP
-This variable is ignored if \fB\-\-protect\-args\fP, \fB\-\-no\-protect\-args\fP, or
-\fB\-\-old\-args\fP is specified on the command line.
+Цю змінну буде проігноровано, якщо у рядку команди буде вказано
+\fB\-\-protect\-args\fP, \fB\-\-no\-protect\-args\fP або \fB\-\-old\-args\fP.
 .IP
 Вперше реалізовано підтримку у версії 3.1.0. Починаючи з 3.2.4, цю змінну
 буде проігноровано, якщо встановлено ненульове значення для
 \fBRSYNC_OLD_ARGS\fP.
 .IP \fBRSYNC_RSH\fP
-This environment variable allows you to override the default shell used as
-the transport for rsync.  Command line options are permitted after the
-command name, just as in the \fB\-\-rsh\fP (\fB\-e\fP) option.
+За допомогою цієї змінної середовища ви можете перевизначити типову командну
+оболонку, яку буде використано як засіб передавання даних для rsync. Після
+назви команди можна вказати параметри командного рядка, так само, як в
+аргументі параметра \fB\-\-rsh\fP (\fB\-e\fP).
 .IP \fBRSYNC_PROXY\fP
-This environment variable allows you to redirect your rsync client to use a
-web proxy when connecting to an rsync daemon.  You should set \fBRSYNC_PROXY\fP
-to a hostname:port pair.
+За допомогою цієї змінної середовища ви можете переспрямувати ваш клієнт
+rsync на використання проксі\-сервера при встановленні з'єднання з фоновою
+службою rsync. Значенням \fBRSYNC_PROXY\fP має бути пара «назва_вузла:порт».
 .IP \fBRSYNC_PASSWORD\fP
-This environment variable allows you to set the password for an rsync
-\fBdaemon\fP connection, which avoids the password prompt.  Note that this does
-\fBnot\fP supply a password to a remote shell transport such as ssh (consult
-its documentation for how to do that).
+За допомогою цієї змінної середовища ви можете встановити пароль для
+з'єднання із \fBфоновою службою\fP rsync, де не передбачено запиту щодо
+пароля. Зауважте, що так \fBне можна\fP надати пароль для передавання даних
+віддаленою командною оболонкою, зокрема ssh (ознайомтеся із документацією
+щодо того, як це зробити).
 .IP "\fBUSER\fP або \fBLOGNAME\fP"
-The USER or LOGNAME environment variables are used to determine the default
-username sent to an rsync daemon.  If neither is set, the username defaults
-to "nobody".  If both are set, \fBUSER\fP takes precedence.
+Змінною середовища USER або LOGNAME можна скористатися для визначення
+типового імені користувача, яке буде надіслано до фонової служби rsync. Якщо
+не буде встановлено значення жодної з цих змінних, типовим значення імені
+користувача буде «nobody». Якщо встановлено значення обох змінних, вищий
+пріоритет матиме \fBUSER\fP.
 .IP \fBRSYNC_PARTIAL_DIR\fP
-This environment variable specifies the directory to use for a \fB\-\-partial\fP
-transfer without implying that partial transfers be enabled.  See the
-\fB\-\-partial\-dir\fP option for full details.
+Ця змінна середовища вказує каталог, яким слід скористатися для передавання
+\fB\-\-partial\fP без неявного визначення того, що увімкнено часткові
+передавання. Див. опис параметра \fB\-\-partial\-dir\fP, щоб дізнатися більше.
 .IP \fBRSYNC_COMPRESS_LIST\fP
-This environment variable allows you to customize the negotiation of the
-compression algorithm by specifying an alternate order or a reduced list of
-names.  Use the command \fBrsync\ \-\-version\fP to see the available compression
-names.  See the \fB\-\-compress\fP option for full details.
+За допомогою цієї змінної середовища ви можете налаштувати узгодження
+алгоритму стискання, вказавши альтернативний порядок або звужений список
+назв алгоритмів. Скористайтеся командою \fBrsync\ \-\-version\fP, щоб переглянути
+список доступних алгоритмів стискання. Див. опис параметра \fB\-\-compress\fP,
+щоб дізнатися більше.
 .IP \fBRSYNC_CHECKSUM_LIST\fP
-This environment variable allows you to customize the negotiation of the
-checksum algorithm by specifying an alternate order or a reduced list of
-names.  Use the command \fBrsync\ \-\-version\fP to see the available checksum
-names.  See the \fB\-\-checksum\-choice\fP option for full details.
+За допомогою цієї змінної середовища ви можете налаштувати узгодження
+алгоритму обчислення контрольної суми, вказавши альтернативний порядок або
+звужений список назв алгоритмів. Скористайтеся командою \fBrsync\ \-\-version\fP,
+щоб переглянути список доступних алгоритмів обчислення контрольної
+суми. Див. опис параметра \fB\-\-checksum\-choice\fP, щоб дізнатися більше.
 .IP \fBRSYNC_MAX_ALLOC\fP
 Ця змінна середовища встановлює максимум отримання пам'яті, подібний до
 того, який встановлює використання параметра \fB\-\-max\-alloc\fP.
 .IP \fBRSYNC_PORT\fP
-This environment variable is not read by rsync, but is instead set in its
-sub\-environment when rsync is running the remote shell in combination with a
-daemon connection.  This allows a script such as \fBrsync\-ssl\fP to be able to
-know the port number that the user specified on the command line.
+Rsync не читає цю змінну середовища, але, замість цього, її буде встановлено
+у підлеглих середовищах, якщо rsync запускає віддалену командну оболонку у
+поєднанні із з'єднанням із фоновою службою. Змінна надає змогу скрипту,
+зокрема \fBrsync\-ssl\fP, дізнатися про номер порту, який користувач вказав у
+рядку команди.
 .IP \fBHOME\fP
 Цю змінну середовища використовують для пошуку типового файла .cvsignore
 користувача.
@@ -4888,12 +4911,14 @@ know the port number that the user specified on the command line.
 .P
 .SH "ВНУТРІШНІ ПАРАМЕТРИ"
 .P
-The options \fB\-\-server\fP and \fB\-\-sender\fP are used internally by rsync, and
-should never be typed by a user under normal circumstances.  Some awareness
-of these options may be needed in certain scenarios, such as when setting up
-a login that can only run an rsync command.  For instance, the support
-directory of the rsync distribution has an example script named rrsync (for
-restricted rsync)  that can be used with a restricted ssh login.
+Параметри \fB\-\-server\fP і \fB\-\-sender\fP використано на внутрішньому рівні
+rsync. Потреби у їхньому введенні користувачем, за звичайних обставин,
+ніколи не повинно виникнути. У певних сценаріях вони можуть бути важливим,
+зокрема при налаштовуванні облікового запису, лише від імені якого може бути
+запущено команду rsync. Наприклад, у каталозі support дистрибутива rsync є
+приклад скрипту із назвою rrsync (скорочення від «restricted rsync» або
+«обмежений rsync»), яким можна скористатися із обмеженим обліковим записом
+ssh.
 .P
 .SH ПОДЯКИ
 .P
